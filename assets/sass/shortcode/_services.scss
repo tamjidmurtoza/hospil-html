@@ -1,0 +1,975 @@
+/*================================================================
+  14. Services Section
+==================================================================*/
+
+.cs_service_card_1 {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  padding: 90px;
+  background-position: right;
+
+  .cs_service_img {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cs_service_content {
+    width: min(100%, 450px);
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 24px 24px 40px;
+  }
+
+  .cs_service_header {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .cs_service_icon {
+    width: 75px;
+    height: 75px;
+    padding: 12px 17px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.2;
+      z-index: 0;
+      border-radius: inherit;
+      background-color: var(--accent-color);
+    }
+
+    img {
+      width: 42px;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .cs_service_title {
+    a:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  .cs_service_desc {
+    margin-bottom: 22px;
+  }
+
+  .cs_service_features {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    li {
+      position: relative;
+      padding-left: 26px;
+
+      img {
+        position: absolute;
+        left: 0;
+        top: 8px;
+      }
+    }
+  }
+
+  .cs_service_btn {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    font-size: 24px;
+    position: absolute;
+    right: 90px;
+    bottom: 90px;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--white-color);
+      background-color: var(--primary-color);
+    }
+  }
+
+  &:hover {
+    .cs_service_btn {
+      transform: scale(1);
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 50px 30px;
+
+    .cs_service_btn {
+      right: 30px;
+      bottom: 30px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 0;
+    flex-direction: column-reverse;
+
+    .cs_service_img {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .cs_service_content {
+      width: 100%;
+      padding: 24px 15px;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .cs_service_btn {
+      position: initial;
+      width: 65px;
+      height: 65px;
+      padding: 10px;
+    }
+  }
+}
+
+.cs_service_card_2 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  transition:
+    height 0.6s ease,
+    grid-template-columns 0.6s ease;
+
+  .cs_service_left {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 24px 100px 24px 24px;
+  }
+
+  .cs_service_text {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cs_short_desc {
+    max-width: 506px;
+  }
+
+  .cs_btn_wrap {
+    display: none;
+    margin-top: auto;
+
+    .cs_btn_style_2 {
+      transform: scale(0);
+      border-width: 1px;
+      border-color: var(--accent-color);
+
+      img {
+        transition: filter 0.3s ease;
+      }
+
+      &:hover {
+        color: var(--white-color);
+        background-color: var(--accent-color);
+
+        img {
+          filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(6372%) hue-rotate(64deg) brightness(120%) contrast(113%);
+        }
+      }
+    }
+  }
+
+  .cs_service_img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 48%;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0, 0);
+    transition: transform 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.55);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &.active {
+    height: 264px;
+    grid-template-columns: repeat(2, 1fr);
+
+    .cs_service_left {
+      padding-right: 0;
+    }
+
+    .cs_service_text {
+      gap: 20px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .cs_btn_wrap {
+      display: block;
+
+      .cs_btn_style_2 {
+        transform: scale(1);
+      }
+    }
+
+    .cs_service_img {
+      opacity: 1;
+      visibility: visible;
+
+      transform: scale(1, 1);
+    }
+  }
+
+  @media (max-width: 1199px) {
+    height: 130px;
+
+    .cs_service_left {
+      padding: 24px;
+    }
+
+    .cs_service_text {
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 991px) {
+    height: 150px;
+
+    .cs_service_text {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .cs_short_desc {
+      max-width: 100%;
+    }
+
+    &.active {
+      height: auto;
+      display: flex;
+      gap: 0;
+      flex-direction: column-reverse;
+
+      .cs_service_img {
+        width: 100%;
+        height: 100%;
+        height: 260px;
+        position: relative;
+      }
+    }
+  }
+}
+
+.cs_service_card_3 {
+  width: min(100%, 760px);
+  padding: 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &.cs_color_1 {
+    background-color: #E4DDCD;
+  }
+
+  &.cs_color_2 {
+    background-color: #BFD4CD;
+  }
+
+  &.cs_color_3 {
+    background-color: #CECDDD;
+  }
+
+  &.cs_color_4 {
+    background-color: #DBD5F7;
+  }
+
+  &.cs_color_5 {
+    background-color: #D3E4FF;
+  }
+
+  &.cs_color_6 {
+    background-color: #FFF6EB;
+  }
+
+  .cs_card_heading {
+    display: flex;
+    gap: 15px 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .cs_card_index {
+    flex: none;
+    display: inline-block;
+    padding: 5px 20px;
+    color: var(--primary-color);
+  }
+
+  .cs_card_title {
+    a:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  .cs_card_img {
+    display: block;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+  }
+
+  .cs_card_desc {
+    color: var(--secondary-color);
+    line-height: 26px;
+    max-width: 620px;
+  }
+
+  .cs_service_features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 120px;
+
+    li {
+      padding-left: 26px;
+      position: relative;
+
+      img {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        left: 0;
+        top: 4px;
+      }
+    }
+  }
+
+  .cs_card_btn {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    width: 75px;
+    height: 75px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    img {
+      width: 24px;
+      flex: none;
+    }
+
+    &:hover {
+      background-color: var(--primary-color);
+    }
+  }
+
+  @media (max-width:575px) {
+    padding: 24px 15px;
+    border-radius: 10px;
+
+    .cs_card_img {
+      border-radius: 10px;
+
+      img {
+        min-height: 150px;
+      }
+    }
+
+    .cs_card_index {
+      padding: 5px 15px;
+    }
+
+    .cs_service_features {
+      padding-right: 0;
+    }
+
+    .cs_card_btn {
+      width: 55px;
+      height: 55px;
+      position: initial;
+      bottom: initial;
+      right: initial;
+      margin-top: 24px;
+      margin-left: auto;
+
+      img {
+        width: 16px;
+      }
+    }
+  }
+}
+
+/*================================================================
+  Service Card 4
+==================================================================*/
+.cs_service_card_4 {
+  width: 100%;
+  height: 100%;
+  padding: 24px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  .cs_card_body {
+    padding: 0 14px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cs_card_title {
+    a {
+      color: inherit;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+
+  .cs_card_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    li {
+      font-size: 14px;
+      line-height: 1.5em;
+      border-radius: 50px;
+      padding: 4px 10px 5px;
+      background-color: var(--white-color);
+    }
+  }
+
+  .cs_card_img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin-top: auto;
+
+    >img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s cubic-bezier(0.45, 0.3, 0.515, 0.55);
+    }
+
+    &:hover img {
+      transform: scale(1.03);
+    }
+  }
+
+  .cs_card_btn {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    transition: all 0.3s ease;
+
+    img {
+      filter: brightness(0) saturate(100%) invert(13%) sepia(8%) saturate(2563%) hue-rotate(176deg) brightness(91%) contrast(90%);
+      transition: filter 0.2s ease;
+    }
+
+    &:hover {
+      background-color: var(--primary-color) !important;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 24px 50px -28px rgba(31, 41, 55, 0.25);
+
+    .cs_card_btn {
+      background-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(2%) hue-rotate(221deg) brightness(104%) contrast(100%);
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .cs_card_body {
+      padding: 0 5px;
+    }
+
+    .cs_card_btn {
+      width: 56px;
+      height: 56px;
+    }
+  }
+}
+
+/*================================================================
+  Service Grids
+==================================================================*/
+.cs_service_grid_1 {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+/*================================================================
+  Service Section 1
+==================================================================*/
+.cs_service_section_1 {
+  padding: 120px 0;
+
+  @media (max-width: 991px) {
+    padding: 60px 0;
+  }
+}
+
+/*================================================================
+  Service Section 3
+==================================================================*/
+.cs_service_section_3 {
+  padding: 120px 0;
+
+  .cs_section_subtitle {
+    display: inline-block;
+    width: max-content;
+    padding: 6px 14px;
+    line-height: 1.4;
+    border: 1px solid var(--accent-color);
+  }
+
+  .cs_service_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cs_service_menu_item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 25px;
+    cursor: pointer;
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease;
+
+    &.cs_active,
+    &:hover {
+      background-color: var(--accent-color);
+
+      .cs_service_menu_icon {
+
+
+        img {
+          filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(105%) contrast(101%);
+        }
+      }
+
+      .cs_service_menu_text {
+        color: var(--white-color);
+      }
+    }
+
+  }
+
+  .cs_service_menu_icon {
+    width: 50px;
+    height: 50px;
+    flex: none;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(31%) sepia(94%) saturate(3066%) hue-rotate(208deg) brightness(99%) contrast(94%);
+      transition: filter 0.35s ease;
+    }
+  }
+
+  .cs_service_menu_text {
+    color: var(--primary-color);
+    transition: color 0.35s ease;
+  }
+
+  .cs_service_panes {
+    position: relative;
+    width: 100%;
+    min-height: 430px;
+  }
+
+  .cs_service_pane {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition:
+      opacity 0.45s cubic-bezier(0.45, 0.5, 0.55, 0.95),
+      transform 0.45s cubic-bezier(0.45, 0.5, 0.55, 0.95),
+      visibility 0s linear 0.45s;
+
+    &.cs_active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+      transition:
+        opacity 0.45s cubic-bezier(0.45, 0.5, 0.55, 0.95),
+        transform 0.45s cubic-bezier(0.45, 0.5, 0.55, 0.95),
+        visibility 0s linear 0s;
+    }
+  }
+
+  .cs_service_img {
+    width: 78%;
+    height: 100%;
+
+    >img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    &:hover img {
+      transform: scale(1.03);
+    }
+  }
+
+  .cs_service_arrow_btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    >img {
+      width: 14px;
+      height: 14px;
+      filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(105%) contrast(101%);
+    }
+
+    &:hover {
+      transform: translateX(3px);
+    }
+  }
+
+  .cs_service_card {
+    position: absolute;
+    right: 0;
+    top: 65px;
+    width: min(50%, 312px);
+    min-height: 300px;
+    padding: 24px;
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cs_service_card_tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background-color: var(--gray7-color);
+
+    img {
+      width: 14px;
+      height: 14px;
+      flex: none;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_service_img {
+      width: 70%;
+    }
+
+    .cs_service_card {
+      width: 60%;
+      padding: 18px 20px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 60px 0;
+
+    .cs_service_panes {
+      min-height: 380px;
+      padding-right: 0;
+    }
+
+    .cs_service_img {
+      width: 100%;
+    }
+
+    .cs_service_menu_item {
+      padding: 20px 15px;
+    }
+
+    .cs_service_menu_text {
+      font-size: 18px;
+    }
+
+    .cs_service_menu_icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .cs_service_arrow_btn {
+      top: 20px;
+      right: 20px;
+      left: initial;
+    }
+
+    .cs_service_card {
+      top: initial;
+      min-height: auto;
+      gap: 15px;
+      width: calc(100% - 30px);
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      padding: 15px;
+    }
+  }
+
+  @media (max-width: 575px) {}
+}
+
+/*================================================================
+  Services Section 4
+==================================================================*/
+.cs_services_section_4 {
+  padding: 120px 0;
+
+  .cs_service_heading_container {
+    position: sticky;
+    top: 130px;
+
+    .cs_btn_style_2 {
+      border-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(9%) sepia(8%) saturate(3737%) hue-rotate(175deg) brightness(103%) contrast(84%);
+      }
+
+      &:hover {
+        color: var(--white-color);
+        background-color: var(--accent-color);
+
+        img {
+          filter: brightness(0) saturate(100%) invert(96%) sepia(80%) saturate(0%) hue-rotate(132deg) brightness(114%) contrast(101%);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+/*================================================================
+  Service Section 5
+==================================================================*/
+.cs_services_section_5 {
+  padding: 120px 0;
+  overflow: hidden;
+
+  .cs_vector_shape {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  .cs_section_heading_style_1 {
+    width: min(100%, 1096px);
+  }
+
+  .cs_service_note {
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+/*================================================================
+  Service Details
+==================================================================*/
+.cs_service_details_section {
+  padding: 120px 0;
+
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+/*================================================================
+  Service Details - Conditions We Treat (reusable)
+==================================================================*/
+.cs_service_details {
+  .cs_service_banner {
+    img {
+      width: 100%;
+    }
+  }
+
+  .cs_conditions_list {
+    display: flex;
+    flex-direction: column;
+
+    .cs_condition_item {
+      position: relative;
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+      padding-bottom: 24px;
+
+      &:last-child {
+        padding-bottom: 0;
+
+        &::before {
+          bottom: 0;
+        }
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        bottom: -4px;
+        width: 1px;
+        background-color: var(--accent-color);
+      }
+    }
+
+    .cs_condition_dot {
+      flex: none;
+      width: 24px;
+      height: 24px;
+      margin-top: 4px;
+      border-radius: 50%;
+      background-color: var(--accent-color);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cs_condition_body {
+      flex: 1;
+    }
+
+    .cs_condition_title {
+      color: var(--primary-color);
+    }
+
+    .cs_condition_desc {
+      color: var(--secondary-color);
+    }
+  }
+
+  .cs_service_features_list {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    li {
+      display: flex;
+      gap: 10px;
+    }
+
+    img {
+      width: 16px;
+      flex: none;
+    }
+  }
+
+  @media (max-width: 1399px) {
+    .cs_feature_card_1 {
+      padding: 24px 15px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    margin-bottom: 40px;
+  }
+}
+
+/*===================================================
+  Sticky Stacking Cards (GSAP)
+=====================================================*/
+.cs_sticky_section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  &.cs_type_1 {
+    gap: 24px;
+    align-items: flex-end;
+  }
+
+  .cs_sticky_card {
+    transform-origin: center top;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  @media (max-width: 991px) {
+    gap: 20px;
+  }
+}

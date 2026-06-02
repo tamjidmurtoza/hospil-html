@@ -1,0 +1,40 @@
+/*===============================================================
+ 01. Google Fonts (Self-hosted - Plus Jakarta Sans)
+=================================================================*/
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Montserrat italic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(../fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf) format('truetype');
+}
+
+/* Montserrat normal */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf) format('truetype');
+}
+
+/* Open Sans normal  */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(../fonts/Open_Sans/OpenSans-VariableFont_wdth-wght.ttf) format('truetype');
+}
+
+/* Open Sans Italic  */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(../fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth-wght.ttf) format('truetype');
+}

@@ -1,0 +1,362 @@
+/*================================================================
+  PRICING Section
+==================================================================*/
+.cs_pricing_table_1 {
+  width: 330px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .cs_pricing_info {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0 30px 24px;
+  }
+
+  .cs_pricing_value {
+    display: flex;
+    align-items: flex-end;
+
+    small {
+      font-size: 14px;
+      line-height: 2em;
+      color: var(--secondary-color);
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .cs_pricing_feature_list {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    li {
+      position: relative;
+      padding-left: 26px;
+
+      img {
+        width: 16px;
+        position: absolute;
+        left: 0;
+        top: 8px;
+      }
+    }
+  }
+
+  .cs_btn_style_2 {
+    border-color: var(--accent-color);
+
+    img {
+      transition: filter 0.2s ease;
+    }
+
+    &:hover {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(6372%) hue-rotate(64deg) brightness(120%) contrast(113%);
+      }
+    }
+  }
+}
+
+.cs_pricing_banner_wrap {
+  .cs_ticker_container {
+    width: calc(100% - 30px);
+    position: absolute;
+    left: 0;
+    bottom: 24px;
+    padding-right: 40px;
+    border-radius: 0 50px 50px 0;
+    background: rgba(19, 109, 244, 0.80);
+  }
+
+  @media (min-width: 1650px) {
+    padding-right: 76px;
+  }
+}
+
+.cs_pricing_info_wrap {
+  @media (min-width: 1650px) {
+    padding-left: 36px;
+  }
+}
+
+.cs_pricing_section_1 {
+  padding: 120px 0;
+
+  @media (min-width:992px) {
+    .container {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width:991px) {
+    padding: 70px 0;
+  }
+}
+
+.cs_pricing_shape_1 {
+  right: 0;
+  bottom: 0;
+}
+
+/*================================================================
+  PRICING Section 2
+==================================================================*/
+.cs_pricing_section_2 {
+  padding: 120px 0;
+
+  .cs_section_heading_style_1 {
+    width: min(100%, 1070px);
+    margin: 0 auto 48px;
+  }
+
+  @media (max-width:991px) {
+    padding: 70px 0;
+
+    .cs_section_heading_style_1 {
+      margin: 0 auto 40px;
+    }
+  }
+}
+
+.cs_pricing_table_2 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  transition: all 0.35s ease;
+
+  .cs_pricing_value {
+    display: flex;
+    align-items: flex-end;
+
+    small {
+      line-height: 2em;
+      color: var(--secondary-color);
+      font-family: var(--secondary-font);
+    }
+  }
+
+  .cs_pricing_badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 50px;
+    background-color: #dbd5f7;
+  }
+
+  &.cs_color_1 {
+    .cs_pricing_badge {
+      background-color: #e4ddcd;
+    }
+  }
+
+  &.cs_color_2 {
+    .cs_pricing_badge {
+      background-color: #bfd4cd;
+    }
+  }
+
+  .cs_pricing_feature_list {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    li {
+      position: relative;
+      padding-left: 26px;
+
+      span {
+        display: inline-block;
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        left: 0;
+        top: 5px;
+      }
+    }
+  }
+
+  .cs_btn_style_1 {
+    width: 100%;
+    margin-top: auto;
+    border: 1px solid var(--accent-color);
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    img {
+      filter: brightness(0) saturate(100%) invert(10%) sepia(57%) saturate(436%) hue-rotate(176deg) brightness(96%) contrast(89%);
+    }
+  }
+
+  &.cs_type_1 {
+    padding-top: 0;
+    border: 1px solid transparent;
+
+    .cs_pricing_thumb {
+      width: calc(100% + 50px);
+      height: 150px;
+      margin-left: -25px;
+      margin-right: -25px;
+      margin-top: -1px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+  }
+
+  &.active,
+  &:hover {
+    background-color: var(--white-color);
+
+    &.cs_type_1 {
+      border-color: var(--accent-color);
+    }
+
+    .cs_btn_style_1 {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(264deg) brightness(103%) contrast(109%);
+      }
+
+      &:hover {
+        border-color: var(--primary-color);
+        background-color: var(--primary-color);
+      }
+    }
+  }
+
+  @media (max-width: 1199px) {
+    padding: 24px 15px;
+
+    &.cs_type_1 {
+
+      .cs_pricing_thumb {
+        width: calc(100% + 32px);
+        margin-left: -16px;
+        margin-right: -16px;
+      }
+    }
+  }
+}
+
+.cs_pricing_toggle {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+
+  .cs_pricing_toggle_label {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+
+    &.active {
+      color: var(--primary-color);
+    }
+  }
+
+  .cs_pricing_save {
+    color: var(--warning-color);
+  }
+
+  .cs_pricing_switch {
+    position: relative;
+    display: inline-block;
+    width: 75px;
+    height: 34px;
+    flex: none;
+    margin-bottom: 0;
+
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      &:checked+.cs_pricing_slider {
+        &::before {
+          transform: translateX(41px);
+        }
+      }
+    }
+  }
+
+  .cs_pricing_slider {
+    position: absolute;
+    inset: 0;
+    background-color: var(--accent-color);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      left: 3px;
+      top: 3px;
+      background-color: var(--white-color);
+      border-radius: 50%;
+      transition: transform 0.25s ease;
+    }
+  }
+}
+
+
+/*==========================================
+ Other Pricing Feature
+============================================*/
+.cs_featured_pricingbox {
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+
+  .cs_pricing_value {
+    margin-top: auto;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &.cs_color_1 {
+    background-color: #bfd4cd;
+  }
+
+  &.cs_color_2 {
+    background-color: #dbd5f7;
+  }
+
+  &.cs_color_3 {
+    background-color: #cecddd;
+  }
+
+  &.cs_color_4 {
+    background-color: #e4ddcd;
+  }
+}

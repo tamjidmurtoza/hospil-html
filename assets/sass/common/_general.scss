@@ -1,0 +1,886 @@
+/*=================================================================
+  05. General
+===================================================================*/
+.cs_fs_10 {
+  font-size: 10px;
+  line-height: 1em;
+}
+
+.cs_fs_12 {
+  font-size: 12px;
+  line-height: 1.67em;
+}
+
+.cs_fs_13 {
+  font-size: 13px;
+  line-height: 1em;
+}
+
+.cs_fs_14 {
+  font-size: 14px;
+  line-height: 1.43em;
+}
+
+.cs_fs_16 {
+  font-size: 16px;
+  line-height: 1.563em;
+}
+
+.cs_fs_18 {
+  font-size: 18px;
+  line-height: 1.56em;
+}
+
+.cs_fs_20 {
+  font-size: 20px;
+  line-height: 1.25em;
+}
+
+.cs_fs_24 {
+  font-size: 24px;
+  line-height: 1.333em;
+
+  @media (max-width: 767px) {
+    font-size: 22px;
+  }
+}
+
+.cs_fs_30 {
+  font-size: 30px;
+  line-height: 1.17em;
+
+  @media (max-width: 767px) {
+    font-size: 24px;
+  }
+}
+
+.cs_fs_40 {
+  font-size: 40px;
+  line-height: 1.25em;
+
+  @media (max-width: 767px) {
+    font-size: 30px;
+  }
+}
+
+.cs_fs_53 {
+  font-size: 53px;
+  line-height: 1.226em;
+
+  @media (max-width: 1399px) {
+    font-size: 50px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 42px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 32px;
+  }
+}
+
+.cs_fs_60 {
+  font-size: 60px;
+  line-height: 1.167em;
+
+  @media (max-width: 1399px) {
+    font-size: 56px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 46px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 42px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 36px;
+  }
+}
+
+.cs_fs_64 {
+  font-size: 64px;
+  line-height: 1.23em;
+
+  @media (max-width: 1399px) {
+    font-size: 56px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 46px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 42px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 36px;
+  }
+}
+
+.cs_fs_70 {
+  font-size: 70px;
+  line-height: 1.123em;
+
+  @media (max-width: 1399px) {
+    font-size: 62px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 52px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 42px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 36px;
+  }
+}
+
+.cs_fs_75 {
+  font-size: 75px;
+  line-height: 1.213em;
+
+  @media (max-width: 1399px) {
+    font-size: 62px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 52px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 42px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 36px;
+  }
+}
+
+.cs_fs_80 {
+  font-size: 80px;
+  line-height: 1.123em;
+
+  @media (max-width: 1439px) {
+    font-size: 75px;
+  }
+
+  @media (max-width: 1399px) {
+    font-size: 66px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 56px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 46px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 40px;
+  }
+}
+
+.cs_fs_96 {
+  font-size: 96px;
+  line-height: 1.2em;
+
+  @media (max-width: 1439px) {
+    font-size: 85px;
+  }
+
+  @media (max-width: 1399px) {
+    font-size: 72px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 66px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 52px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 46px;
+  }
+}
+
+.cs_fs_200 {
+  font-size: 200px;
+  line-height: 1em;
+
+  @media (max-width: 1599px) {
+    font-size: 190px;
+  }
+
+  @media (max-width: 1399px) {
+    font-size: 166px;
+  }
+
+  @media (max-width: 1199px) {
+    font-size: 140px;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 104px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 76px;
+  }
+
+  @media (max-width: 575px) {
+    font-size: 68px;
+  }
+}
+
+/*=====================================  
+  Classess for Fonts Weight
+=======================================*/
+.cs_light {
+  font-weight: 300;
+}
+
+.cs_normal {
+  font-weight: 400;
+}
+
+.cs_medium {
+  font-weight: 500;
+}
+
+.cs_semibold {
+  font-weight: 600;
+}
+
+.cs_bold {
+  font-weight: 700;
+}
+
+.cs_extrabold {
+  font-weight: 800;
+}
+
+.cs_black {
+  font-weight: 900;
+}
+
+/*=====================================  
+  Classess for Fonts Color
+=======================================*/
+.cs_accent_color {
+  color: var(--accent-color);
+}
+
+.cs_primary_color {
+  color: var(--primary-color);
+}
+
+.cs_secondary_color {
+  color: var(--secondary-color);
+}
+
+.cs_secondary2_color {
+  color: var(--secondary2-color);
+}
+
+.cs_white_color {
+  color: var(--white-color);
+}
+
+.cs_gray_color {
+  color: var(--gray-color);
+}
+
+.cs_black_color {
+  color: var(--black-color);
+}
+
+.cs_danger_color {
+  color: var(--danger-color);
+}
+
+/*=====================================  
+  Classess for Fonts Family 
+=======================================*/
+.cs_primary_font {
+  font-family: var(--primary-font);
+}
+
+.cs_secondary_font {
+  font-family: var(--secondary-font);
+}
+
+/*=============================================  
+  Classess for Background Size & Colors
+===============================================*/
+.cs_accent_bg {
+  background-color: var(--accent-color);
+}
+
+.cs_primary_bg {
+  background-color: var(--primary-color);
+}
+
+.cs_body_bg {
+  background-color: var(--secondary-color);
+}
+
+.cs_danger_bg {
+  background-color: var(--danger-color);
+}
+
+.cs_white_bg {
+  background-color: var(--white-color);
+}
+
+.cs_gray_bg {
+  background-color: var(--gray-color);
+}
+
+.cs_gray2_bg {
+  background-color: var(--gray2-color);
+}
+
+.cs_gray3_bg {
+  background-color: var(--gray3-color);
+}
+
+.cs_gray4_bg {
+  background-color: var(--gray4-color);
+}
+
+.cs_gray5_bg {
+  background-color: var(--gray5-color);
+}
+
+.cs_gray6_bg {
+  background-color: var(--gray6-color);
+}
+
+.cs_gray7_bg {
+  background-color: var(--gray7-color);
+}
+
+.cs_black_bg {
+  background-color: var(--black-color);
+}
+
+.cs_bg_filed {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.cs_bg_fixed {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/*=============================================  
+  Classess for Border Radius
+===============================================*/
+.cs_radius_5 {
+  border-radius: 5px;
+}
+
+.cs_radius_10 {
+  border-radius: 10px;
+}
+
+.cs_radius_15 {
+  border-radius: 15px;
+}
+
+.cs_radius_20 {
+  border-radius: 20px;
+}
+
+.cs_radius_30 {
+  border-radius: 30px;
+}
+
+.cs_radius_50 {
+  border-radius: 50%;
+}
+
+@media (max-width: 991px) {
+
+  .cs_radius_15,
+  .cs_radius_20,
+  .cs_radius_30 {
+    border-radius: 10px;
+  }
+}
+
+/*=============================================  
+  Classes for Utility Components
+===============================================*/
+.cs_mp_0 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cs_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs_center_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*=============================================  
+  Bootstrap Classess 
+===============================================*/
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1344px;
+  }
+}
+
+.cs_gap_y_40 {
+  gap: 40px 0;
+
+  @media (max-width: 991px) {
+    gap: 30px 0;
+  }
+}
+
+.cs_gap_y_30 {
+  gap: 30px 0;
+}
+
+.cs_gap_y_24 {
+  gap: 24px 0;
+}
+
+.cs_gap_y_16 {
+  gap: 16px 0;
+}
+
+/*====================================================  
+ Button Components
+======================================================*/
+.cs_btn_style_1 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 25px;
+  position: relative;
+  overflow: hidden;
+  text-wrap: nowrap;
+  transition: all 0.4s ease-in-out;
+
+  >* {
+    position: relative;
+    z-index: 1;
+    transition: inherit;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: var(--primary-color);
+    transition: transform 0.6s cubic-bezier(0.65, 0.35, 0.35, 0.5);
+  }
+
+  &::after {
+    opacity: 1;
+    transition-delay: 0.3s;
+  }
+
+  &:hover {
+    color: var(--white-color);
+
+    &::before,
+    &::after {
+      transform: translate(-50%, -50%) scale(3);
+    }
+  }
+}
+
+.cs_btn_style_2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 25px;
+  text-wrap: nowrap;
+  border: 1px solid var(--danger-color);
+  transition: all 0.3s cubic-bezier(0.55, 0.45, 0.65, 0.55);
+
+  >* {
+    transition: inherit;
+  }
+
+  &.cs_type_1 {
+    border-color: var(--accent-color);
+
+    img {
+      animation: circularRotation 4s linear infinite;
+    }
+  }
+
+  &:Hover {
+    color: var(--danger-color);
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+
+    &.cs_type_1 {
+      color: var(--white-color);
+      border-color: var(--accent-color);
+      background-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(108deg) brightness(104%) contrast(104%);
+      }
+    }
+  }
+}
+
+.cs_text_btn_style_1 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+}
+
+
+.cs_player_btn_style_1 {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.3s ease;
+
+  >* {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: inherit;
+    border: 6px solid currentColor;
+    animation: pulseBorder 3s linear infinite;
+  }
+
+  &::after {
+    animation-delay: 1.5s;
+  }
+
+  &:hover {
+    transform: scale(0.75);
+
+    &::before,
+    &::after {
+      animation-play-state: paused;
+    }
+
+  }
+}
+
+/*=============================================
+ Social Buttons Component
+===============================================*/
+.cs_social_btns_style_1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 1;
+
+  a {
+    width: 50px;
+    height: 50px;
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+}
+
+/*=============================================
+ Scroll Top Button
+===============================================*/
+.cs_scrollup_btn {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  color: var(--white-color);
+  background-color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(120px) scale(0);
+  transition: all 0.4s cubic-bezier(0.68, 0.55, 0.27, 1);
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    display: none;
+  }
+
+  &:hover {
+    color: var(--accent-color);
+    background-color: var(--white-color);
+
+  }
+}
+
+/*=============================================
+ Section Heading Component
+===============================================*/
+.cs_section_heading_style_1,
+.cs_section_heading_style_2 {
+
+  .cs_section_title {
+    .word {
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .word_inner {
+      display: inline-block;
+      will-change: transform, opacity, filter;
+    }
+  }
+
+  .cs_section_subtitle {
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+  }
+}
+
+.cs_section_heading_style_1 {
+
+  &.cs_type_1,
+  &.cs_type_2 {
+    .cs_section_subtitle {
+      width: max-content;
+      padding: 5px 10px;
+    }
+  }
+
+  &.cs_type_2 {
+    .cs_section_subtitle {
+      padding: 4px 10px;
+      border: 1px solid currentColor;
+    }
+  }
+}
+
+.cs_section_heading_style_2 {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+
+  .cs_section_subtitle {
+    padding: 10px;
+    flex: none;
+    width: max-content;
+    text-transform: uppercase;
+  }
+
+  .cs_section_heading_left {
+    flex: 1;
+  }
+
+  .cs_section_heading_right {
+    width: min(70%, 872px);
+  }
+
+  &.cs_type_1 {
+    align-items: flex-end;
+    justify-content: space-between;
+
+    .cs_section_heading_right {
+      width: max-content;
+      flex: none;
+    }
+
+    .cs_btn_style_2 {
+      flex: none;
+      border-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(13%) sepia(11%) saturate(1768%) hue-rotate(176deg) brightness(99%) contrast(92%);
+      }
+
+      &:hover {
+        color: var(--white-color);
+        border-color: var(--accent-color);
+        background-color: var(--accent-color);
+
+        img {
+          filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(105%) contrast(101%);
+        }
+      }
+    }
+
+    .cs_section_heading_right {
+      padding-bottom: 24px;
+    }
+  }
+
+  @media (max-width:991px) {
+    flex-direction: column;
+    align-items: flex-start !important;
+
+    .cs_section_heading_left,
+    .cs_section_heading_right {
+      width: 100%;
+      padding: 0 !important;
+    }
+  }
+}
+
+/*=============================================
+ Progressbar Component
+===============================================*/
+.cs_progress {
+  .cs_progress_in {
+    height: 1px;
+    position: relative;
+    background-color: var(--primary-color);
+
+    span {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 20px);
+    }
+
+    &::after {
+      content: "";
+      width: 1px;
+      height: 4px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%) rotate(-45deg);
+      background-color: var(--primary-color);
+    }
+  }
+}
+
+/*=============================================
+ Rating Component
+===============================================*/
+.cs_rating_percentage,
+.cs_rating {
+  overflow: hidden;
+
+  &::before {
+    content: "\f005\f005\f005\f005\f005";
+    font-family: "Font Awesome 7 Free";
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.cs_rating {
+  max-width: 144px;
+  flex: none;
+  height: 24px;
+  position: relative;
+  color: var(--warning-color);
+  font-size: 20px;
+  letter-spacing: 7px;
+
+  &::before {
+    font-weight: 400;
+  }
+
+  .cs_rating_percentage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+    &::before {
+      font-weight: 900;
+    }
+  }
+}
+
+/*===========================================================  
+  Funfact Odometer
+=============================================================*/
+.odometer.odometer-auto-theme,
+.odometer.odometer-auto-theme .odometer-digit,
+.odometer.odometer-theme-default,
+.odometer.odometer-theme-default .odometer-digit {
+  vertical-align: top;
+}
+
+.odometer.odometer-auto-theme,
+.odometer.odometer-theme-default {
+  font-family: inherit;
+  line-height: inherit;
+}
+
+/*===========================================================  
+  Responsive For Common Component & Hide Elements
+=============================================================*/
+
+@media (max-width: 991px) {
+
+  br {
+    display: none;
+  }
+}
+
+/*===========================================================  
+  Animations
+=============================================================*/
+
+@keyframes pulseBorder {
+  100% {
+    opacity: 0;
+    border-width: 30px;
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+}

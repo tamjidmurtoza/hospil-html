@@ -1,0 +1,127 @@
+/*================================================================
+  15. Facilities Section
+==================================================================*/
+.cs_hospil_facilities {
+  width: min(100%, 700px);
+  margin: 58px auto 0;
+  display: grid;
+  gap: 24px 0;
+  grid-template-columns: repeat(3, auto);
+
+  .cs_facility_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 50px 10px 60px;
+    position: relative;
+
+    &::before {
+      content: "";
+      height: 100%;
+      width: 1px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.4;
+      background-color: rgba(134, 148, 167, 0.50);
+    }
+
+    &:first-child {
+      padding-left: 10px;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      padding-right: 10px;
+    }
+
+    .cs_facility_icon {
+      width: 16px;
+      height: 16px;
+      flex: none;
+    }
+  }
+
+  @media (max-width:767px) {
+    width: 100%;
+    margin: 40px auto 0;
+    display: flex;
+    gap: 16px 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .cs_facility_item {
+      padding: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+/*================================================================
+  Facilities Section 1
+==================================================================*/
+.cs_facilities_section_1 {
+  padding: 120px 0;
+
+  .cs_section_heading_style_1 {
+    width: min(100%, 970px);
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+.cs_facility_card_1 {
+  @extend .cs_service_card_4;
+  padding: 30px 10px 40px;
+  transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.55, 0.3, 0.55, 1.6);
+
+  .cs_card_header {
+    padding-left: 20px;
+  }
+
+  .cs_card_img {
+    display: block;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .cs_about_features_list {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+
+    li {
+      position: relative;
+      padding-left: 26px;
+
+      img {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        left: 0;
+        top: 5px;
+      }
+    }
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 575px) {}
+}

@@ -1,0 +1,654 @@
+/*================================================================
+  17. Contact Section
+==================================================================*/
+.cs_contact_section_1 {
+  @extend .cs_about_style_3;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  margin-top: -100px;
+
+  .cs_about_hours {
+    width: min(100%, 424px);
+    margin-bottom: 0;
+  }
+
+  .cs_emergency_note {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+
+    .cs_emergency_icon {
+      width: 50px;
+      flex: none;
+    }
+
+    a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+  }
+
+  .cs_contact_item {
+    gap: 13px;
+
+    .cs_contact_icon {
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+      flex: none;
+
+      img {
+        border-radius: 0;
+        filter: brightness(0) saturate(100%) invert(100%) sepia(29%) saturate(1750%) hue-rotate(318deg) brightness(127%) contrast(113%);
+      }
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+/*====================================================
+  Location Section
+======================================================*/
+.cs_location_section_1 {
+  padding: 120px 0;
+
+  .cs_location_info {
+    width: min(100%, 430px);
+  }
+
+  .cs_location_contact_list {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+
+    li {
+      padding-left: 40px;
+      position: relative;
+      display: flex;
+      gap: 6px;
+      flex-direction: column;
+    }
+
+    .cs_location_contact_icon {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      filter: brightness(0) saturate(100%) invert(33%) sepia(74%) saturate(4662%) hue-rotate(209deg) brightness(100%) contrast(92%);
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  .cs_visiting_hours_list {
+    display: flex;
+    gap: 14px;
+    flex-direction: column;
+
+    li {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .cs_visiting_label {
+      flex: 1;
+    }
+
+    .cs_visiting_time {
+      font-weight: 600;
+      text-align: right;
+      flex: none;
+      color: var(--primary-color);
+    }
+  }
+
+  .cs_location_map {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+  }
+
+  .cs_ambulance_card {
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    gap: 24px;
+    background: rgba(200, 221, 255, 0.8);
+
+    .cs_ambulance_icon {
+      width: 50px;
+      height: 50px;
+      flex: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%) invert(56%) sepia(83%) saturate(4605%) hue-rotate(334deg) brightness(95%) contrast(96%);
+      }
+    }
+
+    .cs_ambulance_text {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    p {
+      color: var(--secondary-color);
+    }
+
+    a {
+      color: var(--secondary-color);
+
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+
+    .cs_location_info {
+      width: 100%;
+    }
+
+    .cs_location_contact_list {
+      gap: 15px;
+    }
+
+    .cs_location_map {
+      height: 360px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_ambulance_card {
+      padding: 15px;
+    }
+
+    .cs_location_map {
+      height: 280px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cs_visiting_hours_list {
+      gap: 15px;
+
+      li {
+        flex-direction: column;
+        gap: 6px;
+      }
+    }
+
+    .cs_visiting_time {
+      text-align: left !important;
+    }
+  }
+}
+
+/*====================================================
+  Contact Page – Support / Info Cards
+======================================================*/
+.cs_support_section {
+  padding: 120px 0;
+
+  .cs_section_heading_style_1 {
+    width: min(100%, 1095px);
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+/*====================================================
+  Contact Page – Form & Sidebar
+======================================================*/
+.cs_contact_form_section {
+  padding: 120px 0;
+
+  .cs_contact_form_wrap {
+    width: min(100%, 872px);
+  }
+
+  .cs_sidebar_style_1 {
+    .cs_sidebar_widget {
+      padding: 24px;
+    }
+  }
+
+  .cs_contact_dept_list,
+  .cs_contact_hours_list {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+
+    li {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    a {
+      color: var(--accent-color);
+      flex: none;
+      text-align: right;
+
+      &:hover {
+        color: var(--accent-color);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_sidebar_style_1 {
+      .cs_sidebar_widget {
+        padding: 15px;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+/*====================================================
+  Contact Page – Map
+======================================================*/
+.cs_contact_map_section {
+  padding: 120px 0;
+
+  .cs_contact_map {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+
+    .cs_contact_map {
+      height: 360px;
+    }
+  }
+
+  @media (max-width: 575px) {
+
+    .cs_contact_map {
+      height: 280px;
+    }
+  }
+}
+
+/*====================================================
+  Career Page
+======================================================*/
+.cs_career_mission_section {
+  padding: 120px 0 60px;
+
+  .cs_section_heading_style_1 {
+    width: min(100%, 1096px);
+  }
+
+  .cs_career_value_card {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.45, 0.45, 0.5, 0.55);
+
+    &.cs_color_1 {
+      background-color: #E4DDCD;
+    }
+
+    &.cs_color_2 {
+      background-color: #BFD4CD;
+    }
+
+    &.cs_color_3 {
+      background-color: #CECDDD;
+    }
+
+    &.cs_color_4 {
+      background-color: var(--gray5-color);
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  .cs_career_value_icon {
+    width: 56px;
+    height: 56px;
+    flex: none;
+    margin-bottom: 14px;
+
+    img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(11%) sepia(15%) saturate(1280%) hue-rotate(176deg) brightness(96%) contrast(92%);
+    }
+  }
+
+  .cs_career_value_title {
+    color: var(--primary-color);
+    font-family: var(--primary-font);
+  }
+
+  .cs_career_value_desc {
+    color: var(--secondary-color);
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0 30px;
+  }
+}
+
+.cs_career_openings_section {
+  padding: 120px 0;
+
+  .cs_section_heading_style_1 {
+    width: min(100%, 1096px);
+  }
+
+  .cs_career_jobs_list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+.cs_career_job_card {
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .cs_career_job_info {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .cs_career_job_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 30px;
+    align-items: center;
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    li:first-child {
+      color: var(--primary-color);
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      flex: none;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(36%) sepia(61%) saturate(5481%) hue-rotate(209deg) brightness(98%) contrast(95%);
+    }
+  }
+
+
+
+  .cs_btn_style_2 {
+    border-color: var(--accent-color);
+
+    img {
+      width: 16px;
+      height: 16px;
+      border-radius: 0;
+      filter: brightness(0) saturate(100%) invert(11%) sepia(15%) saturate(1280%) hue-rotate(176deg) brightness(96%) contrast(92%);
+      transition: filter 0.3s ease;
+    }
+
+    &:hover {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(105%) contrast(101%);
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.cs_career_benefits_section {
+  padding: 120px 0;
+
+  .cs_career_benefits_content {
+    width: min(100%, 424px);
+  }
+
+  .cs_career_benefits_list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    li {
+      padding-left: 26px;
+      position: relative;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 0;
+      top: 4px;
+    }
+  }
+
+  .cs_career_benefits_img {
+    width: 100%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 60px 0;
+
+    .cs_career_benefits_content {
+      width: 100%;
+    }
+  }
+}
+
+.cs_career_application_section {
+  padding: 120px 0;
+
+  .cs_section_heading_style_1 {
+    width: min(100%, 1096px);
+  }
+
+  .cs_career_application_form {
+    width: min(100%, 1096px);
+    margin: 0 auto;
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+.cs_career_upload {
+  width: 100%;
+  padding: 22px 20px 21px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.43em;
+  text-align: center;
+  border-radius: 5px;
+  color: var(--primary-color);
+  border: 1px dashed var(--accent-color);
+  background-color: var(--gray2-color);
+
+  .cs_career_upload_input {
+    display: none;
+  }
+
+  img {
+    width: 24px;
+  }
+}
+
+/*====================================================
+  Career Page – Apply Modal
+======================================================*/
+.cs_career_modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+
+    .cs_career_modal_dialog {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .cs_career_modal_overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(31, 41, 55, 0.6);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+  }
+
+  .cs_career_modal_dialog {
+    position: relative;
+    width: min(100%, 920px);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    padding: 40px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+    box-shadow: 0 20px 60px rgba(31, 41, 55, 0.25);
+  }
+
+  .cs_career_modal_close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--gray2-color);
+    color: var(--primary-color);
+    font-size: 16px;
+    border: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+
+    &:hover {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+    }
+  }
+
+  .cs_career_modal_heading {
+    padding-right: 40px;
+
+    h3 {
+      color: var(--primary-color);
+      font-family: var(--primary-font);
+      line-height: 1.3em;
+    }
+
+    .cs_career_modal_position {
+      color: var(--accent-color);
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 16px 12px;
+
+    .cs_career_modal_dialog {
+      padding: 28px 18px;
+      max-height: calc(100vh - 32px);
+    }
+
+    .cs_career_modal_heading {
+      padding-right: 30px;
+    }
+  }
+}
+
+body.scroll_off {
+  overflow: hidden;
+}

@@ -1,0 +1,335 @@
+/*================================================================
+  07. Footer Section
+==================================================================*/
+.cs_footer_style_1 {
+  display: block;
+  width: 100%;
+
+  .cs_footer_main {
+    padding: 120px 0;
+  }
+
+  .cs_text_widget {
+    width: min(100%, 312px);
+
+    p {
+      color: var(--secondary2-color);
+    }
+  }
+
+  .cs_social_btns_style_1 {
+    gap: 10px;
+
+    a {
+      color: var(--white-color);
+      background-color: var(--secondary-color);
+
+      &:hover {
+        color: var(--white-color);
+        background-color: var(--accent-color);
+      }
+    }
+  }
+
+  .cs_footer_widget_nav {
+    display: flex;
+    gap: 13px;
+    flex-direction: column;
+
+    a {
+      position: relative;
+      padding-left: 16px;
+      color: var(--secondary2-color);
+
+      &::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        left: 0;
+        top: 8px;
+        border-radius: 50%;
+        background-color: currentColor;
+      }
+
+      &:hover {
+        color: var(--white-color);
+      }
+    }
+  }
+
+  .cs_footer_contact {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+
+    li {
+      position: relative;
+      padding-left: 36px;
+    }
+
+    a,
+    span {
+      display: inline-block;
+      line-height: 1.4em;
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+      flex: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      filter: brightness(0) saturate(100%) invert(31%) sepia(44%) saturate(5483%) hue-rotate(210deg) brightness(98%) contrast(95%);
+    }
+
+    p {
+      color: var(--secondary2-color);
+    }
+  }
+
+  .cs_footer_bottom {
+    padding: 0 0 40px;
+  }
+
+  .cs_newsletter_style_1 {
+    padding: 30px;
+    display: grid;
+    gap: 20px;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+
+    .cs_newsletter_subtitle {
+      color: rgba(200, 221, 255, 0.8);
+    }
+
+    .cs_newsletter_inpu {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      display: block;
+      padding: 13px 20px 14px;
+    }
+
+    .cs_btn_style_1 {
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      bottom: 2px;
+      border: 1px solid var(--accent-color);
+
+      &::before,
+      &::after {
+        background-color: var(--accent-color);
+      }
+    }
+  }
+
+  .cs_footer_bottom_content {
+    display: flex;
+    gap: 16px 20px;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
+  }
+
+  .cs_footer_copyright {
+    color: var(--secondary2-color);
+
+    a {
+      color: var(--accent-color);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .cs_footer_bottom_nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    li {
+      padding-left: 21px;
+      position: relative;
+      color: var(--secondary2-color);
+
+      &::before {
+        content: "";
+        width: 1px;
+        height: 16px;
+        position: absolute;
+        left: 0;
+        top: 5px;
+        background-color: currentColor;
+      }
+
+      &:first-child {
+        padding-left: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      a:hover {
+        color: var(--white-color);
+      }
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_social_btns_style_1 {
+      a {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .cs_footer_main {
+      padding: 60px 0;
+    }
+
+    .cs_text_widget {
+      width: 100%;
+    }
+
+    .cs_footer_contact {
+      gap: 16px;
+    }
+
+    .cs_newsletter_style_1 {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .cs_footer_bottom {
+      padding: 0 0 24px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_newsletter_style_1 {
+      padding: 30px 15px;
+
+      .cs_newsletter_form {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+      }
+
+      .cs_newsletter_inpu {
+        padding: 13px 20px;
+      }
+
+      .cs_btn_style_1 {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        color: var(--white-color);
+        border-color: var(--white-color);
+
+        &::before,
+        &::after {
+          display: none;
+        }
+
+        &:hover {
+          color: var(--accent-color);
+          background-color: var(--white-color);
+        }
+      }
+    }
+  }
+}
+
+/*================================================================
+  Footer Section 2
+==================================================================*/
+.cs_footer_style_2 {
+  @extend .cs_footer_style_1;
+  padding-top: 188px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.65);
+  }
+
+  .cs_footer_main {
+    width: min(100%, 1644px);
+    margin: 0 auto;
+    padding: 0 150px 130px;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    background: radial-gradient(231% 135.8% at 0.9% 2.98%, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.10) 100%);
+    backdrop-filter: blur(5px);
+  }
+
+  .cs_newsletter_style_1 {
+    margin-top: -67px;
+    margin-bottom: 120px;
+  }
+
+  .cs_footer_bottom {
+    padding: 40px 0;
+  }
+
+  @media (max-width:991px) {
+    padding-top: 135px;
+
+    .cs_footer_main {
+      width: calc(100% - 24px);
+      margin: 0 auto;
+      padding: 0 0 60px;
+    }
+
+    .cs_newsletter_style_1 {
+      margin-bottom: 60px;
+    }
+
+    .cs_footer_bottom {
+      padding: 24px 0;
+    }
+  }
+}
+
+.cs_footer_style_3 {
+  @extend .cs_footer_style_1;
+  @extend .cs_footer_style_2;
+  padding-top: 188px;
+
+  &::before {
+    display: none;
+  }
+
+  .cs_footer_main {
+    background: var(--white-color);
+  }
+
+  .cs_social_btns_style_1 {
+
+    a {
+      color: var(--primary-color);
+      background-color: var(--gray4-color);
+    }
+  }
+
+  .cs_footer_widget_nav {
+
+    a {
+
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+}

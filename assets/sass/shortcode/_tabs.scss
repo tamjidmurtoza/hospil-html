@@ -1,0 +1,51 @@
+/*============================================================
+ 12. Tabs
+==============================================================*/
+.cs_tab_links.cs_style_1 {
+  display: flex;
+  gap: 10px 7px;
+  flex-wrap: wrap;
+
+  li.active {
+    a {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: 4px 20px 5px;
+    border-radius: 50px;
+    border: 1px solid var(--accent-color);
+
+    &:hover {
+      color: var(--accent-color);
+      background-color: var(--gray3-color);
+    }
+  }
+}
+
+.cs_tabs {
+  .cs_tab {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+
+    .cs_transform_img {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    &.active {
+      position: initial;
+      opacity: 1;
+
+      .cs_transform_img {
+        opacity: 1;
+        transform: scale(1);
+        transition: transform 0.5s cubic-bezier(0.45, 0.55, 0.515, 0.55);
+      }
+    }
+  }
+}
