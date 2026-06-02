@@ -20,7 +20,6 @@
   </head>
   <body>
     <!-- Start Preloader -->
-   
     <!-- End Preloader -->
     <!-- Start Header Section -->
     <header class="cs_site_header cs_style_1 cs_sticky_header" aria-label="Main header">
@@ -110,6 +109,7 @@
                         <li><a href="register.html">Account Register</a></li>
                         <li><a href="event.html">Our Events</a></li>
                         <li><a href="event-details.html">Event Details</a></li>
+                        <li><a href="packages.html">Our Packages</a></li>
                         <li><a href="facilities.html">Our Facilities</a></li>
                         <li><a href="pricing.html">Our Pricing Plan</a></li>
                         <li><a href="faq.html">FAQ with Answer</a></li>
@@ -142,18 +142,17 @@
                 </div>
               </nav>
             </div>
-            <div class="cs_main_header_right">
+            <div class="cs_main_header_right cs_shop">
               <div class="cs_header_btns_wrapper">
-                <button type="button" aria-label="Search" class="cs_search_btn">
+                <button type="button" aria-label="Search" class="cs_search_btn cs_center me-0">
                 <img src="assets/img/icons/search.svg" alt="Search icon">
                 </button>
-                <a href="tel:+0123456789" aria-label="Emergency call" class="cs_btn_style_2 cs_primary_color cs_semibold cs_radius_5">
-                <img src="assets/img/icons/phone2.svg" alt="Phone icon">
-                <span>Emergency</span>
+                <a href="login.html" aria-label="User login" class="cs_login_btn cs_center">
+                <img src="assets/img/icons/user.svg" alt="Phone icon">
                 </a>
-                <a href="appointment.html" aria-label="Book an appointment" class="cs_btn_style_1 cs_accent_bg cs_white_color cs_semibold cs_radius_5">
-                <img src="assets/img/icons/calendar.svg" alt="Calendar icon">
-                <span>Appointment</span>
+                <a href="cart.html" aria-label="Shopping cart" class="cs_cart_btn cs_center position-relative">
+                <img src="assets/img/icons/shopping-cart.svg" alt="Shopping icon">
+                <span class="cs_cart_badge cs_radius_50 cs_center position-absolute">0</span>
                 </a>
               </div>
             </div>
@@ -183,7 +182,7 @@
     <!-- Start Main Content -->
     <main>
       <!-- Start Page Header -->
-     <section class="cs_page_header_style_1 cs_bg_filed" data-src="assets/img/page_header_bg.jpg">
+      <section class="cs_page_header_style_1 cs_bg_filed" data-src="assets/img/page_header_bg.jpg">
         <div class="container">
           <div class="cs_page_header_in">
             <h1 class="cs_page_header_title cs_fs_60 cs_bold cs_mb_10">Checkout</h1>
@@ -202,7 +201,7 @@
         <div class="container">
           <div class="row cs_gap_y_40">
             <div class="col-lg-8">
-              <h2 class="cs_fs_40 cs_semibold cs_primary_color cs_mb_24">Billing Details</h2>
+              <h2 class="cs_fs_40 cs_semibold cs_mb_24">Billing Details</h2>
               <form action="#" class="cs_checkout_form">
                 <div class="row cs_gap_y_24">
                   <div class="col-sm-6">
@@ -276,9 +275,9 @@
               </form>
             </div>
             <div class="col-lg-4">
-              <div class="cs_checkout_sidebar">
-                <h2 class="cs_checkout_box_title cs_fs_20 cs_semibold cs_primary_color">Your Order</h2>
-                <ul class="cs_order_summary_list cs_mp_0">
+              <div class="cs_checkout_sidebar cs_gray2_bg cs_radius_20">
+                <h2 class="cs_checkout_box_title cs_fs_20 cs_semibold cs_mb_12">Your Order</h2>
+                <ul class="cs_order_summary_list cs_mp_0 cs_mb_24">
                   <li><span>Pulse Oximeter:</span><span>$39.00</span></li>
                   <li><span>Microscope Isolated:</span><span>$299.00</span></li>
                   <li><span>Diabetes Lancing Device:</span><span>$19.00</span></li>
@@ -286,29 +285,29 @@
                   <li><span>Shipping:</span><span>Free</span></li>
                   <li class="cs_order_summary_strong"><span>Total:</span><span>$357.00</span></li>
                 </ul>
-                <h2 class="cs_checkout_box_title cs_fs_20 cs_semibold cs_primary_color">Payment</h2>
-                <p class="cs_secure_note cs_mb_18">All transactions are secure.</p>
+                <h2 class="cs_checkout_box_title cs_fs_20 cs_semibold cs_mb_12">Payment</h2>
+                <p class="cs_secure_note cs_fs_14 cs_primary_color cs_mb_8">All transactions are secure.</p>
                 <div class="cs_payment_methods cs_mb_24">
                   <label class="cs_payment_option">
-                    <input type="radio" name="payment_method" value="paypal">
-                    <span class="cs_fs_16">PayPal</span>
+                  <input type="radio" name="payment_method" value="paypal">
+                  <span>PayPal</span>
                   </label>
                   <div>
                     <label class="cs_payment_option">
-                      <input type="radio" name="payment_method" value="bank_transfer" checked>
-                      <span class="cs_fs_16">Direct Bank Transfer</span>
+                    <input type="radio" name="payment_method" value="bank_transfer" checked>
+                    <span>Direct Bank Transfer</span>
                     </label>
-                    <p class="cs_payment_desc mb-0">Transfer your payment directly to our bank account using your order ID as reference.</p>
+                    <p class="cs_payment_desc cs_fs_14 mb-0">Transfer your payment directly to our bank account using your order ID as reference.</p>
                   </div>
                   <label class="cs_payment_option">
-                    <input type="radio" name="payment_method" value="cod">
-                    <span class="cs_fs_16">Cash on delivery</span>
+                  <input type="radio" name="payment_method" value="cod">
+                  <span>Cash on delivery</span>
                   </label>
                 </div>
-                <a href="#" class="cs_btn_style_1 cs_accent_bg cs_white_color cs_radius_5 cs_semibold">
-                  <span>Place Your Order</span>
-                  <img src="assets/img/icons/arrow-right.svg" alt="">
-                </a>
+                <button type="submit" class="cs_btn_style_1 cs_accent_bg cs_white_color cs_radius_5 cs_semibold">
+                <span>Place Your Order</span>
+                <img src="assets/img/icons/arrow-right.svg" alt="Arrow">
+                </button>
               </div>
             </div>
           </div>
@@ -422,7 +421,7 @@
     <!-- End Footer Section -->
     <!-- Start Scroll Top Button -->
     <button type="button" name="ScrollToTopBtn" class="cs_scrollup_btn" id="scrollToTopBtn">
-      <i class="fa-solid fa-arrow-up"></i>
+    <i class="fa-solid fa-arrow-up"></i>
     </button>
     <!-- End Scroll Top Button -->
     <script defer src="assets/js/jquery.min.js"></script>

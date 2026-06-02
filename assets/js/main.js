@@ -1234,15 +1234,15 @@
       var countElement = $(this).siblings(".cs_quantity_input");
       var count = parseInt(countElement.text());
       count++;
-      countElement.text(count);
+      count < 10 ? countElement.text("0" + count) : countElement.text(count);
     });
 
     $(".cs_decrement").click(function () {
       var countElement = $(this).siblings(".cs_quantity_input");
       var count = parseInt(countElement.text());
-      if (count > 0) {
+      if (count > 1) {
         count--;
-        countElement.text(count);
+        count < 10 ? countElement.text("0" + count) : countElement.text(count);
       }
     });
   }

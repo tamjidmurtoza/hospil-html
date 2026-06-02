@@ -20,7 +20,6 @@
   </head>
   <body>
     <!-- Start Preloader -->
-   
     <!-- End Preloader -->
     <!-- Start Header Section -->
     <header class="cs_site_header cs_style_1 cs_sticky_header" aria-label="Main header">
@@ -110,6 +109,7 @@
                         <li><a href="register.html">Account Register</a></li>
                         <li><a href="event.html">Our Events</a></li>
                         <li><a href="event-details.html">Event Details</a></li>
+                        <li><a href="packages.html">Our Packages</a></li>
                         <li><a href="facilities.html">Our Facilities</a></li>
                         <li><a href="pricing.html">Our Pricing Plan</a></li>
                         <li><a href="faq.html">FAQ with Answer</a></li>
@@ -142,18 +142,17 @@
                 </div>
               </nav>
             </div>
-            <div class="cs_main_header_right">
+            <div class="cs_main_header_right cs_shop">
               <div class="cs_header_btns_wrapper">
-                <button type="button" aria-label="Search" class="cs_search_btn">
+                <button type="button" aria-label="Search" class="cs_search_btn cs_center me-0">
                 <img src="assets/img/icons/search.svg" alt="Search icon">
                 </button>
-                <a href="tel:+0123456789" aria-label="Emergency call" class="cs_btn_style_2 cs_primary_color cs_semibold cs_radius_5">
-                <img src="assets/img/icons/phone2.svg" alt="Phone icon">
-                <span>Emergency</span>
+                <a href="login.html" aria-label="User login" class="cs_login_btn cs_center">
+                <img src="assets/img/icons/user.svg" alt="Phone icon">
                 </a>
-                <a href="appointment.html" aria-label="Book an appointment" class="cs_btn_style_1 cs_accent_bg cs_white_color cs_semibold cs_radius_5">
-                <img src="assets/img/icons/calendar.svg" alt="Calendar icon">
-                <span>Appointment</span>
+                <a href="cart.html" aria-label="Shopping cart" class="cs_cart_btn cs_center position-relative">
+                <img src="assets/img/icons/shopping-cart.svg" alt="Shopping icon">
+                <span class="cs_cart_badge cs_radius_50 cs_center position-absolute">0</span>
                 </a>
               </div>
             </div>
@@ -183,7 +182,7 @@
     <!-- Start Main Content -->
     <main>
       <!-- Start Page Header -->
-     <section class="cs_page_header_style_1 cs_bg_filed" data-src="assets/img/page_header_bg.jpg">
+      <section class="cs_page_header_style_1 cs_bg_filed" data-src="assets/img/page_header_bg.jpg">
         <div class="container">
           <div class="cs_page_header_in">
             <h1 class="cs_page_header_title cs_fs_60 cs_bold cs_mb_10">Medical Shop</h1>
@@ -212,19 +211,20 @@
               </select>
             </div>
           </div>
-          <div class="row cs_gap_y_24">
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Digital Blood Pressure">
-                  <img src="assets/img/products/product_img_1.png" alt="Digital Blood Pressure">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+          <div class="row cs_gap_y_48">
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Digital Blood Pressure">
+                  <img src="assets/img/product_img_1.png" alt="Digital Blood Pressure">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Digital Blood Pressure</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Digital Blood Pressure</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$49.00</span>
                     <del class="cs_product_old_price cs_fs_16">$55.00</del>
@@ -235,18 +235,19 @@
                 </div>
               </article>
             </div>
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Pulse Oximeter">
-                  <img src="assets/img/products/product_img_2.png" alt="Pulse Oximeter">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Pulse Oximeter">
+                  <img src="assets/img/product_img_2.png" alt="Pulse Oximeter">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Pulse Oximeter</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Pulse Oximeter</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$39.00</span>
                     <del class="cs_product_old_price cs_fs_16">$50.00</del>
@@ -257,18 +258,19 @@
                 </div>
               </article>
             </div>
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Microscope Isolated">
-                  <img src="assets/img/products/product_img_3.png" alt="Microscope Isolated">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Microscope Isolated">
+                  <img src="assets/img/product_img_3.png" alt="Microscope Isolated">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Microscope Isolated</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Microscope Isolated</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$299.00</span>
                     <del class="cs_product_old_price cs_fs_16">$350.00</del>
@@ -279,18 +281,19 @@
                 </div>
               </article>
             </div>
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Diabetes Lancing Device">
-                  <img src="assets/img/products/product_img_4.png" alt="Diabetes Lancing Device">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Diabetes Lancing Device">
+                  <img src="assets/img/product_img_4.png" alt="Diabetes Lancing Device">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Diabetes Lancing Device</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Diabetes Lancing Device</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$19.00</span>
                     <del class="cs_product_old_price cs_fs_16">$25.00</del>
@@ -301,18 +304,19 @@
                 </div>
               </article>
             </div>
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Blue Asthma Inhaler">
-                  <img src="assets/img/products/product_img_5.png" alt="Blue Asthma Inhaler">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Blue Asthma Inhaler">
+                  <img src="assets/img/product_img_5.png" alt="Blue Asthma Inhaler">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Blue Asthma Inhaler</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Blue Asthma Inhaler</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$15.00</span>
                     <del class="cs_product_old_price cs_fs_16">$20.00</del>
@@ -323,18 +327,19 @@
                 </div>
               </article>
             </div>
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Eye Drops Bottle">
-                  <img src="assets/img/products/product_img_6.png" alt="Eye Drops Bottle">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Eye Drops Bottle">
+                  <img src="assets/img/product_img_6.png" alt="Eye Drops Bottle">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Eye Drops Bottle</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Eye Drops Bottle</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$29.00</span>
                     <del class="cs_product_old_price cs_fs_16">$35.00</del>
@@ -345,18 +350,19 @@
                 </div>
               </article>
             </div>
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Stethoscope">
-                  <img src="assets/img/products/product_img_7.png" alt="Stethoscope">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Stethoscope">
+                  <img src="assets/img/product_img_7.png" alt="Stethoscope">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Stethoscope</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Stethoscope</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$15.00</span>
                     <del class="cs_product_old_price cs_fs_16">$20.00</del>
@@ -367,18 +373,19 @@
                 </div>
               </article>
             </div>
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Infrared Temp Scanner">
-                  <img src="assets/img/products/product_img_8.png" alt="Infrared Temp Scanner">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Infrared Temp Scanner">
+                  <img src="assets/img/product_img_8.png" alt="Infrared Temp Scanner">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Infrared Temp Scanner</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Infrared Temp Scanner</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$29.00</span>
                     <del class="cs_product_old_price cs_fs_16">$39.00</del>
@@ -389,18 +396,19 @@
                 </div>
               </article>
             </div>
-            <!-- Product Card -->
-            <div class="col-xl-4 col-sm-6">
-              <article class="cs_product_card">
-                <a href="shop-details.html" class="cs_product_thumb" aria-label="Adjustable Hospital Bed">
-                  <img src="assets/img/products/product_img_9.png" alt="Adjustable Hospital Bed">
-                  <span class="cs_product_cart cs_btn_style_1 cs_white_bg cs_radius_5 cs_semibold cs_primary_color">
-                    <span>Add To Cart</span>
-                    <i class="fa-solid fa-cart-shopping"></i>
-                  </span>
-                </a>
+            <div class="col-lg-4 col-sm-6">
+              <article class="cs_product_card_1">
+                <div class="cs_product_thumb cs_radius_20 cs_mb_24" aria-label="Adjustable Hospital Bed">
+                  <img src="assets/img/product_img_9.png" alt="Adjustable Hospital Bed">
+                  <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
+                  <span>Add To Cart</span>
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  </a>
+                </div>
                 <div class="cs_product_info">
-                  <h3 class="cs_product_title cs_fs_24 cs_medium"><a href="shop-details.html">Adjustable Hospital Bed</a></h3>
+                  <h3 class="cs_product_title cs_fs_24 cs_medium cs_mb_12">
+                    <a href="shop-details.html">Adjustable Hospital Bed</a>
+                  </h3>
                   <div class="cs_product_meta">
                     <span class="cs_product_price cs_fs_20 cs_semibold">$250.00</span>
                     <del class="cs_product_old_price cs_fs_16">$300.00</del>
@@ -533,7 +541,7 @@
     <!-- End Footer Section -->
     <!-- Start Scroll Top Button -->
     <button type="button" name="ScrollToTopBtn" class="cs_scrollup_btn" id="scrollToTopBtn">
-      <i class="fa-solid fa-arrow-up"></i>
+    <i class="fa-solid fa-arrow-up"></i>
     </button>
     <!-- End Scroll Top Button -->
     <script defer src="assets/js/jquery.min.js"></script>
