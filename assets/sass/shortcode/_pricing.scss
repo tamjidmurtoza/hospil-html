@@ -1,5 +1,5 @@
 /*================================================================
-  PRICING Section
+  20. Pricing Section
 ==================================================================*/
 .cs_pricing_table_1 {
   width: 330px;
@@ -358,5 +358,54 @@
 
   &.cs_color_4 {
     background-color: #e4ddcd;
+  }
+}
+
+/*================================================================
+  PRICING Packages (Sidebar Filter)
+==================================================================*/
+.cs_packages_section {
+  padding: 120px 0;
+
+  .cs_section_heading_style_1 {
+    width: min(100%, 870px);
+    margin: 0 auto 48px;
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+
+    .cs_section_heading_style_1 {
+      margin: 0 auto 40px;
+    }
+  }
+}
+
+/*===============================================
+  Reuses the shared
+================================================*/
+.cs_filter_list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+
+  .cs_filter_btn {
+    width: 100%;
+    display: block;
+    text-align: left;
+    padding: 10px;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+
+    &.active {
+      color: var(--primary-color);
+      background-color: var(--gray2-color);
+    }
   }
 }

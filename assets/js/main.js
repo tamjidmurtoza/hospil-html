@@ -55,26 +55,27 @@
     mainNav();
     stickyHeader();
     dynamicBackground();
-    stickyFooter();
+    // stickyFooter(); // Unused: no .cs_sticky_footer element in any page
     swiperInit();
     languageSwitch();
-    modalToggle();
+    // modalToggle(); // Unused: no .cs_open_modal / .cs_advanced_search_modal element in any page
     smoothScroll();
     counterInit();
     modalVideo();
     review();
     tabs();
     accordian();
-    serviceSteps();
+    // serviceSteps(); // Unused: no .cs_service_menu_list element in any page
     serviceHoverTabs();
     scrollUp();
-    animationOnHover();
+    // animationOnHover(); // Unused: no .animationonhover element in any page
     hobbleEffectInit();
-    progressBar();
-    cardHoverActive();
+    // progressBar(); // Unused: no .cs_progress element in any page
+    // cardHoverActive(); // Unused: no .cs_card_style_6 element in any page
     stickyCardInit();
     parallaxImageInit();
     pricingToggleInit();
+    packagesFilterInit();
     //scrollRevealInit();
     //transformSwitcher();
     //gsapAnimation();
@@ -82,7 +83,7 @@
     //stickyInit();
     toggleActiveClass();
     ecommerceInit();
-    dynamicContactForm();
+    // dynamicContactForm(); // Unused: no #cs_form element in any page
     // Choices JS for Select
     $(".cs_choice").each(function () {
       const el = this;
@@ -233,13 +234,14 @@
   /*=============================================================
     8. Footer Sticky
   ===============================================================*/
-  function stickyFooter() {
-    // Sticky Footer
-    var footerHeight = $(".cs_sticky_footer").height();
-    var windowHeight = $(window).height();
-    var footerHeightPx = footerHeight + "px";
-    $(".cs_sticky_content").css("margin-bottom", footerHeightPx);
-  }
+  // UNUSED: no .cs_sticky_footer element exists in any page
+  // function stickyFooter() {
+  //   // Sticky Footer
+  //   var footerHeight = $(".cs_sticky_footer").height();
+  //   var windowHeight = $(window).height();
+  //   var footerHeightPx = footerHeight + "px";
+  //   $(".cs_sticky_content").css("margin-bottom", footerHeightPx);
+  // }
   /*============================================================
     05. Swiper Slider
   ==============================================================*/
@@ -494,16 +496,17 @@
   /*============================================================
     06. Search Modal Toggle
   ==============================================================*/
-  function modalToggle() {
-    $(".cs_open_modal").on("click", function () {
-      $(".cs_advanced_search_modal").addClass("active");
-      $("body").addClass("scroll_off");
-    });
-    $(".cs_close_modal").on("click", function () {
-      $(".cs_advanced_search_modal").removeClass("active");
-      $("body").removeClass("scroll_off");
-    });
-  }
+  // UNUSED: no .cs_open_modal / .cs_advanced_search_modal element exists in any page
+  // function modalToggle() {
+  //   $(".cs_open_modal").on("click", function () {
+  //     $(".cs_advanced_search_modal").addClass("active");
+  //     $("body").addClass("scroll_off");
+  //   });
+  //   $(".cs_close_modal").on("click", function () {
+  //     $(".cs_advanced_search_modal").removeClass("active");
+  //     $("body").removeClass("scroll_off");
+  //   });
+  // }
   /*============================================================
     07. Smooth Page Scroll
   ==============================================================*/
@@ -638,12 +641,13 @@
   /*=============================================================
     12. Progress Bar
   ==============================================================*/
-  function progressBar() {
-    $(".cs_progress").each(function () {
-      var progressPercentage = $(this).data("progress") + "%";
-      $(this).find(".cs_progress_in").css("width", progressPercentage);
-    });
-  }
+  // UNUSED: no .cs_progress element exists in any page
+  // function progressBar() {
+  //   $(".cs_progress").each(function () {
+  //     var progressPercentage = $(this).data("progress") + "%";
+  //     $(this).find(".cs_progress_in").css("width", progressPercentage);
+  //   });
+  // }
   /*===========================================================
     13. Accordian
   =============================================================*/
@@ -709,48 +713,100 @@
     });
   }
   /*===========================================================
-    14. Service Steps Animation
+    Packages Sidebar Filter
   =============================================================*/
-  function serviceSteps() {
-    let tabInterval;
-    let currentIndex = 0;
+  function packagesFilterInit() {
+    var $grid = $("#cs_packages_grid");
+    if (!$grid.length) return;
 
-    const $tabs = $(".cs_service_menu_list li");
-    const $tabContents = $(".cs_service_thumbnails_wrapper");
-    const intervalTime = 5000;
+    var $items = $grid.find(".cs_package_item");
+    var $empty = $grid.find(".cs_packages_empty");
+    var activeFilters = {};
 
-    if ($tabs.length > 0 && $tabContents.length > 0) {
-      function activateTab(index) {
-        $tabs.eq(index).addClass("active").siblings().removeClass("active");
-        $tabContents.eq(index).fadeIn(600).siblings().hide();
-      }
+    function applyFilters() {
+      var visibleCount = 0;
 
-      function startAutoplay() {
-        stopAutoplay();
-        tabInterval = setInterval(function () {
-          currentIndex = (currentIndex + 1) % $tabs.length;
-          activateTab(currentIndex);
-        }, intervalTime);
-      }
+      $items.each(function () {
+        var tokens = ($(this).data("filter") || "").toString().split(/\s+/);
+        var matched = true;
 
-      function stopAutoplay() {
-        if (tabInterval) clearInterval(tabInterval);
-      }
+        $.each(activeFilters, function (group, value) {
+          if (value !== "all" && $.inArray(value, tokens) === -1) {
+            matched = false;
+            return false;
+          }
+        });
 
-      $tabs.on("click", function (e) {
-        e.preventDefault();
-        stopAutoplay();
-        currentIndex = $(this).index();
-        activateTab(currentIndex);
-        startAutoplay();
+        $(this).toggle(matched);
+        if (matched) visibleCount++;
       });
 
-      // Init
-      $tabContents.hide();
-      activateTab(currentIndex);
-      startAutoplay();
+      $empty.prop("hidden", visibleCount !== 0);
     }
+
+    $(".cs_filter_list").each(function () {
+      activeFilters[$(this).data("filter-group")] = "all";
+    });
+
+    $(".cs_filter_list .cs_filter_btn").on("click", function () {
+      var $btn = $(this);
+      var group = $btn.closest(".cs_filter_list").data("filter-group");
+
+      activeFilters[group] = $btn.data("filter");
+      $btn
+        .addClass("active")
+        .closest(".cs_filter_list")
+        .find(".cs_filter_btn")
+        .not($btn)
+        .removeClass("active");
+
+      applyFilters();
+    });
   }
+  /*===========================================================
+    14. Service Steps Animation
+  =============================================================*/
+  // UNUSED: no .cs_service_menu_list element exists in any page
+  // function serviceSteps() {
+  //   let tabInterval;
+  //   let currentIndex = 0;
+
+  //   const $tabs = $(".cs_service_menu_list li");
+  //   const $tabContents = $(".cs_service_thumbnails_wrapper");
+  //   const intervalTime = 5000;
+
+  //   if ($tabs.length > 0 && $tabContents.length > 0) {
+  //     function activateTab(index) {
+  //       $tabs.eq(index).addClass("active").siblings().removeClass("active");
+  //       $tabContents.eq(index).fadeIn(600).siblings().hide();
+  //     }
+
+  //     function startAutoplay() {
+  //       stopAutoplay();
+  //       tabInterval = setInterval(function () {
+  //         currentIndex = (currentIndex + 1) % $tabs.length;
+  //         activateTab(currentIndex);
+  //       }, intervalTime);
+  //     }
+
+  //     function stopAutoplay() {
+  //       if (tabInterval) clearInterval(tabInterval);
+  //     }
+
+  //     $tabs.on("click", function (e) {
+  //       e.preventDefault();
+  //       stopAutoplay();
+  //       currentIndex = $(this).index();
+  //       activateTab(currentIndex);
+  //       startAutoplay();
+  //     });
+
+  //     // Init
+  //     $tabContents.hide();
+  //     activateTab(currentIndex);
+  //     startAutoplay();
+  //   }
+  // }
   /*===========================================================
     Service Hover Tabs (cs_service_section_3)
   =============================================================*/
@@ -774,14 +830,15 @@
   /*===========================================================
    15. Card Hover
   =============================================================*/
-  function cardHoverActive() {
-    $(".cs_card_style_6").on("mouseenter", function () {
-      $(this)
-        .addClass("active")
-        .siblings(".cs_card_style_6")
-        .removeClass("active");
-    });
-  }
+  // UNUSED: no .cs_card_style_6 element exists in any page
+  // function cardHoverActive() {
+  //   $(".cs_card_style_6").on("mouseenter", function () {
+  //     $(this)
+  //       .addClass("active")
+  //       .siblings(".cs_card_style_6")
+  //       .removeClass("active");
+  //   });
+  // }
   /*===========================================================
     16. Scroll Up
   =============================================================*/
@@ -812,7 +869,7 @@
     const $banners = $(".cs_parallax");
     if (!$banners.length) return;
     const Y_RANGE = 20;
-    const SCALE = 1;
+    const SCALE = 1.1;
 
     const entries = [];
     $banners.each(function () {
@@ -994,24 +1051,25 @@
   /*===========================================================
     17. Hobble Animation With Mouse Move
   =============================================================*/
-  function animationOnHover() {
-    let cards = document.querySelectorAll(".animationonhover");
+  // UNUSED: no .animationonhover element exists in any page
+  // function animationOnHover() {
+  //   let cards = document.querySelectorAll(".animationonhover");
 
-    cards.forEach((tmpOnHover) => {
-      // Set initial value
-      tmpOnHover.style.setProperty("--x", "-1px");
-      tmpOnHover.style.setProperty("--y", "-1px");
+  //   cards.forEach((tmpOnHover) => {
+  //     // Set initial value
+  //     tmpOnHover.style.setProperty("--x", "-1px");
+  //     tmpOnHover.style.setProperty("--y", "-1px");
 
-      tmpOnHover.onmousemove = function (e) {
-        let rect = tmpOnHover.getBoundingClientRect();
-        let x = e.clientX - rect.left;
-        let y = e.clientY - rect.top;
+  //     tmpOnHover.onmousemove = function (e) {
+  //       let rect = tmpOnHover.getBoundingClientRect();
+  //       let x = e.clientX - rect.left;
+  //       let y = e.clientY - rect.top;
 
-        tmpOnHover.style.setProperty("--x", `${x}px`);
-        tmpOnHover.style.setProperty("--y", `${y}px`);
-      };
-    });
-  }
+  //       tmpOnHover.style.setProperty("--x", `${x}px`);
+  //       tmpOnHover.style.setProperty("--y", `${y}px`);
+  //     };
+  //   });
+  // }
   /*===========================================================
     Particle Move
   =============================================================*/
@@ -1185,50 +1243,11 @@
       $(this).siblings().removeClass("fa-solid");
       $(this).addClass("fa-solid").prevAll().addClass("fa-solid");
     });
-    // Product Single Slider
-    // if ($.exists(".cs_single_product_thumb")) {
-    //   $(".cs_single_product_thumb").slick({
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     arrows: false,
-    //     asNavFor: ".cs_single_product_nav",
-    //   });
-    // }
-
-    // if ($.exists(".cs_single_product_nav")) {
-    //   $(".cs_single_product_nav").slick({
-    //     slidesToShow: 4,
-    //     slidesToScroll: 1,
-    //     asNavFor: ".cs_single_product_thumb",
-    //     focusOnSelect: true,
-    //     arrows: false,
-    //   });
-    // }
     // Check All
     $("#checkAll").change(function () {
       var isChecked = $(this).prop("checked");
       $('table input[type="checkbox"]').prop("checked", isChecked);
     });
-    // Range Slider
-    if ($.exists("#slider-range")) {
-      $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 1000,
-        values: [100, 600],
-        slide: function (event, ui) {
-          $("#amount").val("Price: $" + ui.values[0] + " - $" + ui.values[1]);
-        },
-      });
-    }
-    if ($.exists("#amount")) {
-      $("#amount").val(
-        "Price: $" +
-          $("#slider-range").slider("values", 0) +
-          " - $" +
-          $("#slider-range").slider("values", 1),
-      );
-    }
     // Counter
     $(".cs_increment").click(function () {
       var countElement = $(this).siblings(".cs_quantity_input");
@@ -1249,49 +1268,50 @@
   /*===============================================================
     19. Dynamic contact form
   =================================================================*/
-  function dynamicContactForm() {
-    if ($.exists("#cs_form")) {
-      const form = document.getElementById("cs_form");
-      const result = document.getElementById("cs_result");
+  // UNUSED: no #cs_form element exists in any page
+  // function dynamicContactForm() {
+  //   if ($.exists("#cs_form")) {
+  //     const form = document.getElementById("cs_form");
+  //     const result = document.getElementById("cs_result");
 
-      form.addEventListener("submit", function (e) {
-        const formData = new FormData(form);
-        e.preventDefault();
-        var object = {};
-        formData.forEach((value, key) => {
-          object[key] = value;
-        });
-        var json = JSON.stringify(object);
-        result.innerHTML = "Please wait...";
+  //     form.addEventListener("submit", function (e) {
+  //       const formData = new FormData(form);
+  //       e.preventDefault();
+  //       var object = {};
+  //       formData.forEach((value, key) => {
+  //         object[key] = value;
+  //       });
+  //       var json = JSON.stringify(object);
+  //       result.innerHTML = "Please wait...";
 
-        fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: json,
-        })
-          .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-              result.innerHTML = json.message;
-            } else {
-              console.log(response);
-              result.innerHTML = json.message;
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            result.innerHTML = "Something went wrong!";
-          })
-          .then(function () {
-            form.reset();
-            setTimeout(() => {
-              result.style.display = "none";
-            }, 5000);
-          });
-      });
-    }
-  }
+  //       fetch("https://api.web3forms.com/submit", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Accept: "application/json",
+  //         },
+  //         body: json,
+  //       })
+  //         .then(async (response) => {
+  //           let json = await response.json();
+  //           if (response.status == 200) {
+  //             result.innerHTML = json.message;
+  //           } else {
+  //             console.log(response);
+  //             result.innerHTML = json.message;
+  //           }
+  //         })
+  //         .catch((error) => {
+  //           console.log(error);
+  //           result.innerHTML = "Something went wrong!";
+  //         })
+  //         .then(function () {
+  //           form.reset();
+  //           setTimeout(() => {
+  //             result.style.display = "none";
+  //           }, 5000);
+  //         });
+  //     });
+  //   }
+  // }
 })(jQuery); // End of use strict

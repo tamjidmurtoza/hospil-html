@@ -1,6 +1,6 @@
-/*================================================================
-  17. Contact Section
-==================================================================*/
+/*===================================================
+  18. Contact Section
+=====================================================*/
 .cs_contact_section_1 {
   @extend .cs_about_style_3;
   padding: 0;
@@ -303,7 +303,6 @@
   }
 
   @media (max-width: 575px) {
-
     .cs_contact_map {
       height: 280px;
     }
@@ -329,15 +328,15 @@
     transition: transform 0.3s cubic-bezier(0.45, 0.45, 0.5, 0.55);
 
     &.cs_color_1 {
-      background-color: #E4DDCD;
+      background-color: #e4ddcd;
     }
 
     &.cs_color_2 {
-      background-color: #BFD4CD;
+      background-color: #bfd4cd;
     }
 
     &.cs_color_3 {
-      background-color: #CECDDD;
+      background-color: #cecddd;
     }
 
     &.cs_color_4 {
@@ -390,7 +389,6 @@
     gap: 24px;
   }
 
-
   @media (max-width: 991px) {
     padding: 70px 0;
   }
@@ -433,8 +431,6 @@
       filter: brightness(0) saturate(100%) invert(36%) sepia(61%) saturate(5481%) hue-rotate(209deg) brightness(98%) contrast(95%);
     }
   }
-
-
 
   .cs_btn_style_2 {
     border-color: var(--accent-color);

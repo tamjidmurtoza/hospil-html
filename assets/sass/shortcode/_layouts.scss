@@ -1,5 +1,5 @@
 /*=================================================
- Features Section
+  26. Features Section
 ===================================================*/
 .cs_feature_section_1 {
   position: relative;
@@ -1646,7 +1646,19 @@
   flex-direction: column;
 
   .cs_sidebar_widget {
-    padding: 30px 30px 24px;
+    padding: 24px;
+  }
+
+  .cs_filter_menu {
+    border: 1px solid var(--accent-color);
+
+    .cs_widget_title {
+      padding-bottom: 0;
+
+      &::after {
+        display: none;
+      }
+    }
   }
 
   .cs_widget_title {
@@ -1965,12 +1977,16 @@
       position: absolute;
       left: 0;
       top: 5px;
+      margin-top: 0;
       filter: brightness(0) saturate(100%) invert(37%) sepia(53%) saturate(6343%) hue-rotate(208deg) brightness(98%) contrast(96%);
     }
   }
 
   .cs_venue_date {
+    span {
+      display: inline-block;
 
+    }
 
     img {
       filter: brightness(0) saturate(100%) invert(13%) sepia(10%) saturate(1907%) hue-rotate(175deg) brightness(96%) contrast(91%);
@@ -2006,8 +2022,12 @@
   }
 
   .cs_contact {
-    a:hover {
-      color: var(--accent-color);
+    a {
+      text-wrap: nowrap;
+
+      &:hover {
+        color: var(--accent-color);
+      }
     }
   }
 

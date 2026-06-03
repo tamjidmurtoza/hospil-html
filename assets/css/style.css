@@ -5,28 +5,35 @@
 01. Google Fonts
 02. Color Variable
 03. Typography
-04. Spacing
-05. General
+04. General
+05. Preloader
 06. Header Section
 07. Footer Section
-08. Preloader
-09. Hero Section
-10. About Section
-11. Services Section
-12. Facilities Section
-13. Healthcare Center Section
-14. Blog Section
-15. Contact Section
-16. Team Section
-17. Pricing Section
-18. FAQ Section
-19. Portfolio Section
-20. Testimonials Section
-21. Appointment Section
-22. Ecommerce (Shop) Section
+08. Slider (Swiper)
+09. Spacing
+10. Video Modal
+11. Mixins
+12. Hero Section
+13. About Section
+14. Services Section
+15. Facilities Section
+16. Healthcare Center Section
+17. Blog Section
+18. Contact Section
+19. Team Section
+20. Pricing Section
+21. FAQ Section
+22. Portfolio Section
+23. Tabs Section
+24. Testimonials Section
+25. Appointment Section
+26. Features Section
+27. Partners Section
+28. Login / My Account Section
+29. Ecommerce (Shop) Section
 --------------------------------------------------------------*/
 /*===============================================================
- 01. Google Fonts (Self-hosted - Plus Jakarta Sans)
+  01. Google Fonts
 =================================================================*/
 /* Montserrat italic */
 @font-face {
@@ -61,7 +68,7 @@
   src: url(../fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth-wght.ttf) format("truetype");
 }
 /*================================================================
-  02. Variables
+  02. Color Variable
 ==================================================================*/
 :root {
   --accent-color: #136DF4;
@@ -85,7 +92,7 @@
 }
 
 /*===============================================================
- 03. Typography
+  03. Typography
 =================================================================*/
 *,
 *::before,
@@ -272,7 +279,7 @@ label {
 }
 
 /*=================================================================
-  05. General
+  04. General
 ===================================================================*/
 .cs_fs_10 {
   font-size: 10px;
@@ -1146,10 +1153,10 @@ label {
   }
 }
 /*================================================================
-  08. Preloader
+  05. Preloader
 ==================================================================*/
 /*=========================================================
-  06. Header Sections
+  06. Header Section
 ===========================================================*/
 .cs_site_header {
   position: fixed;
@@ -1656,7 +1663,7 @@ label {
   position: absolute;
   right: 0;
   top: 100%;
-  z-index: 1;
+  z-index: 12;
   padding: 0 0 10px;
   display: none;
   background-color: var(--white-color);
@@ -1842,16 +1849,16 @@ label {
   opacity: 0;
 }
 .cs_side_header .cs_side_header_in {
-  width: min(100%, 400px);
+  width: min(100%, 500px);
   height: 100vh;
   background-color: var(--white-color);
   flex: none;
   margin-left: auto;
   overflow-y: auto;
-  padding: 70px 30px 50px;
+  padding: 45px 24px 50px;
   position: relative;
   z-index: 2;
-  right: -500px;
+  right: -600px;
   transition: right 0.4s ease;
   overflow: auto;
   scrollbar-width: none;
@@ -1861,26 +1868,30 @@ label {
   display: none;
 }
 .cs_side_header .cs_side_header_box {
-  margin-bottom: 50px;
+  margin-bottom: 24px;
 }
 .cs_side_header .cs_side_header_box:last-child {
   margin-bottom: 0;
+}
+.cs_side_header .cs_gallery {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
 }
 .cs_side_header .cs_social_icons {
   display: flex;
   gap: 16px;
 }
 .cs_side_header .cs_social_icons a {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-color);
   border-radius: 50%;
-  border: 1px solid var(--accent-color);
-  background-color: transparent;
+  color: var(--primary-color);
+  background-color: var(--gray2-color);
 }
 .cs_side_header .cs_social_icons a:hover {
   color: var(--white-color);
@@ -1915,56 +1926,18 @@ label {
 .cs_side_header .cs_contact_list a:hover {
   color: var(--accent-color);
 }
-.cs_side_header .cs_newsletter_style_1 form {
-  position: relative;
-}
-.cs_side_header .cs_newsletter_style_1 input {
-  display: block;
-  width: 100%;
-  padding: 12px 20px;
-  outline: 0;
-  border-radius: 5px;
-  font-size: 14px;
-  color: var(--primary-color);
-  border: 1px solid var(--gray3-color);
-}
-.cs_side_header .cs_newsletter_style_1 input:focus {
-  border-color: var(--accent-color);
-}
-.cs_side_header .cs_newsletter_style_1 input::-moz-placeholder {
-  color: var(--secondary-color);
-}
-.cs_side_header .cs_newsletter_style_1 input::placeholder {
-  color: var(--secondary-color);
-}
-.cs_side_header .cs_newsletter_style_1 .cs_submit_btn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  bottom: 4px;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent-color);
-  background-color: var(--gray3-color);
-  transition: all 0.4s ease;
-}
-.cs_side_header .cs_newsletter_style_1 .cs_submit_btn:hover {
-  color: var(--white-color);
-  background-color: var(--accent-color);
-}
 .cs_side_header .cs_close {
   position: absolute;
-  right: 30px;
-  top: 20px;
-  height: 25px;
-  width: 25px;
+  right: 24px;
+  top: 24px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   background-color: transparent;
   color: var(--primary-color);
   cursor: pointer;
   z-index: 2;
+  border: 1px solid rgba(134, 148, 167, 0.5);
 }
 .cs_side_header .cs_close::before, .cs_side_header .cs_close::after {
   content: "";
@@ -1983,7 +1956,8 @@ label {
 }
 .cs_side_header .cs_close:hover {
   color: var(--danger-color);
-  transform: scale(1.5) rotate(90deg);
+  transform: rotate(90deg);
+  border-color: var(--danger-color);
 }
 
 /*================================================================
@@ -2255,7 +2229,7 @@ label {
 }
 
 /*=============================================
- Swiper Slider
+  08. Slider (Swiper)
 ===============================================*/
 .swiper .swiper-slide {
   width: auto;
@@ -2588,7 +2562,7 @@ label {
 }
 
 /*============================================================
-  04. Spacing
+  09. Spacing
 ==============================================================*/
 @media screen and (min-width: 992px) {
   .cs_height_1 {
@@ -3780,176 +3754,7 @@ label {
   }
 }
 /*================================================================
-  09. Video Modal
-==================================================================*/
-.cs_video_popup {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  left: -100%;
-  transition-delay: 0.3s;
-}
-
-.cs_video_popup.active {
-  left: 0;
-  transition-delay: 0s;
-  left: 0;
-}
-
-.cs_video_popup-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  background: #000;
-  transition: all 0.4s ease-out;
-  opacity: 0;
-}
-
-.cs_video_popup.active .cs_video_popup-overlay {
-  opacity: 0.8;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.cs_video_popup-content {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  font-size: 0;
-  text-align: center;
-  transition: all 0.4s ease-out;
-  transform: translateY(100px);
-  opacity: 0;
-  visibility: hidden;
-  padding: 15px;
-}
-
-.cs_video_popup.active .cs_video_popup-content {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-}
-
-.cs_video_popup-content:after {
-  content: "";
-  display: inline-block;
-  height: calc(100% + 1px);
-  vertical-align: middle;
-}
-
-.cs_video_popup_container {
-  display: inline-block;
-  position: relative;
-  text-align: left;
-  background: var(--white-color);
-  max-width: 1380px;
-  width: 100%;
-  vertical-align: middle;
-}
-
-.cs_video_popup_container .embed-responsive {
-  width: 100%;
-}
-
-.embed-responsive {
-  position: relative;
-  display: block;
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-  height: 100%;
-}
-
-.embed-responsive-16by9::before {
-  display: block;
-  content: "";
-  padding-top: 56.25%;
-}
-
-.embed-responsive iframe,
-.embed-responsive video {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.cs_video_popup_close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background: #d90d0d;
-  cursor: pointer;
-  transition: all 0.4s ease-in-out;
-}
-
-.cs_video_popup iframe {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-.cs_video_popup_close:before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 1px;
-  background: var(--white-color);
-  margin-left: -10px;
-  transform: rotate(-45deg);
-  transition: all 0.4s ease-in-out;
-}
-
-.cs_video_popup_close:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 1px;
-  background: var(--white-color);
-  margin-left: -10px;
-  transform: rotate(45deg);
-  transition: all 0.4s ease-in-out;
-}
-
-.cs_video_popup_close:hover:before,
-.cs_video_popup_close:hover:after {
-  background: #000;
-}
-
-.cs_video_popup-layer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.cs_video_popup-align {
-  overflow: hidden;
-}
-
-/*End Video Popup*/
-/*================================================
- Mixins
-==================================================*/
-/*================================================================
-  12. Hero
+  12. Hero Section
 ==================================================================*/
 .cs_hero_style_1 {
   height: 100%;
@@ -4792,7 +4597,7 @@ label {
 }
 
 /*================================================================
-  13. About Us Section
+  13. About Section
 ==================================================================*/
 .cs_about_style_1 {
   padding: 120px 0 85px;
@@ -6450,10 +6255,10 @@ label {
   transform: translateY(-4px);
 }
 /*================================================================
-  18. Healthcare Center Section
+  16. Healthcare Center Section
 ==================================================================*/
 /*=================================================
-  16. Blog Post
+  17. Blog Section
 ===================================================*/
 .cs_post_style_1 {
   width: 100%;
@@ -6489,7 +6294,7 @@ label {
   z-index: 3;
   padding: 6px 14px;
   border-radius: 30px;
-  background-color: #E2DAF6;
+  background-color: #e2daf6;
 }
 .cs_post_style_1 .cs_post_info {
   flex: 1;
@@ -6686,7 +6491,7 @@ label {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 1.5);
 }
 .cs_post_style_3 .cs_post_img::before {
   content: "";
@@ -6694,7 +6499,7 @@ label {
   inset: 0;
   background: linear-gradient(180deg, rgba(31, 41, 55, 0) 50%, rgba(31, 41, 55, 0.55) 100%);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.55);
   z-index: 1;
   pointer-events: none;
 }
@@ -6703,9 +6508,9 @@ label {
   position: absolute;
   top: 0;
   left: -100%;
-  width: 50%;
+  width: 40%;
   height: 100%;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100%);
   transform: skewX(-45deg);
   z-index: 2;
   pointer-events: none;
@@ -7176,19 +6981,19 @@ label {
   gap: 24px;
   grid-template-columns: repeat(2, 1fr);
 }
-.cs_blog_details .cs_red_flag_grid .cs_red_flag_card {
+.cs_blog_details .cs_red_flag_card {
   padding: 24px;
 }
-.cs_blog_details .cs_red_flag_grid .cs_red_flag_card.cs_color_1 {
+.cs_blog_details .cs_red_flag_card.cs_color_1 {
   background-color: #e4ddcd;
 }
-.cs_blog_details .cs_red_flag_grid .cs_red_flag_card.cs_color_2 {
+.cs_blog_details .cs_red_flag_card.cs_color_2 {
   background-color: #bfd4cd;
 }
-.cs_blog_details .cs_red_flag_grid .cs_red_flag_card.cs_color_3 {
+.cs_blog_details .cs_red_flag_card.cs_color_3 {
   background-color: #cecddd;
 }
-.cs_blog_details .cs_red_flag_grid .cs_red_flag_card.cs_color_4 {
+.cs_blog_details .cs_red_flag_card.cs_color_4 {
   background-color: #dbd5f7;
 }
 .cs_blog_details .cs_post_tags {
@@ -7260,6 +7065,28 @@ label {
 }
 .cs_blog_details .cs_post_navigation .cs_post_nav_item:hover .cs_post_nav_title {
   color: var(--accent-color);
+}
+@media (max-width: 991px) {
+  .cs_blog_details .cs_red_flag_grid {
+    gap: 16px;
+  }
+  .cs_blog_details .cs_red_flag_card {
+    padding: 16px;
+  }
+  .cs_blog_details .cs_post_navigation {
+    gap: 15px;
+  }
+  .cs_blog_details .cs_post_navigation .cs_post_nav_item {
+    padding: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .cs_blog_details .cs_red_flag_grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cs_blog_details .cs_post_navigation {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cs_comment_form_wrap .cs_comment_form_subtitle {
@@ -7365,9 +7192,9 @@ label {
   background-color: var(--accent-color);
 }
 
-/*================================================================
-  17. Contact Section
-==================================================================*/
+/*===================================================
+  18. Contact Section
+=====================================================*/
 .cs_contact_section_1 {
   padding: 0;
   position: relative;
@@ -7651,13 +7478,13 @@ label {
   transition: transform 0.3s cubic-bezier(0.45, 0.45, 0.5, 0.55);
 }
 .cs_career_mission_section .cs_career_value_card.cs_color_1 {
-  background-color: #E4DDCD;
+  background-color: #e4ddcd;
 }
 .cs_career_mission_section .cs_career_value_card.cs_color_2 {
-  background-color: #BFD4CD;
+  background-color: #bfd4cd;
 }
 .cs_career_mission_section .cs_career_value_card.cs_color_3 {
-  background-color: #CECDDD;
+  background-color: #cecddd;
 }
 .cs_career_mission_section .cs_career_value_card.cs_color_4 {
   background-color: var(--gray5-color);
@@ -7848,7 +7675,7 @@ label {
 }
 
 /*====================================================
-  TEAM Section
+  19. Team Section
 ======================================================*/
 .cs_team_section_1 {
   padding: 120px 0;
@@ -8536,7 +8363,7 @@ label {
 }
 
 /*================================================================
-  PRICING Section
+  20. Pricing Section
 ==================================================================*/
 .cs_pricing_table_1 {
   width: 330px;
@@ -8842,7 +8669,52 @@ label {
 }
 
 /*================================================================
-  FAQ Section
+  PRICING Packages (Sidebar Filter)
+==================================================================*/
+.cs_packages_section {
+  padding: 120px 0;
+}
+.cs_packages_section .cs_section_heading_style_1 {
+  width: min(100%, 870px);
+  margin: 0 auto 48px;
+}
+@media (max-width: 991px) {
+  .cs_packages_section {
+    padding: 70px 0;
+  }
+  .cs_packages_section .cs_section_heading_style_1 {
+    margin: 0 auto 40px;
+  }
+}
+
+/*===============================================
+  Reuses the shared
+================================================*/
+.cs_filter_list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.cs_filter_list .cs_filter_btn {
+  width: 100%;
+  display: block;
+  text-align: left;
+  padding: 10px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.cs_filter_list .cs_filter_btn:hover {
+  color: var(--primary-color);
+}
+.cs_filter_list .cs_filter_btn.active {
+  color: var(--primary-color);
+  background-color: var(--gray2-color);
+}
+
+/*================================================================
+  21. FAQ Section
 ==================================================================*/
 .cs_accordians_style_1 .cs_accordian {
   position: relative;
@@ -9082,10 +8954,10 @@ label {
 }
 
 /*================================================================
-  PORTFOLIO Section
+  22. Portfolio Section
 ==================================================================*/
 /*============================================================
- 12. Tabs
+  23. Tabs Section
 ==============================================================*/
 .cs_tab_links.cs_style_1 {
   display: flex;
@@ -9127,7 +8999,7 @@ label {
 }
 
 /*====================================================
-  Testimonials
+  24. Testimonials Section
 ======================================================*/
 @media (max-width: 991px) {
   .cs_testimonial_section_1 {
@@ -9584,7 +9456,7 @@ label {
   }
 }
 /*========================================================
-  APPOINTMENT Section
+  25. Appointment Section
 ==========================================================*/
 .cs_appointment_section_1, .cs_appointment_section_5 {
   padding: 120px 0;
@@ -10066,7 +9938,7 @@ label {
 }
 
 /*=================================================
- Features Section
+  26. Features Section
 ===================================================*/
 .cs_feature_section_1 {
   position: relative;
@@ -11452,7 +11324,16 @@ label {
   flex-direction: column;
 }
 .cs_sidebar_style_1 .cs_sidebar_widget {
-  padding: 30px 30px 24px;
+  padding: 24px;
+}
+.cs_sidebar_style_1 .cs_filter_menu {
+  border: 1px solid var(--accent-color);
+}
+.cs_sidebar_style_1 .cs_filter_menu .cs_widget_title {
+  padding-bottom: 0;
+}
+.cs_sidebar_style_1 .cs_filter_menu .cs_widget_title::after {
+  display: none;
 }
 .cs_sidebar_style_1 .cs_widget_title {
   position: relative;
@@ -11718,7 +11599,11 @@ label {
   position: absolute;
   left: 0;
   top: 5px;
+  margin-top: 0;
   filter: brightness(0) saturate(100%) invert(37%) sepia(53%) saturate(6343%) hue-rotate(208deg) brightness(98%) contrast(96%);
+}
+.cs_sidebar_style_1 .cs_venue_date span {
+  display: inline-block;
 }
 .cs_sidebar_style_1 .cs_venue_date img {
   filter: brightness(0) saturate(100%) invert(13%) sepia(10%) saturate(1907%) hue-rotate(175deg) brightness(96%) contrast(91%);
@@ -11746,6 +11631,9 @@ label {
   height: 18px;
   flex: none;
   accent-color: var(--accent-color);
+}
+.cs_sidebar_style_1 .cs_contact a {
+  text-wrap: nowrap;
 }
 .cs_sidebar_style_1 .cs_contact a:hover {
   color: var(--accent-color);
@@ -12432,7 +12320,7 @@ label {
   top: 5px;
 }
 /*=================================================
- Partners Section
+  27. Partners Section
 ===================================================*/
 .cs_partners_section_1 {
   padding: 50px 0;
@@ -12506,7 +12394,7 @@ label {
 }
 
 /*================================================================
-  Login / My Account Section
+  28. Login / My Account Section
 ==================================================================*/
 .cs_login_section {
   padding: 120px 0;
@@ -12645,7 +12533,7 @@ label {
 }
 
 /*=================================================
-  22. Ecommerce (Shop) Section
+  29. Ecommerce (Shop) Section
 ===================================================*/
 .cs_shop_section_1 {
   padding: 120px 0;
