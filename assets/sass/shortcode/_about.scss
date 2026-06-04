@@ -1,5 +1,5 @@
 /*================================================================
-  13. About Section
+  12. About Section
 ==================================================================*/
 .cs_about_style_1 {
   padding: 120px 0 85px;
@@ -173,6 +173,20 @@
   }
 
   @media (max-width:575px) {
+    .cs_funfact_style_1 {
+      gap: 24px;
+      grid-template-columns: repeat(1, 1fr);
+
+      .cs_funfact_item {
+        &:last-child {
+          margin-left: 0;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
 
     .cs_btns_wrapper {
       flex-direction: column;
@@ -305,6 +319,19 @@
   @media (max-width: 575px) {
     .cs_about_features_list {
       grid-template-columns: repeat(1, 1fr);
+    }
+
+    .cs_award {
+      gap: 15px;
+      padding: 20px 15px;
+    }
+
+    .cs_testimonial {
+      padding: 20px 15px;
+
+      .cs_quote_icon {
+        display: none;
+      }
     }
   }
 }

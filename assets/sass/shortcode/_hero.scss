@@ -1,5 +1,5 @@
 /*================================================================
-  12. Hero Section
+  11. Hero Section
 ==================================================================*/
 .cs_hero_style_1 {
   height: 100%;
@@ -31,7 +31,9 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      background: radial-gradient(100% 62% at 69% 37%, rgba(200, 221, 255, 0) 45.5%, rgba(200, 221, 255, 0.8) 100%);
+      background: radial-gradient(100% 62% at 69% 37%,
+          rgba(200, 221, 255, 0) 45.5%,
+          rgba(200, 221, 255, 0.8) 100%);
     }
   }
 
@@ -104,7 +106,9 @@
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
-      transition: transform 0.6s cubic-bezier(0.45, 0.35, 0.65, 0.55), opacity 1s ease;
+      transition:
+        transform 0.6s cubic-bezier(0.45, 0.35, 0.65, 0.55),
+        opacity 1s ease;
     }
 
     .cs_hero_subtitle {
@@ -122,11 +126,9 @@
     .cs_hero_btns {
       transition-delay: 1s;
     }
-
   }
 
   @media (max-width: 991px) {
-
     .cs_hero_in {
       padding: 120px 0;
     }
@@ -168,6 +170,15 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 175px 0 117px 36px;
+  }
+
+  .cs_hero_title {
+    text-shadow:
+      -1px -1px 0 rgba(31, 41, 55, 0.05),
+      1px -1px 0 rgba(31, 41, 55, 0.05),
+      -1px 1px 0 rgba(31, 41, 55, 0.05),
+      1px 1px 0 rgba(31, 41, 55, 0.05),
+      0 2px 8px rgba(31, 41, 55, 0.15);
   }
 
   .cs_hero_subtitle {
@@ -252,17 +263,66 @@
     }
   }
 
+  @media (max-width: 1520px) {
+    .cs_hero_title {
+      font-size: 66px;
+    }
+  }
+
   @media (max-width: 1399px) {
     .cs_hero_text {
       padding: 0 0 24px 12px;
     }
+
+    .cs_hero_title {
+      font-size: 56px;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_hero_title {
+      font-size: 49px;
+    }
   }
 
   @media (max-width: 991px) {
-    padding: 130px 0 0;
+    padding: 180px 0 0;
 
     .cs_hero_content {
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: 1fr;
+    }
+
+    .cs_hero_text {
+      width: 100%;
+      padding-bottom: 0;
+    }
+
+    .cs_hero_img_wrapper {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 130px 0 0;
+
+    .cs_hero_text {
+      padding-left: 0;
+    }
+
+    .cs_hero_title {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .cs_hero_desc {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_hero_title {
+      font-size: 32px;
     }
   }
 }
@@ -275,7 +335,9 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: radial-gradient(32.65% 60.46% at 68.91% 42.73%, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.60) 80%);
+    background: radial-gradient(35% 73% at 30% 45%,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.6) 80%);
   }
 
   .container {
@@ -293,7 +355,7 @@
   .cs_hero_badge {
     width: 205px;
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.20);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(0, 0, 0, 0.25);
   }
 
@@ -304,11 +366,10 @@
 
     .cs_rating {
       width: 110px;
-      color: #FACC15;
+      color: #facc15;
       font-size: 16px;
       letter-spacing: 3px;
     }
-
   }
 
   .cs_hero_users {
@@ -349,7 +410,6 @@
       line-height: 1;
     }
   }
-
 
   .cs_hero_text {
     align-self: center;
@@ -417,7 +477,10 @@
     padding: 130px 0 60px;
 
     .cs_hero_overlay {
-      background: linear-gradient(180deg, rgba(31, 41, 55, 0.55) 0%, rgba(31, 41, 55, 0.65) 60%, rgba(31, 41, 55, 0.80) 100%);
+      background: linear-gradient(180deg,
+          rgba(31, 41, 55, 0.55) 0%,
+          rgba(31, 41, 55, 0.65) 60%,
+          rgba(31, 41, 55, 0.8) 100%);
     }
 
     .cs_hero_badges {
@@ -540,7 +603,6 @@
 }
 
 @media (max-width: 991px) {
-
   .cs_hero_in {
     height: auto;
   }
@@ -701,7 +763,6 @@
   }
 
   @media (max-width: 767px) {
-
     .cs_hero_in {
       align-items: center;
       grid-template-columns: 1fr;
@@ -843,7 +904,6 @@
   .cs_hero_info_card_rating {
     animation: cs_hero5_float 4s linear infinite;
 
-
     .cs_rating {
       font-size: 16px;
       letter-spacing: 4px;
@@ -855,7 +915,6 @@
     animation: cs_hero5_float 4s linear infinite;
     animation-direction: alternate-reverse;
   }
-
 
   .cs_hero_avatars {
     display: flex;
@@ -894,11 +953,9 @@
     .cs_hero_image {
       max-width: 62%;
     }
-
   }
 
   @media (max-width: 1199px) {
-
     .cs_hero_image {
       max-width: 70%;
     }
@@ -955,11 +1012,9 @@
       display: none;
     }
   }
-
 }
 
 @keyframes cs_hero5_float {
-
   50% {
     transform: translateY(-10px);
   }

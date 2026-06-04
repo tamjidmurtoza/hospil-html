@@ -33,7 +33,7 @@
         height: 50px;
         margin-right: 0;
         border-radius: 50%;
-        border: 1px solid rgba(134, 148, 167, 0.50);
+        border: 1px solid rgba(134, 148, 167, 0.5);
 
         img {
           width: 16px;
@@ -64,11 +64,10 @@
         }
       }
     }
-
   }
 
   &.cs_style_1 {
-    background: rgba(255, 255, 255, 0.80);
+    background: rgba(255, 255, 255, 0.8);
   }
 
   &.cs_style_2 {
@@ -99,6 +98,7 @@
 
     .cs_site_brand {
       width: 135px;
+      flex: none;
     }
 
     .cs_search_btn {
@@ -106,7 +106,7 @@
       height: 50px;
       border-radius: 50%;
       background-color: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.20);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.4s ease;
 
       img {
@@ -193,7 +193,7 @@
         padding: 10px;
         border-radius: 50%;
         margin-right: 0;
-        border: 1px solid rgba(134, 148, 167, 0.50);
+        border: 1px solid rgba(134, 148, 167, 0.5);
 
         &:hover {
           border-color: var(--accent-color);
@@ -209,7 +209,7 @@
 
   &.cs_sticky_active {
     color: var(--primary-color);
-    background-color: rgba(250, 250, 252, .8);
+    background-color: rgba(250, 250, 252, 0.8);
     backdrop-filter: saturate(180%) blur(20px);
     box-shadow: 0px 1px 2px 0px rgba(2, 0, 181, 0.1);
 
@@ -234,15 +234,12 @@
     }
   }
 
-
-
   @media (min-width: 1400px) {
     .container-fluid {
       padding: 0 24px;
     }
 
     .cs_header_btns_wrapper {
-
       .cs_search_btn {
         margin-right: 20px;
       }
@@ -318,14 +315,15 @@
         color: var(--secondary-color);
         background: var(--white-color);
         box-shadow: 0px 1px 2px 0px rgba(2, 0, 181, 0.1);
-        transition: transform 0.3s cubic-bezier(0.55, 0.46, 0.45, 0.54), opacity 0.3s ease;
+        transition:
+          transform 0.3s cubic-bezier(0.55, 0.46, 0.45, 0.54),
+          opacity 0.3s ease;
 
         a {
           display: block;
           padding: 6px 20px;
         }
       }
-
 
       &:hover {
         color: var(--accent-color);
@@ -348,7 +346,6 @@
 
   @media (max-width: 1279px) {
     &.cs_style_3 {
-
       .cs_main_header_left {
         padding: 0 0 0 24px;
         background-color: transparent;
@@ -384,7 +381,9 @@
       z-index: 10000;
       transform: scale(0, 0);
       transform-origin: bottom right;
-      transition: transform 0.3s cubic-bezier(0.55, 0.46, 0.45, 0.54), opacity 0.3s ease;
+      transition:
+        transform 0.3s cubic-bezier(0.55, 0.46, 0.45, 0.54),
+        opacity 0.3s ease;
 
       &.active {
         transform: scale(1, 1);
@@ -526,6 +525,14 @@
       width: 135px;
     }
 
+    &.cs_style_2 {
+      padding: 24px 12px 0;
+
+      .cs_main_header {
+        border-radius: 10px;
+      }
+    }
+
     &.cs_style_3 {
       .cs_main_header_right {
         padding-right: 0;
@@ -561,7 +568,6 @@
     }
   }
 }
-
 
 /*===========================================
  Top Header
@@ -922,7 +928,6 @@
       }
     }
 
-
     a:hover {
       color: var(--accent-color);
     }
@@ -939,8 +944,7 @@
     color: var(--primary-color);
     cursor: pointer;
     z-index: 2;
-    border: 1px solid rgba(134, 148, 167, 0.50);
-    ;
+    border: 1px solid rgba(134, 148, 167, 0.5);
 
     &::before,
     &::after {
@@ -966,5 +970,4 @@
       border-color: var(--danger-color);
     }
   }
-
 }

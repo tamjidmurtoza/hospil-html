@@ -1,5 +1,5 @@
 /*================================================================
-  15. Facilities Section
+  14. Facilities Section
 ==================================================================*/
 .cs_hospil_facilities {
   width: min(100%, 700px);
@@ -123,5 +123,15 @@
     transform: translateY(-4px);
   }
 
-  @media (max-width: 575px) {}
+  @media (max-width: 575px) {
+    padding: 24px 10px;
+
+    .cs_card_header {
+      padding-left: 5px;
+    }
+
+    .cs_about_features_list {
+      gap: 12px;
+    }
+  }
 }

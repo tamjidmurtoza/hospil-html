@@ -1,5 +1,5 @@
 /*=================================================
-  26. Features Section
+  25. Features Section
 ===================================================*/
 .cs_feature_section_1 {
   position: relative;
@@ -310,6 +310,17 @@
       padding: 24px 15px;
     }
   }
+
+  @media (max-width: 575px) {
+    .cs_feature_card_header {
+      gap: 15px;
+    }
+
+    .cs_feature_icon {
+      width: 60px;
+      height: 60px;
+    }
+  }
 }
 
 .cs_feature_card_3 {
@@ -323,7 +334,7 @@
     height: 100%;
     min-height: inherit;
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.45, 0.5, 0.55, 0.95);
+    transition: transform 0.4s cubic-bezier(0.45, 0.5, 0.55, 0.55);
   }
 
   .cs_feature_card_face {
@@ -393,7 +404,7 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.55);
+    transition: transform 0.4s cubic-bezier(0.45, 0.35, 0.45, 0.5);
 
     .cs_feature_card_header {
       gap: 20px;
@@ -746,17 +757,17 @@
     }
   }
 
-  @media (max-width: 1199px) {}
-
   @media (max-width: 991px) {
     padding: 70px 0;
+
+    .cs_whychoose_card {
+      padding: 20px 15px;
+    }
 
     .cs_whychoose_badges {
       margin-top: 30px;
     }
   }
-
-  @media (max-width: 767px) {}
 }
 
 @keyframes circularRotation {
@@ -874,8 +885,6 @@
       display: none;
     }
   }
-
-  @media (max-width: 575px) {}
 }
 
 .cs_work_card_2 {
@@ -1499,7 +1508,7 @@
   }
 
   @media (max-width:991px) {
-    padding: 60px 40px 0;
+    padding: 50px 30px 0;
 
     .cs_cta_img {
       padding: 0;
@@ -1509,7 +1518,7 @@
   }
 
   @media (max-width:575px) {
-    padding: 60px 15px 0;
+    padding: 30px 15px 0;
   }
 }
 
@@ -1573,22 +1582,25 @@
 
 
   @media (max-width: 991px) {
+    padding: 60px 30px;
 
-
-    .cs_cta_content {}
+    .cs_cta_content {
+      width: 100%;
+    }
   }
 
   @media (max-width: 575px) {
+    padding: 30px 15px;
 
     .cs_cta_funfact {
-      padding: 15px 20px;
+      padding: 15px;
       width: 100%;
     }
   }
 }
 
 .cs_cta_style_3 {
-  padding: 100px 20px;
+  padding: 100px 0;
 
   .cs_cta_bg {
     top: 50%;
@@ -1600,6 +1612,15 @@
 
   .cs_cta_content {
     width: min(100%, 1180px);
+  }
+
+  .cs_cta_title {
+    text-shadow:
+      -1px -1px 0 rgba(31, 41, 55, 0.05),
+      1px -1px 0 rgba(31, 41, 55, 0.05),
+      -1px 1px 0 rgba(31, 41, 55, 0.05),
+      1px 1px 0 rgba(31, 41, 55, 0.05),
+      0 2px 8px rgba(31, 41, 55, 0.15);
   }
 
   .cs_btns_group {
@@ -1627,11 +1648,7 @@
   }
 
   @media (max-width: 991px) {
-    padding: 80px 20px;
-  }
-
-  @media (max-width: 575px) {
-    padding: 60px 16px;
+    padding: 70px 0;
   }
 }
 
@@ -2811,6 +2828,4 @@
       top: 5px;
     }
   }
-
-  @media (max-width: 991px) {}
 }

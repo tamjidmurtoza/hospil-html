@@ -12,25 +12,24 @@
 08. Slider (Swiper)
 09. Spacing
 10. Video Modal
-11. Mixins
-12. Hero Section
-13. About Section
-14. Services Section
-15. Facilities Section
-16. Healthcare Center Section
-17. Blog Section
-18. Contact Section
-19. Team Section
-20. Pricing Section
-21. FAQ Section
-22. Portfolio Section
-23. Tabs Section
-24. Testimonials Section
-25. Appointment Section
-26. Features Section
-27. Partners Section
-28. Login / My Account Section
-29. Ecommerce (Shop) Section
+11. Hero Section
+12. About Section
+13. Services Section
+14. Facilities Section
+15. Healthcare Center Section
+16. Blog Section
+17. Contact Section
+18. Team Section
+19. Pricing Section
+20. FAQ Section
+21. Portfolio Section
+22. Tabs Section
+23. Testimonials Section
+24. Appointment Section
+25. Features Section
+26. Partners Section
+27. Login / My Account Section
+28. Ecommerce (Shop) Section
 --------------------------------------------------------------*/
 /*===============================================================
   01. Google Fonts
@@ -452,7 +451,7 @@ label {
 }
 @media (max-width: 1399px) {
   .cs_fs_75 {
-    font-size: 62px;
+    font-size: 56px;
   }
 }
 @media (max-width: 991px) {
@@ -865,17 +864,17 @@ label {
 .cs_btn_style_2.cs_type_1 img {
   animation: circularRotation 4s linear infinite;
 }
-.cs_btn_style_2:Hover {
+.cs_btn_style_2:hover {
   color: var(--danger-color);
   border-color: var(--primary-color);
   background-color: var(--primary-color);
 }
-.cs_btn_style_2:Hover.cs_type_1 {
+.cs_btn_style_2:hover.cs_type_1 {
   color: var(--white-color);
   border-color: var(--accent-color);
   background-color: var(--accent-color);
 }
-.cs_btn_style_2:Hover.cs_type_1 img {
+.cs_btn_style_2:hover.cs_type_1 img {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(108deg) brightness(104%) contrast(104%);
 }
 
@@ -963,7 +962,6 @@ label {
 .cs_scrollup_btn.show {
   opacity: 1;
   transform: translateY(0) scale(1);
-  display: none;
 }
 .cs_scrollup_btn:hover {
   color: var(--accent-color);
@@ -990,8 +988,9 @@ label {
 }
 
 .cs_section_heading_style_1.cs_type_1 .cs_section_subtitle, .cs_section_heading_style_1.cs_type_2 .cs_section_subtitle {
-  width: -moz-max-content;
-  width: max-content;
+  width: auto;
+  max-width: -moz-max-content;
+  max-width: max-content;
   padding: 5px 10px;
 }
 .cs_section_heading_style_1.cs_type_2 .cs_section_subtitle {
@@ -1155,6 +1154,112 @@ label {
 /*================================================================
   05. Preloader
 ==================================================================*/
+.cs_preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.cs_preloader.cs_loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cs_preloader_in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.cs_loader {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs_loader_ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  animation: cs_loader_spin 1s linear infinite;
+}
+
+.cs_loader_track {
+  fill: none;
+  stroke: var(--gray3-color);
+  stroke-width: 3;
+}
+
+.cs_loader_arc {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 80 196;
+}
+
+.cs_loader_pulse {
+  position: relative;
+  width: 56px;
+  height: 40px;
+}
+
+.cs_loader_pulse_line {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: cs_loader_pulse 1.6s cubic-bezier(0.39, 0.575, 0.565, 1.5) infinite;
+}
+
+.cs_preloader_text {
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+  animation: cs_loader_fade 1.4s ease-in-out infinite;
+}
+
+@keyframes cs_loader_spin {
+  to {
+    transform: rotate(270deg);
+  }
+}
+@keyframes cs_loader_pulse {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  55% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+@keyframes cs_loader_fade {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
 /*=========================================================
   06. Header Section
 ===========================================================*/
@@ -1243,6 +1348,7 @@ label {
 }
 .cs_site_header.cs_style_3 .cs_site_brand {
   width: 135px;
+  flex: none;
 }
 .cs_site_header.cs_style_3 .cs_search_btn {
   width: 50px;
@@ -1583,6 +1689,12 @@ label {
 @media (max-width: 767px) {
   .cs_site_header .cs_main_header_left {
     width: 135px;
+  }
+  .cs_site_header.cs_style_2 {
+    padding: 24px 12px 0;
+  }
+  .cs_site_header.cs_style_2 .cs_main_header {
+    border-radius: 10px;
   }
   .cs_site_header.cs_style_3 .cs_main_header_right {
     padding-right: 0;
@@ -2304,6 +2416,7 @@ label {
   position: relative;
   bottom: initial;
   left: initial;
+  text-wrap: nowrap;
 }
 .cs_controller_1 .swiper-pagination .swiper-pagination-current,
 .cs_controller_2 .swiper-pagination .swiper-pagination-current,
@@ -2459,6 +2572,7 @@ label {
 .cs_ticker_1.cs_reverse .cs_ticker_in, .cs_reverse.cs_ticker_3 .cs_ticker_in, .cs_reverse.cs_ticker_2 .cs_ticker_in {
   animation-direction: alternate-reverse;
 }
+
 .cs_ticker_2 {
   padding: 120px 0 144px;
   overflow: visible;
@@ -2486,7 +2600,7 @@ label {
 .cs_ticker_text,
 .cs_tech_items_list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex: none;
   gap: 50px;
   min-width: 100%;
@@ -2497,6 +2611,8 @@ label {
   flex: none;
   display: flex;
   gap: 50px;
+  font-size: 75px;
+  text-shadow: -1px -1px 0 rgba(31, 41, 55, 0.05), 1px -1px 0 rgba(31, 41, 55, 0.05), -1px 1px 0 rgba(31, 41, 55, 0.05), 1px 1px 0 rgba(31, 41, 55, 0.05), 0 2px 8px rgba(31, 41, 55, 0.15);
 }
 .cs_ticker_items_list .cs_ticker_item span,
 .cs_ticker_items_list .cs_ticker_item img,
@@ -2518,6 +2634,13 @@ label {
 .cs_ticker_text .cs_ticker_item.cs_white_color,
 .cs_tech_items_list .cs_ticker_item.cs_white_color {
   color: var(--white-color);
+}
+@media (max-width: 991px) {
+  .cs_ticker_items_list .cs_ticker_item,
+  .cs_ticker_text .cs_ticker_item,
+  .cs_tech_items_list .cs_ticker_item {
+    font-size: 50px;
+  }
 }
 
 @keyframes scrollingAnimation {
@@ -3754,7 +3877,173 @@ label {
   }
 }
 /*================================================================
-  12. Hero Section
+  10. Video Modal
+==================================================================*/
+.cs_video_popup {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  transition-delay: 0.3s;
+}
+
+.cs_video_popup.active {
+  left: 0;
+  transition-delay: 0s;
+  left: 0;
+}
+
+.cs_video_popup-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: #000;
+  transition: all 0.4s ease-out;
+  opacity: 0;
+}
+
+.cs_video_popup.active .cs_video_popup-overlay {
+  opacity: 0.8;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cs_video_popup-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  font-size: 0;
+  text-align: center;
+  transition: all 0.4s ease-out;
+  transform: translateY(100px);
+  opacity: 0;
+  visibility: hidden;
+  padding: 15px;
+}
+
+.cs_video_popup.active .cs_video_popup-content {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.cs_video_popup-content:after {
+  content: "";
+  display: inline-block;
+  height: calc(100% + 1px);
+  vertical-align: middle;
+}
+
+.cs_video_popup_container {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  background: var(--white-color);
+  max-width: 1380px;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.cs_video_popup_container .embed-responsive {
+  width: 100%;
+}
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.embed-responsive-16by9::before {
+  display: block;
+  content: "";
+  padding-top: 56.25%;
+}
+
+.embed-responsive iframe,
+.embed-responsive video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.cs_video_popup_close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: #d90d0d;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+
+.cs_video_popup iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.cs_video_popup_close:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 1px;
+  background: var(--white-color);
+  margin-left: -10px;
+  transform: rotate(-45deg);
+  transition: all 0.4s ease-in-out;
+}
+
+.cs_video_popup_close:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 1px;
+  background: var(--white-color);
+  margin-left: -10px;
+  transform: rotate(45deg);
+  transition: all 0.4s ease-in-out;
+}
+
+.cs_video_popup_close:hover:before,
+.cs_video_popup_close:hover:after {
+  background: #000;
+}
+
+.cs_video_popup-layer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.cs_video_popup-align {
+  overflow: hidden;
+}
+
+/*End Video Popup*/
+/*================================================================
+  11. Hero Section
 ==================================================================*/
 .cs_hero_style_1 {
   height: 100%;
@@ -3892,6 +4181,9 @@ label {
   align-items: flex-start;
   padding: 175px 0 117px 36px;
 }
+.cs_hero_style_2 .cs_hero_title {
+  text-shadow: -1px -1px 0 rgba(31, 41, 55, 0.05), 1px -1px 0 rgba(31, 41, 55, 0.05), -1px 1px 0 rgba(31, 41, 55, 0.05), 1px 1px 0 rgba(31, 41, 55, 0.05), 0 2px 8px rgba(31, 41, 55, 0.15);
+}
 .cs_hero_style_2 .cs_hero_subtitle {
   padding: 5px 10px;
   border-radius: 5px;
@@ -3965,17 +4257,58 @@ label {
     padding: 120px 0 60px 12px;
   }
 }
+@media (max-width: 1520px) {
+  .cs_hero_style_2 .cs_hero_title {
+    font-size: 66px;
+  }
+}
 @media (max-width: 1399px) {
   .cs_hero_style_2 .cs_hero_text {
     padding: 0 0 24px 12px;
   }
+  .cs_hero_style_2 .cs_hero_title {
+    font-size: 56px;
+  }
+}
+@media (max-width: 1199px) {
+  .cs_hero_style_2 .cs_hero_title {
+    font-size: 49px;
+  }
 }
 @media (max-width: 991px) {
   .cs_hero_style_2 {
-    padding: 130px 0 0;
+    padding: 180px 0 0;
   }
   .cs_hero_style_2 .cs_hero_content {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
+  }
+  .cs_hero_style_2 .cs_hero_text {
+    width: 100%;
+    padding-bottom: 0;
+  }
+  .cs_hero_style_2 .cs_hero_img_wrapper {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .cs_hero_style_2 {
+    padding: 130px 0 0;
+  }
+  .cs_hero_style_2 .cs_hero_text {
+    padding-left: 0;
+  }
+  .cs_hero_style_2 .cs_hero_title {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+  .cs_hero_style_2 .cs_hero_desc {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_hero_style_2 .cs_hero_title {
+    font-size: 32px;
   }
 }
 
@@ -3987,7 +4320,7 @@ label {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(32.65% 60.46% at 68.91% 42.73%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 80%);
+  background: radial-gradient(35% 73% at 30% 45%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 80%);
 }
 .cs_hero_style_3 .container {
   max-width: 1644px;
@@ -4012,7 +4345,7 @@ label {
 }
 .cs_hero_style_3 .cs_hero_rating .cs_rating {
   width: 110px;
-  color: #FACC15;
+  color: #facc15;
   font-size: 16px;
   letter-spacing: 3px;
 }
@@ -4597,7 +4930,7 @@ label {
 }
 
 /*================================================================
-  13. About Section
+  12. About Section
 ==================================================================*/
 .cs_about_style_1 {
   padding: 120px 0 85px;
@@ -4738,6 +5071,16 @@ label {
   }
 }
 @media (max-width: 575px) {
+  .cs_about_style_1 .cs_funfact_style_1 {
+    gap: 24px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cs_about_style_1 .cs_funfact_style_1 .cs_funfact_item:last-child {
+    margin-left: 0;
+  }
+  .cs_about_style_1 .cs_funfact_style_1 .cs_funfact_item::after {
+    display: none;
+  }
   .cs_about_style_1 .cs_btns_wrapper {
     flex-direction: column;
   }
@@ -4850,6 +5193,16 @@ label {
 @media (max-width: 575px) {
   .cs_about_style_2 .cs_about_features_list {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .cs_about_style_2 .cs_award {
+    gap: 15px;
+    padding: 20px 15px;
+  }
+  .cs_about_style_2 .cs_testimonial {
+    padding: 20px 15px;
+  }
+  .cs_about_style_2 .cs_testimonial .cs_quote_icon {
+    display: none;
   }
 }
 
@@ -5322,7 +5675,7 @@ label {
 }
 
 /*================================================================
-  14. Services Section
+  13. Services Section
 ==================================================================*/
 .cs_service_card_1 {
   width: 100%;
@@ -5567,6 +5920,39 @@ label {
     position: relative;
   }
 }
+@media (max-width: 575px) {
+  .cs_service_card_2 {
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .cs_service_card_2 .cs_service_text {
+    flex: auto;
+  }
+  .cs_service_card_2 .cs_service_left {
+    gap: 15px;
+    padding-left: 15px;
+    padding-right: 15px !important;
+  }
+  .cs_service_card_2 .cs_service_icon {
+    width: 40px;
+    flex: none;
+  }
+  .cs_service_card_2 .cs_service_img {
+    position: initial;
+    height: auto !important;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1, 1);
+  }
+  .cs_service_card_2 .cs_btn_wrap {
+    display: block;
+  }
+  .cs_service_card_2 .cs_btn_wrap .cs_btn_style_2 {
+    transform: scale(1);
+  }
+}
 
 .cs_service_card_3 {
   width: min(100%, 760px);
@@ -5703,7 +6089,7 @@ label {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 .cs_service_card_4 .cs_card_body, .cs_facility_card_1 .cs_card_body {
-  padding: 0 14px;
+  padding-left: 14px;
   display: flex;
   flex-direction: column;
 }
@@ -5769,7 +6155,7 @@ label {
 }
 @media (max-width: 991px) {
   .cs_service_card_4 .cs_card_body, .cs_facility_card_1 .cs_card_body {
-    padding: 0 5px;
+    padding-left: 5px;
   }
   .cs_service_card_4 .cs_card_btn, .cs_facility_card_1 .cs_card_btn {
     width: 56px;
@@ -5977,6 +6363,7 @@ label {
     padding: 15px;
   }
 }
+
 /*================================================================
   Services Section 4
 ==================================================================*/
@@ -6145,7 +6532,7 @@ label {
 }
 
 /*================================================================
-  15. Facilities Section
+  14. Facilities Section
 ==================================================================*/
 .cs_hospil_facilities {
   width: min(100%, 700px);
@@ -6254,11 +6641,23 @@ label {
 .cs_facility_card_1:hover {
   transform: translateY(-4px);
 }
+@media (max-width: 575px) {
+  .cs_facility_card_1 {
+    padding: 24px 10px;
+  }
+  .cs_facility_card_1 .cs_card_header {
+    padding-left: 5px;
+  }
+  .cs_facility_card_1 .cs_about_features_list {
+    gap: 12px;
+  }
+}
+
 /*================================================================
-  16. Healthcare Center Section
+  15. Healthcare Center Section
 ==================================================================*/
 /*=================================================
-  17. Blog Section
+  16. Blog Section
 ===================================================*/
 .cs_post_style_1 {
   width: 100%;
@@ -6579,6 +6978,7 @@ label {
 .cs_post_style_3:hover .cs_post_img::after {
   left: 200%;
 }
+
 .cs_post_style_4 {
   position: relative;
   width: 100%;
@@ -7193,7 +7593,7 @@ label {
 }
 
 /*===================================================
-  18. Contact Section
+  17. Contact Section
 =====================================================*/
 .cs_contact_section_1 {
   padding: 0;
@@ -7675,7 +8075,7 @@ label {
 }
 
 /*====================================================
-  19. Team Section
+  18. Team Section
 ======================================================*/
 .cs_team_section_1 {
   padding: 120px 0;
@@ -8363,7 +8763,7 @@ label {
 }
 
 /*================================================================
-  20. Pricing Section
+  19. Pricing Section
 ==================================================================*/
 .cs_pricing_table_1 {
   width: 330px;
@@ -8714,7 +9114,7 @@ label {
 }
 
 /*================================================================
-  21. FAQ Section
+  20. FAQ Section
 ==================================================================*/
 .cs_accordians_style_1 .cs_accordian {
   position: relative;
@@ -8954,10 +9354,10 @@ label {
 }
 
 /*================================================================
-  22. Portfolio Section
+  21. Portfolio Section
 ==================================================================*/
 /*============================================================
-  23. Tabs Section
+  22. Tabs Section
 ==============================================================*/
 .cs_tab_links.cs_style_1 {
   display: flex;
@@ -8999,7 +9399,7 @@ label {
 }
 
 /*====================================================
-  24. Testimonials Section
+  23. Testimonials Section
 ======================================================*/
 @media (max-width: 991px) {
   .cs_testimonial_section_1 {
@@ -9456,7 +9856,7 @@ label {
   }
 }
 /*========================================================
-  25. Appointment Section
+  24. Appointment Section
 ==========================================================*/
 .cs_appointment_section_1, .cs_appointment_section_5 {
   padding: 120px 0;
@@ -9926,6 +10326,17 @@ label {
   -o-object-fit: cover;
      object-fit: cover;
 }
+@media (max-width: 991px) {
+  .cs_appointment_section_4 {
+    padding: 70px 0 120px;
+  }
+  .cs_appointment_section_4 .cs_appointment_img {
+    width: 100%;
+    height: auto;
+    position: initial;
+    border-radius: 10px;
+  }
+}
 
 /*========================================================
   Appointment Section 5
@@ -9938,7 +10349,7 @@ label {
 }
 
 /*=================================================
-  26. Features Section
+  25. Features Section
 ===================================================*/
 .cs_feature_section_1 {
   position: relative;
@@ -10198,6 +10609,15 @@ label {
     padding: 24px 15px;
   }
 }
+@media (max-width: 575px) {
+  .cs_feature_card_2 .cs_feature_card_header {
+    gap: 15px;
+  }
+  .cs_feature_card_2 .cs_feature_icon {
+    width: 60px;
+    height: 60px;
+  }
+}
 
 .cs_feature_card_3 {
   width: 100%;
@@ -10210,7 +10630,7 @@ label {
   height: 100%;
   min-height: inherit;
   overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.45, 0.5, 0.55, 0.95);
+  transition: transform 0.4s cubic-bezier(0.45, 0.5, 0.55, 0.55);
 }
 .cs_feature_card_3 .cs_feature_card_face {
   position: absolute;
@@ -10272,7 +10692,7 @@ label {
   padding: 30px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.55);
+  transition: transform 0.4s cubic-bezier(0.45, 0.35, 0.45, 0.5);
 }
 .cs_feature_card_3 .cs_feature_card_back .cs_feature_card_header {
   gap: 20px;
@@ -10566,10 +10986,14 @@ label {
   .cs_whychoose_section_3 {
     padding: 70px 0;
   }
+  .cs_whychoose_section_3 .cs_whychoose_card {
+    padding: 20px 15px;
+  }
   .cs_whychoose_section_3 .cs_whychoose_badges {
     margin-top: 30px;
   }
 }
+
 @keyframes circularRotation {
   100% {
     transform: rotate(360deg);
@@ -10678,6 +11102,7 @@ label {
     display: none;
   }
 }
+
 .cs_work_card_2 .cs_work_img img {
   border-radius: 0;
 }
@@ -11200,7 +11625,7 @@ label {
 }
 @media (max-width: 991px) {
   .cs_cta_style_1 {
-    padding: 60px 40px 0;
+    padding: 50px 30px 0;
   }
   .cs_cta_style_1 .cs_cta_img {
     padding: 0;
@@ -11210,7 +11635,7 @@ label {
 }
 @media (max-width: 575px) {
   .cs_cta_style_1 {
-    padding: 60px 15px 0;
+    padding: 30px 15px 0;
   }
 }
 
@@ -11263,15 +11688,26 @@ label {
   line-height: 1em !important;
   margin-bottom: 6px;
 }
+@media (max-width: 991px) {
+  .cs_cta_style_2 {
+    padding: 60px 30px;
+  }
+  .cs_cta_style_2 .cs_cta_content {
+    width: 100%;
+  }
+}
 @media (max-width: 575px) {
+  .cs_cta_style_2 {
+    padding: 30px 15px;
+  }
   .cs_cta_style_2 .cs_cta_funfact {
-    padding: 15px 20px;
+    padding: 15px;
     width: 100%;
   }
 }
 
 .cs_cta_style_3 {
-  padding: 100px 20px;
+  padding: 100px 0;
 }
 .cs_cta_style_3 .cs_cta_bg {
   top: 50%;
@@ -11282,6 +11718,9 @@ label {
 }
 .cs_cta_style_3 .cs_cta_content {
   width: min(100%, 1180px);
+}
+.cs_cta_style_3 .cs_cta_title {
+  text-shadow: -1px -1px 0 rgba(31, 41, 55, 0.05), 1px -1px 0 rgba(31, 41, 55, 0.05), -1px 1px 0 rgba(31, 41, 55, 0.05), 1px 1px 0 rgba(31, 41, 55, 0.05), 0 2px 8px rgba(31, 41, 55, 0.15);
 }
 .cs_cta_style_3 .cs_btns_group {
   display: flex;
@@ -11304,12 +11743,7 @@ label {
 }
 @media (max-width: 991px) {
   .cs_cta_style_3 {
-    padding: 80px 20px;
-  }
-}
-@media (max-width: 575px) {
-  .cs_cta_style_3 {
-    padding: 60px 16px;
+    padding: 70px 0;
   }
 }
 
@@ -12319,8 +12753,9 @@ label {
   left: 0;
   top: 5px;
 }
+
 /*=================================================
-  27. Partners Section
+  26. Partners Section
 ===================================================*/
 .cs_partners_section_1 {
   padding: 50px 0;
@@ -12394,7 +12829,7 @@ label {
 }
 
 /*================================================================
-  28. Login / My Account Section
+  27. Login / My Account Section
 ==================================================================*/
 .cs_login_section {
   padding: 120px 0;
@@ -12533,7 +12968,7 @@ label {
 }
 
 /*=================================================
-  29. Ecommerce (Shop) Section
+  28. Ecommerce (Shop) Section
 ===================================================*/
 .cs_shop_section_1 {
   padding: 120px 0;
@@ -12683,6 +13118,7 @@ label {
   visibility: visible;
   transform: translate(-50%, 0);
 }
+
 /*=================================================
   Shop Details - Product Info
 ===================================================*/
@@ -12933,7 +13369,7 @@ label {
 .cs_cart_table .cs_cart_head,
 .cs_cart_table .cs_cart_row {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 20px;
+  grid-template-columns: 1fr 2.5fr 1fr 1fr 1fr 20px;
   gap: 24px;
   align-items: center;
 }
@@ -12994,15 +13430,18 @@ label {
   transform: scale(1.1);
 }
 @media (max-width: 1199px) {
-  .cs_cart_table .cs_cart_head {
-    padding: 12px;
-  }
+  .cs_cart_table .cs_cart_head,
   .cs_cart_table .cs_cart_row {
     padding: 12px;
+    gap: 15px;
+    grid-template-columns: 1fr 3fr 1.5fr 1.5fr 1.5fr 20px;
+  }
+  .cs_cart_table .cs_cart_row {
+    padding: 12px 0;
   }
   .cs_cart_table .cs_cart_product_img {
-    width: 120px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
   }
 }
 

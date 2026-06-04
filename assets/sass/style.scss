@@ -11,25 +11,24 @@
 08. Slider (Swiper)
 09. Spacing
 10. Video Modal
-11. Mixins
-12. Hero Section
-13. About Section
-14. Services Section
-15. Facilities Section
-16. Healthcare Center Section
-17. Blog Section
-18. Contact Section
-19. Team Section
-20. Pricing Section
-21. FAQ Section
-22. Portfolio Section
-23. Tabs Section
-24. Testimonials Section
-25. Appointment Section
-26. Features Section
-27. Partners Section
-28. Login / My Account Section
-29. Ecommerce (Shop) Section
+11. Hero Section
+12. About Section
+13. Services Section
+14. Facilities Section
+15. Healthcare Center Section
+16. Blog Section
+17. Contact Section
+18. Team Section
+19. Pricing Section
+20. FAQ Section
+21. Portfolio Section
+22. Tabs Section
+23. Testimonials Section
+24. Appointment Section
+25. Features Section
+26. Partners Section
+27. Login / My Account Section
+28. Ecommerce (Shop) Section
 --------------------------------------------------------------*/
 
 // Base
@@ -44,6 +43,7 @@
 @import "common/footer";
 @import "common/slider";
 @import "common/spacing";
+@import "common/video-modal";
 
 // Shortcodes (section-specific)
 @import "shortcode/hero";

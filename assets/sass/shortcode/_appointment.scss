@@ -1,5 +1,5 @@
 /*========================================================
-  25. Appointment Section
+  24. Appointment Section
 ==========================================================*/
 .cs_appointment_section_1 {
   padding: 120px 0;
@@ -39,8 +39,6 @@
   .cs_appointment_form_wrapper {
     padding-left: 115px;
   }
-
-  .cs_content_bottom {}
 
   .cs_checkup_schedule {
     padding: 12px 20px 20px;
@@ -531,6 +529,17 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+  }
+
+  @media (max-width:991px) {
+    padding: 70px 0 120px;
+
+    .cs_appointment_img {
+      width: 100%;
+      height: auto;
+      position: initial;
+      border-radius: 10px
     }
   }
 }

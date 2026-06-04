@@ -1,3 +1,119 @@
 /*================================================================
   05. Preloader
 ==================================================================*/
+.cs_preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+
+  &.cs_loaded {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.cs_preloader_in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.cs_loader {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs_loader_ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  animation: cs_loader_spin 1s linear infinite;
+}
+
+.cs_loader_track {
+  fill: none;
+  stroke: var(--gray3-color);
+  stroke-width: 3;
+}
+
+.cs_loader_arc {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 80 196;
+}
+
+.cs_loader_pulse {
+  position: relative;
+  width: 56px;
+  height: 40px;
+}
+
+.cs_loader_pulse_line {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: cs_loader_pulse 1.6s cubic-bezier(0.39, 0.575, 0.565, 1.5) infinite;
+}
+
+.cs_preloader_text {
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+  animation: cs_loader_fade 1.4s ease-in-out infinite;
+}
+
+@keyframes cs_loader_spin {
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes cs_loader_pulse {
+  0% {
+    stroke-dashoffset: 100;
+  }
+
+  55% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes cs_loader_fade {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

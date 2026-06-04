@@ -20,7 +20,26 @@
   </head>
   <body>
     <!-- Start Preloader -->
+    <div class="cs_preloader" role="status" aria-label="Loading">
+      <div class="cs_preloader_in">
+        <div class="cs_loader" aria-hidden="true">
+          <svg class="cs_loader_ring" viewBox="0 0 100 100">
+            <circle class="cs_loader_track" cx="50" cy="50" r="44"></circle>
+            <circle class="cs_loader_arc" cx="50" cy="50" r="44"></circle>
+          </svg>
+          <svg class="cs_loader_pulse" viewBox="0 0 64 32" preserveAspectRatio="xMidYMid meet">
+            <path class="cs_loader_pulse_line" pathLength="100" d="M0,16 H20 l4,-11 l5,22 l5,-17 l3,6 H64"></path>
+          </svg>
+        </div>
+        <span class="cs_preloader_text">Loading</span>
+      </div>
+    </div>
     <!-- End Preloader -->
+
+
+
+
+
     <!-- Start Header Section -->
     <header class="cs_site_header cs_style_4 cs_sticky_header" aria-label="Main header">
       <div class="cs_main_header position-relative">
@@ -754,12 +773,12 @@
       <!-- Start Testimonial Slider Section -->
       <section class="cs_testimonial_section_5">
         <div class="container">
-          <div class="cs_section_heading_style_1 cs_center_column cs_mb_48 text-center">
+          <div class="cs_section_heading_style_1 cs_center_column cs_mb_48 mx-auto text-center">
             <p class="cs_section_subtitle cs_accent_color cs_fs_14 cs_mb_17 text-uppercase">// Real patient experiences</p>
             <h2 class="cs_section_title cs_fs_40 cs_bold mb-0">Trusted by Thousands of Smiling Eyes</h2>
           </div>
         </div>
-        <div class="swiper" data-variable-width="1" data-slides-per-view="responsive" data-autoplay="0" data-loop="1" data-speed="600" data-gap="24" data-mobile-slides="1" data-tablet-slides="2" data-desktop-slides="3" data-large-desktop-slides="4" data-extra-large-slides="5" data-add-slides="5" data-show-pagination="0">
+        <div class="swiper" data-marquee="1" data-variable-width="1" data-slides-per-view="responsive" data-autoplay="0" data-loop="1" data-speed="9000" data-gap="24" data-mobile-slides="1" data-tablet-slides="2" data-desktop-slides="3" data-large-desktop-slides="4" data-extra-large-slides="5" data-add-slides="5" data-show-pagination="0">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="cs_testimonial_style_5 cs_white_bg cs_radius_20">

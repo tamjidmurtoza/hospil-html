@@ -67,6 +67,7 @@
     position: relative;
     bottom: initial;
     left: initial;
+    text-wrap: nowrap;
 
     .swiper-pagination-current {
       font-size: 40px;
@@ -86,10 +87,6 @@
   @media (max-width:1199px) {
     right: calc((100vw - 936px) / 2);
   }
-}
-
-.cs_controller_1 {
-  @media (max-width) {}
 }
 
 .cs_controller_2 {
@@ -221,8 +218,6 @@
       animation-direction: alternate-reverse;
     }
   }
-
-  @media (max-width:991px) {}
 }
 
 .cs_ticker_2 {
@@ -255,7 +250,7 @@
 .cs_ticker_text,
 .cs_tech_items_list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex: none;
   gap: 50px;
   min-width: 100%;
@@ -264,6 +259,13 @@
     flex: none;
     display: flex;
     gap: 50px;
+    font-size: 75px;
+    text-shadow:
+      -1px -1px 0 rgba(31, 41, 55, 0.05),
+      1px -1px 0 rgba(31, 41, 55, 0.05),
+      -1px 1px 0 rgba(31, 41, 55, 0.05),
+      1px 1px 0 rgba(31, 41, 55, 0.05),
+      0 2px 8px rgba(31, 41, 55, 0.15);
 
     span,
     img {
@@ -279,6 +281,12 @@
 
     &.cs_white_color {
       color: var(--white-color);
+    }
+  }
+
+  @media (max-width:991px) {
+    .cs_ticker_item {
+      font-size: 50px;
     }
   }
 }

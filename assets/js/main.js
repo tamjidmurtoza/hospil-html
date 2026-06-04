@@ -16,20 +16,23 @@
   | 03. Sticky Header
   | 04. Dynamic Background
   | 05. Swiper Slider
-  | 06. Search Modal Toggle
-  | 07. Smooth Page Scroll(Lenis)
+  | 06. Language Select
+  | 07. Smooth Page Scroll (Lenis)
   | 08. Counter Animation
   | 09. Modal Video
   | 10. Review
   | 11. Tabs
-  | 12. Progress Bar
-  | 13. Accordian
-  | 14. Service Steps Animation
-  | 15. Card Hover
-  | 16. Scroll Up
-  | 17. Hobble Animation With Mouse Move
-  | 18. Animation With GSAP
-  | 19. Dynamic contact form
+  | 12. Accordian
+  | 13. Service Hover Tabs
+  | 14. Scroll Up
+  | 15. Hobble / Particle Move
+  | 16. Section Title Word Reveal (GSAP + SplitText)
+  | 17. Sticky Card Animation (GSAP)
+  | 18. Parallax Image
+  | 19. Pricing Value Toggle
+  | 20. Packages Sidebar Filter
+  | 21. Toggle Active Class
+  | 22. Ecommerce
   |
   */
 
@@ -55,35 +58,24 @@
     mainNav();
     stickyHeader();
     dynamicBackground();
-    // stickyFooter(); // Unused: no .cs_sticky_footer element in any page
     swiperInit();
     languageSwitch();
-    // modalToggle(); // Unused: no .cs_open_modal / .cs_advanced_search_modal element in any page
     smoothScroll();
     counterInit();
     modalVideo();
     review();
     tabs();
     accordian();
-    // serviceSteps(); // Unused: no .cs_service_menu_list element in any page
     serviceHoverTabs();
     scrollUp();
-    // animationOnHover(); // Unused: no .animationonhover element in any page
     hobbleEffectInit();
-    // progressBar(); // Unused: no .cs_progress element in any page
-    // cardHoverActive(); // Unused: no .cs_card_style_6 element in any page
+    sectionTitleRevealInit();
     stickyCardInit();
     parallaxImageInit();
     pricingToggleInit();
     packagesFilterInit();
-    //scrollRevealInit();
-    //transformSwitcher();
-    //gsapAnimation();
-    //parallaxImage();
-    //stickyInit();
     toggleActiveClass();
     ecommerceInit();
-    // dynamicContactForm(); // Unused: no #cs_form element in any page
     // Choices JS for Select
     $(".cs_choice").each(function () {
       const el = this;
@@ -165,7 +157,14 @@
   /*=============================================================
     01. Preloader
   ===============================================================*/
-  function preloader() {}
+  function preloader() {
+    var $preloader = $(".cs_preloader");
+    if (!$preloader.length) return;
+    $preloader.addClass("cs_loaded");
+    setTimeout(function () {
+      $preloader.remove();
+    }, 600);
+  }
   /*=============================================================
     02. Mobile Menu
   ===============================================================*/
@@ -231,17 +230,6 @@
       });
     });
   }
-  /*=============================================================
-    8. Footer Sticky
-  ===============================================================*/
-  // UNUSED: no .cs_sticky_footer element exists in any page
-  // function stickyFooter() {
-  //   // Sticky Footer
-  //   var footerHeight = $(".cs_sticky_footer").height();
-  //   var windowHeight = $(window).height();
-  //   var footerHeightPx = footerHeight + "px";
-  //   $(".cs_sticky_content").css("margin-bottom", footerHeightPx);
-  // }
   /*============================================================
     05. Swiper Slider
   ==============================================================*/
@@ -272,6 +260,7 @@
       var autoHeight = parseInt($swiperEl.data("auto-height")) === 1;
       var keyboardEnabled = parseInt($swiperEl.data("keyboard")) === 1;
       var mousewheelEnabled = parseInt($swiperEl.data("mousewheel")) === 1;
+      var marqueeVal = Boolean(parseInt($swiperEl.data("marquee"), 10));
 
       // ===== RESPONSIVE VALUES =====
       var mobileSlides = parseInt($swiperEl.data("mobile-slides")) || 1;
@@ -414,6 +403,21 @@
         };
       }
 
+      // ===== MARQUEE (continuous horizontal text slider) =====
+      // Moves slides slowly and infinitely to the left with no stops.
+      if (marqueeVal) {
+        swiperOptions.loop = true;
+        swiperOptions.slidesPerView = "auto";
+        swiperOptions.allowTouchMove = false;
+        swiperOptions.speed = speedVal; // use a high data-speed (e.g. 6000)
+        swiperOptions.autoplay = {
+          delay: 0,
+          disableOnInteraction: false,
+        };
+        swiperOptions.navigation = false;
+        swiperOptions.pagination = false;
+      }
+
       // ===== DESTROY OLD =====
       if ($swiperEl[0].swiper) {
         $swiperEl[0].swiper.destroy(true, true);
@@ -430,6 +434,11 @@
 
       // ===== INIT =====
       var swiperInstance = new Swiper($swiperEl[0], swiperOptions);
+
+      // ===== MARQUEE: constant (linear) movement =====
+      if (marqueeVal) {
+        $wrapper.css("transition-timing-function", "linear");
+      }
 
       // ===== ARROW VISIBILITY =====
       function updateArrows() {
@@ -493,20 +502,6 @@
       $(".cs_language_dropdown").slideUp(250);
     });
   }
-  /*============================================================
-    06. Search Modal Toggle
-  ==============================================================*/
-  // UNUSED: no .cs_open_modal / .cs_advanced_search_modal element exists in any page
-  // function modalToggle() {
-  //   $(".cs_open_modal").on("click", function () {
-  //     $(".cs_advanced_search_modal").addClass("active");
-  //     $("body").addClass("scroll_off");
-  //   });
-  //   $(".cs_close_modal").on("click", function () {
-  //     $(".cs_advanced_search_modal").removeClass("active");
-  //     $("body").removeClass("scroll_off");
-  //   });
-  // }
   /*============================================================
     07. Smooth Page Scroll
   ==============================================================*/
@@ -638,18 +633,8 @@
       e.preventDefault();
     });
   }
-  /*=============================================================
-    12. Progress Bar
-  ==============================================================*/
-  // UNUSED: no .cs_progress element exists in any page
-  // function progressBar() {
-  //   $(".cs_progress").each(function () {
-  //     var progressPercentage = $(this).data("progress") + "%";
-  //     $(this).find(".cs_progress_in").css("width", progressPercentage);
-  //   });
-  // }
   /*===========================================================
-    13. Accordian
+    12. Accordian
   =============================================================*/
   function accordian() {
     $(".cs_accordian").children(".cs_accordian_body").hide();
@@ -677,138 +662,7 @@
     });
   }
   /*===========================================================
-    14. Pricing Value Toggle
-  =============================================================*/
-  function pricingToggleInit() {
-    var $toggle = $("#cs_billing_toggle");
-    if (!$toggle.length) return;
-
-    var $labels = $(".cs_pricing_toggle_label");
-    var $amounts = $(".cs_pricing_amount");
-    var $periods = $(".cs_pricing_value small");
-
-    function update(isYearly) {
-      $labels.each(function () {
-        $(this).toggleClass(
-          "active",
-          $(this).data("period") === (isYearly ? "yearly" : "monthly"),
-        );
-      });
-      $amounts.each(function () {
-        $(this).text(
-          isYearly ? $(this).data("yearly") : $(this).data("monthly"),
-        );
-      });
-      $periods.text(isYearly ? "/ year" : "/ month");
-    }
-
-    $toggle.on("change", function () {
-      update($toggle.is(":checked"));
-    });
-
-    $labels.on("click", function () {
-      var yearly = $(this).data("period") === "yearly";
-      $toggle.prop("checked", yearly);
-      update(yearly);
-    });
-  }
-  /*===========================================================
-    Packages Sidebar Filter
-  =============================================================*/
-  function packagesFilterInit() {
-    var $grid = $("#cs_packages_grid");
-    if (!$grid.length) return;
-
-    var $items = $grid.find(".cs_package_item");
-    var $empty = $grid.find(".cs_packages_empty");
-    var activeFilters = {};
-
-    function applyFilters() {
-      var visibleCount = 0;
-
-      $items.each(function () {
-        var tokens = ($(this).data("filter") || "").toString().split(/\s+/);
-        var matched = true;
-
-        $.each(activeFilters, function (group, value) {
-          if (value !== "all" && $.inArray(value, tokens) === -1) {
-            matched = false;
-            return false;
-          }
-        });
-
-        $(this).toggle(matched);
-        if (matched) visibleCount++;
-      });
-
-      $empty.prop("hidden", visibleCount !== 0);
-    }
-
-    $(".cs_filter_list").each(function () {
-      activeFilters[$(this).data("filter-group")] = "all";
-    });
-
-    $(".cs_filter_list .cs_filter_btn").on("click", function () {
-      var $btn = $(this);
-      var group = $btn.closest(".cs_filter_list").data("filter-group");
-
-      activeFilters[group] = $btn.data("filter");
-      $btn
-        .addClass("active")
-        .closest(".cs_filter_list")
-        .find(".cs_filter_btn")
-        .not($btn)
-        .removeClass("active");
-
-      applyFilters();
-    });
-  }
-  /*===========================================================
-    14. Service Steps Animation
-  =============================================================*/
-  // UNUSED: no .cs_service_menu_list element exists in any page
-  // function serviceSteps() {
-  //   let tabInterval;
-  //   let currentIndex = 0;
-
-  //   const $tabs = $(".cs_service_menu_list li");
-  //   const $tabContents = $(".cs_service_thumbnails_wrapper");
-  //   const intervalTime = 5000;
-
-  //   if ($tabs.length > 0 && $tabContents.length > 0) {
-  //     function activateTab(index) {
-  //       $tabs.eq(index).addClass("active").siblings().removeClass("active");
-  //       $tabContents.eq(index).fadeIn(600).siblings().hide();
-  //     }
-
-  //     function startAutoplay() {
-  //       stopAutoplay();
-  //       tabInterval = setInterval(function () {
-  //         currentIndex = (currentIndex + 1) % $tabs.length;
-  //         activateTab(currentIndex);
-  //       }, intervalTime);
-  //     }
-
-  //     function stopAutoplay() {
-  //       if (tabInterval) clearInterval(tabInterval);
-  //     }
-
-  //     $tabs.on("click", function (e) {
-  //       e.preventDefault();
-  //       stopAutoplay();
-  //       currentIndex = $(this).index();
-  //       activateTab(currentIndex);
-  //       startAutoplay();
-  //     });
-
-  //     // Init
-  //     $tabContents.hide();
-  //     activateTab(currentIndex);
-  //     startAutoplay();
-  //   }
-  // }
-  /*===========================================================
-    Service Hover Tabs (cs_service_section_3)
+    13. Service Hover Tabs (cs_service_section_3)
   =============================================================*/
   function serviceHoverTabs() {
     $(".cs_service_section_3").each(function () {
@@ -828,19 +682,7 @@
     });
   }
   /*===========================================================
-   15. Card Hover
-  =============================================================*/
-  // UNUSED: no .cs_card_style_6 element exists in any page
-  // function cardHoverActive() {
-  //   $(".cs_card_style_6").on("mouseenter", function () {
-  //     $(this)
-  //       .addClass("active")
-  //       .siblings(".cs_card_style_6")
-  //       .removeClass("active");
-  //   });
-  // }
-  /*===========================================================
-    16. Scroll Up
+    14. Scroll Up
   =============================================================*/
   function scrollUp() {
     $(".cs_scrollup_btn").on("click", function (e) {
@@ -863,215 +705,7 @@
     }
   }
   /*===========================================================
-    16. Parallax Image
-  =============================================================*/
-  function parallaxImageInit() {
-    const $banners = $(".cs_parallax");
-    if (!$banners.length) return;
-    const Y_RANGE = 20;
-    const SCALE = 1.1;
-
-    const entries = [];
-    $banners.each(function () {
-      const $banner = $(this);
-      const $img = $banner.find("img").first();
-      if (!$img.length) return;
-
-      $banner.css({
-        overflow: "hidden",
-        clipPath:
-          $banner.attr("data-cs-revealed") === "1"
-            ? "inset(0% 0% 0% 0%)"
-            : "inset(100% 0% 0% 0%)",
-        transition: "clip-path 1.1s cubic-bezier(0.22, 1, 0.36, 1)",
-      });
-
-      $img.css({
-        willChange: "transform",
-        height: "100%",
-        transformOrigin: "center center",
-      });
-
-      entries.push({ $banner: $banner, $img: $img });
-    });
-
-    if (!entries.length) return;
-    let rafId = null;
-    const tick = function () {
-      const vh =
-        $(window).height() || document.documentElement.clientHeight || 0;
-
-      for (let i = 0; i < entries.length; i++) {
-        const $banner = entries[i].$banner;
-        const $img = entries[i].$img;
-        const rect = $banner[0].getBoundingClientRect();
-
-        if (rect.bottom < -50 || rect.top > vh + 50) continue;
-
-        const total = vh + rect.height;
-        const traversed = vh - rect.top;
-        let progress = traversed / total;
-        if (progress < 0) progress = 0;
-        else if (progress > 1) progress = 1;
-
-        const yPercent = -Y_RANGE + Y_RANGE * 2 * progress;
-        $img.css(
-          "transform",
-          "scale(" + SCALE + ") translate3d(0, " + yPercent + "%, 0)",
-        );
-
-        if ($banner.attr("data-cs-revealed") !== "1" && rect.top < vh * 0.9) {
-          $banner.attr("data-cs-revealed", "1");
-          $banner.css("clipPath", "inset(0% 0% 0% 0%)");
-        }
-      }
-
-      rafId = requestAnimationFrame(tick);
-    };
-
-    const start = function () {
-      if (rafId !== null) return;
-      tick();
-    };
-
-    const stop = function () {
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
-        rafId = null;
-      }
-    };
-
-    $(document).on("visibilitychange", function () {
-      if (document.hidden) stop();
-      else start();
-    });
-
-    $(window).on("pageshow", start);
-
-    start();
-  }
-  /*===========================================================
-    17. Reveal Animation
-  =============================================================*/
-  // function scrollRevealInit() {
-  //   const $items = $(".cs_reveal");
-  //   if (!$items.length) return;
-
-  //   const START_AT = 0.5; // animation starts when element top is at 50% of viewport
-  //   const MIN_WIDTH = 992; // animation only active above this viewport width
-
-  //   const DEFAULT_X_RANGE = 150; // fallback if data-slide is missing
-  //   const DEFAULT_END_AT = 120; // fallback if data-stop is missing
-
-  //   const entries = [];
-  //   $items.each(function () {
-  //     const $el = $(this);
-  //     $el.css({
-  //       willChange: "transform,width",
-  //     });
-
-  //     // Read per-element values from HTML data attributes
-  //     const slide = parseFloat($el.attr("data-slide"));
-  //     const stop = parseFloat($el.attr("data-stop"));
-
-  //     entries.push({
-  //       $el: $el,
-  //       xRange: isNaN(slide) ? DEFAULT_X_RANGE : slide,
-  //       endAt: isNaN(stop) ? DEFAULT_END_AT : stop,
-  //     });
-  //   });
-
-  //   if (!entries.length) return;
-  //   let rafId = null;
-
-  //   const tick = function () {
-  //     const ww = $(window).width() || document.documentElement.clientWidth || 0;
-  //     const vh =
-  //       $(window).height() || document.documentElement.clientHeight || 0;
-
-  //     // Below 992px: reset elements to original position and skip animation
-  //     if (ww < MIN_WIDTH) {
-  //       for (let i = 0; i < entries.length; i++) {
-  //         entries[i].$el.css("transform", "translate3d(0, 0, 0)");
-  //       }
-  //       rafId = requestAnimationFrame(tick);
-  //       return;
-  //     }
-
-  //     const startY = vh * START_AT; // viewport Y where progress = 0
-
-  //     for (let i = 0; i < entries.length; i++) {
-  //       const $el = entries[i].$el;
-  //       const xRange = entries[i].xRange;
-  //       const endY = entries[i].endAt; // viewport Y where progress = 1
-  //       const rect = $el[0].getBoundingClientRect();
-
-  //       if (rect.bottom < -50 || rect.top > vh + 50) continue;
-
-  //       // progress: 0 when element top is at 50% of viewport,
-  //       //           1 when element top reaches data-stop px from the top
-  //       const total = startY - endY;
-  //       const traversed = startY - rect.top;
-  //       let progress = total > 0 ? traversed / total : 1;
-  //       if (progress < 0) progress = 0;
-  //       else if (progress > 1) progress = 1;
-
-  //       // x goes from -xRange (off-position) to 0 (original position)
-  //       const x = -xRange + xRange * progress;
-
-  //       $el.css({
-  //         transform: "translate3d(" + x + "px, 0, 0)",
-  //       });
-  //     }
-
-  //     rafId = requestAnimationFrame(tick);
-  //   };
-
-  //   const start = function () {
-  //     if (rafId !== null) return;
-  //     tick();
-  //   };
-
-  //   const stop = function () {
-  //     if (rafId !== null) {
-  //       cancelAnimationFrame(rafId);
-  //       rafId = null;
-  //     }
-  //   };
-
-  //   $(document).on("visibilitychange", function () {
-  //     if (document.hidden) stop();
-  //     else start();
-  //   });
-
-  //   $(window).on("pageshow", start);
-
-  //   start();
-  // }
-  /*===========================================================
-    17. Hobble Animation With Mouse Move
-  =============================================================*/
-  // UNUSED: no .animationonhover element exists in any page
-  // function animationOnHover() {
-  //   let cards = document.querySelectorAll(".animationonhover");
-
-  //   cards.forEach((tmpOnHover) => {
-  //     // Set initial value
-  //     tmpOnHover.style.setProperty("--x", "-1px");
-  //     tmpOnHover.style.setProperty("--y", "-1px");
-
-  //     tmpOnHover.onmousemove = function (e) {
-  //       let rect = tmpOnHover.getBoundingClientRect();
-  //       let x = e.clientX - rect.left;
-  //       let y = e.clientY - rect.top;
-
-  //       tmpOnHover.style.setProperty("--x", `${x}px`);
-  //       tmpOnHover.style.setProperty("--y", `${y}px`);
-  //     };
-  //   });
-  // }
-  /*===========================================================
-    Particle Move
+    15. Hobble / Particle Move
   =============================================================*/
   function hobbleEffectInit() {
     var $sections = $(".cs_hobble");
@@ -1110,7 +744,49 @@
     });
   }
   /*===========================================================
-    18. Sticky Animation With GSAP
+    16. Section Title Word Reveal (GSAP + SplitText)
+  =============================================================*/
+  function sectionTitleRevealInit() {
+    if (
+      typeof gsap === "undefined" ||
+      typeof ScrollTrigger === "undefined" ||
+      typeof SplitText === "undefined"
+    )
+      return;
+
+    const titles = document.querySelectorAll(".cs_section_title");
+    if (!titles.length) return;
+
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    // Honour users who prefer no motion: just show the titles.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    titles.forEach(function (title) {
+      // Word-by-word reveal: each word fades in (opacity) one after
+      SplitText.create(title, {
+        type: "words",
+        wordsClass: "cs_reveal_word",
+        autoSplit: true,
+        onSplit: function (self) {
+          return gsap.from(self.words, {
+            opacity: 0,
+            y: 24,
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: 0.08,
+            scrollTrigger: {
+              trigger: title,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        },
+      });
+    });
+  }
+  /*===========================================================
+    17. Sticky Card Animation (GSAP)
   =============================================================*/
   function stickyCardInit() {
     const $sections = $(".cs_sticky_section");
@@ -1225,17 +901,191 @@
 
     start();
   }
+  /*===========================================================
+    18. Parallax Image
+  =============================================================*/
+  function parallaxImageInit() {
+    const $banners = $(".cs_parallax");
+    if (!$banners.length) return;
+    const Y_RANGE = 20;
+    const SCALE = 1.1;
+
+    const entries = [];
+    $banners.each(function () {
+      const $banner = $(this);
+      const $img = $banner.find("img").first();
+      if (!$img.length) return;
+
+      $banner.css({
+        overflow: "hidden",
+        clipPath:
+          $banner.attr("data-cs-revealed") === "1"
+            ? "inset(0% 0% 0% 0%)"
+            : "inset(100% 0% 0% 0%)",
+        transition: "clip-path 1.1s cubic-bezier(0.22, 1, 0.36, 1)",
+      });
+
+      $img.css({
+        willChange: "transform",
+        height: "100%",
+        transformOrigin: "center center",
+      });
+
+      entries.push({ $banner: $banner, $img: $img });
+    });
+
+    if (!entries.length) return;
+    let rafId = null;
+    const tick = function () {
+      const vh =
+        $(window).height() || document.documentElement.clientHeight || 0;
+
+      for (let i = 0; i < entries.length; i++) {
+        const $banner = entries[i].$banner;
+        const $img = entries[i].$img;
+        const rect = $banner[0].getBoundingClientRect();
+
+        if (rect.bottom < -50 || rect.top > vh + 50) continue;
+
+        const total = vh + rect.height;
+        const traversed = vh - rect.top;
+        let progress = traversed / total;
+        if (progress < 0) progress = 0;
+        else if (progress > 1) progress = 1;
+
+        const yPercent = -Y_RANGE + Y_RANGE * 2 * progress;
+        $img.css(
+          "transform",
+          "scale(" + SCALE + ") translate3d(0, " + yPercent + "%, 0)",
+        );
+
+        if ($banner.attr("data-cs-revealed") !== "1" && rect.top < vh * 0.9) {
+          $banner.attr("data-cs-revealed", "1");
+          $banner.css("clipPath", "inset(0% 0% 0% 0%)");
+        }
+      }
+
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const start = function () {
+      if (rafId !== null) return;
+      tick();
+    };
+
+    const stop = function () {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    };
+
+    $(document).on("visibilitychange", function () {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    $(window).on("pageshow", start);
+
+    start();
+  }
+  /*===========================================================
+    19. Pricing Value Toggle
+  =============================================================*/
+  function pricingToggleInit() {
+    var $toggle = $("#cs_billing_toggle");
+    if (!$toggle.length) return;
+
+    var $labels = $(".cs_pricing_toggle_label");
+    var $amounts = $(".cs_pricing_amount");
+    var $periods = $(".cs_pricing_value small");
+
+    function update(isYearly) {
+      $labels.each(function () {
+        $(this).toggleClass(
+          "active",
+          $(this).data("period") === (isYearly ? "yearly" : "monthly"),
+        );
+      });
+      $amounts.each(function () {
+        $(this).text(
+          isYearly ? $(this).data("yearly") : $(this).data("monthly"),
+        );
+      });
+      $periods.text(isYearly ? "/ year" : "/ month");
+    }
+
+    $toggle.on("change", function () {
+      update($toggle.is(":checked"));
+    });
+
+    $labels.on("click", function () {
+      var yearly = $(this).data("period") === "yearly";
+      $toggle.prop("checked", yearly);
+      update(yearly);
+    });
+  }
+  /*===========================================================
+    20. Packages Sidebar Filter
+  =============================================================*/
+  function packagesFilterInit() {
+    var $grid = $("#cs_packages_grid");
+    if (!$grid.length) return;
+
+    var $items = $grid.find(".cs_package_item");
+    var $empty = $grid.find(".cs_packages_empty");
+    var activeFilters = {};
+
+    function applyFilters() {
+      var visibleCount = 0;
+
+      $items.each(function () {
+        var tokens = ($(this).data("filter") || "").toString().split(/\s+/);
+        var matched = true;
+
+        $.each(activeFilters, function (group, value) {
+          if (value !== "all" && $.inArray(value, tokens) === -1) {
+            matched = false;
+            return false;
+          }
+        });
+
+        $(this).toggle(matched);
+        if (matched) visibleCount++;
+      });
+
+      $empty.prop("hidden", visibleCount !== 0);
+    }
+
+    $(".cs_filter_list").each(function () {
+      activeFilters[$(this).data("filter-group")] = "all";
+    });
+
+    $(".cs_filter_list .cs_filter_btn").on("click", function () {
+      var $btn = $(this);
+      var group = $btn.closest(".cs_filter_list").data("filter-group");
+
+      activeFilters[group] = $btn.data("filter");
+      $btn
+        .addClass("active")
+        .closest(".cs_filter_list")
+        .find(".cs_filter_btn")
+        .not($btn)
+        .removeClass("active");
+
+      applyFilters();
+    });
+  }
   /*===============================================================
-    19. Toggle Active Class
+    21. Toggle Active Class
   =================================================================*/
   function toggleActiveClass() {
     $('[data-active="toggle"]').click(function () {
       $(this).addClass("active").siblings().removeClass("active");
     });
   }
-
   /*=====================================================
-    17. Ecommerce
+    22. Ecommerce
   =======================================================*/
   function ecommerceInit() {
     // Star Rating Input
@@ -1265,53 +1115,4 @@
       }
     });
   }
-  /*===============================================================
-    19. Dynamic contact form
-  =================================================================*/
-  // UNUSED: no #cs_form element exists in any page
-  // function dynamicContactForm() {
-  //   if ($.exists("#cs_form")) {
-  //     const form = document.getElementById("cs_form");
-  //     const result = document.getElementById("cs_result");
-
-  //     form.addEventListener("submit", function (e) {
-  //       const formData = new FormData(form);
-  //       e.preventDefault();
-  //       var object = {};
-  //       formData.forEach((value, key) => {
-  //         object[key] = value;
-  //       });
-  //       var json = JSON.stringify(object);
-  //       result.innerHTML = "Please wait...";
-
-  //       fetch("https://api.web3forms.com/submit", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Accept: "application/json",
-  //         },
-  //         body: json,
-  //       })
-  //         .then(async (response) => {
-  //           let json = await response.json();
-  //           if (response.status == 200) {
-  //             result.innerHTML = json.message;
-  //           } else {
-  //             console.log(response);
-  //             result.innerHTML = json.message;
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           console.log(error);
-  //           result.innerHTML = "Something went wrong!";
-  //         })
-  //         .then(function () {
-  //           form.reset();
-  //           setTimeout(() => {
-  //             result.style.display = "none";
-  //           }, 5000);
-  //         });
-  //     });
-  //   }
-  // }
 })(jQuery); // End of use strict
