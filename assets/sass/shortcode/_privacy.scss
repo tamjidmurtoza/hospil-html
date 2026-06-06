@@ -1,0 +1,233 @@
+/*================================================================
+  29. Privacy Policy / Terms & Condition Section
+==================================================================*/
+.cs_policy_section {
+  padding: 120px 0;
+
+  .cs_policy_content {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+  }
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+/*=============================================
+  Sticky Table of Contents Sidebar
+===============================================*/
+.cs_sidebar_style_1 {
+  width: min(100%, 340px);
+  position: sticky;
+  top: 150px;
+
+  .cs_policy_nav {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    a {
+      display: inline-flex;
+      gap: 10px;
+      color: var(--primary-color);
+
+      span {
+        color: var(--accent-color);
+      }
+
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+
+  .cs_policy_meta {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(134, 148, 167, 0.2);
+  }
+
+  @media (max-width: 991px) {
+    width: 100%;
+    position: static;
+    top: 0;
+    padding: 24px 15px;
+  }
+}
+
+/*=============================================
+  Policy Content Blocks
+===============================================*/
+.cs_policy_block {
+  scroll-margin-top: 110px;
+
+  &:not(:last-child) {
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(134, 148, 167, 0.2);
+  }
+
+  .cs_policy_block_head {
+    display: flex;
+    gap: 10px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/*=============================================
+  Checklist Style List
+===============================================*/
+.cs_policy_list {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+
+  li {
+    position: relative;
+    padding-left: 26px;
+
+    img {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 0;
+      top: 5px;
+    }
+  }
+}
+
+/*=============================================
+  Info Grid Cards
+===============================================*/
+.cs_policy_grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: 575px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+}
+
+.cs_policy_card {
+  height: 100%;
+  padding: 24px;
+  border-radius: 10px;
+  background-color: var(--gray4-color);
+  transition: all 0.3s ease;
+
+  .cs_policy_card_icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--accent-color);
+    background-color: var(--white-color);
+    transition: all 0.3s ease;
+
+    img {
+      border-radius: 0;
+    }
+  }
+
+  &:hover {
+    background-color: var(--accent-color);
+
+    .cs_policy_card_title,
+    .cs_policy_card_text {
+      color: var(--white-color);
+    }
+
+    .cs_policy_card_icon {
+      color: var(--white-color);
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  @media (max-width: 575px) {
+    padding: 20px 15px;
+  }
+}
+
+/*=============================================
+  Highlighted Note / Important Callout
+===============================================*/
+.cs_policy_note {
+  display: flex;
+  gap: 14px;
+  padding: 20px 24px;
+  border-radius: 10px;
+  background-color: var(--gray2-color);
+  border-left: 3px solid var(--accent-color);
+
+  i {
+    color: var(--accent-color);
+    font-size: 20px;
+    line-height: 1.6em;
+  }
+
+  &.cs_type_warning {
+    background-color: #ffebd5;
+    border-left-color: var(--warning-color);
+
+    i {
+      color: var(--warning-color);
+    }
+  }
+
+  @media (max-width: 575px) {
+    padding: 20px 15px;
+  }
+}
+
+/*=============================================
+  Contact Card
+===============================================*/
+.cs_policy_contact {
+  padding: 30px;
+
+  .cs_policy_contact_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+
+    .cs_policy_contact_icon {
+      width: 46px;
+      height: 46px;
+      flex: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-color);
+      background-color: var(--gray3-color);
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  @media (max-width: 575px) {
+    padding: 20px 15px;
+  }
+}

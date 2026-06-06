@@ -30,6 +30,7 @@
 26. Partners Section
 27. Login / My Account Section
 28. Ecommerce (Shop) Section
+29. Privacy Policy / Terms & Condition Section
 --------------------------------------------------------------*/
 /*===============================================================
   01. Google Fonts
@@ -2339,6 +2340,9 @@ label {
 .cs_footer_style_3 .cs_footer_widget_nav a:hover {
   color: var(--accent-color);
 }
+.cs_footer_style_3 .cs_footer_bottom_nav li a:hover {
+  color: var(--accent-color);
+}
 
 /*=============================================
   08. Slider (Swiper)
@@ -2703,763 +2707,6 @@ label {
 /*============================================================
   09. Spacing
 ==============================================================*/
-@media screen and (min-width: 992px) {
-  .cs_height_1 {
-    height: 1px;
-  }
-  .cs_height_2 {
-    height: 2px;
-  }
-  .cs_height_3 {
-    height: 3px;
-  }
-  .cs_height_4 {
-    height: 4px;
-  }
-  .cs_height_5 {
-    height: 5px;
-  }
-  .cs_height_6 {
-    height: 6px;
-  }
-  .cs_height_7 {
-    height: 7px;
-  }
-  .cs_height_8 {
-    height: 8px;
-  }
-  .cs_height_9 {
-    height: 9px;
-  }
-  .cs_height_10 {
-    height: 10px;
-  }
-  .cs_height_11 {
-    height: 11px;
-  }
-  .cs_height_12 {
-    height: 12px;
-  }
-  .cs_height_13 {
-    height: 13px;
-  }
-  .cs_height_14 {
-    height: 14px;
-  }
-  .cs_height_15 {
-    height: 15px;
-  }
-  .cs_height_16 {
-    height: 16px;
-  }
-  .cs_height_17 {
-    height: 17px;
-  }
-  .cs_height_18 {
-    height: 18px;
-  }
-  .cs_height_19 {
-    height: 19px;
-  }
-  .cs_height_20 {
-    height: 20px;
-  }
-  .cs_height_21 {
-    height: 21px;
-  }
-  .cs_height_22 {
-    height: 22px;
-  }
-  .cs_height_23 {
-    height: 23px;
-  }
-  .cs_height_24 {
-    height: 24px;
-  }
-  .cs_height_25 {
-    height: 25px;
-  }
-  .cs_height_26 {
-    height: 26px;
-  }
-  .cs_height_27 {
-    height: 27px;
-  }
-  .cs_height_28 {
-    height: 28px;
-  }
-  .cs_height_29 {
-    height: 29px;
-  }
-  .cs_height_30 {
-    height: 30px;
-  }
-  .cs_height_31 {
-    height: 31px;
-  }
-  .cs_height_32 {
-    height: 32px;
-  }
-  .cs_height_33 {
-    height: 33px;
-  }
-  .cs_height_34 {
-    height: 34px;
-  }
-  .cs_height_35 {
-    height: 35px;
-  }
-  .cs_height_36 {
-    height: 36px;
-  }
-  .cs_height_37 {
-    height: 37px;
-  }
-  .cs_height_38 {
-    height: 38px;
-  }
-  .cs_height_39 {
-    height: 39px;
-  }
-  .cs_height_40 {
-    height: 40px;
-  }
-  .cs_height_41 {
-    height: 41px;
-  }
-  .cs_height_42 {
-    height: 42px;
-  }
-  .cs_height_43 {
-    height: 43px;
-  }
-  .cs_height_44 {
-    height: 44px;
-  }
-  .cs_height_45 {
-    height: 45px;
-  }
-  .cs_height_46 {
-    height: 46px;
-  }
-  .cs_height_47 {
-    height: 47px;
-  }
-  .cs_height_48 {
-    height: 48px;
-  }
-  .cs_height_49 {
-    height: 49px;
-  }
-  .cs_height_50 {
-    height: 50px;
-  }
-  .cs_height_51 {
-    height: 51px;
-  }
-  .cs_height_52 {
-    height: 52px;
-  }
-  .cs_height_53 {
-    height: 53px;
-  }
-  .cs_height_54 {
-    height: 54px;
-  }
-  .cs_height_55 {
-    height: 55px;
-  }
-  .cs_height_56 {
-    height: 56px;
-  }
-  .cs_height_57 {
-    height: 57px;
-  }
-  .cs_height_58 {
-    height: 58px;
-  }
-  .cs_height_59 {
-    height: 59px;
-  }
-  .cs_height_60 {
-    height: 60px;
-  }
-  .cs_height_61 {
-    height: 61px;
-  }
-  .cs_height_62 {
-    height: 62px;
-  }
-  .cs_height_63 {
-    height: 63px;
-  }
-  .cs_height_64 {
-    height: 64px;
-  }
-  .cs_height_65 {
-    height: 65px;
-  }
-  .cs_height_66 {
-    height: 66px;
-  }
-  .cs_height_67 {
-    height: 67px;
-  }
-  .cs_height_68 {
-    height: 68px;
-  }
-  .cs_height_69 {
-    height: 69px;
-  }
-  .cs_height_70 {
-    height: 70px;
-  }
-  .cs_height_71 {
-    height: 71px;
-  }
-  .cs_height_72 {
-    height: 72px;
-  }
-  .cs_height_73 {
-    height: 73px;
-  }
-  .cs_height_74 {
-    height: 74px;
-  }
-  .cs_height_75 {
-    height: 75px;
-  }
-  .cs_height_76 {
-    height: 76px;
-  }
-  .cs_height_77 {
-    height: 77px;
-  }
-  .cs_height_78 {
-    height: 78px;
-  }
-  .cs_height_79 {
-    height: 79px;
-  }
-  .cs_height_80 {
-    height: 80px;
-  }
-  .cs_height_81 {
-    height: 81px;
-  }
-  .cs_height_82 {
-    height: 82px;
-  }
-  .cs_height_83 {
-    height: 83px;
-  }
-  .cs_height_84 {
-    height: 84px;
-  }
-  .cs_height_85 {
-    height: 85px;
-  }
-  .cs_height_86 {
-    height: 86px;
-  }
-  .cs_height_87 {
-    height: 87px;
-  }
-  .cs_height_88 {
-    height: 88px;
-  }
-  .cs_height_89 {
-    height: 89px;
-  }
-  .cs_height_90 {
-    height: 90px;
-  }
-  .cs_height_91 {
-    height: 91px;
-  }
-  .cs_height_92 {
-    height: 92px;
-  }
-  .cs_height_93 {
-    height: 93px;
-  }
-  .cs_height_94 {
-    height: 94px;
-  }
-  .cs_height_95 {
-    height: 95px;
-  }
-  .cs_height_96 {
-    height: 96px;
-  }
-  .cs_height_97 {
-    height: 97px;
-  }
-  .cs_height_98 {
-    height: 98px;
-  }
-  .cs_height_99 {
-    height: 99px;
-  }
-  .cs_height_100 {
-    height: 100px;
-  }
-  .cs_height_101 {
-    height: 101px;
-  }
-  .cs_height_102 {
-    height: 102px;
-  }
-  .cs_height_103 {
-    height: 103px;
-  }
-  .cs_height_104 {
-    height: 104px;
-  }
-  .cs_height_105 {
-    height: 105px;
-  }
-  .cs_height_106 {
-    height: 106px;
-  }
-  .cs_height_107 {
-    height: 107px;
-  }
-  .cs_height_108 {
-    height: 108px;
-  }
-  .cs_height_109 {
-    height: 109px;
-  }
-  .cs_height_110 {
-    height: 110px;
-  }
-  .cs_height_111 {
-    height: 111px;
-  }
-  .cs_height_112 {
-    height: 112px;
-  }
-  .cs_height_113 {
-    height: 113px;
-  }
-  .cs_height_114 {
-    height: 114px;
-  }
-  .cs_height_115 {
-    height: 115px;
-  }
-  .cs_height_116 {
-    height: 116px;
-  }
-  .cs_height_117 {
-    height: 117px;
-  }
-  .cs_height_118 {
-    height: 118px;
-  }
-  .cs_height_119 {
-    height: 119px;
-  }
-  .cs_height_120 {
-    height: 120px;
-  }
-  .cs_height_121 {
-    height: 121px;
-  }
-  .cs_height_122 {
-    height: 122px;
-  }
-  .cs_height_123 {
-    height: 123px;
-  }
-  .cs_height_124 {
-    height: 124px;
-  }
-  .cs_height_125 {
-    height: 125px;
-  }
-  .cs_height_126 {
-    height: 126px;
-  }
-  .cs_height_127 {
-    height: 127px;
-  }
-  .cs_height_128 {
-    height: 128px;
-  }
-  .cs_height_129 {
-    height: 129px;
-  }
-  .cs_height_130 {
-    height: 130px;
-  }
-  .cs_height_131 {
-    height: 131px;
-  }
-  .cs_height_132 {
-    height: 132px;
-  }
-  .cs_height_133 {
-    height: 133px;
-  }
-  .cs_height_134 {
-    height: 134px;
-  }
-  .cs_height_135 {
-    height: 135px;
-  }
-  .cs_height_136 {
-    height: 136px;
-  }
-  .cs_height_137 {
-    height: 137px;
-  }
-  .cs_height_138 {
-    height: 138px;
-  }
-  .cs_height_139 {
-    height: 139px;
-  }
-  .cs_height_140 {
-    height: 140px;
-  }
-  .cs_height_141 {
-    height: 141px;
-  }
-  .cs_height_142 {
-    height: 142px;
-  }
-  .cs_height_143 {
-    height: 143px;
-  }
-  .cs_height_144 {
-    height: 144px;
-  }
-  .cs_height_145 {
-    height: 145px;
-  }
-  .cs_height_146 {
-    height: 146px;
-  }
-  .cs_height_147 {
-    height: 147px;
-  }
-  .cs_height_148 {
-    height: 148px;
-  }
-  .cs_height_149 {
-    height: 149px;
-  }
-  .cs_height_150 {
-    height: 150px;
-  }
-}
-@media screen and (max-width: 991px) {
-  .cs_height_lg_1 {
-    height: 1px;
-  }
-  .cs_height_lg_2 {
-    height: 2px;
-  }
-  .cs_height_lg_3 {
-    height: 3px;
-  }
-  .cs_height_lg_4 {
-    height: 4px;
-  }
-  .cs_height_lg_5 {
-    height: 5px;
-  }
-  .cs_height_lg_6 {
-    height: 6px;
-  }
-  .cs_height_lg_7 {
-    height: 7px;
-  }
-  .cs_height_lg_8 {
-    height: 8px;
-  }
-  .cs_height_lg_9 {
-    height: 9px;
-  }
-  .cs_height_lg_10 {
-    height: 10px;
-  }
-  .cs_height_lg_11 {
-    height: 11px;
-  }
-  .cs_height_lg_12 {
-    height: 12px;
-  }
-  .cs_height_lg_13 {
-    height: 13px;
-  }
-  .cs_height_lg_14 {
-    height: 14px;
-  }
-  .cs_height_lg_15 {
-    height: 15px;
-  }
-  .cs_height_lg_16 {
-    height: 16px;
-  }
-  .cs_height_lg_17 {
-    height: 17px;
-  }
-  .cs_height_lg_18 {
-    height: 18px;
-  }
-  .cs_height_lg_19 {
-    height: 19px;
-  }
-  .cs_height_lg_20 {
-    height: 20px;
-  }
-  .cs_height_lg_21 {
-    height: 21px;
-  }
-  .cs_height_lg_22 {
-    height: 22px;
-  }
-  .cs_height_lg_23 {
-    height: 23px;
-  }
-  .cs_height_lg_24 {
-    height: 24px;
-  }
-  .cs_height_lg_25 {
-    height: 25px;
-  }
-  .cs_height_lg_26 {
-    height: 26px;
-  }
-  .cs_height_lg_27 {
-    height: 27px;
-  }
-  .cs_height_lg_28 {
-    height: 28px;
-  }
-  .cs_height_lg_29 {
-    height: 29px;
-  }
-  .cs_height_lg_30 {
-    height: 30px;
-  }
-  .cs_height_lg_31 {
-    height: 31px;
-  }
-  .cs_height_lg_32 {
-    height: 32px;
-  }
-  .cs_height_lg_33 {
-    height: 33px;
-  }
-  .cs_height_lg_34 {
-    height: 34px;
-  }
-  .cs_height_lg_35 {
-    height: 35px;
-  }
-  .cs_height_lg_36 {
-    height: 36px;
-  }
-  .cs_height_lg_37 {
-    height: 37px;
-  }
-  .cs_height_lg_38 {
-    height: 38px;
-  }
-  .cs_height_lg_39 {
-    height: 39px;
-  }
-  .cs_height_lg_40 {
-    height: 40px;
-  }
-  .cs_height_lg_41 {
-    height: 41px;
-  }
-  .cs_height_lg_42 {
-    height: 42px;
-  }
-  .cs_height_lg_43 {
-    height: 43px;
-  }
-  .cs_height_lg_44 {
-    height: 44px;
-  }
-  .cs_height_lg_45 {
-    height: 45px;
-  }
-  .cs_height_lg_46 {
-    height: 46px;
-  }
-  .cs_height_lg_47 {
-    height: 47px;
-  }
-  .cs_height_lg_48 {
-    height: 48px;
-  }
-  .cs_height_lg_49 {
-    height: 49px;
-  }
-  .cs_height_lg_50 {
-    height: 50px;
-  }
-  .cs_height_lg_51 {
-    height: 51px;
-  }
-  .cs_height_lg_52 {
-    height: 52px;
-  }
-  .cs_height_lg_53 {
-    height: 53px;
-  }
-  .cs_height_lg_54 {
-    height: 54px;
-  }
-  .cs_height_lg_55 {
-    height: 55px;
-  }
-  .cs_height_lg_56 {
-    height: 56px;
-  }
-  .cs_height_lg_57 {
-    height: 57px;
-  }
-  .cs_height_lg_58 {
-    height: 58px;
-  }
-  .cs_height_lg_59 {
-    height: 59px;
-  }
-  .cs_height_lg_60 {
-    height: 60px;
-  }
-  .cs_height_lg_61 {
-    height: 61px;
-  }
-  .cs_height_lg_62 {
-    height: 62px;
-  }
-  .cs_height_lg_63 {
-    height: 63px;
-  }
-  .cs_height_lg_64 {
-    height: 64px;
-  }
-  .cs_height_lg_65 {
-    height: 65px;
-  }
-  .cs_height_lg_66 {
-    height: 66px;
-  }
-  .cs_height_lg_67 {
-    height: 67px;
-  }
-  .cs_height_lg_68 {
-    height: 68px;
-  }
-  .cs_height_lg_69 {
-    height: 69px;
-  }
-  .cs_height_lg_70 {
-    height: 70px;
-  }
-  .cs_height_lg_71 {
-    height: 71px;
-  }
-  .cs_height_lg_72 {
-    height: 72px;
-  }
-  .cs_height_lg_73 {
-    height: 73px;
-  }
-  .cs_height_lg_74 {
-    height: 74px;
-  }
-  .cs_height_lg_75 {
-    height: 75px;
-  }
-  .cs_height_lg_76 {
-    height: 76px;
-  }
-  .cs_height_lg_77 {
-    height: 77px;
-  }
-  .cs_height_lg_78 {
-    height: 78px;
-  }
-  .cs_height_lg_79 {
-    height: 79px;
-  }
-  .cs_height_lg_80 {
-    height: 80px;
-  }
-  .cs_height_lg_81 {
-    height: 81px;
-  }
-  .cs_height_lg_82 {
-    height: 82px;
-  }
-  .cs_height_lg_83 {
-    height: 83px;
-  }
-  .cs_height_lg_84 {
-    height: 84px;
-  }
-  .cs_height_lg_85 {
-    height: 85px;
-  }
-  .cs_height_lg_86 {
-    height: 86px;
-  }
-  .cs_height_lg_87 {
-    height: 87px;
-  }
-  .cs_height_lg_88 {
-    height: 88px;
-  }
-  .cs_height_lg_89 {
-    height: 89px;
-  }
-  .cs_height_lg_90 {
-    height: 90px;
-  }
-  .cs_height_lg_91 {
-    height: 91px;
-  }
-  .cs_height_lg_92 {
-    height: 92px;
-  }
-  .cs_height_lg_93 {
-    height: 93px;
-  }
-  .cs_height_lg_94 {
-    height: 94px;
-  }
-  .cs_height_lg_95 {
-    height: 95px;
-  }
-  .cs_height_lg_96 {
-    height: 96px;
-  }
-  .cs_height_lg_97 {
-    height: 97px;
-  }
-  .cs_height_lg_98 {
-    height: 98px;
-  }
-  .cs_height_lg_99 {
-    height: 99px;
-  }
-  .cs_height_lg_100 {
-    height: 100px;
-  }
-}
-/*==========================================
- Margin Bottom Spacing
-===========================================*/
 .cs_mb_1 {
   margin-bottom: 1px;
 }
@@ -13762,5 +13009,221 @@ label {
 @media (max-width: 991px) {
   .cs_checkout_sidebar {
     width: 100%;
+  }
+}
+
+/*================================================================
+  29. Privacy Policy / Terms & Condition Section
+==================================================================*/
+.cs_policy_section {
+  padding: 120px 0;
+}
+.cs_policy_section .cs_policy_content {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
+@media (max-width: 991px) {
+  .cs_policy_section {
+    padding: 70px 0;
+  }
+}
+
+/*=============================================
+  Sticky Table of Contents Sidebar
+===============================================*/
+.cs_sidebar_style_1 {
+  width: min(100%, 340px);
+  position: sticky;
+  top: 150px;
+}
+.cs_sidebar_style_1 .cs_policy_nav {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.cs_sidebar_style_1 .cs_policy_nav a {
+  display: inline-flex;
+  gap: 10px;
+  color: var(--primary-color);
+}
+.cs_sidebar_style_1 .cs_policy_nav a span {
+  color: var(--accent-color);
+}
+.cs_sidebar_style_1 .cs_policy_nav a:hover {
+  color: var(--accent-color);
+}
+.cs_sidebar_style_1 .cs_policy_meta {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(134, 148, 167, 0.2);
+}
+@media (max-width: 991px) {
+  .cs_sidebar_style_1 {
+    width: 100%;
+    position: static;
+    top: 0;
+    padding: 24px 15px;
+  }
+}
+
+/*=============================================
+  Policy Content Blocks
+===============================================*/
+.cs_policy_block {
+  scroll-margin-top: 110px;
+}
+.cs_policy_block:not(:last-child) {
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(134, 148, 167, 0.2);
+}
+.cs_policy_block .cs_policy_block_head {
+  display: flex;
+  gap: 10px;
+}
+.cs_policy_block p:last-child {
+  margin-bottom: 0;
+}
+
+/*=============================================
+  Checklist Style List
+===============================================*/
+.cs_policy_list {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.cs_policy_list li {
+  position: relative;
+  padding-left: 26px;
+}
+.cs_policy_list li img {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+/*=============================================
+  Info Grid Cards
+===============================================*/
+.cs_policy_grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 575px) {
+  .cs_policy_grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+}
+
+.cs_policy_card {
+  height: 100%;
+  padding: 24px;
+  border-radius: 10px;
+  background-color: var(--gray4-color);
+  transition: all 0.3s ease;
+}
+.cs_policy_card .cs_policy_card_icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--accent-color);
+  background-color: var(--white-color);
+  transition: all 0.3s ease;
+}
+.cs_policy_card .cs_policy_card_icon img {
+  border-radius: 0;
+}
+.cs_policy_card:hover {
+  background-color: var(--accent-color);
+}
+.cs_policy_card:hover .cs_policy_card_title,
+.cs_policy_card:hover .cs_policy_card_text {
+  color: var(--white-color);
+}
+.cs_policy_card:hover .cs_policy_card_icon {
+  color: var(--white-color);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+@media (max-width: 575px) {
+  .cs_policy_card {
+    padding: 20px 15px;
+  }
+}
+
+/*=============================================
+  Highlighted Note / Important Callout
+===============================================*/
+.cs_policy_note {
+  display: flex;
+  gap: 14px;
+  padding: 20px 24px;
+  border-radius: 10px;
+  background-color: var(--gray2-color);
+  border-left: 3px solid var(--accent-color);
+}
+.cs_policy_note i {
+  color: var(--accent-color);
+  font-size: 20px;
+  line-height: 1.6em;
+}
+.cs_policy_note.cs_type_warning {
+  background-color: #ffebd5;
+  border-left-color: var(--warning-color);
+}
+.cs_policy_note.cs_type_warning i {
+  color: var(--warning-color);
+}
+@media (max-width: 575px) {
+  .cs_policy_note {
+    padding: 20px 15px;
+  }
+}
+
+/*=============================================
+  Contact Card
+===============================================*/
+.cs_policy_contact {
+  padding: 30px;
+}
+.cs_policy_contact .cs_policy_contact_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cs_policy_contact .cs_policy_contact_list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cs_policy_contact .cs_policy_contact_list li:not(:last-child) {
+  margin-bottom: 16px;
+}
+.cs_policy_contact .cs_policy_contact_list .cs_policy_contact_icon {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  background-color: var(--gray3-color);
+}
+.cs_policy_contact .cs_policy_contact_list a:hover {
+  color: var(--accent-color);
+}
+@media (max-width: 575px) {
+  .cs_policy_contact {
+    padding: 20px 15px;
   }
 }/*# sourceMappingURL=style.css.map */
