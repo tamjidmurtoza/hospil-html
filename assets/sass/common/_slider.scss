@@ -218,6 +218,13 @@
       animation-direction: alternate-reverse;
     }
   }
+
+  @media (max-width:991px) {
+    .cs_ticker_in {
+      gap: 24px;
+      animation-duration: 24s;
+    }
+  }
 }
 
 .cs_ticker_2 {
@@ -259,7 +266,7 @@
     flex: none;
     display: flex;
     gap: 50px;
-    font-size: 75px;
+    //font-size: 75px;
     text-shadow:
       -1px -1px 0 rgba(31, 41, 55, 0.05),
       1px -1px 0 rgba(31, 41, 55, 0.05),
@@ -271,6 +278,10 @@
     img {
       flex: none;
       display: block;
+    }
+
+    &.cs_shadow_none {
+      text-shadow: none;
     }
   }
 
@@ -285,8 +296,11 @@
   }
 
   @media (max-width:991px) {
+    gap: 24px;
+
     .cs_ticker_item {
       font-size: 50px;
+      gap: 24px;
     }
   }
 }

@@ -2572,6 +2572,12 @@ label {
 .cs_ticker_1.cs_reverse .cs_ticker_in, .cs_reverse.cs_ticker_3 .cs_ticker_in, .cs_reverse.cs_ticker_2 .cs_ticker_in {
   animation-direction: alternate-reverse;
 }
+@media (max-width: 991px) {
+  .cs_ticker_1 .cs_ticker_in, .cs_ticker_3 .cs_ticker_in, .cs_ticker_2 .cs_ticker_in {
+    gap: 24px;
+    animation-duration: 24s;
+  }
+}
 
 .cs_ticker_2 {
   padding: 120px 0 144px;
@@ -2611,7 +2617,6 @@ label {
   flex: none;
   display: flex;
   gap: 50px;
-  font-size: 75px;
   text-shadow: -1px -1px 0 rgba(31, 41, 55, 0.05), 1px -1px 0 rgba(31, 41, 55, 0.05), -1px 1px 0 rgba(31, 41, 55, 0.05), 1px 1px 0 rgba(31, 41, 55, 0.05), 0 2px 8px rgba(31, 41, 55, 0.15);
 }
 .cs_ticker_items_list .cs_ticker_item span,
@@ -2622,6 +2627,11 @@ label {
 .cs_tech_items_list .cs_ticker_item img {
   flex: none;
   display: block;
+}
+.cs_ticker_items_list .cs_ticker_item.cs_shadow_none,
+.cs_ticker_text .cs_ticker_item.cs_shadow_none,
+.cs_tech_items_list .cs_ticker_item.cs_shadow_none {
+  text-shadow: none;
 }
 .cs_ticker_items_list .cs_ticker_item,
 .cs_ticker_text .cs_ticker_item,
@@ -2636,10 +2646,16 @@ label {
   color: var(--white-color);
 }
 @media (max-width: 991px) {
+  .cs_ticker_items_list,
+  .cs_ticker_text,
+  .cs_tech_items_list {
+    gap: 24px;
+  }
   .cs_ticker_items_list .cs_ticker_item,
   .cs_ticker_text .cs_ticker_item,
   .cs_tech_items_list .cs_ticker_item {
     font-size: 50px;
+    gap: 24px;
   }
 }
 
@@ -5070,6 +5086,11 @@ label {
     margin-bottom: 30px;
   }
 }
+@media (max-width: 991px) {
+  .cs_about_style_1 {
+    padding: 70px 0;
+  }
+}
 @media (max-width: 575px) {
   .cs_about_style_1 .cs_funfact_style_1 {
     gap: 24px;
@@ -5083,6 +5104,9 @@ label {
   }
   .cs_about_style_1 .cs_btns_wrapper {
     flex-direction: column;
+  }
+  .cs_about_style_1 .cs_about_rating {
+    padding: 20px 15px;
   }
 }
 
@@ -5633,6 +5657,9 @@ label {
   .cs_about_style_5 .cs_about_desc, .cs_feature_section_5 .cs_about_desc {
     width: 100%;
   }
+  .cs_about_style_5 .cs_about_top, .cs_feature_section_5 .cs_about_top {
+    margin-bottom: 40px;
+  }
   .cs_about_style_5 .cs_about_card, .cs_feature_section_5 .cs_about_card {
     padding: 24px 15px;
   }
@@ -5792,11 +5819,21 @@ label {
     padding: 24px 15px;
     border-radius: 0 0 10px 10px;
   }
+  .cs_service_card_1 .cs_service_header {
+    gap: 15px;
+  }
   .cs_service_card_1 .cs_service_btn {
     position: initial;
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     padding: 10px;
+  }
+  .cs_service_card_1 .cs_service_icon {
+    width: 60px;
+    height: 60px;
+  }
+  .cs_service_card_1 .cs_service_icon img {
+    width: 36px;
   }
 }
 
@@ -10862,7 +10899,7 @@ label {
     height: 110px;
   }
   .cs_technology_section_1 .cs_feature_list, .cs_technology_section_2 .cs_feature_list {
-    gap: 15px;
+    gap: 12px;
   }
   .cs_technology_section_1 .cs_call_btn, .cs_technology_section_2 .cs_call_btn {
     width: 55px;
@@ -10884,16 +10921,16 @@ label {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(108deg) brightness(104%) contrast(104%);
 }
 .cs_technology_section_2 .cs_technology_img {
-  transform: translateX(135px);
+  transform: translateX(110px);
 }
 @media (max-width: 1650px) {
   .cs_technology_section_2 .cs_technology_img {
-    transform: translateX(70px);
+    transform: translateX(30px);
   }
 }
 @media (max-width: 1500px) {
   .cs_technology_section_2 .cs_technology_img {
-    width: calc(100% + 12px);
+    width: 100%;
     transform: translateX(30px);
   }
 }

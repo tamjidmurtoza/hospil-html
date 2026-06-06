@@ -172,6 +172,10 @@
     }
   }
 
+  @media (max-width:991px) {
+    padding: 70px 0;
+  }
+
   @media (max-width:575px) {
     .cs_funfact_style_1 {
       gap: 24px;
@@ -190,6 +194,10 @@
 
     .cs_btns_wrapper {
       flex-direction: column;
+    }
+
+    .cs_about_rating {
+      padding: 20px 15px;
     }
   }
 }
@@ -838,6 +846,10 @@
 
     .cs_about_desc {
       width: 100%;
+    }
+
+    .cs_about_top {
+      margin-bottom: 40px;
     }
 
     .cs_about_card {

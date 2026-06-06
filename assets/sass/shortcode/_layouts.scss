@@ -608,7 +608,7 @@
     }
 
     .cs_feature_list {
-      gap: 15px;
+      gap: 12px;
     }
 
 
@@ -643,18 +643,18 @@
   }
 
   .cs_technology_img {
-    transform: translateX(135px);
+    transform: translateX(110px);
   }
 
   @media (max-width:1650px) {
     .cs_technology_img {
-      transform: translateX(70px);
+      transform: translateX(30px);
     }
   }
 
   @media (max-width:1500px) {
     .cs_technology_img {
-      width: calc(100% + 12px);
+      width: 100%;
       transform: translateX(30px);
     }
   }

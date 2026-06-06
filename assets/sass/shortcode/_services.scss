@@ -136,11 +136,24 @@
       border-radius: 0 0 10px 10px;
     }
 
+    .cs_service_header {
+      gap: 15px;
+    }
+
     .cs_service_btn {
       position: initial;
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       padding: 10px;
+    }
+
+    .cs_service_icon {
+      width: 60px;
+      height: 60px;
+
+      img {
+        width: 36px;
+      }
     }
   }
 }
