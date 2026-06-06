@@ -67,6 +67,7 @@
     tabs();
     accordian();
     serviceHoverTabs();
+    expertsHoverTabs();
     scrollUp();
     hobbleEffectInit();
     sectionTitleRevealInit();
@@ -678,6 +679,31 @@
         $(this).addClass("cs_active");
         $panes.removeClass("cs_active");
         $panes.eq(idx).addClass("cs_active");
+      });
+    });
+  }
+  /*===========================================================
+    13b. Experts Hover Tabs (Team Section 4)
+  =============================================================*/
+  function expertsHoverTabs() {
+    $(".cs_team_section_4").each(function () {
+      var $section = $(this);
+      var $items = $section.find(".cs_expert_item");
+      if (!$items.length) return;
+
+      $items.on("mouseenter focusin", function () {
+        var $item = $(this);
+        var target = $item.attr("data-expert-tab");
+        // Activate the matching image tab on the left.
+        if (target) {
+          $section
+            .find(target)
+            .addClass("active")
+            .siblings()
+            .removeClass("active");
+        }
+        // Activate the hovered expert row (shows bio, socials & book btn).
+        $item.addClass("active").siblings().removeClass("active");
       });
     });
   }
