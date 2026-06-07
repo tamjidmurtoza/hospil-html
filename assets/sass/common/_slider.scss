@@ -263,10 +263,8 @@
   min-width: 100%;
 
   .cs_ticker_item {
-    flex: none;
     display: flex;
     gap: 50px;
-    //font-size: 75px;
     text-shadow:
       -1px -1px 0 rgba(31, 41, 55, 0.05),
       1px -1px 0 rgba(31, 41, 55, 0.05),
