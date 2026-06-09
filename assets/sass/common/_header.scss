@@ -71,10 +71,10 @@
   }
 
   &.cs_style_2 {
-    padding: 24px 24px 0;
+    padding: 24px 0 0;
 
     &.cs_sticky_active {
-      padding: 5px 24px 0;
+      padding: 5px 0 0;
       background-color: transparent;
       box-shadow: none;
       backdrop-filter: none;
@@ -85,10 +85,12 @@
     }
 
     .cs_top_header {
+      padding: 0 24px;
       border-radius: 10px 10px 0 0;
     }
 
     .cs_main_header {
+      padding: 0 24px;
       border-radius: 0 0 10px 10px;
     }
   }
@@ -526,19 +528,30 @@
     }
 
     .cs_main_header_left {
-      width: 135px;
+      width: 100px;
     }
 
     .cs_menu_toggle {
       top: 18px;
       right: 12px;
+      width: 20px;
+
+      span:before {
+        margin-top: -7px;
+      }
+
+      span:after {
+        margin-top: 7px;
+      }
     }
 
+
     &.cs_style_2 {
-      padding: 5px 12px 0 !important;
+      padding: 5px 0 0 !important;
 
       .cs_main_header {
         border-radius: 10px;
+        padding: 0 12px;
       }
     }
 

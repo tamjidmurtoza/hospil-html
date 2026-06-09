@@ -9,6 +9,43 @@
   }
 }
 
+.swiper-slide-active {
+  .cs_hero_style_1 {
+    .cs_hero_parallax_bg {
+      transform: scale(1.03);
+      opacity: 1;
+    }
+
+    .cs_hero_subtitle,
+    .cs_hero_title,
+    .cs_hero_desc,
+    .cs_hero_btns {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition:
+        transform 0.6s cubic-bezier(0.45, 0.35, 0.65, 0.55),
+        opacity 1s ease;
+    }
+
+    .cs_hero_subtitle {
+      transition-delay: 0.4s;
+    }
+
+    .cs_hero_title {
+      transition-delay: 0.6s;
+    }
+
+    .cs_hero_desc {
+      transition-delay: 0.8s;
+    }
+
+    .cs_hero_btns {
+      transition-delay: 1s;
+    }
+  }
+}
+
 /*===============================================
  Equivalent Slider
 =================================================*/
@@ -81,11 +118,13 @@
   }
 
   @media (max-width: 1399px) {
-    right: calc((100vw - 1116px) / 2);
+    right: 12px;
   }
 
-  @media (max-width: 1199px) {
-    right: calc((100vw - 936px) / 2);
+  @media (max-width: 991px) {
+    right: 50%;
+    bottom: 50px;
+    transform: translateX(50%);
   }
 }
 
