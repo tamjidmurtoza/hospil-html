@@ -47,7 +47,6 @@
     width: min(66%, 950px);
     position: relative;
     z-index: 1;
-    //flex: none;
 
     &::before {
       content: "";
@@ -128,9 +127,41 @@
     }
   }
 
+  @media (max-width: 1600px) {
+    .cs_hero_in {
+      padding: 340px 0 120px;
+    }
+
+    .cs_controller_1 {
+      bottom: 80px;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .cs_hero_in {
+      padding: 380px 0 120px;
+    }
+  }
+
+  @media (max-width: 1399px) {
+    .cs_hero_in {
+      padding: 320px 0 120px;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_hero_in {
+      padding: 220px 0 120px;
+    }
+  }
+
   @media (max-width: 991px) {
     .cs_hero_in {
-      padding: 120px 0;
+      padding: 170px 0 140px;
+    }
+
+    .cs_hero_desc {
+      margin-bottom: 30px;
     }
 
     .cs_hero_content_wrapper {
@@ -150,6 +181,27 @@
       right: 50%;
       bottom: 50px;
       transform: translateX(50%);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .cs_hero_in {
+      padding: 90px 0 120px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_hero_content_wrapper {
+      flex-direction: column;
+    }
+
+    .cs_hero_desc,
+    .cs_visiting_hours {
+      font-size: 16px;
+    }
+
+    .cs_ib_card {
+      display: none;
     }
   }
 }
@@ -283,6 +335,10 @@
     .cs_hero_title {
       font-size: 49px;
     }
+
+    .cs_hero_shape_2 {
+      display: none;
+    }
   }
 
   @media (max-width: 991px) {
@@ -300,10 +356,19 @@
     .cs_hero_img_wrapper {
       width: 100%;
     }
+
+    .cs_hero_img_1 {
+      max-height: 480px;
+    }
+
+    .cs_hero_img_2 {
+      padding-left: 55%;
+      padding-right: 10%;
+    }
   }
 
   @media (max-width: 767px) {
-    padding: 130px 0 0;
+    padding: 90px 0 0;
 
     .cs_hero_text {
       padding-left: 0;
@@ -323,6 +388,10 @@
   @media (max-width: 575px) {
     .cs_hero_title {
       font-size: 32px;
+    }
+
+    .cs_hero_desc {
+      font-size: 16px;
     }
   }
 }
@@ -457,7 +526,21 @@
     }
   }
 
+  @media (max-width: 1600px) {
+    padding: 230px 0 120px;
+  }
+
+  @media (max-width: 1399px) {
+    padding: 140px 0 120px;
+  }
+
   @media (max-width: 1199px) {
+    padding: 120px 0 100px;
+
+    .cs_hero_badges {
+      margin-bottom: 30px;
+    }
+
     .cs_hero_title {
       font-size: 60px;
     }
@@ -474,7 +557,7 @@
   }
 
   @media (max-width: 991px) {
-    padding: 130px 0 60px;
+    padding: 120px 0 50px;
 
     .cs_hero_overlay {
       background: linear-gradient(180deg,
@@ -484,7 +567,6 @@
     }
 
     .cs_hero_badges {
-      //display: none;
       justify-content: flex-start;
     }
 
@@ -508,25 +590,22 @@
   }
 
   @media (max-width: 575px) {
+    padding: 90px 0 50px;
+
     .cs_hero_title {
-      font-size: 36px;
+      font-size: 32px;
     }
 
     .cs_hero_title br {
       display: none;
     }
 
-    .cs_hero_badge {
-      padding: 14px 18px;
-      width: 100%;
+    .cs_hero_desc {
+      font-size: 16px;
     }
 
-    .cs_hero_rating {
-      min-width: 0;
-    }
-
-    .cs_hero_users {
-      min-width: 0;
+    .cs_hero_badges {
+      display: none;
     }
 
     .cs_hero_btns {
@@ -542,80 +621,6 @@
   }
 }
 
-/*========================================
-  Quick Booking Card 
-==========================================*/
-.cs_ib_card {
-  width: 290px;
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  z-index: 1;
-  position: relative;
-  padding: 31px 30px 30px;
-  border-radius: 20px;
-  transform: translateY(-30px);
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 8px 10px -6px rgba(0, 0, 0, 0.1);
-
-  .cs_header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .cs_dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: currentColor;
-    flex-shrink: 0;
-  }
-
-  .cs_field_item {
-    background: var(--white-color);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .cs_field_value {
-    border: 0;
-    outline: 0;
-
-    &::placeholder {
-      color: var(--primary-color);
-    }
-  }
-
-  .cs_btn_style_1 {
-    &:hover {
-      color: var(--white-color);
-      border-color: var(--white-color);
-    }
-
-    &:active {
-      transform: scale(0.98);
-    }
-  }
-}
-
-@media (max-width: 991px) {
-  .cs_hero_in {
-    height: auto;
-  }
-
-  .cs_hero_form {
-    width: 100%;
-    max-width: 450px;
-  }
-}
-
-/*================================================================
-  Hero Style 4
-==================================================================*/
 .cs_hero_style_4 {
   position: relative;
   padding: 208px 0 120px;
@@ -623,7 +628,7 @@
   .cs_hero_in {
     display: grid;
     gap: 24px;
-    grid-template-columns: 1fr 2.5fr 1.2fr;
+    grid-template-columns: 1fr 2.5fr 1.25fr;
   }
 
   .cs_hero_heading {
@@ -708,12 +713,18 @@
   }
 
   @media (max-width: 1399px) {
+    .cs_hero_in {
+      grid-template-columns: 1fr 2.5fr 1.4fr;
+    }
+
     .cs_hero_title {
-      font-size: 51px;
+      font-size: 50px;
     }
   }
 
   @media (max-width: 1199px) {
+    padding: 170px 0 100px;
+
     .cs_hero_in {
       align-items: center;
       grid-template-columns: 1fr 1fr;
@@ -738,7 +749,7 @@
   }
 
   @media (max-width: 991px) {
-    padding: 100px 0 70px;
+    padding: 150px 0 70px;
 
     .cs_hero_title {
       font-size: 42px;
@@ -763,6 +774,8 @@
   }
 
   @media (max-width: 767px) {
+    padding: 80px 0 50px;
+
     .cs_hero_in {
       align-items: center;
       grid-template-columns: 1fr;
@@ -784,14 +797,11 @@
 
   @media (max-width: 575px) {
     .cs_hero_title {
-      font-size: 30px;
+      font-size: 32px;
     }
   }
 }
 
-/*================================================================
-  Hero Style 5
-==================================================================*/
 .cs_hero_style_5 {
   position: relative;
   overflow: hidden;
@@ -827,7 +837,7 @@
     position: relative;
     z-index: 1;
     display: flex;
-    gap: 60px;
+    gap: 80px;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
@@ -871,12 +881,13 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    max-width: 75%;
+    width: 75%;
 
     img {
       display: block;
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -945,17 +956,42 @@
     }
   }
 
+  @media (max-width: 1600px) {
+    padding: 230px 0 0;
+
+    .cs_hero_left {
+      min-height: 520px;
+    }
+
+    .cs_hero_image {
+      width: 56%;
+      right: 5%;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .cs_hero_left {
+      min-height: 560px;
+    }
+
+    .cs_hero_image {
+      width: 62%;
+    }
+  }
+
   @media (max-width: 1399px) {
     .cs_hero_left {
       min-height: auto;
     }
 
     .cs_hero_image {
-      max-width: 62%;
+      width: 55%;
     }
   }
 
   @media (max-width: 1199px) {
+    padding: 150px 0 0;
+
     .cs_hero_image {
       max-width: 70%;
     }
@@ -965,7 +1001,7 @@
     padding: 100px 0 0;
 
     .cs_hero_in {
-      padding: 0 0 70px;
+      padding: 0 0 50px;
       align-items: flex-start;
       flex-direction: column-reverse;
     }
@@ -994,6 +1030,19 @@
     }
   }
 
+  @media (max-width: 767px) {
+    padding: 80px 0 0;
+
+    .cs_hero_info {
+      display: none;
+    }
+
+    .cs_hero_image {
+      width: 60%;
+      right: 0;
+    }
+  }
+
   @media (max-width: 575px) {
     .cs_hero_bottom_info {
       width: 100%;
@@ -1007,16 +1056,77 @@
     .cs_hero_bottom_img {
       max-width: 100%;
     }
+  }
+}
 
-    .cs_hero_info {
-      display: none;
+/*========================================
+  Quick Booking Card 
+==========================================*/
+.cs_ib_card {
+  width: 290px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+  padding: 31px 30px 30px;
+  border-radius: 20px;
+  transform: translateY(-30px);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  .cs_header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cs_dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .cs_field_item {
+    background: var(--white-color);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cs_field_value {
+    border: 0;
+    outline: 0;
+
+    &::placeholder {
+      color: var(--primary-color);
+    }
+  }
+
+  .cs_btn_style_1 {
+    &:hover {
+      color: var(--white-color);
+      border-color: var(--white-color);
+    }
+
+    &:active {
+      transform: scale(0.98);
     }
   }
 }
 
-@keyframes cs_hero5_float {
-  50% {
-    transform: translateY(-10px);
+@media (max-width: 991px) {
+  .cs_hero_in {
+    height: auto;
+  }
+
+  .cs_hero_form {
+    width: 100%;
+    max-width: 450px;
   }
 }
 
@@ -1054,7 +1164,24 @@
     }
   }
 
+  @media (max-width: 1199px) {
+    padding: 200px 0 120px;
+  }
+
   @media (max-width: 991px) {
-    padding: 150px 0 70px;
+    padding: 170px 0 50px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 100px 0 50px;
+  }
+}
+
+/*===============================================================
+ Animations
+================================================================*/
+@keyframes cs_hero5_float {
+  50% {
+    transform: translateY(-10px);
   }
 }

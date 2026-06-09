@@ -521,12 +521,21 @@
   }
 
   @media (max-width: 767px) {
+    .cs_main_header_in {
+      height: 60px !important;
+    }
+
     .cs_main_header_left {
       width: 135px;
     }
 
+    .cs_menu_toggle {
+      top: 18px;
+      right: 12px;
+    }
+
     &.cs_style_2 {
-      padding: 24px 12px 0;
+      padding: 5px 12px 0 !important;
 
       .cs_main_header {
         border-radius: 10px;
@@ -534,6 +543,12 @@
     }
 
     &.cs_style_3 {
+      padding-top: 5px;
+
+      .cs_main_header_left {
+        padding-left: 12px;
+      }
+
       .cs_main_header_right {
         padding-right: 0;
       }
@@ -561,8 +576,19 @@
         .cs_search_btn,
         .cs_login_btn,
         .cs_cart_btn {
-          width: 35px;
-          height: 35px;
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+
+    &.cs_style_4 {
+      .cs_header_btns_wrapper {
+
+        .cs_search_btn,
+        .cs_sidebar_btn {
+          width: 40px;
+          height: 40px;
         }
       }
     }
@@ -630,7 +656,7 @@
     position: absolute;
     right: 0;
     top: 100%;
-    z-index: 12;
+    z-index: 10000;
     padding: 0 0 10px;
     display: none;
     background-color: var(--white-color);
@@ -937,8 +963,9 @@
     position: absolute;
     right: 24px;
     top: 24px;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
+    padding: 10px;
     border-radius: 50%;
     background-color: transparent;
     color: var(--primary-color);
