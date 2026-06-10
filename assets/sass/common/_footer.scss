@@ -266,9 +266,10 @@
   }
 
   .cs_footer_main {
-    width: min(100%, 1644px);
+    width: calc(100% - 24px);
+    max-width: 1620px;
     margin: 0 auto;
-    padding: 0 150px 130px;
+    padding: 0 0 130px;
     border: 1px solid rgba(255, 255, 255, 0.20);
     background: radial-gradient(231% 135.8% at 0.9% 2.98%, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.10) 100%);
     backdrop-filter: blur(5px);
@@ -283,6 +284,9 @@
     padding: 40px 0;
   }
 
+  // @media (max-width:1399px) {
+
+  // }
   @media (max-width:991px) {
     padding-top: 135px;
 

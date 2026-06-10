@@ -188,6 +188,14 @@
       background-color: #BFD4CD;
     }
 
+    .cs_accent_color {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
     img {
       flex: none;
       border-radius: 0;

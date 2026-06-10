@@ -233,6 +233,7 @@
 =========================================================*/
 .cs_ticker_1 {
   padding: 24px 0;
+  margin: 0 auto;
   overflow: hidden;
 
   .cs_ticker_in {
@@ -266,14 +267,20 @@
 
 .cs_ticker_2 {
   @extend .cs_ticker_1;
-  padding: 120px 0 144px;
+  padding: 120px 0 140px;
   overflow: visible;
+
+  .cs_ticker_item {
+    flex: none;
+  }
 
   .cs_ticker_bg {
     inset: 0;
+    z-index: 0;
     filter: blur(112px);
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   @media (max-width: 991px) {
@@ -321,7 +328,7 @@
   }
 
   .cs_ticker_item {
-    line-height: 1em;
+    line-height: 1.2em;
     font-family: var(--primary-font);
     color: rgba(134, 148, 167, 0.5);
 

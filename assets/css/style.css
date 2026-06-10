@@ -1345,9 +1345,6 @@ label {
   filter: brightness(0) saturate(100%) invert(24%) sepia(89%) saturate(2544%) hue-rotate(212deg) brightness(102%) contrast(91%);
 }
 @media (min-width: 1400px) {
-  .cs_site_header .container-fluid {
-    padding: 0 24px;
-  }
   .cs_site_header .cs_header_btns_wrapper .cs_search_btn {
     margin-right: 20px;
   }
@@ -2210,9 +2207,10 @@ label {
   background: rgba(0, 0, 0, 0.65);
 }
 .cs_footer_style_2 .cs_footer_main, .cs_footer_style_3 .cs_footer_main {
-  width: min(100%, 1644px);
+  width: calc(100% - 24px);
+  max-width: 1620px;
   margin: 0 auto;
-  padding: 0 150px 130px;
+  padding: 0 0 130px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: radial-gradient(231% 135.8% at 0.9% 2.98%, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%);
   backdrop-filter: blur(5px);
@@ -2505,6 +2503,7 @@ label {
 =========================================================*/
 .cs_ticker_1, .cs_ticker_3, .cs_ticker_2 {
   padding: 24px 0;
+  margin: 0 auto;
   overflow: hidden;
 }
 .cs_ticker_1 .cs_ticker_in, .cs_ticker_3 .cs_ticker_in, .cs_ticker_2 .cs_ticker_in {
@@ -2529,14 +2528,19 @@ label {
 }
 
 .cs_ticker_2 {
-  padding: 120px 0 144px;
+  padding: 120px 0 140px;
   overflow: visible;
+}
+.cs_ticker_2 .cs_ticker_item {
+  flex: none;
 }
 .cs_ticker_2 .cs_ticker_bg {
   inset: 0;
+  z-index: 0;
   filter: blur(112px);
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 @media (max-width: 991px) {
   .cs_ticker_2 {
@@ -2584,7 +2588,7 @@ label {
 .cs_ticker_items_list .cs_ticker_item,
 .cs_ticker_text .cs_ticker_item,
 .cs_tech_items_list .cs_ticker_item {
-  line-height: 1em;
+  line-height: 1.2em;
   font-family: var(--primary-font);
   color: rgba(134, 148, 167, 0.5);
 }
@@ -3387,7 +3391,7 @@ label {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 110px 0 50px 36px;
+  padding: 110px 0 50px 24px;
 }
 .cs_hero_style_2 .cs_hero_title {
   text-shadow: -1px -1px 0 rgba(31, 41, 55, 0.05), 1px -1px 0 rgba(31, 41, 55, 0.05), -1px 1px 0 rgba(31, 41, 55, 0.05), 1px 1px 0 rgba(31, 41, 55, 0.05), 0 2px 8px rgba(31, 41, 55, 0.15);
@@ -3516,7 +3520,7 @@ label {
 }
 @media (max-width: 767px) {
   .cs_hero_style_2 {
-    padding: 90px 0 24px;
+    padding: 80px 0 24px;
   }
   .cs_hero_style_2 .cs_hero_text {
     padding-left: 0;
@@ -3541,7 +3545,11 @@ label {
 
 .cs_hero_style_3 {
   width: 100%;
-  padding: 400px 0 130px;
+  height: 100vh;
+  max-height: 1080px;
+  padding: 130px 0;
+  display: flex;
+  align-items: flex-end;
 }
 .cs_hero_style_3 .cs_hero_overlay {
   position: absolute;
@@ -3647,16 +3655,6 @@ label {
   width: 16px;
   height: 16px;
   flex: none;
-}
-@media (max-width: 1600px) {
-  .cs_hero_style_3 {
-    padding: 230px 0 120px;
-  }
-}
-@media (max-width: 1399px) {
-  .cs_hero_style_3 {
-    padding: 140px 0 120px;
-  }
 }
 @media (max-width: 1199px) {
   .cs_hero_style_3 {
@@ -8582,6 +8580,12 @@ label {
 .cs_faq_cta_1 .cs_faq_cta_iten.cs_color_1 {
   background-color: #BFD4CD;
 }
+.cs_faq_cta_1 .cs_faq_cta_iten .cs_accent_color {
+  text-decoration: underline;
+}
+.cs_faq_cta_1 .cs_faq_cta_iten .cs_accent_color:hover {
+  text-decoration: none;
+}
 .cs_faq_cta_1 .cs_faq_cta_iten img {
   flex: none;
   border-radius: 0;
@@ -9055,16 +9059,16 @@ label {
   Testimonials Sections
 ======================================================*/
 .cs_testimonial_section_2 {
-  width: min(100% - 48px);
+  width: calc(100% - 24px);
+  max-width: 1872px;
   margin: 0 auto;
   padding: 120px 0;
   border-radius: 20px 20px 0 20px;
 }
 @media (max-width: 991px) {
   .cs_testimonial_section_2 {
-    width: min(100% - 24px);
     padding: 60px 0;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
   }
 }
 
@@ -9203,17 +9207,18 @@ label {
   text-decoration: underline;
 }
 
-.cs_appointment_section_2 {
-  width: calc(100% - (100% - 1275px) / 2);
+.cs_appointment_2 {
+  width: calc(1320px + (100vw - 1344px) / 2);
+  max-width: 1596px;
   padding: 48px;
   margin-left: auto;
-  margin-right: 24px;
   border-radius: 0 0 20px 20px;
 }
-.cs_appointment_section_2 .cs_appointment_form_wrapper {
+.cs_appointment_2 .cs_appointment_form_wrapper {
   padding-left: 115px;
+  max-width: 993px;
 }
-.cs_appointment_section_2 .cs_checkup_schedule {
+.cs_appointment_2 .cs_checkup_schedule {
   padding: 12px 20px 20px;
   border-radius: 0 0 10px 10px;
   background-color: #bfd4cd;
@@ -9221,38 +9226,38 @@ label {
   position: relative;
   z-index: 1;
 }
-.cs_appointment_section_2 .cs_schedule_header {
+.cs_appointment_2 .cs_schedule_header {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.cs_appointment_section_2 .cs_schedule_header span {
+.cs_appointment_2 .cs_schedule_header span {
   font-size: 24px;
   font-weight: 500;
   color: var(--primary-color);
   font-family: var(--primary-font);
 }
-.cs_appointment_section_2 .cs_schedule_header img {
+.cs_appointment_2 .cs_schedule_header img {
   display: inline-block;
   width: 18px;
   filter: brightness(0) saturate(100%) invert(27%) sepia(96%) saturate(1897%) hue-rotate(207deg) brightness(98%) contrast(95%);
 }
-.cs_appointment_section_2 .cs_schedule_header a {
+.cs_appointment_2 .cs_schedule_header a {
   font-size: 20px;
   font-weight: 700;
   color: var(--primary-color);
   font-family: var(--primary-font);
 }
-.cs_appointment_section_2 .cs_schedule_header a:hover {
+.cs_appointment_2 .cs_schedule_header a:hover {
   color: var(--accent-color);
 }
-.cs_appointment_section_2 .cs_schedult_list {
+.cs_appointment_2 .cs_schedult_list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.cs_appointment_section_2 .cs_schedult_list li {
+.cs_appointment_2 .cs_schedult_list li {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, auto);
@@ -9260,19 +9265,25 @@ label {
   justify-content: space-between;
 }
 @media (max-width: 1399px) {
-  .cs_appointment_section_2 {
-    width: calc(100% - 72px);
+  .cs_appointment_2 {
+    width: calc(1140px + (100vw - 1184px) / 2);
     padding: 48px 20px;
   }
-  .cs_appointment_section_2 .cs_appointment_form_wrapper {
+  .cs_appointment_2 .cs_appointment_form_wrapper {
+    padding-left: 0;
+  }
+}
+@media (max-width: 1199px) {
+  .cs_appointment_2 {
+    width: calc(960px + (100vw - 1008px) / 2);
+  }
+  .cs_appointment_2 .cs_appointment_form_wrapper {
     padding-left: 0;
   }
 }
 @media (max-width: 991px) {
-  .cs_appointment_section_2 {
-    width: calc(100% - 24px);
-    margin: 30px auto 0;
-    border-radius: 10px;
+  .cs_appointment_2 {
+    width: 100%;
     padding: 40px 15px;
   }
 }
@@ -9293,6 +9304,9 @@ label {
 }
 .cs_appointment_content .cs_content_bottom {
   padding-right: 112px;
+}
+.cs_appointment_content .cs_appointment_img img {
+  border-radius: 10px 10px 0 0;
 }
 .cs_appointment_content .cs_funfact_style_1 {
   width: min(100%, 470px);
@@ -9626,22 +9640,25 @@ label {
 /*========================================================
   Appointment Section 4
 ==========================================================*/
-.cs_appointment_section_4 {
-  padding: 120px 0;
-}
 .cs_appointment_section_4 .cs_appointment_img {
-  width: min(44vw, 836px);
+  width: min(100%, 836px);
   height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  transform: translateX(-12px);
 }
 .cs_appointment_section_4 .cs_appointment_img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.cs_appointment_section_4 .cs_appointment_form_wrapper {
+  padding: 120px 0;
+  width: min(100%, 648px);
+}
+@media (min-width: 1920px) {
+  .cs_appointment_section_4 .cs_appointment_img {
+    transform: translateX(-40px);
+  }
 }
 @media (max-width: 991px) {
   .cs_appointment_section_4 {
@@ -9715,6 +9732,8 @@ label {
   display: block;
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .cs_feature_section_4 .cs_hero_overlay {
   position: absolute;

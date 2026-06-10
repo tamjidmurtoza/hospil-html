@@ -934,7 +934,7 @@
     const $banners = $(".cs_parallax");
     if (!$banners.length) return;
     const Y_RANGE = 20;
-    const SCALE = 1.1;
+    const SCALE = 1.15;
 
     const entries = [];
     $banners.each(function () {

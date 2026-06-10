@@ -365,15 +365,15 @@
   Testimonials Sections
 ======================================================*/
 .cs_testimonial_section_2 {
-  width: min(100% - 48px);
+  width: calc(100% - 24px);
+  max-width: 1872px;
   margin: 0 auto;
   padding: 120px 0;
   border-radius: 20px 20px 0 20px;
 
   @media (max-width: 991px) {
-    width: min(100% - 24px);
     padding: 60px 0;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
   }
 }
 
