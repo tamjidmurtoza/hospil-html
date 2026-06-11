@@ -409,7 +409,7 @@
       if (marqueeVal) {
         swiperOptions.loop = true;
         swiperOptions.slidesPerView = "auto";
-        swiperOptions.allowTouchMove = false;
+        swiperOptions.allowTouchMove = true;
         swiperOptions.speed = speedVal; // use a high data-speed (e.g. 6000)
         swiperOptions.autoplay = {
           delay: 0,
@@ -784,29 +784,45 @@
     if (!titles.length) return;
 
     gsap.registerPlugin(ScrollTrigger, SplitText);
-
-    // Honour users who prefer no motion: just show the titles.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // True when the element is already visible in the viewport, so it should
+    function isInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      return rect.top < vh * 1 && rect.bottom > 0;
+    }
 
     titles.forEach(function (title) {
-      // Word-by-word reveal: each word fades in (opacity) one after
       SplitText.create(title, {
         type: "words",
         wordsClass: "cs_reveal_word",
         autoSplit: true,
         onSplit: function (self) {
-          return gsap.from(self.words, {
+          const tween = gsap.from(self.words, {
             opacity: 0,
             y: 24,
-            duration: 0.9,
+            duration: 0.7,
             ease: "power3.out",
             stagger: 0.08,
-            scrollTrigger: {
+            paused: true,
+          });
+
+          if (isInViewport(title)) {
+            // Already on screen (no scroll required) — play immediately.
+            tween.play();
+          } else {
+            // Below the fold — reveal once it scrolls into view.
+            ScrollTrigger.create({
               trigger: title,
               start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-          });
+              once: true,
+              onEnter: function () {
+                tween.play();
+              },
+            });
+          }
+
+          return tween;
         },
       });
     });

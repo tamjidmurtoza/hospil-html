@@ -116,10 +116,11 @@
   }
 
   @media (max-width: 767px) {
-    padding: 100px 0 130px;
+    padding: 90px 0 130px;
   }
 
   @media (max-width: 575px) {
+    padding: 90px 0 120px;
 
     .cs_hero_content_wrapper {
       flex-direction: column;
@@ -145,6 +146,7 @@
   .cs_hero_content {
     display: grid;
     gap: 30px;
+    align-items: center;
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -254,6 +256,9 @@
   }
 
   @media (max-width: 1399px) {
+    .cs_hero_text {
+      padding: 60px 0px 50px 24px;
+    }
 
     .cs_hero_title {
       font-size: 56px;
@@ -330,6 +335,12 @@
 
     .cs_hero_desc {
       font-size: 16px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .cs_hero_img_1 {
+      max-height: 210px;
     }
   }
 }
@@ -468,6 +479,12 @@
     }
   }
 
+  @media (max-width: 1399px) {
+    height: auto;
+    align-items: flex-start;
+    padding: 130px 0 100px;
+  }
+
   @media (max-width: 1199px) {
     padding: 120px 0 100px;
 
@@ -523,8 +540,15 @@
     }
   }
 
-  @media (max-width: 575px) {
+  @media (max-width: 767px) {
     padding: 90px 0 50px;
+
+    .cs_hero_badges {
+      display: none;
+    }
+  }
+
+  @media (max-width: 575px) {
 
     .cs_hero_title {
       font-size: 32px;
@@ -536,10 +560,6 @@
 
     .cs_hero_desc {
       font-size: 16px;
-    }
-
-    .cs_hero_badges {
-      display: none;
     }
 
     .cs_hero_btns {
@@ -739,7 +759,11 @@
 .cs_hero_style_5 {
   position: relative;
   overflow: hidden;
-  padding: 230px 0 0;
+  height: 100vh;
+  max-height: 1080px;
+  padding: 112px 0 0;
+  display: flex;
+  align-items: flex-end;
 
   .cs_hero_pattern {
     position: absolute;
@@ -751,6 +775,7 @@
   }
 
   .container {
+    height: 100%;
     position: relative;
     z-index: 1;
     max-width: 1644px;
@@ -758,7 +783,8 @@
 
   .cs_hero_in {
     width: 100%;
-    padding-bottom: 120px;
+    height: 100%;
+    padding: 120px 0;
     display: flex;
     gap: 30px;
     align-items: flex-start;
@@ -767,7 +793,7 @@
 
   .cs_hero_left {
     width: min(100%, 670px);
-    min-height: 730px;
+    height: 100%;
     position: relative;
     z-index: 1;
     display: flex;
@@ -804,6 +830,7 @@
   }
 
   .cs_hero_intro_text {
+    height: 100%;
     display: flex;
     gap: 24px;
     align-items: flex-start;
@@ -816,12 +843,16 @@
     bottom: 0;
     right: 0;
     width: 75%;
+    height: 100%;
+    max-width: 1112px;
+    display: flex;
+    align-items: flex-end;
 
     img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
     }
   }
 
@@ -847,7 +878,6 @@
   }
 
   .cs_hero_info_card_rating {
-    animation: cs_hero5_float 4s linear infinite;
 
     .cs_rating {
       font-size: 16px;
@@ -891,12 +921,6 @@
   }
 
   @media (max-width: 1600px) {
-    padding: 230px 0 0;
-
-    .cs_hero_left {
-      min-height: 520px;
-    }
-
     .cs_hero_image {
       width: 56%;
       right: 5%;
@@ -904,9 +928,6 @@
   }
 
   @media (max-width: 1440px) {
-    .cs_hero_left {
-      min-height: 560px;
-    }
 
     .cs_hero_image {
       width: 62%;
@@ -914,8 +935,10 @@
   }
 
   @media (max-width: 1399px) {
-    .cs_hero_left {
-      min-height: auto;
+    height: auto;
+
+    .cs_hero_in {
+      padding: 120px 0 120px;
     }
 
     .cs_hero_image {
@@ -972,8 +995,7 @@
     }
 
     .cs_hero_image {
-      width: 60%;
-      right: 0;
+      display: none;
     }
   }
 

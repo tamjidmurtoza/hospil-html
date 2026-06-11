@@ -306,3 +306,23 @@
     }
   }
 }
+
+.cs_accordians_style_3 {
+  @extend .cs_accordians_style_2;
+
+  .cs_accordian {
+    .cs_accordian_body {
+      width: min(100%, 580px);
+      padding-right: 45px;
+    }
+  }
+
+  @media (max-width:991px) {
+    .cs_accordian {
+      .cs_accordian_body {
+        width: 100%;
+        padding-right: 0;
+      }
+    }
+  }
+}

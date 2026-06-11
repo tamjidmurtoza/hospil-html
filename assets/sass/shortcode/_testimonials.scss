@@ -359,6 +359,11 @@
     display: flex;
     gap: 10px;
   }
+
+  @media (max-width: 991px) {
+    gap: 15px;
+    padding: 20px 15px;
+  }
 }
 
 /*====================================================
@@ -379,6 +384,11 @@
 
 .cs_testimonial_section_3 {
   padding: 120px 0;
+
+  .cs_controller_4 {
+    right: initial;
+    transform: translateX(0);
+  }
 
   @media (max-width: 991px) {
     padding: 60px 0;
@@ -461,7 +471,9 @@
 }
 
 .cs_testimonial_section_5 {
+  width: min(100%, 1920px);
   padding: 120px 0;
+  margin: 0 auto;
 
   @media (max-width: 991px) {
     padding: 70px 0;

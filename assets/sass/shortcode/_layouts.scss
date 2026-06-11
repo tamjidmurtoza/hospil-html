@@ -105,6 +105,8 @@
   }
 
   @media (max-width: 991px) {
+    min-height: auto;
+
     .cs_hero_feature_card {
       padding: 20px 15px;
 
@@ -116,19 +118,6 @@
   }
 }
 
-// .cs_feature_grid_1 {
-//   display: grid;
-//   gap: 24px;
-//   grid-template-columns: repeat(4, 1fr);
-
-//   @media (max-width:991px) {
-//     grid-template-columns: repeat(2, 1fr);
-//   }
-
-//   @media (max-width:575px) {
-//     grid-template-columns: repeat(1, 1fr);
-//   }
-// }
 /*=================================================
  Feature Cards
 ===================================================*/
@@ -673,8 +662,9 @@
 
 .cs_whychoose_section_2 {
   padding: 120px 0;
+  width: calc(100% - 24px);
+  max-width: 1872px;
   margin: 0 auto;
-  width: calc(100% - 48px);
 
   @media (max-width: 991px) {
     padding: 70px 0;
@@ -2828,6 +2818,14 @@
       position: absolute;
       left: 0;
       top: 5px;
+    }
+  }
+
+  @media (max-width:991px) {
+
+    .cs_event_highlight_list,
+    .cs_event_schedule_list {
+      gap: 12px;
     }
   }
 }

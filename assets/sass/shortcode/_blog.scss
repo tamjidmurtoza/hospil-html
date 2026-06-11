@@ -632,6 +632,12 @@
 .cs_blog_section_1 {
   padding: 120px 0;
 
+  .cs_section_heading_style_1 {
+    width: min(100%, 1096px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .cs_blog_shape_1 {
     left: 20px;
     bottom: -190px;
@@ -653,26 +659,6 @@
     }
   }
 }
-
-// .cs_blog_section_1 {
-//   padding: 120px 0;
-// }
-
-// .cs_blog_section_1 {
-//   padding: 120px 0;
-
-//   @media (max-width: 991px) {
-//     padding: 70px 0;
-//   }
-// }
-
-// .cs_blog_section_1 {
-//   padding: 120px 0;
-
-//   @media (max-width: 991px) {
-//     padding: 70px 0;
-//   }
-// }
 
 .cs_post_list {
   display: flex;

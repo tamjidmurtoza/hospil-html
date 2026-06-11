@@ -237,7 +237,6 @@
   }
 
   @media (min-width: 1400px) {
-
     .cs_header_btns_wrapper {
       .cs_search_btn {
         margin-right: 20px;
@@ -528,6 +527,12 @@
       width: 100px;
     }
 
+    .cs_header_btns_wrapper {
+      .cs_search_btn {
+        margin-right: 0;
+      }
+    }
+
     .cs_menu_toggle {
       top: 18px;
       right: 12px;
@@ -541,7 +546,6 @@
         margin-top: 7px;
       }
     }
-
 
     &.cs_style_2 {
       padding: 5px 0 0 !important;

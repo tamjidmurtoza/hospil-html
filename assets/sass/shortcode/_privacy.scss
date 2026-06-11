@@ -20,8 +20,6 @@
 ===============================================*/
 .cs_sidebar_style_1 {
   width: min(100%, 340px);
-  position: sticky;
-  top: 150px;
 
   .cs_policy_nav {
     display: flex;
@@ -51,9 +49,7 @@
 
   @media (max-width: 991px) {
     width: 100%;
-    position: static;
     top: 0;
-    padding: 24px 15px;
   }
 }
 
@@ -196,18 +192,14 @@
   padding: 30px;
 
   .cs_policy_contact_list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
 
     li {
       display: flex;
       align-items: center;
       gap: 14px;
-
-      &:not(:last-child) {
-        margin-bottom: 16px;
-      }
     }
 
     .cs_policy_contact_icon {

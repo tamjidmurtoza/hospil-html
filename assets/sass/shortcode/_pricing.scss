@@ -64,17 +64,33 @@
       }
     }
   }
+
+  @media (max-width: 991px) {
+    .cs_pricing_feature_list {
+      gap: 14px;
+    }
+  }
 }
 
 .cs_pricing_banner_wrap {
   .cs_ticker_container {
-    width: calc(100% - 30px);
+    width: min(100%, 670px);
     position: absolute;
     left: 0;
     bottom: 24px;
     padding-right: 40px;
     border-radius: 0 50px 50px 0;
-    background: rgba(19, 109, 244, 0.80);
+    background: rgba(19, 109, 244, 0.8);
+  }
+
+  .cs_ticker_content {
+    gap: 24px;
+  }
+
+  .cs_ticker_item {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: var(--secondary-font);
   }
 
   @media (min-width: 1650px) {
@@ -91,13 +107,13 @@
 .cs_pricing_section_1 {
   padding: 120px 0;
 
-  @media (min-width:992px) {
+  @media (min-width: 992px) {
     .container {
       max-width: 100%;
     }
   }
 
-  @media (max-width:991px) {
+  @media (max-width: 991px) {
     padding: 70px 0;
   }
 }
@@ -118,7 +134,7 @@
     margin: 0 auto 48px;
   }
 
-  @media (max-width:991px) {
+  @media (max-width: 991px) {
     padding: 70px 0;
 
     .cs_section_heading_style_1 {
@@ -251,12 +267,17 @@
     padding: 24px 15px;
 
     &.cs_type_1 {
-
       .cs_pricing_thumb {
         width: calc(100% + 32px);
         margin-left: -16px;
         margin-right: -16px;
       }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .cs_pricing_feature_list {
+      gap: 12px;
     }
   }
 }
@@ -325,7 +346,6 @@
   }
 }
 
-
 /*==========================================
  Other Pricing Feature
 ============================================*/
@@ -358,6 +378,10 @@
 
   &.cs_color_4 {
     background-color: #e4ddcd;
+  }
+
+  @media (max-width: 1199px) {
+    padding: 20px 15px;
   }
 }
 

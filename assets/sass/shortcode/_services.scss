@@ -346,27 +346,27 @@
   flex-direction: column;
 
   &.cs_color_1 {
-    background-color: #E4DDCD;
+    background-color: #e4ddcd;
   }
 
   &.cs_color_2 {
-    background-color: #BFD4CD;
+    background-color: #bfd4cd;
   }
 
   &.cs_color_3 {
-    background-color: #CECDDD;
+    background-color: #cecddd;
   }
 
   &.cs_color_4 {
-    background-color: #DBD5F7;
+    background-color: #dbd5f7;
   }
 
   &.cs_color_5 {
-    background-color: #D3E4FF;
+    background-color: #d3e4ff;
   }
 
   &.cs_color_6 {
-    background-color: #FFF6EB;
+    background-color: #fff6eb;
   }
 
   .cs_card_heading {
@@ -449,7 +449,13 @@
     }
   }
 
-  @media (max-width:575px) {
+  @media (max-width: 991px) {
+    .cs_service_features {
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 575px) {
     padding: 24px 15px;
     border-radius: 10px;
 
@@ -494,7 +500,9 @@
   padding: 24px 10px 10px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 
   .cs_card_body {
     padding-left: 14px;
@@ -643,8 +651,6 @@
       background-color: var(--accent-color);
 
       .cs_service_menu_icon {
-
-
         img {
           filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(105%) contrast(101%);
         }
@@ -654,7 +660,6 @@
         color: var(--white-color);
       }
     }
-
   }
 
   .cs_service_menu_icon {
@@ -733,7 +738,9 @@
     height: 50px;
     z-index: 2;
     padding: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
 
     >img {
       width: 14px;
@@ -879,7 +886,6 @@
   }
 
   .cs_service_note {
-
     a {
       text-decoration: underline;
 
@@ -900,7 +906,6 @@
 ==================================================================*/
 .cs_service_details_section {
   padding: 120px 0;
-
 
   @media (max-width: 991px) {
     padding: 70px 0;
@@ -995,6 +1000,10 @@
 
   @media (max-width: 991px) {
     margin-bottom: 40px;
+
+    .cs_service_features_list {
+      gap: 12px;
+    }
   }
 }
 
