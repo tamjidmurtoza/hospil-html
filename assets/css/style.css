@@ -4030,12 +4030,11 @@ label {
   height: 100%;
   max-width: 1112px;
   display: flex;
-  align-items: flex-end;
 }
 .cs_hero_style_5 .cs_hero_image img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -4111,7 +4110,7 @@ label {
     padding: 120px 0 120px;
   }
   .cs_hero_style_5 .cs_hero_image {
-    width: 55%;
+    width: 58%;
   }
 }
 @media (max-width: 1199px) {
