@@ -136,7 +136,6 @@
     }
 
     .swiper-pagination {
-
       .swiper-pagination-current {
         font-size: 32px;
       }
@@ -223,7 +222,7 @@
     }
   }
 
-  @media (max-width:575px) {
+  @media (max-width: 575px) {
 
     &::before,
     &::after {
@@ -266,7 +265,6 @@
     white-space: nowrap;
     min-width: 100%;
     gap: 50px;
-
   }
 
   .cs_ticker_content {
@@ -334,10 +332,8 @@
   flex-wrap: nowrap;
   flex: none;
   gap: 50px;
-  //min-width: 100%;
 
   .cs_ticker_item {
-    flex: none;
     display: flex;
     gap: 50px;
     text-shadow:
@@ -382,7 +378,6 @@
   }
 
   @media (max-width: 575px) {
-
     .cs_ticker_item {
       font-size: 32px;
     }

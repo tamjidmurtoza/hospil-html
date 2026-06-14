@@ -2599,7 +2599,6 @@ label {
 .cs_ticker_items_list .cs_ticker_item,
 .cs_ticker_text .cs_ticker_item,
 .cs_tech_items_list .cs_ticker_item {
-  flex: none;
   display: flex;
   gap: 50px;
   text-shadow: -1px -1px 0 rgba(31, 41, 55, 0.05), 1px -1px 0 rgba(31, 41, 55, 0.05), -1px 1px 0 rgba(31, 41, 55, 0.05), 1px 1px 0 rgba(31, 41, 55, 0.05), 0 2px 8px rgba(31, 41, 55, 0.15);
@@ -5799,6 +5798,9 @@ label {
 .cs_services_section_5 .cs_service_note a:hover {
   color: var(--accent-color);
   text-decoration: none;
+}
+.cs_services_section_5 .cs_controller_3 {
+  right: initial;
 }
 @media (max-width: 991px) {
   .cs_services_section_5 {
