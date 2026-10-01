@@ -24,14 +24,15 @@
       width: 100%;
       height: 1px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       bottom: 0;
       opacity: 0.4;
       background-color: rgba(134, 148, 167, 0.50);
     }
 
     .cs_accordian_head {
-      padding: 40px 20px 40px 74px;
+      padding-block: 40px 40px;
+      padding-inline: 74px 20px;
       position: relative;
       cursor: pointer;
     }
@@ -39,7 +40,7 @@
     .cs_accordian_icon {
       position: absolute;
       top: 30px;
-      left: 0;
+      inset-inline-start: 0;
     }
 
     .cs_accordian_toggler {
@@ -47,7 +48,7 @@
       height: 16px;
       position: absolute;
       top: 48px;
-      right: 0;
+      inset-inline-end: 0;
 
       img {
         transition: transform 0.3s ease;
@@ -75,7 +76,8 @@
   @media (max-width:991px) {
     .cs_accordian {
       .cs_accordian_head {
-        padding: 24px 20px 24px 66px;
+        padding-block: 24px 24px;
+        padding-inline: 66px 20px;
       }
 
       .cs_accordian_icon {
@@ -102,7 +104,8 @@
       }
 
       .cs_accordian_head {
-        padding: 24px 20px 24px 45px;
+        padding-block: 24px 24px;
+        padding-inline: 45px 20px;
       }
 
       .cs_accordian_icon {
@@ -128,7 +131,7 @@
     height: 140px;
     padding: 8px;
     position: absolute;
-    right: 30px;
+    inset-inline-end: 30px;
     bottom: 30px;
     display: flex;
     align-items: center;
@@ -159,7 +162,7 @@
     .cs_faq_badge {
       width: 120px;
       height: 120px;
-      right: 24px;
+      inset-inline-end: 24px;
       bottom: 24px;
     }
 
@@ -224,7 +227,7 @@
 
   .cs_faq_callout {
     position: absolute;
-    left: 24px;
+    inset-inline-start: 24px;
     bottom: 24px;
     z-index: 2;
     padding: 10px 20px;
@@ -255,7 +258,8 @@
     }
 
     .cs_accordian_head {
-      padding: 26px 50px 26px 0;
+      padding-block: 26px 26px;
+      padding-inline: 0 50px;
       cursor: pointer;
       border-bottom: 1px solid rgba(134, 148, 167, 0.20);
     }
@@ -265,7 +269,7 @@
       height: 35px;
       flex: none;
       position: absolute;
-      right: 0;
+      inset-inline-end: 0;
       top: 22px;
       background-color: var(--white-color);
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -313,7 +317,7 @@
   .cs_accordian {
     .cs_accordian_body {
       width: min(100%, 580px);
-      padding-right: 45px;
+      padding-inline-end: 45px;
     }
   }
 
@@ -321,7 +325,7 @@
     .cs_accordian {
       .cs_accordian_body {
         width: 100%;
-        padding-right: 0;
+        padding-inline-end: 0;
       }
     }
   }

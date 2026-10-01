@@ -408,6 +408,10 @@
     transition: inherit;
   }
 
+  img {
+    border-radius: 0;
+  }
+
   &::before,
   &::after {
     content: "";
@@ -562,7 +566,7 @@
   border: 2px solid var(--accent-color);
   border-radius: 50%;
   position: fixed;
-  right: 20px;
+  inset-inline-end: 20px;
   bottom: 40px;
   z-index: 9999;
   opacity: 0;
@@ -698,7 +702,7 @@
 
     span {
       position: absolute;
-      right: 0;
+      inset-inline-end: 0;
       bottom: calc(100% + 20px);
     }
 
@@ -708,9 +712,13 @@
       height: 4px;
       position: absolute;
       top: 50%;
-      right: 0;
+      inset-inline-end: 0;
       transform: translateY(-50%) rotate(-45deg);
       background-color: var(--primary-color);
+
+      @include rtl {
+        transform: translateY(-50%) rotate(45deg);
+      }
     }
   }
 }
@@ -727,7 +735,7 @@
     font-family: "Font Awesome 7 Free";
     position: absolute;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
   }
 }
 
@@ -747,7 +755,7 @@
   .cs_rating_percentage {
     position: absolute;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     height: 100%;
 
     &::before {

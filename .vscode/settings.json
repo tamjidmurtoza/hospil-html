@@ -1,0 +1,8 @@
+{
+  // Live Sass: only build this project's stylesheet. The .kilo worktree holds
+  // an old copy of the Sass partials that otherwise gets compiled in and
+  // overwrites the RTL (logical-property) styles on save.
+  "liveSassCompile.settings.includeItems": ["/assets/sass/style.scss"],
+  "liveSassCompile.settings.partialsList": ["/assets/sass/**/_*.s[ac]ss"],
+  "liveSassCompile.settings.excludeList": ["/**/node_modules/**", "/.vscode/**", "/.kilo/**"]
+}

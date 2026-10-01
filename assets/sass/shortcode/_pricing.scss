@@ -37,12 +37,12 @@
 
     li {
       position: relative;
-      padding-left: 26px;
+      padding-inline-start: 26px;
 
       img {
         width: 16px;
         position: absolute;
-        left: 0;
+        inset-inline-start: 0;
         top: 8px;
       }
     }
@@ -76,10 +76,13 @@
   .cs_ticker_container {
     width: min(100%, 670px);
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     bottom: 24px;
-    padding-right: 40px;
-    border-radius: 0 50px 50px 0;
+    padding-inline-end: 40px;
+    border-start-start-radius: 0;
+    border-start-end-radius: 50px;
+    border-end-end-radius: 50px;
+    border-end-start-radius: 0;
     background: rgba(19, 109, 244, 0.8);
   }
 
@@ -94,13 +97,13 @@
   }
 
   @media (min-width: 1650px) {
-    padding-right: 76px;
+    padding-inline-end: 76px;
   }
 }
 
 .cs_pricing_info_wrap {
   @media (min-width: 1650px) {
-    padding-left: 36px;
+    padding-inline-start: 36px;
   }
 }
 
@@ -119,7 +122,7 @@
 }
 
 .cs_pricing_shape_1 {
-  right: 0;
+  inset-inline-end: 0;
   bottom: 0;
 }
 
@@ -189,7 +192,7 @@
 
     li {
       position: relative;
-      padding-left: 26px;
+      padding-inline-start: 26px;
 
       span {
         display: inline-block;
@@ -199,7 +202,7 @@
         width: 16px;
         height: 16px;
         position: absolute;
-        left: 0;
+        inset-inline-start: 0;
         top: 5px;
       }
     }
@@ -227,8 +230,8 @@
     .cs_pricing_thumb {
       width: calc(100% + 50px);
       height: 150px;
-      margin-left: -25px;
-      margin-right: -25px;
+      margin-inline-start: -25px;
+      margin-inline-end: -25px;
       margin-top: -1px;
 
       img {
@@ -269,8 +272,8 @@
     &.cs_type_1 {
       .cs_pricing_thumb {
         width: calc(100% + 32px);
-        margin-left: -16px;
-        margin-right: -16px;
+        margin-inline-start: -16px;
+        margin-inline-end: -16px;
       }
     }
   }
@@ -319,6 +322,10 @@
       &:checked+.cs_pricing_slider {
         &::before {
           transform: translateX(41px);
+
+          @include rtl {
+            transform: translateX(-41px);
+          }
         }
       }
     }
@@ -337,7 +344,7 @@
       position: absolute;
       width: 28px;
       height: 28px;
-      left: 3px;
+      inset-inline-start: 3px;
       top: 3px;
       background-color: var(--white-color);
       border-radius: 50%;
@@ -416,7 +423,7 @@
   .cs_filter_btn {
     width: 100%;
     display: block;
-    text-align: left;
+    text-align: start;
     padding: 10px;
     border: 0;
     background-color: transparent;

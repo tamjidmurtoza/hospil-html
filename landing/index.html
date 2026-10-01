@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Laralink">
+  <meta name="description" content="Hospil - Healthcare & Medical HTML Template. 5 home demos, 35+ pages, RTL ready, built with Bootstrap 5, SASS and GSAP.">
+  <title>Hospil - Healthcare & Medical HTML Template | Laralink</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <img class="preloader-logo" src="img/logo.svg" width="190" height="50" alt="Hospil logo">
+      <div class="preloader-bar"><span></span></div>
+      <div class="preloader-count"><span class="js-count">0</span>%</div>
+    </div>
+  </div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#top" class="header-logo" aria-label="Hospil home"><img src="img/logo.svg" width="190" height="50" alt="Hospil"></a>
+      <nav class="nav" id="nav">
+        <a href="#demos">Demos</a>
+        <a href="#pages">Inner Pages</a>
+        <a href="#features">Features</a>
+        <a href="#rtl">RTL</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <a id="purchaseBtn" class="btn btn-primary btn-sm header-btn" data-purchase>
+          Purchase Now <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <!-- <a href="https://themeforest.net/checkout/115533873/payment_method" class="btn btn-primary btn-sm header-btn" data-purchase>Purchase Now <i class="fa-solid fa-arrow-right"></i></a> -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-grid"></div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge"><b>NEW</b> Healthcare &amp; Medical HTML Template</div>
+          <h1 class="hero-title">Build a <span class="pulse-word text-accent">healthcare<svg class="ecg" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path class="ecg-base" d="M0 18 H95 L108 18 L118 4 L130 28 L140 10 L148 18 H300" fill="none" stroke="#136DF4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path class="ecg-pulse" d="M0 18 H95 L108 18 L118 4 L130 28 L140 10 L148 18 H300" fill="none" stroke="#0B3FA8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg></span> website patients trust</h1>
+          <p class="hero-desc">Hospil is a modern, pixel-perfect HTML template for hospitals, clinics, pediatric, dental and eye care practices. 5 unique home demos, 35+ ready pages, full RTL support and buttery smooth GSAP animations.</p>
+          <div class="hero-btns">
+             <a href="https://laralink.com/product/hospil-medical-and-healthcare-template/" class="btn btn-primary btn-sm header-btn" data-purchase>Purchase Now <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#" target="_blank" class="btn btn-light magnetic">Documentation <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="hero-tech">
+            <span class="tech-pill"><i class="fa-brands fa-bootstrap"></i> Bootstrap 5</span>
+            <span class="tech-pill"><i class="fa-brands fa-html5"></i> HTML5</span>
+            <span class="tech-pill"><i class="fa-brands fa-sass"></i> SASS</span>
+            <span class="tech-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> GSAP</span>
+            <span class="tech-pill"><i class="fa-solid fa-language"></i> RTL Ready</span>
+          </div>
+        </div>
+        <div class="hero-stage">
+          <div class="hero-mockup" id="heroMockup">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><em>hospil-template.com</em></div>
+              <img src="img/hero-main.jpg" alt="Hospil homepage preview" width="1600" height="1000">
+            </div>
+            <div class="float-card f1" data-depth="1.4"><img src="img/hero-float-1.jpg" alt="Hospil dental clinic homepage on mobile" width="520" height="660"></div>
+            <div class="float-card f2" data-depth="1"><img src="img/hero-float-2.jpg" alt="Hospil eye care homepage on mobile" width="520" height="660"></div>
+            <div class="float-mobile" data-depth="1.8"><img src="img/hero-mobile.jpg" alt="Hospil hospital homepage on mobile" width="390" height="820"></div>
+            <div class="float-badge b1" data-depth="2.2">
+              <span class="ico"><i class="fa-solid fa-layer-group"></i></span>
+              <span><strong>35+ Pages</strong><small>Ready to use</small></span>
+            </div>
+            <div class="float-badge b2" data-depth="1.6">
+              <span class="ico"><i class="fa-solid fa-heart-pulse"></i></span>
+              <span><strong>5 Home Demos</strong><small>Unique layouts</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="strip" aria-hidden="true">
+        <div class="strip-track">
+          <div class="strip-group">
+            <span>Hospital</span><i class="fa-solid fa-star-of-life"></i>
+            <span>Clinic</span><i class="fa-solid fa-star-of-life"></i>
+            <span>Dental Care</span><i class="fa-solid fa-star-of-life"></i>
+            <span>Pediatrics</span><i class="fa-solid fa-star-of-life"></i>
+            <span>Eye Care</span><i class="fa-solid fa-star-of-life"></i>
+            <span>Emergency</span><i class="fa-solid fa-star-of-life"></i>
+            <span>Healthcare</span><i class="fa-solid fa-star-of-life"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Stats -->
+    <section class="section section-stats">
+      <div class="container">
+        <div class="stats">
+          <div class="stat" data-reveal>
+            <div class="stat-num"><span>0</span><span class="cs_counter" data-count-to="5" data-duration="2000">0</span></div>
+            <p>Unique Home Demos</p>
+          </div>
+          <div class="stat" data-reveal>
+            <div class="stat-num"><span class="cs_counter" data-count-to="35" data-duration="2000">0</span><sup>+</sup></div>
+            <p>Inner HTML Pages</p>
+          </div>
+          <div class="stat" data-reveal>
+            <div class="stat-num"><span class="cs_counter" data-count-to="100" data-duration="2000">0</span><sup>%</sup></div>
+            <p>Fully Responsive</p>
+          </div>
+          <div class="stat" data-reveal>
+            <div class="stat-num"><span>0</span><span class="cs_counter" data-count-to="2" data-duration="2000">0</span><sup>x</sup></div>
+            <p>LTR &amp; RTL Directions</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Demos -->
+    <section class="section demos" id="demos">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> Home Demos</span>
+          <h2 class="sec-title" data-split>Stunning homepages, <span class="text-accent">ready to launch</span></h2>
+          <p class="sec-desc" data-reveal>Pick a demo, swap your content and go live. Hover a preview to scroll through the full page.</p>
+        </div>
+        <div class="demo-grid">
+          <a href="../index.html" target="_blank" class="demo-card" data-reveal>
+            <div class="demo-frame">
+              <span class="demo-tag">Popular</span>
+              <div class="demo-shot"><img src="img/demo-1.jpg" alt="Home version 01 preview" loading="lazy" width="720" height="6360">
+                <div class="demo-overlay"><span>View Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></span></div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <div>
+                <h3>Home Version 01</h3><small>Multi-specialty Hospital</small>
+              </div><span class="demo-no">01</span>
+            </div>
+          </a>
+          <a href="../home-v2.html" target="_blank" class="demo-card" data-reveal>
+            <div class="demo-frame">
+              <div class="demo-shot"><img src="img/demo-2.jpg" alt="Home version 02 preview" loading="lazy" width="720" height="6091">
+                <div class="demo-overlay"><span>View Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></span></div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <div>
+                <h3>Home Version 02</h3><small>Healthcare Center</small>
+              </div><span class="demo-no">02</span>
+            </div>
+          </a>
+          <a href="../home-v3.html" target="_blank" class="demo-card" data-reveal>
+            <div class="demo-frame">
+              <div class="demo-shot"><img src="img/demo-3.jpg" alt="Home version 03 preview" loading="lazy" width="720" height="6458">
+                <div class="demo-overlay"><span>View Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></span></div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <div>
+                <h3>Home Version 03</h3><small>Pediatric Care</small>
+              </div><span class="demo-no">03</span>
+            </div>
+          </a>
+          <a href="../home-v4.html" target="_blank" class="demo-card" data-reveal>
+            <div class="demo-frame">
+              <div class="demo-shot"><img src="img/demo-4.jpg" alt="Home version 04 preview" loading="lazy" width="720" height="7195">
+                <div class="demo-overlay"><span>View Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></span></div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <div>
+                <h3>Home Version 04</h3><small>Dental Clinic</small>
+              </div><span class="demo-no">04</span>
+            </div>
+          </a>
+          <a href="../home-v5.html" target="_blank" class="demo-card" data-reveal>
+            <div class="demo-frame">
+              <span class="demo-tag">New</span>
+              <div class="demo-shot"><img src="img/demo-5.jpg" alt="Home version 05 preview" loading="lazy" width="720" height="6341">
+                <div class="demo-overlay"><span>View Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></span></div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <div>
+                <h3>Home Version 05</h3><small>Eye Care Clinic</small>
+              </div><span class="demo-no">05</span>
+            </div>
+          </a>
+          <div class="demo-card demo-soon" data-reveal>
+            <div class="demo-frame">
+              <div class="demo-shot">
+                <div>
+                  <div class="soon-ico"><i class="fa-solid fa-plus"></i></div>
+                  <h4>More Demos Coming</h4>
+                  <p>Free lifetime updates with new layouts</p>
+                </div>
+              </div>
+            </div>
+            <div class="demo-meta">
+              <div>
+                <h3>Coming Soon</h3><small>Stay tuned</small>
+              </div><span class="demo-no">06</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Inner pages -->
+    <section class="section pages" id="pages">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> Inner Pages</span>
+          <h2 class="sec-title" data-split>35+ crafted <span class="text-accent">inner pages</span></h2>
+          <p class="sec-desc" data-reveal>Doctors, appointments, pricing, shop, blog, events and more. Everything a medical website needs, already designed.</p>
+        </div>
+      </div>
+      <div class="page-rows">
+        <div class="page-row" data-dir="-1">
+          <div class="page-group">
+            <a class="page-item" href="../about-us.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/about-us.jpg" width="720" height="700" alt="About Us page" loading="lazy"></div></div>
+              <h4>About Us</h4>
+            </a>
+            <a class="page-item" href="../services.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/services.jpg" width="720" height="700" alt="Services page" loading="lazy"></div></div>
+              <h4>Services</h4>
+            </a>
+            <a class="page-item" href="../service-details.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/service-details.jpg" width="720" height="700" alt="Service Details page" loading="lazy"></div></div>
+              <h4>Service Details</h4>
+            </a>
+            <a class="page-item" href="../doctors.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/doctors.jpg" width="720" height="700" alt="Doctors page" loading="lazy"></div></div>
+              <h4>Doctors</h4>
+            </a>
+            <a class="page-item" href="../doctor-details.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/doctor-details.jpg" width="720" height="700" alt="Doctor Profile page" loading="lazy"></div></div>
+              <h4>Doctor Profile</h4>
+            </a>
+            <a class="page-item" href="../appointment.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/appointment.jpg" width="720" height="700" alt="Appointment page" loading="lazy"></div></div>
+              <h4>Appointment</h4>
+            </a>
+            <a class="page-item" href="../event.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/event.jpg" width="720" height="700" alt="Our Events page" loading="lazy"></div></div>
+              <h4>Our Events</h4>
+            </a>
+            <a class="page-item" href="../event-details.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/event-details.jpg" width="720" height="700" alt="Event Details page" loading="lazy"></div></div>
+              <h4>Event Details</h4>
+            </a>
+            <a class="page-item" href="../packages.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/packages.jpg" width="720" height="700" alt="Our Packages page" loading="lazy"></div></div>
+              <h4>Our Packages</h4>
+            </a>
+            <a class="page-item" href="../facilities.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/facilities.jpg" width="720" height="700" alt="Our Facilities page" loading="lazy"></div></div>
+              <h4>Our Facilities</h4>
+            </a>
+            <a class="page-item" href="../pricing.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/pricing.jpg" width="720" height="700" alt="Pricing Plan page" loading="lazy"></div></div>
+              <h4>Pricing Plan</h4>
+            </a>
+            <a class="page-item" href="../patient-resource.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/patient-resource.jpg" width="720" height="700" alt="Patient Resource page" loading="lazy"></div></div>
+              <h4>Patient Resource</h4>
+            </a>
+            <a class="page-item" href="../testimonials.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/testimonials.jpg" width="720" height="700" alt="Testimonials page" loading="lazy"></div></div>
+              <h4>Testimonials</h4>
+            </a>
+            <a class="page-item" href="../faq.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/faq.jpg" width="720" height="700" alt="FAQ page" loading="lazy"></div></div>
+              <h4>FAQ</h4>
+            </a>
+          </div>
+        </div>
+        <div class="page-row" data-dir="1">
+          <div class="page-group">
+            <a class="page-item" href="../career.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/career.jpg" width="720" height="700" alt="Careers page" loading="lazy"></div></div>
+              <h4>Careers</h4>
+            </a>
+            <a class="page-item" href="../contact-us.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/contact-us.jpg" width="720" height="700" alt="Contact Us page" loading="lazy"></div></div>
+              <h4>Contact Us</h4>
+            </a>
+            <a class="page-item" href="../location.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/location.jpg" width="720" height="700" alt="Location page" loading="lazy"></div></div>
+              <h4>Location</h4>
+            </a>
+            <a class="page-item" href="../blog.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/blog.jpg" width="720" height="700" alt="Blog page" loading="lazy"></div></div>
+              <h4>Blog</h4>
+            </a>
+            <a class="page-item" href="../blog-sidebar.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/blog-sidebar.jpg" width="720" height="700" alt="Blog with Sidebar page" loading="lazy"></div></div>
+              <h4>Blog with Sidebar</h4>
+            </a>
+            <a class="page-item" href="../blog-details.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/blog-details.jpg" width="720" height="700" alt="Blog Details page" loading="lazy"></div></div>
+              <h4>Blog Details</h4>
+            </a>
+            <a class="page-item" href="../shop.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/shop.jpg" width="720" height="700" alt="Medical Shop page" loading="lazy"></div></div>
+              <h4>Medical Shop</h4>
+            </a>
+            <a class="page-item" href="../shop-details.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/shop-details.jpg" width="720" height="700" alt="Product Details page" loading="lazy"></div></div>
+              <h4>Product Details</h4>
+            </a>
+            <a class="page-item" href="../cart.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/cart.jpg" width="720" height="700" alt="Shopping Cart page" loading="lazy"></div></div>
+              <h4>Shopping Cart</h4>
+            </a>
+            <a class="page-item" href="../login.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/login.jpg" width="720" height="700" alt="Account Login page" loading="lazy"></div></div>
+              <h4>Account Login</h4>
+            </a>
+            <a class="page-item" href="../register.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/register.jpg" width="720" height="700" alt="Account Register page" loading="lazy"></div></div>
+              <h4>Account Register</h4>
+            </a>
+            <a class="page-item" href="../password.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/password.jpg" width="720" height="700" alt="Change Password page" loading="lazy"></div></div>
+              <h4>Change Password</h4>
+            </a>
+            <a class="page-item" href="../term-condition.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/term-condition.jpg" width="720" height="700" alt="Terms &amp; Conditions page" loading="lazy"></div></div>
+              <h4>Terms &amp; Conditions</h4>
+            </a>
+            <a class="page-item" href="../privacy-policy.html" target="_blank">
+              <div class="page-thumb"><div class="page-shot"><img src="img/pages/privacy-policy.jpg" width="720" height="700" alt="Privacy Policy page" loading="lazy"></div></div>
+              <h4>Privacy Policy</h4>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container pages-cta" data-reveal>
+        <a href="../index.html" target="_blank" class="btn btn-primary magnetic">Browse All Pages <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+    <!-- Features -->
+    <section class="section features" id="features">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> Core Features</span>
+          <h2 class="sec-title" data-split>Everything you need, <span class="text-accent">nothing you don't</span></h2>
+          <p class="sec-desc" data-reveal>Clean, well-organized code with modern tooling so you can customize fast and ship with confidence.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-mobile-screen"></i></div>
+            <h3>Fully Responsive</h3>
+            <p>Looks sharp on every screen, from large desktops to the smallest phones.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-language"></i></div>
+            <h3>RTL Support</h3>
+            <p>Switch direction instantly for Arabic, Hebrew, Urdu and Persian audiences.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-brands fa-bootstrap"></i></div>
+            <h3>Bootstrap 5.3</h3>
+            <p>Built on the latest Bootstrap grid and utilities, with no jQuery dependency for layout.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-brands fa-sass"></i></div>
+            <h3>SASS Source</h3>
+            <p>Modular SCSS partials and CSS variables make re-branding a breeze.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3>GSAP Animations</h3>
+            <p>Smooth, performant scroll and text animations powered by GSAP.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-water"></i></div>
+            <h3>Smooth Scrolling</h3>
+            <p>Lenis smooth scroll gives every page a premium, fluid feel.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-regular fa-calendar-check"></i></div>
+            <h3>Appointment Booking</h3>
+            <p>Ready-made booking forms with date pickers and custom selects.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-cart-shopping"></i></div>
+            <h3>Medical Shop</h3>
+            <p>Shop, product details, cart and checkout pages included.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-user-doctor"></i></div>
+            <h3>Doctor Profiles</h3>
+            <p>Showcase your team with listing and detailed profile layouts.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-sliders"></i></div>
+            <h3>Swiper Sliders</h3>
+            <p>Touch-friendly sliders for testimonials, partners and galleries.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-code"></i></div>
+            <h3>Clean Code</h3>
+            <p>Semantic, well-commented HTML that is easy to read and extend.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <div class="feature-ico"><i class="fa-solid fa-headset"></i></div>
+            <h3>Dedicated Support</h3>
+            <p>Friendly support and free updates whenever you need help.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- RTL -->
+    <section class="section" id="rtl">
+      <div class="container rtl-wrap">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> RTL Ready</span>
+          <h2 class="sec-title" data-split>Speak to every patient, <span class="text-accent">in any direction</span></h2>
+          <p class="sec-desc" data-reveal>Every page is mirrored with logical CSS properties, so right-to-left layouts look as polished as left-to-right. Drag the slider to compare.</p>
+          <ul class="check-list">
+            <li data-reveal><i class="fa-solid fa-check"></i> One-click LTR / RTL switching</li>
+            <li data-reveal><i class="fa-solid fa-check"></i> Arabic-friendly Cairo font included</li>
+            <li data-reveal><i class="fa-solid fa-check"></i> Mirrored sliders, icons and animations</li>
+          </ul>
+          <div class="rtl-btns" data-reveal>
+            <a href="../home-v2.html?dir=ltr" target="_blank" class="btn btn-light btn-sm">View Default</a>
+            <a href="../home-v2.html?dir=rtl" target="_blank" class="btn btn-primary btn-sm">View RTL <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="compare" id="compare" data-reveal>
+          <div class="compare-layer">
+            <img src="img/rtl-rtl.jpg" width="1400" height="880" alt="RTL layout preview" loading="lazy">
+            <span class="compare-label r">RTL</span>
+          </div>
+          <div class="compare-layer top">
+            <img src="img/rtl-ltr.jpg" width="1400" height="880" alt="LTR layout preview" loading="lazy">
+            <span class="compare-label l">LTR</span>
+          </div>
+          <div class="compare-handle"><span><i class="fa-solid fa-arrows-left-right"></i></span></div>
+        </div>
+      </div>
+    </section>
+    <!-- Responsive -->
+    <section class="section devices" id="responsive">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> Pixel Perfect</span>
+          <h2 class="sec-title" data-split>Beautiful on <span class="text-accent">every device</span></h2>
+          <p class="sec-desc" data-reveal>Carefully tuned breakpoints keep content readable and bookings easy on any screen size.</p>
+        </div>
+        <div class="device-stage" id="deviceStage">
+          <div class="dev-desktop">
+            <div class="screen"><img src="img/device-desktop.jpg" width="1440" height="900" alt="Desktop preview" loading="lazy"></div>
+            <div class="stand"></div>
+            <div class="base"></div>
+          </div>
+          <div class="dev-tablet"><img src="img/device-tablet.jpg" width="820" height="1100" alt="Tablet preview" loading="lazy"></div>
+          <div class="dev-mobile"><img src="img/device-mobile.jpg" width="390" height="844" alt="Mobile preview" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+    <!-- Pricing -->
+    <section class="section pricing" id="pricing">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> Pricing</span>
+          <h2 class="sec-title" data-split>Choose the Plan That's <span class="text-accent">Right for You</span></h2>
+          <p class="sec-desc" data-reveal>One-time purchase, lifetime updates. Pick the license that fits your project.</p>
+        </div>
+        <div class="price-grid">
+          <div class="price-card" data-reveal>
+            <h3 class="price-name">Regular License</h3>
+            <div class="price-amount"><sup>$</sup>35</div>
+            <p class="price-desc">You or one client can use it in a <strong>single end product</strong> for which end users are <strong>not charged</strong>. The total price includes a buyer fee and the item price.</p>
+            <a href="https://laralink.com/product/hospil-medical-and-healthcare-template/" class="btn btn-light price-btn" data-purchase>Buy Now <i class="fa-solid fa-arrow-right"></i></a>
+            <h4 class="price-label">Included features:</h4>
+            <ul class="check-list price-list">
+              <li><i class="fa-solid fa-check"></i> One Time Purchase</li>
+              <li><i class="fa-solid fa-check"></i> Free Lifetime Access to Future Updates</li>
+              <li><i class="fa-solid fa-check"></i> 6 Months of Support from Laralink</li>
+              <li><i class="fa-solid fa-check"></i> Quality Checked by Envato</li>
+            </ul>
+          </div>
+          <div class="price-card is-popular" data-reveal>
+            <span class="price-badge"><i class="fa-solid fa-star"></i> Most Popular</span>
+            <h3 class="price-name">Extended License</h3>
+            <div class="price-amount"><sup>$</sup>999</div>
+            <p class="price-desc">You or one client can use it for a <strong>single end product</strong> for which end users <strong>can be charged</strong>. The total price includes a buyer fee and the item price.</p>
+            <a href="https://laralink.com/product/hospil-medical-and-healthcare-template/" class="btn btn-primary price-btn" data-purchase>Buy Now <i class="fa-solid fa-arrow-right"></i></a>
+            <h4 class="price-label">Included features:</h4>
+            <ul class="check-list price-list">
+              <li><i class="fa-solid fa-check"></i> One Time Purchase</li>
+              <li><i class="fa-solid fa-check"></i> Free Lifetime Access to Future Updates</li>
+              <li><i class="fa-solid fa-check"></i> 6 Months of Support from Laralink</li>
+              <li><i class="fa-solid fa-check"></i> Quality Checked by Envato</li>
+            </ul>
+          </div>
+          <div class="price-card price-custom" data-reveal>
+            <h3 class="price-name">Custom License</h3>
+            <p class="price-desc">If a custom license is necessary for your business model, contact us to discuss it.</p>
+            <a href="mailto:support@laralink.com" class="btn btn-light price-btn">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="custom-visual" aria-hidden="true">
+              <span class="cv-ring cv-ring-1"></span>
+              <span class="cv-ring cv-ring-2"></span>
+              <span class="cv-core"><i class="fa-solid fa-headset"></i></span>
+              <span class="cv-chip cv-chip-1"><i class="fa-solid fa-envelope"></i></span>
+              <span class="cv-chip cv-chip-2"><i class="fa-solid fa-comments"></i></span>
+              <span class="cv-chip cv-chip-3"><i class="fa-solid fa-file-signature"></i></span>
+              <span class="cv-chip cv-chip-4"><i class="fa-solid fa-handshake"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow" data-reveal><span class="dot"></span> FAQ</span>
+          <h2 class="sec-title" data-split>Got Questions? We have  <span class="text-accent">Got Answers</span></h2>
+          <p class="sec-desc" data-reveal>Can't find what you're looking for? Contact our team. <a href="mailto:support@laralink.com" class="text-accent"><strong>contact us</strong></a>.</p>
+        </div>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item" data-reveal>
+            <button class="faq-q" type="button" aria-expanded="false">Is there a fee for each upgrade? <span class="faq-ico"></span></button>
+            <div class="faq-a">
+              <div>
+                <p>No. Once you purchase Hospil, every future update is free for life. Just download the latest version from your Envato downloads page.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item" data-reveal>
+            <button class="faq-q" type="button" aria-expanded="false">What is the Regular license? <span class="faq-ico"></span></button>
+            <div class="faq-a">
+              <div>
+                <p>The Regular license lets you or one client use the template in a single end product for which end users are not charged, such as a clinic or hospital website.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item" data-reveal>
+            <button class="faq-q" type="button" aria-expanded="false">What is the Extended license? <span class="faq-ico"></span></button>
+            <div class="faq-a">
+              <div>
+                <p>The Extended license lets you or one client use the template in a single end product for which end users can be charged, such as a paid SaaS or subscription platform.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item" data-reveal>
+            <button class="faq-q" type="button" aria-expanded="false">What should I do if I need a custom license for multiple websites? <span class="faq-ico"></span></button>
+            <div class="faq-a">
+              <div>
+                <p>Get in touch with us and describe your project. We'll put together a custom license that covers all the websites you need.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item is-open" data-reveal>
+            <button class="faq-q" type="button" aria-expanded="true">Can one Regular or Extended license be used for multiple applications? <span class="faq-ico"></span></button>
+            <div class="faq-a">
+              <div>
+                <p>Regular and Extended licenses are limited to one product each. A single license cannot be used for multiple applications; each product requires its own license.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA -->
+    <section class="section section-cta">
+      <div class="container">
+        <div class="cta" id="cta">
+          <div class="cta-bg" aria-hidden="true">
+            <span class="cta-blob cta-blob-1"></span>
+            <span class="cta-blob cta-blob-2"></span>
+            <span class="cta-blob cta-blob-3"></span>
+            <span class="cta-grid"></span>
+            <span class="cta-spot"></span>
+            <span class="ring ring-1"></span>
+            <span class="ring ring-2"></span>
+            <span class="ring ring-3"></span>
+            <span class="ring ring-4"></span>
+          </div>
+          <div class="cta-inner">
+            <span class="eyebrow cta-eyebrow" data-reveal><span class="dot"></span> Get started today</span>
+            <h2 class="sec-title" data-split>Ready to launch your <span class="cta-grad">medical website?</span></h2>
+            <p class="sec-desc" data-reveal>Get Hospil today and give your patients the modern, trustworthy experience they deserve.</p>
+            <div class="hero-btns" data-reveal>
+              <a href="https://laralink.com/product/hospil-medical-and-healthcare-template/" class="btn btn-white cta-btn-main magnetic" data-purchase>Purchase Now <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="#demos" class="btn btn-light magnetic">View Demos</a>
+            </div>
+            <ul class="cta-trust" data-reveal>
+              <li><i class="fa-solid fa-circle-check"></i> 5 Home Demos</li>
+              <li><i class="fa-solid fa-circle-check"></i> Fully Responsive</li>
+              <li><i class="fa-solid fa-circle-check"></i> SASS Source Included</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+ <!-- Elite author -->
+    <section class="section elite" id="elite">
+      <div class="container elite-wrap">
+        <div class="elite-content">
+          <div class="elite-badge" data-reveal aria-hidden="true">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <h2 class="sec-title" data-split>A template created by Envato <span class="text-accent">Elite Author</span></h2>
+          <p class="sec-desc" data-reveal>Hospil is crafted by Laralink, a proud Envato Elite Author trusted by thousands of hospitals, clinics and healthcare professionals worldwide.</p>
+          <div class="rtl-btns" data-reveal>
+            <a href="https://themeforest.net/user/laralink/portfolio" target="_blank" class="btn btn-primary magnetic">View Portfolio <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="elite-visual" data-reveal aria-hidden="true">
+          <span class="ev-ring ev-ring-1"></span>
+          <span class="ev-ring ev-ring-2"></span>
+          <span class="ev-ring ev-ring-3"></span>
+          <div class="ev-core"><i class="fa-solid fa-thumbs-up"></i></div>
+          <span class="ev-star ev-star-1"><i class="fa-solid fa-star"></i></span>
+          <span class="ev-star ev-star-2"><i class="fa-solid fa-star"></i></span>
+          <span class="ev-star ev-star-3"><i class="fa-solid fa-star"></i></span>
+          <div class="ev-card ev-card-1">
+            <span class="ico"><i class="fa-solid fa-crown"></i></span>
+            <div><strong>Elite Author</strong><small>Envato Market</small></div>
+          </div>
+          <div class="ev-card ev-card-2">
+            <div class="ev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <small>Top rated by customers</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  <script src="../assets/js/gsap.min.js"></script>
+  <script src="../assets/js/ScrollTrigger.min.js"></script>
+  <script src="../assets/js/SplitText.min.js"></script>
+  <script src="../assets/js/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+     //User Id Collection from TF
+ function userIdCollect(){
+   const userId = "115533873";
+  document.getElementById("purchaseBtn").href =
+    `https://themeforest.net/checkout/${userId}/payment_method`;
+ }
+ userIdCollect()
+  </script>
+</body>
+</html>

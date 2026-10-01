@@ -15,7 +15,7 @@
   .cs_login_brand {
     width: 100%;
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     top: 48px;
   }
 
@@ -34,7 +34,7 @@
 .cs_login_form_wrap {
   width: min(100%, 536px);
   height: 100%;
-  margin-left: auto;
+  margin-inline-start: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

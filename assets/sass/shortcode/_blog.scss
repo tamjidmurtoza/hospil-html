@@ -23,7 +23,7 @@
     display: inline-block;
     position: absolute;
     top: 20px;
-    left: 20px;
+    inset-inline-start: 20px;
     padding: 5px 10px;
     border-radius: 30px;
     background-color: var(--gray3-color);
@@ -33,7 +33,7 @@
     display: inline-block;
     position: absolute;
     top: 24px;
-    left: 24px;
+    inset-inline-start: 24px;
     z-index: 3;
     padding: 6px 14px;
     border-radius: 30px;
@@ -298,7 +298,7 @@
       content: "";
       position: absolute;
       top: 0;
-      left: -100%;
+      inset-inline-start: -100%;
       width: 40%;
       height: 100%;
       background: linear-gradient(120deg,
@@ -308,7 +308,15 @@
       transform: skewX(-45deg);
       z-index: 2;
       pointer-events: none;
-      transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.55);
+      transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.55), right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.55);
+
+      @include rtl {
+        background: linear-gradient(240deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.15) 50%,
+            rgba(255, 255, 255, 0) 100%);
+        transform: skewX(45deg);
+      }
     }
   }
 
@@ -316,7 +324,7 @@
     width: 100px;
     position: absolute;
     top: 24px;
-    left: 24px;
+    inset-inline-start: 24px;
     z-index: 3;
     line-height: 1em;
     padding: 8px 30px 13px;
@@ -387,7 +395,7 @@
       }
 
       &::after {
-        left: 200%;
+        inset-inline-start: 200%;
       }
     }
   }
@@ -634,19 +642,19 @@
 
   .cs_section_heading_style_1 {
     width: min(100%, 1096px);
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
   }
 
   .cs_blog_shape_1 {
-    left: 20px;
+    inset-inline-start: 20px;
     bottom: -190px;
     filter: blur(50px);
   }
 
   @media (max-width: 1399px) {
     .cs_blog_shape_1 {
-      left: -190px;
+      inset-inline-start: -190px;
       bottom: -300px;
     }
   }
@@ -717,7 +725,7 @@
     .cs_post_date {
       position: absolute;
       top: 20px;
-      left: 20px;
+      inset-inline-start: 20px;
       z-index: 1;
       padding: 5px 30px 12px;
       flex-direction: column;
@@ -791,7 +799,7 @@
     flex-direction: column;
 
     li {
-      padding-left: 26px;
+      padding-inline-start: 26px;
       position: relative;
     }
 
@@ -799,7 +807,7 @@
       width: 16px;
       height: 16px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 6px;
     }
   }
@@ -827,7 +835,7 @@
 
     .cs_blog_quote_icon {
       position: absolute;
-      right: 24px;
+      inset-inline-end: 24px;
       bottom: 15px;
       width: 80px;
       height: 80px;
@@ -944,7 +952,7 @@
       }
 
       &.cs_post_nav_next {
-        text-align: right;
+        text-align: end;
 
         .cs_post_nav_label {
           justify-content: flex-end;

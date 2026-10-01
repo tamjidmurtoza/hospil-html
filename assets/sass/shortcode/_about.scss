@@ -8,6 +8,10 @@
     width: calc(100% + 40px);
     transform: translateX(-150px);
 
+    @include rtl {
+      transform: translateX(150px);
+    }
+
     img {
       width: 100%;
     }
@@ -17,7 +21,7 @@
     width: 238px;
     position: absolute;
     bottom: 24px;
-    left: 24px;
+    inset-inline-start: 24px;
     padding: 20px;
 
     .cs_rating_text {
@@ -56,7 +60,7 @@
   }
 
   .cs_about_text {
-    padding-left: 100px;
+    padding-inline-start: 100px;
   }
 
   .cs_about_desc {
@@ -99,11 +103,11 @@
     width: 50px;
     height: 50px;
     flex: none;
-    margin-left: -10px;
+    margin-inline-start: -10px;
     border: 2px solid var(--white-color);
 
     &:first-child {
-      margin-left: 0;
+      margin-inline-start: 0;
     }
 
     img {
@@ -124,13 +128,13 @@
         height: 68px;
         position: absolute;
         top: 50%;
-        right: 0;
+        inset-inline-end: 0;
         transform: translateY(-50%);
         background-color: rgba(134, 148, 167, 0.50);
       }
 
       &:last-child {
-        margin-left: auto;
+        margin-inline-start: auto;
 
         &::after {
           display: none;
@@ -142,10 +146,14 @@
   @media (max-width:1650px) {
     .cs_about_img {
       transform: translateX(-80px);
+
+      @include rtl {
+        transform: translateX(80px);
+      }
     }
 
     .cs_about_text {
-      padding-left: 60px;
+      padding-inline-start: 60px;
     }
   }
 
@@ -153,6 +161,10 @@
     .cs_about_img {
       width: calc(100% + 12px);
       transform: translateX(-30px);
+
+      @include rtl {
+        transform: translateX(30px);
+      }
     }
   }
 
@@ -160,10 +172,14 @@
     .cs_about_img {
       width: 100%;
       transform: translateX(0);
+
+      @include rtl {
+        transform: translateX(0);
+      }
     }
 
     .cs_about_text {
-      padding-left: 0;
+      padding-inline-start: 0;
     }
 
     .cs_about_desc,
@@ -183,7 +199,7 @@
 
       .cs_funfact_item {
         &:last-child {
-          margin-left: 0;
+          margin-inline-start: 0;
         }
 
         &::after {
@@ -206,7 +222,7 @@
   padding: 120px 0;
 
   .cs_about_content {
-    padding-left: 112px;
+    padding-inline-start: 112px;
   }
 
   .cs_about_img {
@@ -241,7 +257,7 @@
 
     .cs_quote_icon {
       position: absolute;
-      right: 30px;
+      inset-inline-end: 30px;
       bottom: 30px;
       border-radius: 0;
     }
@@ -271,14 +287,14 @@
 
   .cs_about_shape_1 {
     top: -200px;
-    right: 0;
+    inset-inline-end: 0;
     filter: blur(50px);
     z-index: -1;
   }
 
   @media (max-width:1399px) {
     .cs_about_content {
-      padding-left: 0;
+      padding-inline-start: 0;
     }
   }
 
@@ -309,7 +325,7 @@
       }
 
       .cs_quote_icon {
-        right: 15px;
+        inset-inline-end: 15px;
         bottom: 15px;
       }
     }
@@ -371,7 +387,7 @@
     width: calc(100% - 48px);
     max-width: 563px;
     position: absolute;
-    left: 24px;
+    inset-inline-start: 24px;
     bottom: 24px;
     z-index: 2;
     display: grid;
@@ -394,13 +410,13 @@
       height: 68px;
       position: absolute;
       top: 50%;
-      right: 0;
+      inset-inline-end: 0;
       transform: translateY(-50%);
       background: rgba(255, 255, 255, 0.60);
     }
 
     &:last-child {
-      margin-left: auto;
+      margin-inline-start: auto;
 
       &::after {
         display: none;
@@ -523,7 +539,7 @@
 
     .cs_funfact_item {
       &:last-child {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
 
       &::after {
@@ -554,7 +570,7 @@
     gap: 20px;
 
     li {
-      padding-left: 34px;
+      padding-inline-start: 34px;
       position: relative;
     }
 
@@ -562,7 +578,7 @@
       width: 24px;
       height: 24px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 0;
     }
   }
@@ -581,7 +597,7 @@
 
   .cs_experience_badge {
     position: absolute;
-    right: 24px;
+    inset-inline-end: 24px;
     bottom: 24px;
     padding: 15px 30px;
     background-color: rgba(19, 109, 244, 0.70);
@@ -594,7 +610,7 @@
   }
 
   .cs_about_content {
-    padding-left: 110px;
+    padding-inline-start: 110px;
   }
 
   .cs_about_desc {
@@ -663,7 +679,7 @@
 
   @media (max-width: 1399px) {
     .cs_about_content {
-      padding-left: 0;
+      padding-inline-start: 0;
     }
   }
 
@@ -695,7 +711,7 @@
     }
 
     .cs_experience_badge {
-      right: 16px;
+      inset-inline-end: 16px;
       bottom: 16px;
       padding: 14px 18px;
     }
@@ -703,7 +719,7 @@
     .cs_about_recognition {
       flex-direction: column;
       align-items: flex-start;
-      text-align: left;
+      text-align: start;
     }
   }
 }
@@ -754,7 +770,7 @@
 
   .cs_about_desc {
     width: 59%;
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 
   .cs_accredited_badge {
@@ -763,7 +779,7 @@
     padding: 10px;
     position: absolute;
     top: -70px;
-    left: -82px;
+    inset-inline-start: -82px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -860,7 +876,7 @@
       width: 110px;
       height: 110px;
       top: -40px;
-      left: -67px;
+      inset-inline-start: -67px;
     }
 
     .cs_call_btn {
@@ -875,7 +891,7 @@
     }
 
     .cs_card_icon {
-      margin-left: 0;
+      margin-inline-start: 0;
     }
   }
 }

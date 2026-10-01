@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Shop Details - Hospil | Healthcare & Medical HTML Template | Laralink</title>
     <meta name="description" content="Hospil - A professional healthcare and medical HTML website template by Laralink.">
-    <meta name="keywords" content="hospital, healthcare, medical, clinic, doctor, template, hospil, medical accessories, mediacl shop, medical store, pharmacy">
+    <meta name="keywords" content="hospital, healthcare, medical, clinic, doctor, template, hospil, medical accessories, medical shop, medical store, pharmacy">
     <meta name="author" content="Laralink">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -43,15 +43,15 @@
             <div class="cs_top_header_left">
               <ul class="cs_contact_list cs_mp_0">
                 <li class="cs_contact_item cs_fs_14 cs_white_color">
-                  <img src="assets/img/icons/emain.svg" class="cs_contact_icon" alt="Email icon">
+                  <img src="assets/img/icons/emain.svg" class="cs_contact_icon" alt="Email icon" width="14" height="12">
                   <span class="cs_contact_text">Send mail: 
-                  <a href="example@hospil.com" aria-label="Send email to example at hospil dot com">example@hospil.com</a>
+                  <a href="mailto:example@hospil.com" aria-label="Send email to example at hospil dot com">example@hospil.com</a>
                   </span>
                 </li>
                 <li class="cs_contact_item cs_fs_14 cs_white_color">
-                  <img src="assets/img/icons/phone.svg" class="cs_contact_icon" alt="Phone icon">
+                  <img src="assets/img/icons/phone.svg" class="cs_contact_icon" alt="Phone icon" width="16" height="16">
                   <span class="cs_contact_text">Call us: 
-                  <a href="tel:+14448281507" aria-label="Call us to +14448281507">+1 444 828 1507</a>
+                  <a href="tel:+14448281507" aria-label="Call us to +14448281507"><bdi dir="ltr">+1 444 828 1507</bdi></a>
                   </span>
                 </li>
               </ul>
@@ -60,13 +60,13 @@
               <ul class="cs_contact_list cs_mp_0">
                 <li class="cs_contact_item cs_fs_14 cs_white_color">
                   <a href="location.html" aria-label="Go to location page">
-                  <img src="assets/img/icons/location-pin.svg" class="cs_contact_icon" alt="Location icon">
+                  <img src="assets/img/icons/location-pin.svg" class="cs_contact_icon" alt="Location icon" width="16" height="16">
                   <span>Location</span>
                   </a>
                 </li>
                 <li class="cs_language_select cs_fs_14 cs_white_color position-relative">
                   <span class="cs_language_switcher">
-                  <img src="assets/img/icons/global.svg" alt="Language icon">
+                  <img src="assets/img/icons/global.svg" alt="Language icon" width="16" height="16">
                   <span class="cs_contact_icon">Lang:</span>
                   <span class="cs_language text-capitalize">Eng</span> 
                   </span>
@@ -89,7 +89,7 @@
           <div class="cs_main_header_in">
             <div class="cs_main_header_left">
               <a href="index.html" aria-label="Home page" class="cs_site_brand">
-              <img src="assets/img/logo.svg" alt="Hospil Logo">
+              <img src="assets/img/logo.svg" alt="Hospil Logo" width="190" height="50">
               </a>
             </div>
             <div class="cs_main_header_center">
@@ -104,6 +104,7 @@
                         <li><a href="home-v3.html">Child Care</a></li>
                         <li><a href="home-v4.html">Dental Care</a></li>
                         <li><a href="home-v5.html">Eye Care</a></li>
+                        <li><a href="home-v6.html">Pharmacy Store</a></li>
                       </ul>
                     </li>
                     <li><a href="about-us.html">About</a></li>
@@ -159,13 +160,13 @@
             <div class="cs_main_header_right cs_shop">
               <div class="cs_header_btns_wrapper">
                 <button type="button" aria-label="Search" class="cs_search_btn cs_center me-0">
-                <img src="assets/img/icons/search.svg" alt="Search icon">
+                <img src="assets/img/icons/search.svg" alt="Search icon" width="14" height="14">
                 </button>
                 <a href="login.html" aria-label="User login" class="cs_login_btn cs_center">
-                <img src="assets/img/icons/user.svg" alt="Phone icon">
+                <img src="assets/img/icons/user.svg" alt="User icon" width="24" height="24">
                 </a>
                 <a href="cart.html" aria-label="Shopping cart" class="cs_cart_btn cs_center position-relative">
-                <img src="assets/img/icons/shopping-cart.svg" alt="Shopping icon">
+                <img src="assets/img/icons/shopping-cart.svg" alt="Shopping icon" width="16" height="16">
                 <span class="cs_cart_badge cs_radius_50 cs_center position-absolute">0</span>
                 </a>
               </div>
@@ -183,7 +184,7 @@
             <form action="#" class="cs_search_form position-relative">
               <input type="search" name="search-text" placeholder="Search Services, Doctors..." autocomplete="off">
               <button class="cs_search_btn" type="submit">
-              <img src="assets/img/icons/search.svg" alt="Search icon">
+              <img src="assets/img/icons/search.svg" alt="Search icon" width="14" height="14">
               </button>
             </form>
             <button class="cs_close" type="button"><i class="fa-solid fa-xmark"></i></button>
@@ -193,6 +194,50 @@
       <div class="cs_sidenav_overlay"></div>
     </div>
     <!-- End Header Search -->
+    <!-- Start Cart Drawer -->
+    <div class="cs_cart_drawer cs_cart_is_empty" aria-hidden="true">
+      <div class="cs_cart_drawer_overlay"></div>
+      <aside class="cs_cart_drawer_panel cs_white_bg" role="dialog" aria-modal="true" aria-labelledby="cs_cart_drawer_title" tabindex="-1">
+        <div class="cs_cart_drawer_head">
+          <h2 id="cs_cart_drawer_title" class="cs_fs_24 cs_semibold cs_primary_color mb-0">Your Cart <span class="cs_cart_drawer_count cs_accent_color">(0)</span></h2>
+          <button type="button" class="cs_cart_drawer_close cs_center cs_radius_50" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cs_cart_drawer_body" data-lenis-prevent>
+          <ul class="cs_cart_drawer_list cs_mp_0"></ul>
+          <div class="cs_cart_drawer_empty text-center">
+            <span class="cs_empty_icon cs_center cs_radius_50">
+            <img src="assets/img/icons/shopping-cart.svg" alt="" width="30" height="30">
+            </span>
+            <h3 class="cs_fs_20 cs_semibold cs_primary_color cs_mb_8">Your cart is empty</h3>
+            <p class="cs_mb_24">Looks like you haven't added anything yet.</p>
+            <a href="shop.html" class="cs_btn_style_1 cs_accent_bg cs_white_color cs_semibold cs_radius_5">
+            <span>Start Shopping</span>
+            </a>
+          </div>
+        </div>
+        <div class="cs_cart_drawer_foot">
+          <div class="cs_cart_drawer_subtotal">
+            <span class="cs_fs_18 cs_semibold cs_primary_color">Subtotal</span>
+            <span class="cs_cart_drawer_total cs_fs_24 cs_bold cs_primary_color">$0.00</span>
+          </div>
+          <p class="cs_fs_14 cs_mb_20">Shipping &amp; taxes calculated at checkout.</p>
+          <div class="cs_cart_drawer_btns">
+            <a href="cart.html" class="cs_btn_style_2 cs_primary_color cs_semibold cs_radius_5">
+            <span>View Cart</span>
+            </a>
+            <a href="checkout.html" class="cs_btn_style_1 cs_accent_bg cs_white_color cs_semibold cs_radius_5">
+            <span>Checkout</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div class="cs_cart_toast" role="status" aria-live="polite">
+      <span class="cs_toast_icon cs_center"><i class="fa-solid fa-check"></i></span>
+      <span class="cs_toast_text cs_fs_14"><strong class="cs_toast_name"></strong> added to cart</span>
+      <button type="button" class="cs_toast_btn cs_fs_14">View Cart</button>
+    </div>
+    <!-- End Cart Drawer -->
     <!-- Start Main Content -->
     <main>
       <!-- Start Page Header -->
@@ -216,7 +261,7 @@
           <div class="row cs_gap_y_40 align-items-center">
             <div class="col-lg-5">
               <div class="cs_product_gallery cs_radius_20">
-                <img src="assets/img/product_details_img_1.png" alt="Pulse Oximeter">
+                <img src="assets/img/product_details_img_1.png" alt="Pulse Oximeter" width="804" height="854">
               </div>
             </div>
             <div class="col-lg-7">
@@ -245,20 +290,20 @@
                   </div>
                   <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
                   <span>Add To Cart</span>
-                  <img src="assets/img/icons/shopping-cart.svg" alt="Shopping cart">
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Shopping cart" width="16" height="16">
                   </a>
                 </div>
                 <ul class="cs_product_assurance cs_mp_0">
                   <li>
-                    <img src="assets/img/icons/check-double.svg" alt="Check icon">
+                    <img src="assets/img/icons/check-double.svg" alt="Check icon" width="15" height="9">
                     <span class="cs_fs_16 cs_semibold">Secure transaction</span>
                   </li>
                   <li>
-                    <img src="assets/img/icons/check-double.svg" alt="Check icon">
+                    <img src="assets/img/icons/check-double.svg" alt="Check icon" width="15" height="9">
                     <span class="cs_fs_16 cs_semibold">Free delivery</span>
                   </li>
                   <li>
-                    <img src="assets/img/icons/check-double.svg" alt="Check icon">
+                    <img src="assets/img/icons/check-double.svg" alt="Check icon" width="15" height="9">
                     <span class="cs_fs_16 cs_semibold">Free returns</span>
                   </li>
                 </ul>
@@ -315,10 +360,10 @@
             <div class="col-lg-4 col-sm-6">
               <article class="cs_product_card_1">
                 <div class="cs_product_thumb cs_radius_20 cs_mb_24 cs_mb_lg_20">
-                  <img src="assets/img/product_img_4.png" alt="Diabetes Lancing Device">
+                  <img src="assets/img/product_img_4.png" alt="Diabetes Lancing Device" width="636" height="675">
                   <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
                   <span>Add To Cart</span>
-                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon" width="16" height="16">
                   </a>
                 </div>
                 <div class="cs_product_info">
@@ -338,10 +383,10 @@
             <div class="col-lg-4 col-sm-6">
               <article class="cs_product_card_1">
                 <div class="cs_product_thumb cs_radius_20 cs_mb_24 cs_mb_lg_20">
-                  <img src="assets/img/product_img_1.png" alt="Digital Blood Pressure">
+                  <img src="assets/img/product_img_1.png" alt="Digital Blood Pressure" width="636" height="675">
                   <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
                   <span>Add To Cart</span>
-                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon" width="16" height="16">
                   </a>
                 </div>
                 <div class="cs_product_info">
@@ -361,10 +406,10 @@
             <div class="col-lg-4 col-sm-6">
               <article class="cs_product_card_1">
                 <div class="cs_product_thumb cs_radius_20 cs_mb_24 cs_mb_lg_20">
-                  <img src="assets/img/product_img_5.png" alt="Blue Asthma Inhaler">
+                  <img src="assets/img/product_img_5.png" alt="Blue Asthma Inhaler" width="636" height="675">
                   <a href="cart.html" class="cs_btn_style_2 cs_white_bg cs_radius_5 cs_semibold cs_primary_color addToCart">
                   <span>Add To Cart</span>
-                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon">
+                  <img src="assets/img/icons/shopping-cart.svg" alt="Cart icon" width="16" height="16">
                   </a>
                 </div>
                 <div class="cs_product_info">
@@ -395,7 +440,7 @@
             <div class="col-xl-4 col-lg-3 col-md-12">
               <div class="cs_footer_widget cs_text_widget">
                 <div class="cs_footer_logo cs_mb_24 cs_mb_lg_20">
-                  <img src="assets/img/logo2.svg" alt="Hospil Logo">
+                  <img src="assets/img/logo2.svg" alt="Hospil Logo" width="190" height="50">
                 </div>
                 <p class="cs_footer_desc cs_mb_24">Multi-specialty tertiary care hospital with cutting-edge technology, compassionate staff, and 24/7 emergency services.</p>
                 <h2 class="cs_social_heading cs_fs_24 cs_medium cs_white_color cs_mb_22">Social Media</h2>
@@ -438,21 +483,21 @@
                 <h2 class="cs_footer_widget_title cs_fs_24 cs_medium cs_white_color cs_mb_24 cs_mb_lg_20">Get in Touch</h2>
                 <ul class="cs_footer_contact cs_mp_0">
                   <li>
-                    <img src="assets/img/icons/location-pin.svg" alt="Location" class="cs_contact_icon">
+                    <img src="assets/img/icons/location-pin.svg" alt="Location" class="cs_contact_icon" width="16" height="16">
                     <div>
                       <span class="cs_fs_20 cs_bold cs_white_color cs_mb_6">Visit Us</span>
                       <p class="mb-0">58 Blue Spruce Lane Baltimore, MD 2321</p>
                     </div>
                   </li>
                   <li>
-                    <img src="assets/img/icons/phone.svg" alt="Location" class="cs_contact_icon">
+                    <img src="assets/img/icons/phone.svg" alt="Location" class="cs_contact_icon" width="16" height="16">
                     <div>
-                      <a href="tel:+14448281507" aria-label="Make phone call" class="cs_fs_20 cs_bold cs_white_color cs_mb_6">+1 444 828 1507</a>
+                      <a href="tel:+14448281507" aria-label="Make phone call" class="cs_fs_20 cs_bold cs_white_color cs_mb_6"><bdi dir="ltr">+1 444 828 1507</bdi></a>
                       <p class="mb-0">24/7 Emergency (Critical care ambulance ready)</p>
                     </div>
                   </li>
                   <li>
-                    <img src="assets/img/icons/emain.svg" alt="Location" class="cs_contact_icon">
+                    <img src="assets/img/icons/emain.svg" alt="Location" class="cs_contact_icon" width="14" height="12">
                     <div>
                       <a href="mailto:example@hospil.com" aria-label="Send mail" class="cs_fs_20 cs_bold cs_white_color cs_mb_6">example@hospil.com</a>
                       <p class="mb-0">Reply Within 2-4 Hours</p>
@@ -482,8 +527,8 @@
           <div class="cs_footer_bottom_content">
             <p class="cs_footer_copyright mb-0">&copy; <span class="cs_getting_year"></span> <span class="cs_white_color">Hospil</span>. All Rights Reserved by <a href="#">Laralink</a>.</p>
              <ul class="cs_footer_bottom_nav cs_mp_0">
-              <li><a href="term-condition.html" aria-label="Style Guide">Terms of Use</a></li>
-              <li><a href="privacy-policy.html" aria-label="Style Guide">Privacy Policy</a></li>
+              <li><a href="term-condition.html" aria-label="Terms of use">Terms of Use</a></li>
+              <li><a href="privacy-policy.html" aria-label="Privacy policy">Privacy Policy</a></li>
             </ul>
           </div>
         </div>

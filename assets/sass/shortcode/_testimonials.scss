@@ -8,17 +8,18 @@
     .cs_controller_2 {
       position: initial;
       bottom: initial;
-      right: initial;
+      inset-inline-end: initial;
       margin-top: 30px;
     }
   }
 }
 
 .cs_testimonial_content {
-  padding: 120px 112px 120px 0;
+  padding-block: 120px 120px;
+  padding-inline: 0 112px;
 
   @media (max-width: 1399px) {
-    padding-right: 0;
+    padding-inline-end: 0;
   }
 
   @media (max-width: 991px) {
@@ -99,11 +100,14 @@
 
   .cs_ticker_container {
     width: calc(100% - 30px);
-    padding-left: 38px;
+    padding-inline-start: 38px;
     position: absolute;
-    right: 0;
+    inset-inline-end: 0;
     bottom: 24px;
-    border-radius: 50px 0 0 50px;
+    border-start-start-radius: 50px;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+    border-end-start-radius: 50px;
     background: rgba(19, 109, 244, 0.8);
   }
 
@@ -143,7 +147,7 @@
       width: 100%;
       height: 1px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       bottom: 0;
       opacity: 0.4;
       background: rgba(134, 148, 167, 0.5);
@@ -374,7 +378,10 @@
   max-width: 1872px;
   margin: 0 auto;
   padding: 120px 0;
-  border-radius: 20px 20px 0 20px;
+  border-start-start-radius: 20px;
+  border-start-end-radius: 20px;
+  border-end-end-radius: 0;
+  border-end-start-radius: 20px;
 
   @media (max-width: 991px) {
     padding: 60px 0;
@@ -386,8 +393,12 @@
   padding: 120px 0;
 
   .cs_controller_4 {
-    right: initial;
+    inset-inline-end: initial;
     transform: translateX(0);
+
+    @include rtl {
+      transform: translateX(0);
+    }
   }
 
   @media (max-width: 991px) {
@@ -399,7 +410,7 @@
   width: 100%;
   height: 100%;
   position: relative;
-  padding-right: 100px;
+  padding-inline-end: 100px;
 
   >img {
     width: 100%;
@@ -411,7 +422,7 @@
 
   .cs_testimonial_badge {
     position: absolute;
-    right: 24px;
+    inset-inline-end: 24px;
     bottom: 24px;
     min-height: 219px;
     padding: 14px 20px 24px;
@@ -436,15 +447,15 @@
   }
 
   @media (max-width: 1199px) {
-    padding-right: 50px;
+    padding-inline-end: 50px;
   }
 
   @media (max-width: 575px) {
-    padding-right: 0;
+    padding-inline-end: 0;
 
     .cs_testimonial_badge {
       min-height: auto;
-      right: 10px;
+      inset-inline-end: 10px;
       bottom: 10px;
     }
   }
@@ -452,6 +463,11 @@
 
 .cs_testimonial_section_4 {
   padding: 120px 0;
+  @include rtl-flip-bg;
+
+  @include rtl {
+    position: relative;
+  }
 
   .cs_testimonial_container {
     width: min(100%, 760px);

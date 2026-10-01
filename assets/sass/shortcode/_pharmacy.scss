@@ -1,0 +1,1914 @@
+/*=================================================
+  31. Pharmacy Home (home-v6)
+===================================================*/
+$cs_ph_green: #0FA968;
+$cs_ph_border: rgba(134, 148, 167, 0.3);
+
+// Turns dark SVG icons white inside colored buttons
+.cs_white_filter {
+  filter: brightness(0) saturate(100%) invert(100%);
+}
+
+// Static arrow on outline buttons (no rotation) in pharmacy sections
+.cs_pharmacy_hero,
+.cs_pharmacy_category_section,
+.cs_pharmacy_arrival_section {
+  .cs_btn_style_2.cs_type_1 img {
+    animation: none;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .cs_btn_style_2.cs_type_1:hover img {
+    transform: translateX(4px);
+
+    @include rtl {
+      transform: translateX(-4px);
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Announcement Bar (header top bar)
+---------------------------------------------------*/
+.cs_site_header .cs_pharmacy_topbar {
+  .cs_top_header_in {
+    height: 44px;
+
+    img {
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+
+    .cs_contact_list {
+      gap: 24px;
+    }
+
+    .cs_contact_item+.cs_contact_item {
+      position: relative;
+      padding-inline-start: 24px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 0;
+        top: 50%;
+        width: 1px;
+        height: 14px;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.35);
+      }
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  @media (max-width: 1399px) {
+    .cs_top_header_left .cs_contact_item:nth-child(2) {
+      display: none;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Pharmacy Hero (crossfade slider)
+---------------------------------------------------*/
+$cs_ph_ease_out: cubic-bezier(0.22, 1, 0.36, 1);
+$cs_ph_ease_in_out: cubic-bezier(0.77, 0, 0.18, 1);
+
+.cs_pharmacy_hero {
+  position: relative;
+  overflow: hidden;
+  padding: 180px 0 140px;
+  background: linear-gradient(135deg, var(--gray4-color) 0%, #EAF7F1 100%);
+
+  // room for the announcement bar (visible from 1280px)
+  @media (min-width: 1280px) {
+    padding-top: 220px;
+  }
+
+  /* ---------- Decorative background ---------- */
+  .cs_hero_shape {
+    position: absolute;
+    width: 640px;
+    height: 640px;
+    border-radius: 50%;
+    top: -220px;
+    inset-inline-end: -180px;
+    background: radial-gradient(circle, rgba(19, 109, 244, 0.12) 0%, rgba(19, 109, 244, 0) 70%);
+    pointer-events: none;
+    animation: cs_ph_breathe 10s ease-in-out infinite;
+  }
+
+  .cs_hero_capsule {
+    position: absolute;
+    z-index: 0;
+    width: 64px;
+    height: 26px;
+    border-radius: 50px;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--accent-color) 50%, var(--white-color) 50%);
+    box-shadow: 0 10px 20px -8px rgba(19, 109, 244, 0.45);
+    animation: cs_ph_drift 14s ease-in-out infinite;
+
+    &.cs_capsule_1 {
+      top: 170px;
+      inset-inline-start: 40%;
+      rotate: -30deg;
+    }
+
+    &.cs_capsule_2 {
+      bottom: 160px;
+      inset-inline-end: 47%;
+      width: 50px;
+      height: 20px;
+      rotate: 25deg;
+      animation-delay: -5s;
+      background: linear-gradient(90deg, #0FA968 50%, var(--white-color) 50%);
+      box-shadow: 0 10px 20px -8px rgba(15, 169, 104, 0.45);
+    }
+
+    &.cs_capsule_3 {
+      top: 55%;
+      inset-inline-start: 46%;
+      width: 40px;
+      height: 16px;
+      rotate: 60deg;
+      opacity: 0.7;
+      animation-delay: -9s;
+      background: linear-gradient(90deg, var(--danger-color) 50%, var(--white-color) 50%);
+      box-shadow: 0 10px 20px -8px rgba(239, 68, 68, 0.45);
+    }
+  }
+
+  .cs_hero_dot_grid {
+    position: absolute;
+    bottom: 60px;
+    inset-inline-end: 2%;
+    width: 160px;
+    height: 160px;
+    opacity: 0.5;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(19, 109, 244, 0.35) 2px, transparent 2px);
+    background-size: 18px 18px;
+    animation: cs_ph_drift 18s ease-in-out infinite reverse;
+  }
+
+  /* ---------- Slider structure ---------- */
+  .cs_hero_slider_wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cs_pharmacy_hero_slider {
+    overflow: visible;
+    // keep Swiper from growing to its slides' width inside the flex column
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
+    .swiper-slide {
+      height: auto;
+    }
+  }
+
+  .cs_hero_in {
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+    height: 100%;
+  }
+
+  .cs_hero_left {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 170px; // space for the fixed search block
+  }
+
+  .cs_hero_right {
+    width: 42%;
+    flex: none;
+    position: relative;
+    align-self: center;
+  }
+
+  .cs_hero_static {
+    position: absolute;
+    z-index: 3;
+    bottom: 0;
+    inset-inline-start: 0;
+    width: calc(58% - 40px);
+  }
+
+  /* ---------- Content ---------- */
+  .cs_hero_badge {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px 6px 6px;
+    border-radius: 50px;
+    border: 1px solid $cs_ph_border;
+
+    @include rtl {
+      padding: 6px 6px 6px 16px;
+    }
+
+    span:first-child {
+      padding: 3px 10px;
+      border-radius: 50px;
+      color: var(--white-color);
+      background-color: $cs_ph_green;
+    }
+  }
+
+  // two-line title on desktop (overrides .cs_fs_64)
+  .cs_hero_title {
+    position: relative;
+    isolation: isolate;
+    font-size: clamp(32px, 3.4vw, 50px);
+    line-height: 1.2em;
+
+    span {
+      position: relative;
+      color: var(--accent-color);
+      white-space: nowrap;
+
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset-inline-start: 0;
+        bottom: 0.12em;
+        width: 100%;
+        height: 0.22em;
+        border-radius: 4px;
+        background-color: rgba(15, 169, 104, 0.35);
+        scale: 0 1;
+        transform-origin: left center;
+        transition: scale 0.8s $cs_ph_ease_out;
+
+        @include rtl {
+          transform-origin: right center;
+        }
+      }
+    }
+  }
+
+  .cs_hero_desc {
+    max-width: 560px;
+  }
+
+  .cs_hero_search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 600px;
+    padding: 8px;
+    border-radius: 60px;
+    border: 1px solid $cs_ph_border;
+    box-shadow: 0 20px 40px -20px rgba(19, 109, 244, 0.25);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+
+    &:focus-within {
+      border-color: var(--accent-color);
+      box-shadow: 0 20px 40px -18px rgba(19, 109, 244, 0.45);
+    }
+
+    >img {
+      flex: none;
+      margin-inline-start: 16px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      padding: 10px 4px;
+      background-color: transparent;
+      color: var(--primary-color);
+    }
+
+    .cs_btn_style_1 {
+      border-radius: 50px;
+      flex: none;
+    }
+  }
+
+  .cs_hero_tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+
+    a {
+      padding: 4px 14px;
+      border-radius: 50px;
+      background-color: var(--white-color);
+      border: 1px solid $cs_ph_border;
+
+      &:hover {
+        color: var(--white-color);
+        border-color: var(--accent-color);
+        background-color: var(--accent-color);
+      }
+    }
+  }
+
+  .cs_hero_btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* ---------- Image + floating elements ---------- */
+  .cs_hero_img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 300px 300px 30px 30px;
+    border: 10px solid var(--white-color);
+    clip-path: inset(100% 0 0 0 round 300px 300px 30px 30px);
+    transition: clip-path 1.2s $cs_ph_ease_in_out;
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 600 / 680;
+      object-fit: cover;
+      scale: 1.2;
+      transition: scale 1.8s $cs_ph_ease_out;
+    }
+  }
+
+  .cs_hero_discount {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    inset-inline-end: 10px;
+    width: 120px;
+    height: 120px;
+    line-height: 1.1em;
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--danger-color);
+    scale: 0;
+    rotate: -120deg;
+    transition:
+      scale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+      rotate 0.8s $cs_ph_ease_out;
+    animation: cs_ph_pulse 2.4s ease-out infinite;
+
+    strong {
+      display: block;
+      font-size: 32px;
+      line-height: 1.1em;
+    }
+  }
+
+  .cs_hero_float_wrap {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    transition:
+      opacity 0.7s ease,
+      translate 1s $cs_ph_ease_out;
+
+    &.cs_card_1 {
+      top: 18%;
+      inset-inline-start: -60px;
+      translate: -40px 0;
+    }
+
+    &.cs_card_2 {
+      bottom: 20%;
+      inset-inline-end: -40px;
+      translate: 40px 0;
+
+      .cs_hero_float_card {
+        animation-delay: 1.5s;
+      }
+
+      .cs_float_icon {
+        background-color: #E4F7EE;
+      }
+    }
+
+    @include rtl {
+      &.cs_card_1 {
+        translate: 40px 0;
+      }
+
+      &.cs_card_2 {
+        translate: -40px 0;
+      }
+    }
+  }
+
+  .cs_hero_float_card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 15px;
+    background-color: var(--white-color);
+    box-shadow: 0 20px 40px -20px rgba(31, 41, 55, 0.3);
+    animation: cs_ph_float 5s ease-in-out infinite;
+
+    .cs_float_icon {
+      width: 46px;
+      height: 46px;
+      flex: none;
+      border-radius: 50%;
+      background-color: var(--gray4-color);
+    }
+  }
+
+  /* ---------- Staggered entrance (active slide) ---------- */
+  .cs_hero_anim {
+    opacity: 0;
+    translate: 0 40px;
+    transition:
+      opacity 0.7s ease,
+      translate 1s $cs_ph_ease_out;
+  }
+
+  .swiper-slide-active {
+    .cs_hero_anim {
+      opacity: 1;
+      translate: 0 0;
+      transition-delay: calc(var(--d, 0) * 1ms + 350ms);
+    }
+
+    .cs_hero_title span::after {
+      scale: 1 1;
+      transition-delay: 1.1s;
+    }
+
+    .cs_hero_img {
+      clip-path: inset(0 0 0 0 round 300px 300px 30px 30px);
+      transition-delay: 0.15s;
+
+      img {
+        scale: 1;
+        transition-delay: 0.15s;
+      }
+    }
+
+    .cs_hero_discount {
+      scale: 1;
+      rotate: 0deg;
+      transition-delay: 0.9s;
+    }
+
+    .cs_hero_float_wrap {
+      opacity: 1;
+      translate: 0 0;
+      transition-delay: 1.1s;
+
+      &.cs_card_2 {
+        transition-delay: 1.3s;
+      }
+    }
+  }
+
+  /* ---------- Controls (progress bullets) ---------- */
+  .cs_hero_controls_wrap {
+    position: absolute;
+    z-index: 4;
+    bottom: 34px;
+    inset-inline-end: 0;
+    width: 42%;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .cs_hero_controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 50px;
+    pointer-events: auto;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 30px -15px rgba(31, 41, 55, 0.35);
+  }
+
+  .cs_hero_prev,
+  .cs_hero_next {
+    width: 36px;
+    height: 36px;
+    flex: none;
+    border: 0;
+    background-color: var(--gray4-color);
+    transition: background-color 0.3s ease;
+
+    img {
+      transition: filter 0.3s ease;
+    }
+
+    &:hover {
+      background-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(100%);
+      }
+    }
+  }
+
+  .cs_hero_prev img {
+    transform: rotate(180deg);
+  }
+
+  @include rtl {
+    .cs_hero_prev img {
+      transform: none;
+    }
+
+    .cs_hero_next img {
+      transform: rotate(180deg);
+    }
+  }
+
+  .cs_hero_bullet {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 2px;
+    border: 0;
+    background: transparent;
+    color: var(--secondary2-color);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--primary-font);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--primary-color);
+    }
+
+    &.active {
+      color: var(--accent-color);
+
+      .cs_hero_bullet_track {
+        width: 56px;
+      }
+    }
+  }
+
+  .cs_hero_bullet_track {
+    width: 22px;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: rgba(134, 148, 167, 0.3);
+    transition: width 0.5s $cs_ph_ease_out;
+  }
+
+  .cs_hero_bullet_bar {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: left center;
+
+    @include rtl {
+      transform-origin: right center;
+    }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1399px) {
+    .cs_hero_float_wrap.cs_card_1 {
+      inset-inline-start: -20px;
+    }
+
+    .cs_hero_float_wrap.cs_card_2 {
+      inset-inline-end: -10px;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_hero_capsule {
+      display: none;
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 140px 0 110px;
+
+    .cs_hero_slider_wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs_hero_in {
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .cs_hero_left {
+      padding-bottom: 0;
+    }
+
+    .cs_hero_right {
+      width: min(100%, 520px);
+      margin-inline: auto;
+    }
+
+    .cs_hero_controls_wrap {
+      position: static;
+      order: 2;
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .cs_hero_static {
+      position: static;
+      order: 3;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .cs_hero_float_wrap.cs_card_1 {
+      inset-inline-start: 0;
+    }
+
+    .cs_hero_float_wrap.cs_card_2 {
+      inset-inline-end: 0;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_hero_search {
+      flex-wrap: wrap;
+      border-radius: 20px;
+
+      input {
+        width: calc(100% - 60px);
+      }
+
+      .cs_btn_style_1 {
+        width: 100%;
+      }
+    }
+
+    .cs_hero_title span {
+      white-space: normal;
+    }
+
+    .cs_hero_discount {
+      width: 90px;
+      height: 90px;
+      font-size: 12px;
+
+      strong {
+        font-size: 24px;
+      }
+    }
+
+    .cs_hero_float_card {
+      padding: 10px 12px;
+
+      .cs_float_icon {
+        width: 36px;
+        height: 36px;
+
+        img {
+          width: 20px;
+        }
+      }
+    }
+
+    .cs_hero_controls {
+      gap: 6px;
+    }
+
+    .cs_hero_bullet.active .cs_hero_bullet_track {
+      width: 36px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
+  }
+}
+
+@keyframes cs_ph_float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes cs_ph_drift {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(14px, -18px) rotate(12deg);
+  }
+
+  66% {
+    transform: translate(-10px, 10px) rotate(-8deg);
+  }
+}
+
+@keyframes cs_ph_breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes cs_ph_pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.45);
+  }
+
+  70% {
+    box-shadow: 0 0 0 18px rgba(239, 68, 68, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/*-------------------------------------------------
+  Pharmacy Feature Strip (overlaps hero)
+---------------------------------------------------*/
+.cs_pharmacy_features {
+  position: relative;
+  z-index: 2;
+  margin-top: -70px;
+
+  .cs_pharmacy_features_in {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px;
+    border-radius: 20px;
+    background-color: var(--white-color);
+    box-shadow: 0 30px 60px -30px rgba(31, 41, 55, 0.25);
+  }
+
+  .cs_feature_item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    position: relative;
+
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 25%;
+      inset-inline-end: 0;
+      width: 1px;
+      height: 50%;
+      background-color: $cs_ph_border;
+    }
+  }
+
+  .cs_feature_icon {
+    width: 60px;
+    height: 60px;
+    flex: none;
+    border-radius: 15px;
+    background-color: var(--gray4-color);
+    transition: all 0.3s ease;
+
+    img {
+      width: 30px;
+      border-radius: 0;
+      transition: filter 0.3s ease;
+    }
+  }
+
+  .cs_feature_item:hover .cs_feature_icon {
+    background-color: var(--accent-color);
+
+    img {
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_pharmacy_features_in {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cs_feature_item:nth-child(2)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_pharmacy_features_in {
+      grid-template-columns: 1fr;
+    }
+
+    .cs_feature_item {
+      padding: 16px;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Shared section spacing
+---------------------------------------------------*/
+.cs_pharmacy_category_section,
+.cs_pharmacy_product_section,
+.cs_pharmacy_deal_section,
+.cs_pharmacy_rx_section,
+.cs_pharmacy_about_section,
+.cs_pharmacy_brand_section,
+.cs_pharmacy_concern_section,
+.cs_pharmacy_arrival_section,
+.cs_pharmacy_faq_section {
+  padding: 120px 0;
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+/*-------------------------------------------------
+  Shop by Category
+---------------------------------------------------*/
+.cs_pharmacy_category_grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+
+  @media (max-width: 1199px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 575px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+.cs_pharmacy_category_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 16px 24px;
+  border-radius: 20px;
+  border: 1px solid $cs_ph_border;
+  transition: all 0.4s ease;
+
+  .cs_category_img {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    background-color: var(--gray4-color);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  .cs_category_count {
+    color: var(--secondary2-color);
+  }
+
+  &:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 40px -24px rgba(19, 109, 244, 0.45);
+
+    .cs_category_img img {
+      transform: scale(1.1);
+    }
+
+    .cs_category_title {
+      color: var(--accent-color);
+    }
+  }
+
+  @media (max-width: 575px) {
+    padding: 20px 10px;
+
+    .cs_category_img {
+      width: 90px;
+      height: 90px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Product Tabs + Product Card
+---------------------------------------------------*/
+.cs_pharmacy_product_section {
+  .cs_pharmacy_tab_head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .cs_tabs {
+    position: relative;
+  }
+
+  .cs_tab_links.cs_style_1 a {
+    padding: 8px 22px;
+  }
+}
+
+.cs_pharmacy_product {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 20px;
+  background-color: var(--white-color);
+  border: 1px solid $cs_ph_border;
+  transition: all 0.4s ease;
+
+  .cs_product_thumb {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    background-color: var(--gray4-color);
+
+    >a img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  .cs_product_badge {
+    position: absolute;
+    top: 12px;
+    inset-inline-start: 12px;
+    z-index: 1;
+    padding: 3px 10px;
+    border-radius: 50px;
+    color: var(--white-color);
+    background-color: var(--danger-color);
+
+    &.cs_type_rx {
+      background-color: var(--accent-color);
+    }
+
+    &.cs_type_new {
+      background-color: $cs_ph_green;
+    }
+  }
+
+  .cs_wishlist_btn {
+    position: absolute;
+    top: 12px;
+    inset-inline-end: 12px;
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    color: var(--secondary-color);
+    background-color: var(--white-color);
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--white-color);
+      background-color: var(--danger-color);
+    }
+  }
+
+  .cs_product_info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cs_product_cat {
+    color: var(--secondary2-color);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .cs_product_title a:hover {
+    color: var(--accent-color);
+  }
+
+  .cs_product_rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    // template stars have no intrinsic width inside a flex row
+    .cs_rating {
+      width: 84px;
+      height: 18px;
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: 1px;
+    }
+  }
+
+  .cs_product_bottom {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px dashed $cs_ph_border;
+  }
+
+  .cs_product_price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--primary-color);
+
+    del {
+      font-size: 14px;
+      color: var(--secondary2-color);
+    }
+  }
+
+  .cs_cart_btn {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border-radius: 50%;
+    border: 1px solid var(--accent-color);
+    background-color: transparent;
+    transition: all 0.3s ease;
+
+    img {
+      width: 18px;
+      height: 18px;
+      flex: none;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(31%) sepia(96%) saturate(2598%) hue-rotate(211deg) brightness(99%) contrast(94%);
+      transition: filter 0.3s ease;
+    }
+
+    &:hover {
+      background-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(100%);
+      }
+    }
+  }
+
+  &:hover {
+    border-color: transparent;
+    box-shadow: 0 30px 50px -30px rgba(31, 41, 55, 0.35);
+
+    .cs_product_thumb>a img {
+      transform: scale(1.06);
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Deal of the Day + Promo Banners
+---------------------------------------------------*/
+.cs_pharmacy_deal_card {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 50px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(120deg, var(--primary-color) 0%, #243B63 100%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    bottom: -180px;
+    inset-inline-start: -120px;
+    border-radius: 50%;
+    border: 60px solid rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+  }
+
+  .cs_deal_info {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cs_deal_label {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--warning-color);
+  }
+
+  .cs_deal_desc {
+    color: var(--secondary2-color);
+  }
+
+  .cs_deal_price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+
+    del {
+      color: var(--secondary2-color);
+    }
+  }
+
+  .cs_deal_img {
+    width: 42%;
+    flex: none;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    padding: 30px 24px;
+    gap: 30px;
+
+    .cs_deal_img {
+      width: 100%;
+    }
+  }
+}
+
+.cs_countdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  .cs_countdown_item {
+    min-width: 76px;
+    padding: 12px 8px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .cs_countdown_number {
+    display: block;
+    font-size: 28px;
+    line-height: 1.2em;
+    font-weight: 700;
+    color: var(--white-color);
+    font-family: var(--primary-font);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cs_countdown_label {
+    font-size: 12px;
+    color: var(--secondary2-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 575px) {
+    gap: 8px;
+
+    .cs_countdown_item {
+      min-width: 64px;
+    }
+
+    .cs_countdown_number {
+      font-size: 22px;
+    }
+  }
+}
+
+.cs_pharmacy_promo_card {
+  height: calc(50% - 12px);
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+  overflow: hidden;
+  border-radius: 20px;
+
+  &+& {
+    margin-top: 24px;
+  }
+
+  &.cs_color_1 {
+    background-color: #E4F7EE;
+
+    .cs_promo_off {
+      color: $cs_ph_green;
+    }
+  }
+
+  &.cs_color_2 {
+    background-color: var(--gray7-color);
+
+    .cs_promo_off {
+      color: var(--accent-color);
+    }
+  }
+
+  .cs_promo_info {
+    flex: 1;
+  }
+
+  .cs_promo_img {
+    width: 42%;
+    flex: none;
+    overflow: hidden;
+    border-radius: 15px;
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  &:hover .cs_promo_img img {
+    transform: scale(1.08);
+  }
+
+  @media (max-width: 991px) {
+    height: auto;
+  }
+
+  @media (max-width: 420px) {
+    flex-direction: column-reverse;
+    align-items: stretch;
+
+    .cs_promo_img {
+      width: 100%;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Prescription Upload
+---------------------------------------------------*/
+.cs_pharmacy_rx_section {
+  .cs_pharmacy_rx_in {
+    padding: 70px;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cs_rx_steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .cs_rx_step {
+    display: flex;
+    gap: 20px;
+    position: relative;
+
+    &:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      top: 56px;
+      inset-inline-start: 27px;
+      height: calc(100% - 32px);
+      border-inline-start: 2px dashed rgba(19, 109, 244, 0.35);
+    }
+
+    // Solid progress line that fills the dashed connector
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 56px;
+      inset-inline-start: 27px;
+      width: 2px;
+      height: calc(100% - 32px);
+      background-color: var(--accent-color);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.6s ease calc(var(--i, 0) * 1.6s + 0.95s);
+    }
+  }
+
+  .cs_rx_step_number {
+    width: 56px;
+    height: 56px;
+    flex: none;
+    position: relative;
+    color: var(--accent-color);
+    background-color: var(--white-color);
+    border: 2px solid var(--accent-color);
+    transition:
+      background-color 0.2s ease calc(var(--i, 0) * 1.6s + 0.9s),
+      box-shadow 0.9s ease calc(var(--i, 0) * 1.6s + 0.6s);
+
+    // Accent fill that wipes down from the top (covers the border too)
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background-color: var(--accent-color);
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 0.9s cubic-bezier(0.65, 0, 0.35, 1) calc(var(--i, 0) * 1.6s);
+    }
+  }
+
+  .cs_rx_step_count {
+    position: relative;
+    transition: opacity 0.45s ease calc(var(--i, 0) * 1.6s + 0.25s);
+  }
+
+  .cs_rx_step_check {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    fill: none;
+    stroke: var(--white-color);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 22;
+    stroke-dashoffset: 22;
+    transition: stroke-dashoffset 0.55s ease calc(var(--i, 0) * 1.6s + 0.8s);
+  }
+
+  // Completed state (added in sequence by JS when the steps scroll into view)
+  .cs_rx_step.is-complete {
+    &::after {
+      transform: scaleY(1);
+    }
+
+    .cs_rx_step_number {
+      background-color: var(--accent-color);
+      box-shadow: 0 0 0 8px rgba(19, 109, 244, 0.18);
+
+      &::before {
+        clip-path: inset(0);
+      }
+    }
+
+    .cs_rx_step_count {
+      opacity: 0;
+    }
+
+    .cs_rx_step_check {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  // Quick, unstaggered reset between loops
+  .cs_rx_steps.is-resetting {
+    .cs_rx_step::after,
+    .cs_rx_step_number,
+    .cs_rx_step_number::before,
+    .cs_rx_step_count,
+    .cs_rx_step_check {
+      transition-duration: 0.3s;
+      transition-delay: 0s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs_rx_step::after,
+    .cs_rx_step_number,
+    .cs_rx_step_number::before,
+    .cs_rx_step_count,
+    .cs_rx_step_check {
+      transition: none;
+      animation: none !important;
+    }
+  }
+
+  .cs_rx_form {
+    padding: 40px;
+    border-radius: 20px;
+    background-color: var(--white-color);
+    box-shadow: 0 30px 60px -30px rgba(31, 41, 55, 0.3);
+  }
+
+  .cs_rx_upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 30px 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 15px;
+    border: 2px dashed rgba(19, 109, 244, 0.4);
+    background-color: var(--gray4-color);
+    transition: all 0.3s ease;
+
+    input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .cs_rx_upload_icon {
+      width: 60px;
+      height: 60px;
+      background-color: var(--white-color);
+    }
+
+    &:hover {
+      border-color: var(--accent-color);
+      background-color: var(--gray7-color);
+    }
+  }
+
+  .cs_rx_field {
+    width: 100%;
+    padding: 13px 20px;
+    border-radius: 5px;
+    outline: 0;
+    color: var(--primary-color);
+    border: 1px solid $cs_ph_border;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: var(--accent-color);
+    }
+  }
+
+  .cs_rx_note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--secondary2-color);
+  }
+
+  @media (max-width: 1199px) {
+    .cs_pharmacy_rx_in {
+      padding: 50px 30px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_pharmacy_rx_in {
+      padding: 40px 16px;
+    }
+
+    .cs_rx_form {
+      padding: 24px 16px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Pharmacist / About
+---------------------------------------------------*/
+.cs_pharmacy_about_section {
+  .cs_about_img_wrap {
+    position: relative;
+    padding-inline-end: 60px;
+    padding-bottom: 60px;
+  }
+
+  .cs_about_img_main {
+    overflow: hidden;
+    border-radius: 20px;
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 560 / 620;
+      object-fit: cover;
+    }
+  }
+
+  .cs_about_img_small {
+    position: absolute;
+    bottom: 0;
+    inset-inline-end: 0;
+    width: 48%;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 8px solid var(--white-color);
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+  }
+
+  .cs_about_stat {
+    position: absolute;
+    top: 40px;
+    inset-inline-start: -30px;
+    padding: 20px 24px;
+    border-radius: 15px;
+    color: var(--white-color);
+    background-color: var(--accent-color);
+    box-shadow: 0 20px 40px -20px rgba(19, 109, 244, 0.6);
+  }
+
+  .cs_about_checklist {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 24px;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--primary-color);
+
+      i {
+        margin-top: 4px;
+        color: $cs_ph_green;
+      }
+    }
+  }
+
+  .cs_about_contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 30px;
+  }
+
+  .cs_about_phone {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .cs_phone_icon {
+      width: 50px;
+      height: 50px;
+      flex: none;
+      background-color: var(--gray4-color);
+    }
+  }
+
+  @media (max-width: 1399px) {
+    .cs_about_stat {
+      inset-inline-start: 16px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_about_img_wrap {
+      padding-inline-end: 30px;
+      padding-bottom: 30px;
+    }
+
+    .cs_about_checklist {
+      grid-template-columns: 1fr;
+    }
+
+    .cs_about_stat {
+      top: 16px;
+      padding: 14px 16px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Brands
+---------------------------------------------------*/
+.cs_pharmacy_brand_section {
+  padding-top: 0;
+
+  @media (max-width: 991px) {
+    padding-top: 0;
+  }
+
+  .cs_brand_box {
+    display: flex;
+    align-items: center;
+    gap: 30px 60px;
+    padding: 40px 50px;
+    border-radius: 20px;
+    border: 1px solid $cs_ph_border;
+
+    .cs_brand_title {
+      flex: none;
+      max-width: 220px;
+    }
+
+    .cs_partners_list_1 {
+      flex: 1;
+      gap: 24px 30px;
+
+      img {
+        height: 40px;
+        width: auto;
+      }
+    }
+
+    @media (max-width: 1199px) {
+      flex-direction: column;
+      text-align: center;
+      padding: 30px 20px;
+
+      .cs_brand_title {
+        max-width: 100%;
+      }
+
+      .cs_partners_list_1 {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Shop by Health Concern
+---------------------------------------------------*/
+.cs_pharmacy_concern_card {
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: all 0.4s ease;
+
+  &.cs_color_1 {
+    background-color: var(--gray4-color);
+  }
+
+  &.cs_color_2 {
+    background-color: #E4F7EE;
+  }
+
+  &.cs_color_3 {
+    background-color: var(--gray-color);
+  }
+
+  &.cs_color_4 {
+    background-color: var(--gray2-color);
+  }
+
+  .cs_concern_icon {
+    width: 64px;
+    height: 64px;
+    flex: none;
+    background-color: var(--white-color);
+    transition: all 0.4s ease;
+
+    img {
+      width: 30px;
+      border-radius: 0;
+      transition: filter 0.4s ease;
+    }
+  }
+
+  .cs_concern_info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cs_concern_desc {
+    color: var(--secondary-color);
+  }
+
+  .cs_concern_arrow {
+    position: absolute;
+    top: 14px;
+    inset-inline-end: 14px;
+    width: 32px;
+    height: 32px;
+    opacity: 0;
+    background-color: var(--white-color);
+    transform: translateX(-10px);
+    transition: all 0.4s ease;
+
+    @include rtl {
+      transform: translateX(10px) scaleX(-1);
+    }
+  }
+
+  &:hover {
+    border-color: var(--accent-color);
+    background-color: var(--white-color);
+    box-shadow: 0 24px 40px -24px rgba(19, 109, 244, 0.45);
+
+    .cs_concern_icon {
+      background-color: var(--accent-color);
+
+      img {
+        filter: brightness(0) saturate(100%) invert(100%);
+      }
+    }
+
+    .cs_concern_arrow {
+      opacity: 1;
+      transform: translateX(0);
+
+      @include rtl {
+        transform: translateX(0) scaleX(-1);
+      }
+    }
+  }
+
+  @media (max-width: 1399px) {
+    padding: 20px 16px;
+    gap: 12px;
+
+    .cs_concern_icon {
+      width: 54px;
+      height: 54px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  New Arrivals Slider
+---------------------------------------------------*/
+.cs_pharmacy_arrival_section {
+  .swiper {
+    padding: 10px 2px 40px;
+    margin: -10px -2px -40px;
+  }
+
+  .swiper-slide {
+    height: auto;
+  }
+
+  .cs_controller_3 {
+    margin-top: 40px;
+  }
+}
+
+/*-------------------------------------------------
+  FAQ
+---------------------------------------------------*/
+.cs_pharmacy_faq_section {
+  .cs_pharmacy_faq_left {
+    position: sticky;
+    top: 140px;
+    padding-inline-end: 50px;
+  }
+
+  .cs_faq_help_card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      top: -110px;
+      inset-inline-end: -80px;
+      border-radius: 50%;
+      border: 40px solid rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    >* {
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  .cs_faq_help_img {
+    width: 100px;
+    height: 100px;
+    flex: none;
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .cs_faq_help_btns {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+
+    .cs_btn_style_1 {
+      padding: 10px 20px;
+    }
+
+    .cs_text_btn_style_1:hover {
+      color: var(--primary-color);
+    }
+  }
+
+  @media (max-width: 991px) {
+    .cs_pharmacy_faq_left {
+      position: static;
+      padding-inline-end: 0;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_faq_help_card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 24px 20px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Cut-out product images (PNG) shown whole
+---------------------------------------------------*/
+.cs_pharmacy_product .cs_product_thumb>a img.cs_img_contain,
+.cs_pharmacy_category_card .cs_category_img img.cs_img_contain,
+.cs_pharmacy_promo_card .cs_promo_img img.cs_img_contain {
+  object-fit: contain;
+  background-color: var(--white-color);
+}
+
+.cs_pharmacy_product .cs_product_thumb>a img.cs_img_contain {
+  padding: 24px;
+}
+
+.cs_pharmacy_category_card .cs_category_img img.cs_img_contain {
+  padding: 16px;
+}
+
+.cs_pharmacy_promo_card .cs_promo_img img.cs_img_contain {
+  padding: 14px;
+}

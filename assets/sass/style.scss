@@ -30,9 +30,13 @@
 27. Login / My Account Section
 28. Ecommerce (Shop) Section
 29. Privacy Policy / Terms & Condition Section
+30. RTL Support
+31. Pharmacy Home (home-v6)
+32. Cart Drawer (mini cart)
 --------------------------------------------------------------*/
 
 // Base
+@import "default/mixins";
 @import "default/fonts";
 @import "default/variable";
 @import "default/typhography";
@@ -66,3 +70,11 @@
 @import "shortcode/login";
 @import "shortcode/ecommerce";
 @import "shortcode/privacy";
+@import "shortcode/pharmacy";
+@import "shortcode/cart_drawer";
+
+// RTL (global direction overrides)
+@import "common/rtl";
+
+// Dark mode (follows device prefers-color-scheme)
+@import "common/dark";

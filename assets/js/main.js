@@ -11,6 +11,7 @@
   | TABLE OF CONTENTS:
   |=====================================================================
   |
+  | 00. Text Direction (LTR / RTL)
   | 01. Preloader
   | 02. Mobile Menu
   | 03. Sticky Header
@@ -33,6 +34,10 @@
   | 20. Packages Sidebar Filter
   | 21. Toggle Active Class
   | 22. Ecommerce
+  | 23. Countdown Timer
+  | 24. Prescription Upload
+  | 25. Pharmacy Hero Slider
+  | 26. Cart Drawer (mini cart)
   |
   */
 
@@ -42,6 +47,11 @@
   $.exists = function (selector) {
     return $(selector).length > 0;
   };
+
+  // Must run before anything reads `dir` (Swiper, Flatpickr, SplitText)
+  const directionStorageKey = "hospil_dir";
+  const isRTL = directionInit();
+  let generatedFieldCount = 0;
 
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
@@ -77,6 +87,10 @@
     packagesFilterInit();
     toggleActiveClass();
     ecommerceInit();
+    countdownInit();
+    prescriptionUploadInit();
+    pharmacyHeroSliderInit();
+    cartDrawerInit();
     // Choices JS for Select
     $(".cs_choice").each(function () {
       const el = this;
@@ -86,6 +100,7 @@
         itemSelectText: "",
         shouldSort: false,
       });
+      fieldIdInit($(el).closest(".choices"));
 
       $(el).on("showDropdown", function () {
         $(el).closest(".choices").addClass("active");
@@ -104,6 +119,11 @@
         enableTime: false,
         dateFormat: format,
         disableMobile: true,
+        position: isRTL ? "auto right" : "auto",
+
+        onReady: function (selectedDates, dateStr, instance) {
+          fieldIdInit(instance.calendarContainer);
+        },
 
         onOpen: function (selectedDates, dateStr, instance) {
           $(instance.calendarContainer).addClass("active");
@@ -125,6 +145,11 @@
         time_24hr: false,
         minuteIncrement: 1,
         disableMobile: true,
+        position: isRTL ? "auto right" : "auto",
+
+        onReady: function (selectedDates, dateStr, instance) {
+          fieldIdInit(instance.calendarContainer);
+        },
 
         onOpen: function (selectedDates, dateStr, instance) {
           $(instance.calendarContainer).addClass("active");
@@ -155,6 +180,41 @@
       ScrollTrigger.refresh();
     }
   });
+  /*=============================================================
+    00. Text Direction (LTR / RTL)
+  ===============================================================*/
+  function directionInit() {
+    const html = document.documentElement;
+    let dir = html.getAttribute("dir") === "rtl" ? "rtl" : "ltr";
+
+    try {
+      localStorage.removeItem(directionStorageKey);
+      const urlDir = new URLSearchParams(window.location.search).get("dir");
+      if (urlDir === "rtl" || urlDir === "ltr") dir = urlDir;
+    } catch (e) {}
+
+    html.setAttribute("dir", dir);
+    return dir === "rtl";
+  }
+
+  // Reload with ?dir= so every plugin re-inits with the new direction
+  function setDirection(newDir) {
+    if (newDir === document.documentElement.getAttribute("dir")) return;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("dir", newDir);
+    window.location.href = url.toString();
+  }
+  // Give plugin-generated fields (Choices, Flatpickr)
+  function fieldIdInit(container) {
+    $(container)
+      .find("input, select, textarea")
+      .each(function () {
+        if (!this.id && !this.name) {
+          this.id = "cs_field_" + ++generatedFieldCount;
+        }
+      });
+  }
   /*=============================================================
     01. Preloader
   ===============================================================*/
@@ -242,6 +302,8 @@
       var totalSlides = $slides.length;
 
       if (!$wrapper.length) return;
+      // Sliders with their own initializer (e.g. pharmacy hero)
+      if ($swiperEl.is("[data-custom-init]")) return;
 
       // ===== DATA ATTRIBUTES =====
       var autoplayVal = Boolean(parseInt($swiperEl.data("autoplay"), 10));
@@ -490,6 +552,12 @@
     06. Language Select
   =============================================================*/
   function languageSwitch() {
+    const rtlLangs = ["ara"];
+
+    if (isRTL) {
+      $(".cs_language").text(rtlLangs[0]);
+    }
+
     // Language Update Functionality
     $(".cs_language_switcher").on("click", function () {
       $(".cs_language_dropdown").slideToggle(250);
@@ -501,6 +569,15 @@
       // Replace the selected flag in switcher
       $(".cs_language").text(selectedLang);
       $(".cs_language_dropdown").slideUp(250);
+      // Switch layout direction (RTL languages)
+      setDirection(rtlLangs.includes(selectedLang) ? "rtl" : "ltr");
+    });
+
+    // Close dropdown when clicking outside
+    $(document).on("click", function (e) {
+      if (!$(e.target).closest(".cs_language_select").length) {
+        $(".cs_language_dropdown").slideUp(250);
+      }
     });
   }
   /*============================================================
@@ -794,11 +871,13 @@
 
     titles.forEach(function (title) {
       SplitText.create(title, {
-        type: "words",
+        // Word blocks break bidi order in RTL, so split by lines there
+        type: isRTL ? "lines" : "words",
         wordsClass: "cs_reveal_word",
+        linesClass: "cs_reveal_line",
         autoSplit: true,
         onSplit: function (self) {
-          const tween = gsap.from(self.words, {
+          const tween = gsap.from(isRTL ? self.lines : self.words, {
             opacity: 0,
             y: 24,
             duration: 0.7,
@@ -1155,6 +1234,415 @@
         count--;
         count < 10 ? countElement.text("0" + count) : countElement.text(count);
       }
+    });
+  }
+  /*=====================================================
+    23. Countdown Timer
+    data-end="YYYY-MM-DDTHH:MM:SS" (optional). Without it,
+    counts down to the end of the current day (Deal of the Day).
+  =======================================================*/
+  function countdownInit() {
+    $(".cs_countdown").each(function () {
+      var $el = $(this);
+      var endAttr = $el.attr("data-end");
+      var getEnd = function () {
+        if (endAttr) return new Date(endAttr).getTime();
+        var d = new Date();
+        d.setHours(23, 59, 59, 999);
+        return d.getTime();
+      };
+      var pad = function (n) {
+        return n < 10 ? "0" + n : String(n);
+      };
+      var update = function () {
+        var s = Math.floor(Math.max(0, getEnd() - Date.now()) / 1000);
+        $el.find("[data-unit='days']").text(pad(Math.floor(s / 86400)));
+        $el
+          .find("[data-unit='hours']")
+          .text(pad(Math.floor((s % 86400) / 3600)));
+        $el
+          .find("[data-unit='minutes']")
+          .text(pad(Math.floor((s % 3600) / 60)));
+        $el.find("[data-unit='seconds']").text(pad(s % 60));
+      };
+      update();
+      setInterval(update, 1000);
+    });
+  }
+  /*=====================================================
+    24. Prescription Upload (show selected file name)
+  =======================================================*/
+  function prescriptionUploadInit() {
+    $(".cs_rx_upload input[type='file']").on("change", function () {
+      var $label = $(this).closest(".cs_rx_upload").find(".cs_rx_upload_text");
+      if (!$label.data("default")) $label.data("default", $label.text());
+      var names = $.map(this.files || [], function (f) {
+        return f.name;
+      });
+      $label.text(names.length ? names.join(", ") : $label.data("default"));
+    });
+
+    // Loop the steps: complete one after another, hold, reset, repeat.
+    // Runs only while the steps are on screen.
+    $(".cs_rx_steps").each(function () {
+      var $wrap = $(this);
+      var $steps = $wrap.find(".cs_rx_step");
+      var completeTime = $steps.length * 1600; // matches the CSS 1.6s stagger
+      var holdTime = 2500;
+      var resetTime = 600;
+      var timer = null;
+      var reduceMotion =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      $steps.each(function (i) {
+        this.style.setProperty("--i", i);
+      });
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        $steps.addClass("is-complete");
+        return;
+      }
+
+      var play = function () {
+        $wrap.removeClass("is-resetting");
+        $steps.addClass("is-complete");
+        timer = setTimeout(function () {
+          $wrap.addClass("is-resetting");
+          $steps.removeClass("is-complete");
+          timer = setTimeout(play, resetTime);
+        }, completeTime + holdTime);
+      };
+      var stop = function () {
+        clearTimeout(timer);
+        timer = null;
+        $wrap.removeClass("is-resetting");
+        $steps.removeClass("is-complete");
+      };
+
+      new IntersectionObserver(
+        function (entries) {
+          if (entries[0].isIntersecting) {
+            if (!timer) play();
+          } else {
+            stop();
+          }
+        },
+        { threshold: 0.3 },
+      ).observe(this);
+    });
+  }
+  /*=====================================================
+    25. Pharmacy Hero Slider
+    Crossfade slider with staggered content animation
+    (CSS, on .swiper-slide-active) and progress bullets.
+  =======================================================*/
+  function pharmacyHeroSliderInit() {
+    $(".cs_pharmacy_hero_slider").each(function () {
+      var $root = $(this).closest(".cs_pharmacy_hero");
+      var $bullets = $root.find(".cs_hero_bullet");
+      var reduceMotion =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      var setActive = function (index) {
+        $bullets
+          .removeClass("active")
+          .attr("aria-current", null)
+          .find(".cs_hero_bullet_bar")
+          .css("transform", "");
+        $bullets.eq(index).addClass("active").attr("aria-current", "true");
+      };
+
+      var slider = new Swiper(this, {
+        effect: "fade",
+        fadeEffect: { crossFade: true },
+        speed: reduceMotion ? 0 : 1000,
+        rewind: true,
+        allowTouchMove: true,
+        autoHeight: false,
+        navigation: {
+          prevEl: $root.find(".cs_hero_prev")[0],
+          nextEl: $root.find(".cs_hero_next")[0],
+        },
+        autoplay: reduceMotion
+          ? false
+          : {
+              delay: 6000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            },
+        on: {
+          init: function () {
+            setActive(0);
+            $root.addClass("cs_hero_ready");
+          },
+          slideChange: function () {
+            setActive(this.realIndex);
+          },
+          autoplayTimeLeft: function (s, time, progress) {
+            $bullets
+              .eq(s.realIndex)
+              .find(".cs_hero_bullet_bar")
+              .css("transform", "scaleX(" + (1 - progress) + ")");
+          },
+        },
+      });
+
+      $bullets.on("click", function () {
+        slider.slideTo($bullets.index(this));
+      });
+
+      // Don't change slides while the visitor is typing a search
+      $root
+        .find(".cs_hero_search input")
+        .on("focus", function () {
+          if (slider.autoplay && slider.autoplay.running)
+            slider.autoplay.pause();
+        })
+        .on("blur", function () {
+          if (slider.autoplay && slider.autoplay.running)
+            slider.autoplay.resume();
+        });
+    });
+  }
+  /*=====================================================
+    26. Cart Drawer (mini cart)
+    - ".addToCart" adds the product without leaving the page
+    - header ".cs_cart_btn" opens the drawer
+    Cart is kept in localStorage so it survives page changes.
+    Only pages that include ".cs_cart_drawer" intercept clicks.
+  =======================================================*/
+  function cartDrawerInit() {
+    var storageKey = "hospil_cart";
+    var memoryCart = [];
+    var $drawer = $(".cs_cart_drawer");
+    var hasDrawer = $drawer.length > 0;
+    var $list = $drawer.find(".cs_cart_drawer_list");
+    var $toast = $(".cs_cart_toast");
+    var lastTrigger = null;
+    var toastTimer = null;
+
+    var readCart = function () {
+      try {
+        var data = JSON.parse(window.localStorage.getItem(storageKey));
+        return Array.isArray(data) ? data : [];
+      } catch (e) {
+        return memoryCart;
+      }
+    };
+    var writeCart = function (cart) {
+      memoryCart = cart;
+      try {
+        window.localStorage.setItem(storageKey, JSON.stringify(cart));
+      } catch (e) {}
+    };
+    var money = function (n) {
+      return "$" + (Math.round(n * 100) / 100).toFixed(2);
+    };
+    var slug = function (s) {
+      return String(s)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+    };
+
+    // Read product details from any supported product markup
+    var productFrom = function ($btn) {
+      var $root = $btn.closest(
+        ".cs_pharmacy_product, .cs_product_card_1, .cs_product_summary",
+      );
+      if (!$root.length) return null;
+      var $title = $root.find(".cs_product_title").first();
+      var $price = $root.find(".cs_product_price").first().clone();
+      $price.find("del").remove();
+      var price = parseFloat($price.text().replace(/[^0-9.]/g, "")) || 0;
+      var $img = $root.find(".cs_product_thumb img").first();
+      if (!$img.length)
+        $img = $root.closest("section").find(".cs_product_gallery img").first();
+      var $link = $title.find("a");
+      var qty =
+        parseInt($root.find(".cs_quantity_input").first().text(), 10) || 1;
+      var name = $.trim($title.text());
+      return {
+        id: slug(name),
+        name: name,
+        price: price,
+        img: $img.attr("src") || "",
+        url: $link.attr("href") || "shop-details.html",
+        qty: qty,
+      };
+    };
+
+    var render = function () {
+      var cart = readCart();
+      var count = 0;
+      var total = 0;
+      $.each(cart, function (i, item) {
+        count += item.qty;
+        total += item.qty * item.price;
+      });
+      $(".cs_site_header .cs_cart_badge").text(count);
+      if (!hasDrawer) return;
+
+      $list.empty();
+      $.each(cart, function (i, item) {
+        var $li = $('<li class="cs_cart_drawer_item"></li>').attr(
+          "data-id",
+          item.id,
+        );
+        $('<a class="cs_cart_item_img"></a>')
+          .attr({ href: item.url, "aria-label": item.name })
+          .append(
+            $('<img width="76" height="76">').attr({
+              src: item.img,
+              alt: item.name,
+            }),
+          )
+          .appendTo($li);
+        var $info = $('<div class="cs_cart_item_info"></div>').appendTo($li);
+        $(
+          '<h3 class="cs_cart_item_title cs_fs_16 cs_semibold cs_primary_color"></h3>',
+        )
+          .append($("<a></a>").attr("href", item.url).text(item.name))
+          .appendTo($info);
+        $('<span class="cs_cart_item_price cs_fs_14"></span>')
+          .text(
+            money(item.price) +
+              " × " +
+              item.qty +
+              " = " +
+              money(item.price * item.qty),
+          )
+          .appendTo($info);
+        $('<div class="cs_cart_item_qty"></div>')
+          .append(
+            '<button type="button" data-cart-action="dec" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>',
+          )
+          .append($("<span></span>").text(item.qty))
+          .append(
+            '<button type="button" data-cart-action="inc" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>',
+          )
+          .appendTo($info);
+        $li.append(
+          '<button type="button" class="cs_cart_item_remove cs_center" data-cart-action="remove" aria-label="Remove item"><i class="fa-regular fa-trash-can"></i></button>',
+        );
+        $list.append($li);
+      });
+      $drawer.find(".cs_cart_drawer_count").text("(" + count + ")");
+      $drawer.find(".cs_cart_drawer_total").text(money(total));
+      $drawer.toggleClass("cs_cart_is_empty", cart.length === 0);
+    };
+
+    var addItem = function (product) {
+      var cart = readCart();
+      var found = false;
+      $.each(cart, function (i, item) {
+        if (item.id === product.id) {
+          item.qty += product.qty;
+          found = true;
+        }
+      });
+      if (!found) cart.push(product);
+      writeCart(cart);
+      render();
+      $(".cs_site_header .cs_cart_badge")
+        .removeClass("cs_bump")
+        .each(function () {
+          void this.offsetWidth; // restart animation
+        })
+        .addClass("cs_bump");
+    };
+
+    var updateItem = function (id, action) {
+      var cart = readCart();
+      cart = $.grep(cart, function (item) {
+        if (item.id !== id) return true;
+        if (action === "inc") item.qty += 1;
+        if (action === "dec") item.qty -= 1;
+        return action !== "remove" && item.qty > 0;
+      });
+      writeCart(cart);
+      render();
+    };
+
+    var openDrawer = function () {
+      lastTrigger = document.activeElement;
+      render();
+      $drawer.addClass("active").attr("aria-hidden", "false");
+      $("html").addClass("cs_cart_open").css("overflow", "hidden");
+      if (window.lenisInstance) window.lenisInstance.stop();
+      setTimeout(function () {
+        $drawer.find(".cs_cart_drawer_panel").trigger("focus");
+      }, 50);
+    };
+    var closeDrawer = function () {
+      $drawer.removeClass("active").attr("aria-hidden", "true");
+      $("html").removeClass("cs_cart_open").css("overflow", "");
+      if (window.lenisInstance) window.lenisInstance.start();
+      if (lastTrigger && lastTrigger.focus) lastTrigger.focus();
+    };
+
+    var showToast = function (name) {
+      if (!$toast.length) return;
+      $toast.find(".cs_toast_name").text(name);
+      $toast.addClass("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        $toast.removeClass("show");
+      }, 3500);
+    };
+
+    render();
+    if (!hasDrawer) return;
+
+    // Add to cart (stay on page)
+    $(document).on("click", ".addToCart", function (e) {
+      var $btn = $(this);
+      var product = productFrom($btn);
+      if (!product) return;
+      e.preventDefault();
+      addItem(product);
+      showToast(product.name);
+
+      var $label = $btn.children("span").first();
+      $btn.addClass("cs_added");
+      if ($label.length) {
+        if (!$label.data("label")) $label.data("label", $label.text());
+        $label.text("Added");
+      }
+      setTimeout(function () {
+        $btn.removeClass("cs_added");
+        if ($label.length) $label.text($label.data("label"));
+      }, 1500);
+    });
+
+    // Header cart icon opens the drawer
+    $(".cs_site_header .cs_cart_btn").on("click", function (e) {
+      e.preventDefault();
+      openDrawer();
+    });
+    $toast.find(".cs_toast_btn").on("click", function () {
+      $toast.removeClass("show");
+      openDrawer();
+    });
+
+    $drawer.on(
+      "click",
+      ".cs_cart_drawer_overlay, .cs_cart_drawer_close",
+      closeDrawer,
+    );
+    $drawer.on("click", "[data-cart-action]", function () {
+      updateItem(
+        $(this).closest(".cs_cart_drawer_item").attr("data-id"),
+        $(this).attr("data-cart-action"),
+      );
+    });
+    $(document).on("keydown", function (e) {
+      if (e.key === "Escape" && $drawer.hasClass("active")) closeDrawer();
+    });
+    // keep other tabs in sync
+    $(window).on("storage", function (e) {
+      if (e.originalEvent && e.originalEvent.key === storageKey) render();
     });
   }
 })(jQuery); // End of use strict

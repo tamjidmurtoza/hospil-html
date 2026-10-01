@@ -39,7 +39,8 @@
     }
 
     .choices__inner {
-      padding: 14px 40px 14px 20px !important;
+      padding-block: 14px !important;
+      padding-inline: 20px 40px !important;
       border-radius: 5px;
     }
 
@@ -60,7 +61,7 @@
       border-left: 0;
       border-top: 0;
       position: absolute;
-      right: 20px;
+      inset-inline-end: 20px;
       top: 50%;
       transform: translateY(-65%) rotate(45deg);
       pointer-events: none;
@@ -208,7 +209,7 @@
 
 .cs_product_summary {
   width: min(100%, 650px);
-  margin-left: auto;
+  margin-inline-start: auto;
 
   .cs_product_meta {
     display: flex;
@@ -225,7 +226,7 @@
 
   .cs_product_feature_list {
     list-style: disc;
-    padding-left: 30px;
+    padding-inline-start: 30px;
     display: flex;
     gap: 14px;
     flex-direction: column;
@@ -316,14 +317,14 @@
 
   li {
     position: relative;
-    padding-left: 26px;
+    padding-inline-start: 26px;
     color: var(--primary-color);
   }
 
   img {
     width: 16px;
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     top: 8px;
   }
 }
@@ -575,7 +576,7 @@
   }
 
   .cs_btn_style_2 {
-    margin-left: auto;
+    margin-inline-start: auto;
     border-color: var(--accent-color);
 
     img {
@@ -628,7 +629,7 @@
       width: 92px;
       height: 1px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       bottom: 0;
       background-color: var(--accent-color);
     }
@@ -747,7 +748,7 @@
     border-left: 0;
     border-top: 0;
     position: absolute;
-    right: 2px;
+    inset-inline-end: 2px;
     top: 50%;
     transform: translateY(-65%) rotate(45deg);
     pointer-events: none;
@@ -773,7 +774,7 @@
       width: 92px;
       height: 1px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       bottom: 0;
       background-color: var(--accent-color);
     }
@@ -849,7 +850,8 @@
     }
 
     .cs_payment_desc {
-      margin: 6px 0 0 30px;
+      margin-block: 6px 0;
+      margin-inline: 30px 0;
     }
   }
 

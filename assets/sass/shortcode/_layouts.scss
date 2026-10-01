@@ -77,6 +77,13 @@
         rgba(0, 0, 0, 0.5) 0%,
         rgba(0, 0, 0, 0.1) 100%);
     backdrop-filter: blur(5px);
+
+    @include rtl {
+      background: radial-gradient(231% 135.8% at 99.1% 2.98%,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(0, 0, 0, 0.1) 100%);
+    }
+
     transition:
       transform 0.35s ease,
       background-color 0.35s ease,
@@ -221,6 +228,11 @@
   &.cs_color_2 {
     background-color: #dbd5f7;
     padding: 24px;
+    @include rtl-flip-bg;
+
+    @include rtl {
+      position: relative;
+    }
   }
 
   &.cs_color_3 {
@@ -276,6 +288,12 @@
     .cs_funfact_number {
       display: flex;
       align-items: flex-end;
+
+      // Keep number + unit order, aligned to the RTL start
+      @include rtl {
+        direction: ltr;
+        justify-content: flex-end;
+      }
 
       small {
         display: inline-block;
@@ -398,6 +416,11 @@
   .cs_feature_card_back {
     transform: translateX(-100%);
     padding: 30px;
+
+    @include rtl {
+      transform: translateX(100%);
+    }
+
     display: flex;
     flex-direction: column;
     transition: transform 0.4s cubic-bezier(0.45, 0.35, 0.45, 0.5);
@@ -466,6 +489,10 @@
     align-items: flex-end;
     transform: translateX(-150px);
 
+    @include rtl {
+      transform: translateX(150px);
+    }
+
     >img {
       width: 100%;
       height: 100%;
@@ -515,12 +542,12 @@
 
     li {
       position: relative;
-      padding-left: 26px;
+      padding-inline-start: 26px;
     }
 
     img {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 8px;
     }
   }
@@ -570,6 +597,10 @@
   @media (max-width: 1650px) {
     .cs_technology_img {
       transform: translateX(-80px);
+
+      @include rtl {
+        transform: translateX(80px);
+      }
     }
   }
 
@@ -577,6 +608,10 @@
     .cs_technology_img {
       width: calc(100% + 12px);
       transform: translateX(-30px);
+
+      @include rtl {
+        transform: translateX(30px);
+      }
     }
   }
 
@@ -584,6 +619,10 @@
     .cs_technology_img {
       width: 100%;
       transform: translateX(0);
+
+      @include rtl {
+        transform: translateX(0);
+      }
     }
 
     .cs_feature_grid_1 {
@@ -637,11 +676,19 @@
 
   .cs_technology_img {
     transform: translateX(110px);
+
+    @include rtl {
+      transform: translateX(-110px);
+    }
   }
 
   @media (max-width: 1650px) {
     .cs_technology_img {
       transform: translateX(30px);
+
+      @include rtl {
+        transform: translateX(-30px);
+      }
     }
   }
 
@@ -649,6 +696,10 @@
     .cs_technology_img {
       width: 100%;
       transform: translateX(30px);
+
+      @include rtl {
+        transform: translateX(-30px);
+      }
     }
   }
 
@@ -656,6 +707,10 @@
     .cs_technology_img {
       width: 100%;
       transform: translateX(0);
+
+      @include rtl {
+        transform: translateX(0);
+      }
     }
   }
 }
@@ -706,9 +761,8 @@
     .cs_whychoose_stat {
       width: 100%;
       position: absolute;
-      left: 0;
+      inset-inline: 0;
       bottom: 0;
-      right: 0;
       padding: 15px 24px;
       background: rgba(255, 246, 235, 0.9);
     }
@@ -779,7 +833,7 @@
   .cs_work_bg_shape {
     width: 100%;
     height: auto;
-    left: 0;
+    inset-inline-start: 0;
     top: 45%;
     filter: blur(112px);
 
@@ -844,7 +898,7 @@
   .cs_work_card_shape {
     width: 160px;
     flex: none;
-    left: 85%;
+    inset-inline-start: 85%;
     top: 15%;
     animation: indication 3s linear infinite;
   }
@@ -858,7 +912,7 @@
   .col-lg-3 & {
     .cs_work_card_shape {
       width: 100px;
-      left: 88%;
+      inset-inline-start: 88%;
       top: 20%;
     }
   }
@@ -870,7 +924,7 @@
 
     .col-lg-3 & .cs_work_card_shape {
       width: 60px;
-      left: 90%;
+      inset-inline-start: 90%;
     }
   }
 
@@ -950,7 +1004,7 @@
 
   .cs_admission_badge {
     position: absolute;
-    right: 24px;
+    inset-inline-end: 24px;
     bottom: 24px;
     width: 140px;
     height: 140px;
@@ -1062,7 +1116,7 @@
     .cs_admission_badge {
       width: 120px;
       height: 120px;
-      right: 18px;
+      inset-inline-end: 18px;
       bottom: 18px;
     }
 
@@ -1093,7 +1147,7 @@
     .cs_admission_badge {
       width: 120px;
       height: 120px;
-      right: 14px;
+      inset-inline-end: 14px;
       bottom: 14px;
     }
 
@@ -1112,7 +1166,9 @@
 
   .cs_cta_card {
     position: relative;
-    padding: 88px 48px 88px 110px;
+    padding-block: 88px;
+    padding-inline: 110px 48px;
+    @include rtl-flip-bg;
   }
 
   .cs_cta_inner {
@@ -1138,7 +1194,7 @@
     width: 488px;
     height: 495px;
     top: -100px;
-    right: 120px;
+    inset-inline-end: 120px;
     border-radius: 50%;
     padding: 20px;
 
@@ -1181,7 +1237,7 @@
 
   .cs_cta_offer {
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     bottom: 30px;
     width: 134px;
     height: 134px;
@@ -1206,7 +1262,7 @@
 
   .cs_cta_actions {
     position: absolute;
-    right: 48px;
+    inset-inline-end: 48px;
     bottom: 45px;
     width: 64px;
     display: flex;
@@ -1240,6 +1296,8 @@
       font-size: 20px;
       font-weight: 600;
       text-wrap: nowrap;
+      direction: ltr;
+      unicode-bidi: isolate;
     }
 
     .cs_cta_phone_number:hover {
@@ -1262,11 +1320,11 @@
       width: 400px;
       height: 405px;
       top: -100px;
-      right: 100px;
+      inset-inline-end: 100px;
     }
 
     .cs_cta_offer {
-      left: 25%;
+      inset-inline-start: 25%;
       bottom: 20px;
     }
   }
@@ -1283,14 +1341,14 @@
     .cs_cta_visual {
       position: relative !important;
       top: initial;
-      right: initial;
+      inset-inline-end: initial;
       width: auto;
       height: auto;
       margin: 0 auto;
     }
 
     .cs_cta_offer {
-      left: 0;
+      inset-inline-start: 0;
       bottom: 50px;
     }
 
@@ -1354,7 +1412,7 @@
   .cs_controller_3 {
     margin: 0;
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     bottom: 17px;
     width: 50%;
     justify-content: flex-start;
@@ -1376,7 +1434,7 @@
     .cs_controller_3 {
       width: 100%;
       position: relative;
-      left: initial;
+      inset-inline-start: initial;
       bottom: initial;
       margin: 30px 0 0;
       justify-content: center;
@@ -1414,7 +1472,7 @@
     width: calc(100% - 24px);
     max-width: 424px;
     position: absolute;
-    right: 9%;
+    inset-inline-end: 9%;
     bottom: -103px;
     padding: 24px;
     opacity: 0;
@@ -1442,7 +1500,7 @@
 
   @media (max-width: 1199px) {
     .cs_equipment_info {
-      right: 24px;
+      inset-inline-end: 24px;
     }
   }
 
@@ -1453,7 +1511,7 @@
 
     .cs_equipment_info {
       position: relative;
-      right: initial;
+      inset-inline-end: initial;
       bottom: initial;
       z-index: 2;
       padding: 24px 15px;
@@ -1476,7 +1534,8 @@
  CTA Section
 ===============================================*/
 .cs_cta_style_1 {
-  padding: 120px 0 120px 112px;
+  padding-block: 120px;
+  padding-inline: 112px 0;
 
   .cs_cta_text {
     width: min(100%, 424px);
@@ -1486,7 +1545,8 @@
 
   .cs_cta_img {
     width: 100%;
-    padding: 24px 24px 0 45%;
+    padding-block: 24px 0;
+    padding-inline: 45% 24px;
     display: flex;
     align-items: flex-end;
     position: absolute;
@@ -1494,7 +1554,8 @@
   }
 
   @media (max-width: 1199px) {
-    padding: 120px 0 120px 30px;
+    padding-block: 120px;
+    padding-inline: 30px 0;
   }
 
   @media (max-width: 991px) {
@@ -1514,7 +1575,9 @@
 
 .cs_cta_style_2 {
   overflow: hidden;
-  padding: 125px 20px 110px 120px;
+  padding-block: 125px 110px;
+  padding-inline: 120px 20px;
+  @include rtl-flip-bg;
 
   .cs_cta_overlay {
     inset: 0;
@@ -1522,6 +1585,12 @@
     background: linear-gradient(90deg,
         rgba(19, 109, 244, 0.9) 49.04%,
         rgba(19, 109, 244, 0) 73.56%);
+
+    @include rtl {
+      background: linear-gradient(270deg,
+          rgba(19, 109, 244, 0.9) 49.04%,
+          rgba(19, 109, 244, 0) 73.56%);
+    }
   }
 
   .cs_cta_content {
@@ -1552,13 +1621,13 @@
         height: 68px;
         position: absolute;
         top: 50%;
-        right: 0;
+        inset-inline-end: 0;
         transform: translateY(-50%);
         background-color: rgba(255, 255, 255, 0.35);
       }
 
       &:last-child {
-        margin-left: auto;
+        margin-inline-start: auto;
 
         &::after {
           display: none;
@@ -1595,8 +1664,7 @@
 
   .cs_cta_bg {
     top: 50%;
-    left: 0;
-    right: 0;
+    inset-inline: 0;
     filter: blur(112px);
     transform: translateY(-50%);
   }
@@ -1648,7 +1716,7 @@
 ==========================================================*/
 .cs_sidebar_style_1 {
   width: min(100%, 312px);
-  margin-left: auto;
+  margin-inline-start: auto;
   display: flex;
   gap: 24px;
   flex-direction: column;
@@ -1676,7 +1744,7 @@
     &::after {
       content: "";
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       bottom: 0;
       width: 28%;
       height: 1px;
@@ -1696,7 +1764,7 @@
     a {
       display: inline-block;
       position: relative;
-      padding-left: 30px;
+      padding-inline-start: 30px;
       transition: color 0.3s ease;
 
       &::before {
@@ -1704,7 +1772,7 @@
         width: 5px;
         height: 5px;
         position: absolute;
-        left: 12px;
+        inset-inline-start: 12px;
         top: 8px;
         border-radius: 50%;
         background-color: currentColor;
@@ -1728,7 +1796,7 @@
       justify-content: space-between;
 
       span:last-child {
-        text-align: right;
+        text-align: end;
       }
     }
 
@@ -1805,7 +1873,8 @@
       border-left: 0;
       border-top: 0;
       position: absolute;
-      right: 10px;
+      inset-inline-start: auto;
+      inset-inline-end: 10px;
       top: 50%;
       margin: 0;
       transform: translateY(-50%) rotate(45deg);
@@ -1813,12 +1882,12 @@
     }
 
     .choices[data-type*="select-one"]::after {
-      right: 10px;
+      inset-inline-end: 10px;
       top: 50%;
     }
 
     .cs_date_icon {
-      right: 10px;
+      inset-inline-end: 10px;
     }
 
     .choices__list--dropdown,
@@ -1856,7 +1925,8 @@
       border: 0;
       outline: 0;
       border-radius: 5px;
-      padding: 13px 32px 13px 12px;
+      padding-block: 13px;
+      padding-inline: 12px 32px;
       background-color: var(--white-color);
 
       &::placeholder {
@@ -1866,7 +1936,7 @@
 
     button {
       position: absolute;
-      right: 16px;
+      inset-inline-end: 16px;
       top: 50%;
       transform: translateY(-50%);
       border: 0;
@@ -1949,9 +2019,13 @@
 
     .cs_widget_title {
       &::after {
-        left: 50%;
+        inset-inline-start: 50%;
         transform: translateX(-50%);
         width: 88px;
+
+        @include rtl {
+          transform: translateX(50%);
+        }
       }
     }
 
@@ -1973,13 +2047,13 @@
   .cs_venue_address,
   .cs_venue_date {
     position: relative;
-    padding-left: 26px;
+    padding-inline-start: 26px;
 
     img {
       width: 16px;
       height: 16px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 5px;
       margin-top: 0;
       filter: brightness(0) saturate(100%) invert(37%) sepia(53%) saturate(6343%) hue-rotate(208deg) brightness(98%) contrast(96%);
@@ -2257,8 +2331,7 @@
 
   .cs_estimate_bg {
     width: 100%;
-    left: 0;
-    right: 0;
+    inset-inline: 0;
     bottom: 20%;
     transform: translateY(20%);
     filter: blur(112px);
@@ -2587,7 +2660,7 @@
   .cs_event_card_badge {
     position: absolute;
     top: 20px;
-    left: 20px;
+    inset-inline-start: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -2786,7 +2859,7 @@
   .cs_event_details_badge {
     position: absolute;
     top: 24px;
-    left: 24px;
+    inset-inline-start: 24px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -2809,14 +2882,14 @@
 
     li {
       position: relative;
-      padding-left: 26px;
+      padding-inline-start: 26px;
     }
 
     img {
       width: 16px;
       height: 16px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 5px;
     }
   }

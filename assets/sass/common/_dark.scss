@@ -1,0 +1,775 @@
+/*=================================================================
+  33. Dark Mode (follows the device setting: prefers-color-scheme)
+-------------------------------------------------------------------
+  Everything for the dark version lives in this one partial, so the
+  light styles stay untouched. Approach:
+  1. Re-map the colour tokens (text + light tint backgrounds).
+  2. --white-color stays white, because it is also the text colour on
+     accent buttons/overlays. Rules that use it as a *surface* are
+     re-pointed to the dark surface tokens below.
+  3. --primary-color becomes light (headings/text). Rules that use it
+     as a *background* are re-pointed to --dm-ink / --dm-deep.
+===================================================================*/
+@media (prefers-color-scheme: dark) {
+
+  /*------------------------------------------
+    Tokens
+  --------------------------------------------*/
+  :root {
+    color-scheme: dark;
+
+    // Dark palette
+    --web-wash: #0B1220;
+    --dm-deep: #070C17;
+    --dm-surface: #111A2E;
+    --dm-surface-2: #17223A;
+    --dm-ink: #334155;
+    --dm-border: rgba(148, 163, 184, 0.16);
+
+    // Pastel card colours -> deep tinted versions
+    --dm-beige: #2A251B;
+    --dm-sage: #1B2B26;
+    --dm-slate: #22233A;
+    --dm-lavender: #25214A;
+    --dm-sky: #172A4A;
+    --dm-cream: #2B2217;
+    --dm-mint: #14302A;
+
+    // Icon filters (turn dark SVG icons into light ones)
+    --dm-icon-light: brightness(0) saturate(100%) invert(94%) sepia(6%) saturate(300%) hue-rotate(185deg);
+    --dm-icon-muted: brightness(0) saturate(100%) invert(75%) sepia(8%) saturate(400%) hue-rotate(180deg);
+
+    // Theme tokens
+    --primary-color: #F1F5F9;
+    --secondary-color: #A7B1C2;
+    --secondary2-color: #8B98AC;
+    --gray-color: #1A1814;
+    --gray2-color: #131B2D;
+    --gray3-color: #172A4A;
+    --gray4-color: #121B30;
+    --gray5-color: #221F42;
+    --gray6-color: #141C2C;
+    --gray7-color: #1A2D4D;
+
+    // Choices.js plugin
+    --choices-bg-color: var(--dm-surface);
+    --choices-bg-color-dropdown: var(--dm-surface-2);
+    --choices-keyline-color: var(--dm-border);
+    --choices-highlighted-color: var(--dm-ink);
+    --choices-bg-color-disabled: var(--dm-surface-2);
+  }
+
+  body,
+  html {
+    background-color: var(--web-wash);
+  }
+
+  table {
+    td,
+    th {
+      border-color: var(--dm-border);
+    }
+  }
+
+  pre {
+    border-color: var(--dm-border);
+  }
+
+  /*------------------------------------------
+    General utilities
+  --------------------------------------------*/
+  .cs_white_bg {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_primary_bg {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_body_bg {
+    background-color: var(--dm-ink);
+  }
+
+  .cs_black_bg {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_gray_color {
+    color: #FFF6EB;
+  }
+
+  .cs_black_color {
+    color: var(--white-color);
+  }
+
+  .cs_preloader {
+    background-color: var(--web-wash);
+  }
+
+  .cs_scrollup_btn:hover {
+    background-color: var(--dm-surface-2);
+  }
+
+  // Buttons: dark "primary" fills become slate so white text stays readable
+  .cs_btn_style_1::before,
+  .cs_btn_style_1::after,
+  .cs_btn_style_2:hover,
+  .cs_progress .cs_progress_in,
+  .cs_progress .cs_progress_in::after,
+  .cs_ib_card .cs_btn_style_1:hover,
+  .cs_service_card_1 .cs_service_btn:hover,
+  .cs_service_card_3 .cs_card_btn:hover,
+  .cs_doctor_filter .cs_btn_style_1:hover,
+  .cs_pricing_table_2.active .cs_btn_style_1:hover,
+  .cs_pricing_table_2:hover .cs_btn_style_1:hover,
+  .cs_sidebar_style_1 .cs_appointment_form .cs_btn_style_1:hover,
+  .cs_event_card_1:hover .cs_btn_style_2:hover,
+  .cs_login_form_wrap .cs_btn_style_1:hover,
+  .cs_login_form_wrap .cs_login_social .cs_btn_style_1:hover,
+  .cs_cart_totals .cs_btn_style_1:hover,
+  .cs_checkout_sidebar .cs_btn_style_1:hover {
+    background-color: var(--dm-ink);
+  }
+
+  .cs_btn_style_2:hover,
+  .cs_event_card_1:hover .cs_btn_style_2:hover,
+  .cs_pricing_table_2.active .cs_btn_style_1:hover,
+  .cs_pricing_table_2:hover .cs_btn_style_1:hover {
+    border-color: var(--dm-ink);
+  }
+
+  .cs_service_card_4 .cs_card_btn:hover,
+  .cs_facility_card_1 .cs_card_btn:hover {
+    background-color: var(--dm-ink) !important;
+  }
+
+  /*------------------------------------------
+    Header
+  --------------------------------------------*/
+  .cs_site_header.cs_style_1 {
+    background: rgba(11, 18, 32, 0.8);
+  }
+
+  .cs_site_header.cs_style_4 {
+    background-color: rgba(11, 18, 32, 0.8);
+  }
+
+  .cs_site_header.cs_sticky_active {
+    background-color: rgba(11, 18, 32, 0.85);
+    box-shadow: 0 1px 0 0 var(--dm-border);
+  }
+
+  .cs_site_header.cs_style_2.cs_sticky_active {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .cs_site_header.cs_style_2.cs_sticky_active .cs_main_header {
+    box-shadow: 0 1px 0 0 var(--dm-border);
+  }
+
+  .cs_site_header.cs_style_3.cs_sticky_active {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  @media (min-width: 1280px) {
+    .cs_site_header .menu-item-has-children ul {
+      background: var(--dm-surface-2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  @media (max-width: 1279px) {
+    .cs_site_header .cs_nav_list_wrapper {
+      background-color: var(--dm-surface);
+    }
+
+    .cs_site_header .cs_close_nav {
+      background-color: var(--dm-ink);
+    }
+  }
+
+  .cs_top_header_in .cs_language_dropdown,
+  .cs_header_search .cs_header_search_in,
+  .cs_side_header .cs_side_header_in {
+    background-color: var(--dm-surface);
+  }
+
+  // Dark logo text -> use the white-text logo
+  img[src$="img/logo.svg"] {
+    content: url("../img/logo2.svg");
+  }
+
+  /*------------------------------------------
+    Footer
+  --------------------------------------------*/
+  .cs_footer_style_1,
+  .cs_footer_style_2,
+  .cs_footer_style_3 {
+    border-top: 1px solid var(--dm-border);
+  }
+
+  .cs_footer_style_1 .cs_social_btns_style_1 a,
+  .cs_footer_style_3 .cs_social_btns_style_1 a,
+  .cs_footer_style_2 .cs_social_btns_style_1 a {
+    background-color: var(--dm-ink);
+  }
+
+  // Light photo behind the footer card: tint it into the page background
+  .cs_footer_style_3 {
+    background-color: var(--web-wash);
+    background-blend-mode: multiply;
+  }
+
+  .cs_footer_style_3 .cs_footer_main,
+  [dir=rtl] .cs_footer_style_3 .cs_footer_main {
+    background: var(--dm-surface);
+    border-color: var(--dm-border);
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  }
+
+  @media (max-width: 575px) {
+    .cs_footer_style_1 .cs_newsletter_style_1 .cs_btn_style_1:hover,
+    .cs_footer_style_3 .cs_newsletter_style_1 .cs_btn_style_1:hover,
+    .cs_footer_style_2 .cs_newsletter_style_1 .cs_btn_style_1:hover {
+      background-color: var(--dm-surface-2);
+    }
+  }
+
+  /*------------------------------------------
+    Slider / Video modal
+  --------------------------------------------*/
+  .cs_controller_1 .slider-prev,
+  .cs_controller_1 .slider-next,
+  .cs_controller_2 .slider-prev,
+  .cs_controller_2 .slider-next,
+  .cs_controller_3 .slider-prev,
+  .cs_controller_3 .slider-next,
+  .cs_controller_4 .slider-prev,
+  .cs_controller_4 .slider-next {
+    background: var(--dm-surface-2);
+  }
+
+  .cs_video_popup_container {
+    background: var(--dm-surface);
+  }
+
+  /*------------------------------------------
+    Hero
+  --------------------------------------------*/
+  .cs_hero_style_1 .cs_hero_content::before {
+    background: rgba(11, 18, 32, 0.85);
+  }
+
+  .cs_hero_style_1 .cs_hero_parallax_bg::after {
+    background: radial-gradient(40% 62.5% at 70.57% 40.5%, rgba(11, 18, 32, 0) 62.5%, rgba(11, 18, 32, 0.85) 100%);
+  }
+
+  .cs_hero_style_4 .cs_hero_avatars li,
+  .cs_hero_style_5 .cs_hero_avatars li,
+  .cs_about_style_1 .cs_avatar {
+    border-color: var(--dm-surface);
+  }
+
+  .cs_ib_card {
+    background: rgba(17, 26, 46, 0.75);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.35), 0 8px 10px -6px rgba(0, 0, 0, 0.35);
+  }
+
+  .cs_ib_card .cs_field_item {
+    background: var(--dm-surface-2);
+  }
+
+  /*------------------------------------------
+    About / Features / Services / Facilities
+  --------------------------------------------*/
+  .cs_about_style_1 blockquote,
+  .cs_location_section_1 .cs_ambulance_card,
+  .cs_feature_card_3 .cs_feature_card_icon_back {
+    background: rgba(23, 42, 74, 0.85);
+  }
+
+  .cs_about_style_5 .cs_call_btn,
+  .cs_feature_section_5 .cs_call_btn,
+  .cs_technology_section_1 .cs_call_btn,
+  .cs_technology_section_2 .cs_call_btn,
+  .cs_service_card_4 .cs_card_tags li,
+  .cs_facility_card_1 .cs_card_tags li {
+    background-color: var(--dm-surface-2);
+  }
+
+  .cs_whychoose_section_3 .cs_whychoose_img .cs_whychoose_stat {
+    background: rgba(43, 34, 23, 0.9);
+  }
+
+  // Blocks drawn on light photos keep their light-mode text colours
+  .cs_feature_card_2.cs_bg_filed,
+  .cs_cta_section_3 .cs_cta_card,
+  .cs_page_header_style_1,
+  .cs_hero_style_5,
+  .cs_testimonial_section_4 {
+    --primary-color: #1F2937;
+    --secondary-color: #4B5563;
+    // inherited text was already computed light on body, so re-apply it here
+    color: var(--secondary-color);
+  }
+
+  .cs_testimonial_section_4 .cs_controller_4 {
+    .slider-prev,
+    .slider-next {
+      color: var(--primary-color);
+      background-color: #F3F6FF;
+    }
+
+    .slider-prev:hover,
+    .slider-next:hover {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+    }
+  }
+
+  .cs_cta_section_3 .cs_cta_offer {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_cta_section_3 .cs_cta_image_circle::before {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_feature_card_1:hover,
+  .cs_feature_card_4:hover,
+  .cs_feature_card_2:hover {
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  // Pastel cards
+  .cs_feature_section_5 .cs_about_card.cs_color_1,
+  .cs_service_card_3.cs_color_1,
+  .cs_blog_details .cs_red_flag_card.cs_color_1,
+  .cs_career_mission_section .cs_career_value_card.cs_color_1,
+  .cs_experts_stats .cs_stat_pill.cs_color_1,
+  .cs_pricing_table_2.cs_color_1 .cs_pricing_badge,
+  .cs_featured_pricingbox.cs_color_4,
+  .cs_feature_card_1.cs_color_1,
+  .cs_color_1.cs_feature_card_4,
+  .cs_feature_card_2.cs_color_1 {
+    background-color: var(--dm-beige);
+  }
+
+  .cs_feature_section_5 .cs_about_card.cs_color_3,
+  .cs_service_card_3.cs_color_2,
+  .cs_blog_details .cs_red_flag_card.cs_color_2,
+  .cs_career_mission_section .cs_career_value_card.cs_color_2,
+  .cs_experts_stats .cs_stat_pill.cs_color_2,
+  .cs_pricing_table_2.cs_color_2 .cs_pricing_badge,
+  .cs_featured_pricingbox.cs_color_1,
+  .cs_faq_cta_1 .cs_faq_cta_iten.cs_color_1,
+  .cs_appointment_2 .cs_checkup_schedule,
+  .cs_feature_card_1.cs_color_2,
+  .cs_color_2.cs_feature_card_4,
+  .cs_feature_card_2.cs_color_3,
+  .cs_whychoose_section_3 .cs_whychoose_badges .cs_whychoose_badge.cs_color_2,
+  .cs_event_card_1 .cs_event_card_badge.cs_color_2 {
+    background-color: var(--dm-sage);
+  }
+
+  .cs_service_card_3.cs_color_3,
+  .cs_blog_details .cs_red_flag_card.cs_color_3,
+  .cs_career_mission_section .cs_career_value_card.cs_color_3,
+  .cs_featured_pricingbox.cs_color_3,
+  .cs_feature_card_1.cs_color_3,
+  .cs_color_3.cs_feature_card_4,
+  .cs_event_card_1 .cs_event_card_badge.cs_color_3 {
+    background-color: var(--dm-slate);
+  }
+
+  .cs_feature_section_5 .cs_about_card.cs_color_2,
+  .cs_service_card_3.cs_color_4,
+  .cs_blog_details .cs_red_flag_card.cs_color_4,
+  .cs_experts_stats .cs_stat_pill.cs_color_3,
+  .cs_pricing_table_2 .cs_pricing_badge,
+  .cs_featured_pricingbox.cs_color_2,
+  .cs_feature_card_1.cs_color_4,
+  .cs_color_4.cs_feature_card_4,
+  .cs_feature_card_2.cs_color_2,
+  .cs_whychoose_section_3 .cs_whychoose_badges .cs_whychoose_badge.cs_color_1,
+  .cs_event_card_1 .cs_event_card_badge.cs_color_1,
+  .cs_post_style_1 .cs_post_date {
+    background-color: var(--dm-lavender);
+  }
+
+  .cs_service_card_3.cs_color_5,
+  .cs_whychoose_section_3 .cs_whychoose_badges .cs_whychoose_badge.cs_color_4 {
+    background-color: var(--dm-sky);
+  }
+
+  .cs_service_card_3.cs_color_6,
+  .cs_whychoose_section_3 .cs_whychoose_badges .cs_whychoose_badge.cs_color_3,
+  .cs_policy_note.cs_type_warning {
+    background-color: var(--dm-cream);
+  }
+
+  .cs_admission_section_1 .cs_admission_option.cs_color_1 {
+    background-color: var(--dm-mint);
+  }
+
+  /*------------------------------------------
+    Blog
+  --------------------------------------------*/
+  .cs_blog_details .cs_post_tags .cs_tags_list a,
+  .cs_blog_details .cs_post_navigation .cs_post_nav_item,
+  .cs_pagination li a {
+    background-color: var(--dm-surface);
+  }
+
+  /*------------------------------------------
+    Team
+  --------------------------------------------*/
+  .cs_team_section_3 {
+    background: linear-gradient(180deg, var(--gray2-color) 0%, var(--web-wash) 100%);
+  }
+
+  .cs_team_style_2 .cs_team_info::before {
+    background: linear-gradient(180deg, rgba(37, 33, 74, 0) 50%, #25214A 87%);
+  }
+
+  /*------------------------------------------
+    Pricing / FAQ
+  --------------------------------------------*/
+  .cs_pricing_table_2.active,
+  .cs_pricing_table_2:hover {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_accordians_style_2 .cs_accordian .cs_accordian_toggler,
+  .cs_accordians_style_3 .cs_accordian .cs_accordian_toggler,
+  .cs_faq_cta_1 .cs_faq_cta_iten.cs_white_bg {
+    background-color: var(--dm-surface-2);
+    box-shadow: inset 0 0 0 1px var(--dm-border);
+  }
+
+  /*------------------------------------------
+    Appointment / Forms
+  --------------------------------------------*/
+  .cs_appointment_section_3 .cs_appointment_promise_img::before {
+    background: linear-gradient(180deg, rgba(11, 18, 32, 0.85) 0%, rgba(11, 18, 32, 0.1) 50%);
+  }
+
+  .cs_appointment_form_2 .cs_form_field,
+  .cs_appointment_form_2 .cs_timepicker,
+  .cs_appointment_form_2 .cs_datepicker,
+  .cs_appointment_form_2 .choices__inner,
+  .cs_sidebar_style_1 .cs_appointment_form .cs_form_field,
+  .cs_sidebar_style_1 .cs_appointment_form .cs_timepicker,
+  .cs_sidebar_style_1 .cs_appointment_form .cs_datepicker,
+  .cs_sidebar_style_1 .cs_appointment_form .choices__inner,
+  .cs_sidebar_style_1 .cs_search_form input,
+  .cs_sidebar_style_1 .cs_tags_list a {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_sidebar_style_1 .cs_appointment_form .choices__list--dropdown,
+  .cs_sidebar_style_1 .cs_appointment_form .choices__list[aria-expanded],
+  .cs_shop_toolbar .cs_shop_sort .choices__list--dropdown,
+  .cs_shop_toolbar .cs_shop_sort .choices__list[aria-expanded],
+  .cs_checkout_form .choices__list--dropdown,
+  .cs_checkout_form .choices__list[aria-expanded] {
+    background-color: var(--dm-surface-2) !important;
+  }
+
+  // Outline submit button -> solid accent so it reads on any backdrop
+  .cs_appointment_form_1 .cs_btn_style_2,
+  .cs_appointment_form_2 .cs_btn_style_2 {
+    color: var(--white-color);
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+
+    img {
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+
+    &:hover {
+      border-color: var(--dm-ink);
+      background-color: var(--dm-ink);
+    }
+  }
+
+  // Pastel SVG background artwork (vector_shape_*.svg): tint it into the
+  // dark section colour so the light blobs don't wash out the content
+  .cs_bg_filed[data-src$=".svg"] {
+    background-blend-mode: multiply;
+  }
+
+  .cs_doctor_filter .choices__list--dropdown,
+  .cs_doctor_filter .choices__list[aria-expanded] {
+    border-color: var(--dm-border);
+  }
+
+  .cs_appointment_form_wrapper .cs_form_field {
+    border-color: var(--dm-border);
+  }
+
+  // Fields that relied on the browser's default white fill
+  // (:where keeps specificity at 0 so component rules still win)
+  :where(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=submit]):not([type=button]), textarea, select) {
+    background-color: transparent;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--secondary2-color);
+  }
+
+  .choices__list--dropdown .choices__item,
+  .choices__list[aria-expanded] .choices__item {
+    color: var(--secondary-color);
+  }
+
+  // Flatpickr calendar
+  .flatpickr-calendar {
+    background: var(--dm-surface-2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+    &.arrowTop::after {
+      border-bottom-color: var(--dm-surface-2);
+    }
+
+    &.arrowBottom::after {
+      border-top-color: var(--dm-surface-2);
+    }
+  }
+
+  .flatpickr-months .flatpickr-month,
+  .flatpickr-current-month .flatpickr-monthDropdown-months,
+  .flatpickr-current-month input.cur-year,
+  span.flatpickr-weekday,
+  .flatpickr-time input,
+  .flatpickr-time .flatpickr-am-pm,
+  .flatpickr-time .flatpickr-time-separator {
+    color: var(--primary-color);
+    fill: var(--primary-color);
+    background: transparent;
+  }
+
+  .flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
+    background-color: var(--dm-surface-2);
+  }
+
+  .flatpickr-months .flatpickr-prev-month,
+  .flatpickr-months .flatpickr-next-month {
+    color: var(--primary-color);
+    fill: var(--primary-color);
+  }
+
+  .flatpickr-day {
+    color: var(--primary-color);
+
+    &.prevMonthDay,
+    &.nextMonthDay,
+    &.flatpickr-disabled,
+    &.flatpickr-disabled:hover {
+      color: rgba(167, 177, 194, 0.35);
+    }
+  }
+
+  .flatpickr-time {
+    border-top-color: var(--dm-border) !important;
+
+    input:hover,
+    input:focus,
+    .flatpickr-am-pm:hover,
+    .flatpickr-am-pm:focus {
+      background: var(--dm-ink);
+    }
+  }
+
+  /*------------------------------------------
+    Sidebar / Resources / Event
+  --------------------------------------------*/
+  .cs_sidebar_style_1 .cs_promo_widget,
+  .cs_sidebar_style_1 .cs_promo_widget::before {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_resource_card,
+  .cs_resource_card::after {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_video_card .cs_video_card_play {
+    background-color: var(--dm-surface-2);
+  }
+
+  /*------------------------------------------
+    Shop / Cart / Checkout
+  --------------------------------------------*/
+  .cs_quantity,
+  .cs_checkout_sidebar .cs_payment_methods .cs_payment_option input[type=radio] {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_checkout_sidebar .cs_payment_methods .cs_payment_option input[type=radio]:checked {
+    background-color: var(--accent-color);
+  }
+
+  .cs_policy_card .cs_policy_card_icon {
+    background-color: var(--dm-surface-2);
+  }
+
+  .cs_cart_toast {
+    background-color: var(--dm-surface-2);
+    border: 1px solid var(--dm-border);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  }
+
+  .cs_cart_toast .cs_toast_btn {
+    background-color: var(--dm-ink);
+  }
+
+  .cs_cart_drawer_panel {
+    box-shadow: -20px 0 60px -20px rgba(0, 0, 0, 0.6);
+  }
+
+  /*------------------------------------------
+    Pharmacy (home-v6)
+  --------------------------------------------*/
+  .cs_pharmacy_hero {
+    background: linear-gradient(135deg, var(--gray4-color) 0%, #10261F 100%);
+  }
+
+  .cs_pharmacy_hero .cs_hero_tags a,
+  .cs_pharmacy_hero .cs_hero_float_card,
+  .cs_pharmacy_features .cs_pharmacy_features_in,
+  .cs_pharmacy_product,
+  .cs_pharmacy_rx_section .cs_rx_form,
+  .cs_pharmacy_concern_card:hover {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_pharmacy_product .cs_wishlist_btn,
+  .cs_pharmacy_rx_section .cs_rx_step_number,
+  .cs_pharmacy_rx_section .cs_rx_upload .cs_rx_upload_icon,
+  .cs_pharmacy_concern_card .cs_concern_icon,
+  .cs_pharmacy_concern_card .cs_concern_arrow {
+    background-color: var(--dm-surface-2);
+  }
+
+  .cs_pharmacy_hero .cs_hero_controls {
+    background-color: rgba(23, 34, 58, 0.85);
+  }
+
+  .cs_pharmacy_hero .cs_hero_img {
+    border-color: var(--dm-surface);
+  }
+
+  .cs_pharmacy_about_section .cs_about_img_small {
+    border-color: var(--web-wash);
+  }
+
+  .cs_pharmacy_hero .cs_hero_float_wrap.cs_card_2 .cs_float_icon,
+  .cs_pharmacy_promo_card.cs_color_1,
+  .cs_pharmacy_concern_card.cs_color_2 {
+    background-color: var(--dm-mint);
+  }
+
+  .cs_pharmacy_deal_card {
+    background: linear-gradient(120deg, #0F1A30 0%, #243B63 100%);
+  }
+
+  .cs_pharmacy_features .cs_pharmacy_features_in,
+  .cs_pharmacy_product:hover,
+  .cs_pharmacy_rx_section .cs_rx_form,
+  .cs_pharmacy_hero .cs_hero_float_card,
+  .cs_pharmacy_hero .cs_hero_controls,
+  .cs_service_card_4:hover,
+  .cs_facility_card_1:hover,
+  .cs_whychoose_section_3 .cs_whychoose_card:hover {
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  }
+
+  /*------------------------------------------
+    Icons & images
+  --------------------------------------------*/
+  // Icons re-coloured to dark navy by a filter -> light
+  .cs_section_heading_style_2.cs_type_1 .cs_btn_style_2 img,
+  .cs_site_header .cs_main_header_right.cs_shop .cs_search_btn img,
+  .cs_site_header .cs_main_header_right.cs_shop .cs_login_btn img,
+  .cs_site_header .cs_main_header_right.cs_shop .cs_cart_btn img,
+  .cs_about_style_3 .cs_btn_style_2 img,
+  .cs_contact_section_1 .cs_btn_style_2 img,
+  .cs_about_style_4 .cs_btn_style_2 img,
+  .cs_service_card_4 .cs_card_btn img,
+  .cs_facility_card_1 .cs_card_btn img,
+  .cs_services_section_4 .cs_service_heading_container .cs_btn_style_2 img,
+  .cs_post_style_1 .cs_btn_style_2 img,
+  .cs_blog_details .cs_post_navigation .cs_post_nav_item .cs_post_nav_label img,
+  .cs_pagination li a img,
+  .cs_career_mission_section .cs_career_value_icon img,
+  .cs_career_job_card .cs_btn_style_2 img,
+  .cs_doctor_filter .cs_filter_input img,
+  .cs_pricing_table_2 .cs_btn_style_1 img,
+  .cs_appointment_form_1 .cs_btn_style_2 img,
+  .cs_appointment_form_2 .cs_btn_style_2 img,
+  .cs_admission_section_1 .cs_btn_style_2 img,
+  .cs_cta_style_3 .cs_btn_style_2 img,
+  .cs_sidebar_style_1 .cs_venue_date img,
+  .cs_estimate_section_1 .cs_btn_style_2 img,
+  .cs_event_card_1 .cs_event_card_meta img,
+  .cs_event_card_1 .cs_btn_style_2 img {
+    filter: var(--dm-icon-light);
+  }
+
+  // Icons re-coloured to grey by a filter -> lighter grey
+  .cs_site_header.cs_style_4 .cs_top_header_in img,
+  .cs_doctor_filter .cs_search_icon,
+  .cs_faq_cta_1 .cs_faq_cta_iten img,
+  .cs_appointment_form_1 .cs_date_icon,
+  .cs_appointment_form_2 .cs_date_icon {
+    filter: var(--dm-icon-muted);
+  }
+
+  // SVG icons whose artwork is dark navy / grey
+  img[src*="icons/arrive-relax.svg"],
+  img[src*="icons/arrow2-right.svg"],
+  img[src*="icons/arrow3-right.svg"],
+  img[src*="icons/digital-diagnosis.svg"],
+  img[src*="icons/doctor.svg"],
+  img[src*="icons/emergency-call.svg"],
+  img[src*="icons/eye.svg"],
+  img[src*="icons/heart-bit.svg"],
+  img[src*="icons/loader-line.svg"],
+  img[src*="icons/menu-line.svg"],
+  img[src*="icons/mission.svg"],
+  img[src*="icons/online-booking.svg"],
+  img[src*="icons/recognization.svg"],
+  img[src*="icons/research.svg"],
+  img[src*="icons/search.svg"],
+  img[src*="icons/shopping-cart.svg"],
+  img[src*="icons/smile-plan.svg"],
+  img[src*="icons/alerm.svg"],
+  img[src*="icons/phone3.svg"] {
+    filter: var(--dm-icon-light);
+  }
+
+  img[src*="icons/arrow-down.svg"] {
+    filter: var(--dm-icon-muted);
+  }
+
+  // Brand logos with dark wordmarks: invert lightness, keep the hue
+  img[src*="partner_logo_"],
+  img[src*="trustpilot.svg"] {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  // Soft pastel decoration shapes: tone them down
+  img[src*="about_shape_1.svg"],
+  img[src*="hero_shape_2.svg"],
+  img[src*="hero_shape_3.svg"],
+  img[src*="pricing_shape_1.svg"],
+  img[src*="vector_shape_6.svg"],
+  img[src*="vector_shape_8.svg"],
+  img[src*="vector_shape_10.svg"] {
+    opacity: 0.15;
+  }
+}

@@ -1,0 +1,180 @@
+/*===============================================================
+  30. RTL Support
+=================================================================*/
+:where([dir="rtl"]) {
+
+  // Reboot
+  :is(ol, ul) {
+    padding-left: 0;
+  }
+
+  .list-unstyled {
+    padding-right: 0;
+  }
+
+  // Grid offset
+  @media (min-width: 1200px) {
+    .offset-xl-1 {
+      margin-left: 0;
+      margin-inline-start: 8.33333333%;
+    }
+  }
+
+  // Spacing / position utilities
+  .ms-0 {
+    margin-inline-start: 0 !important;
+  }
+
+  .me-0 {
+    margin-inline-end: 0 !important;
+  }
+
+  @media (min-width: 576px) {
+    .ms-sm-auto {
+      margin-left: 0 !important;
+      margin-inline-start: auto !important;
+    }
+  }
+
+  .end-0 {
+    right: auto !important;
+    inset-inline-end: 0 !important;
+  }
+
+  // Breadcrumb divider
+  .breadcrumb-item+.breadcrumb-item {
+    padding-left: 0;
+    padding-inline-start: var(--bs-breadcrumb-item-padding-x);
+
+    &::before {
+      float: inline-start;
+      padding-right: 0;
+      padding-inline-end: var(--bs-breadcrumb-item-padding-x);
+    }
+  }
+}
+
+// Header desktop nav: dropdown chevron + submenu (physical props so
+// they hold even if the compiler turns logical props into left/right)
+[dir="rtl"] .cs_site_header {
+  @media (min-width: 1280px) {
+    .menu-item-has-children {
+      >a {
+        padding-right: 0;
+        padding-left: 20px;
+
+        &::after {
+          right: auto;
+          left: 0;
+        }
+      }
+
+      ul {
+        left: auto;
+        right: 0;
+        transform-origin: bottom left;
+      }
+
+      &:hover ul {
+        transform-origin: top right;
+      }
+    }
+  }
+}
+
+// Mirror directional icons
+[dir="rtl"] {
+
+  img[src*="arrow"][src*="right"],
+  img[src*="arrow_shape_"],
+  img[src*="quote"],
+  .fa-arrow-right,
+  .fa-arrow-left,
+  .fa-paper-plane,
+  .flatpickr-prev-month svg,
+  .flatpickr-next-month svg,
+  .cs_rtl_flip {
+    scale: -1 1;
+  }
+}
+
+// Keep numbers, counters and fractions in LTR order
+.odometer,
+.swiper-pagination-fraction,
+.cs_ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+// LTR only values RTL forms
+[dir="rtl"] {
+
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  input[type="password"] {
+    direction: ltr;
+    text-align: right;
+  }
+}
+
+// Choices arrow
+:where([dir="rtl"]) .choices[data-type*="select-one"]::after {
+  right: auto;
+  left: 11.5px;
+}
+
+// Flatpickr (no native RTL)
+[dir="rtl"] {
+  .flatpickr-calendar {
+    direction: rtl;
+  }
+
+  .flatpickr-months {
+    .flatpickr-prev-month {
+      left: auto;
+      right: 0;
+    }
+
+    .flatpickr-next-month {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  .flatpickr-time,
+  .numInputWrapper {
+    direction: ltr;
+  }
+}
+
+// Arabic typography (applies when content is lang="ar")
+:lang(ar) {
+  --primary-font: 'Cairo', 'Montserrat', sans-serif;
+  --secondary-font: 'Cairo', 'Open Sans', sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.4em;
+  }
+
+  em,
+  cite,
+  dfn,
+  blockquote {
+    font-style: normal;
+  }
+
+  [class*="subtitle"],
+  .cs_preloader_text,
+  .cs_cta_phone,
+  .cs_btn_style_1,
+  .cs_btn_style_2 {
+    letter-spacing: 0;
+  }
+}

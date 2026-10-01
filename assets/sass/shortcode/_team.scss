@@ -47,7 +47,7 @@
     padding: 5px 10px;
     border-radius: 20px;
     top: 20px;
-    left: 20px;
+    inset-inline-start: 20px;
     z-index: 1;
   }
 
@@ -60,7 +60,7 @@
     padding: 30px 15px;
     opacity: 0;
     position: absolute;
-    left: 0;
+    inset-inline-start: 0;
     bottom: 0;
     transform: translateY(30px);
     transition:
@@ -76,6 +76,10 @@
     clip-path: inset(0 100% 0 0);
     transition-delay: 0.4s;
     transition: all 1s ease;
+
+    @include rtl {
+      clip-path: inset(0 0 0 100%);
+    }
 
     a {
       color: var(--white-color);
@@ -312,7 +316,7 @@
   .cs_team_social {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    inset-inline-start: 20px;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -333,6 +337,10 @@
         transform 0.4s cubic-bezier(0.45, 0.5, 0.55, 0.95),
         background-color 0.3s ease,
         color 0.3s ease;
+
+      @include rtl {
+        transform: translateX(30px);
+      }
 
       &:hover {
         color: var(--white-color);
@@ -413,7 +421,7 @@
 }
 
 .cs_experts_list {
-  padding-left: 112px;
+  padding-inline-start: 112px;
 
   .cs_expert_item {
     display: grid;
@@ -426,7 +434,7 @@
 
     .cs_expert_bio {
       width: min(100%, 400px);
-      margin-left: auto;
+      margin-inline-start: auto;
     }
 
     .cs_expert_actions {
@@ -436,7 +444,7 @@
       justify-content: flex-end;
       gap: 10px;
       flex-wrap: wrap;
-      margin-left: auto;
+      margin-inline-start: auto;
     }
 
     .cs_social_btns_style_1 {
@@ -464,7 +472,7 @@
       background-color: var(--danger-color);
 
       i {
-        margin-right: 6px;
+        margin-inline-end: 6px;
       }
     }
 
@@ -480,11 +488,11 @@
   }
 
   @media (max-width: 1399px) {
-    padding-left: 60px;
+    padding-inline-start: 60px;
   }
 
   @media (max-width: 1199px) {
-    padding-left: 0;
+    padding-inline-start: 0;
 
     .cs_expert_item {
       padding: 20px 0;
@@ -500,7 +508,7 @@
       .cs_expert_actions,
       .cs_expert_bio {
         width: 100%;
-        margin-left: 0;
+        margin-inline-start: 0;
         justify-content: flex-start;
       }
     }
@@ -550,7 +558,7 @@
 
   .cs_search_icon {
     position: absolute;
-    right: 18px;
+    inset-inline-end: 18px;
     bottom: 16px;
     width: 16px;
     pointer-events: none;
@@ -593,7 +601,7 @@
     border-left: 0;
     border-top: 0;
     position: absolute;
-    right: 15px;
+    inset-inline-end: 15px;
     top: 50%;
     margin: 0;
     transform: translateY(-75%) rotate(45deg);
@@ -686,7 +694,7 @@
 
     .cs_doctor_info {
       width: min(100%, 760px);
-      margin-left: auto;
+      margin-inline-start: auto;
     }
 
     .cs_rating_container {
@@ -746,7 +754,7 @@
       li {
         display: inline-block;
         position: relative;
-        padding-left: 26px;
+        padding-inline-start: 26px;
 
         span {
           display: inline-block;
@@ -755,7 +763,7 @@
         img {
           width: 16px;
           position: absolute;
-          left: 0;
+          inset-inline-start: 0;
           top: 8px;
         }
 

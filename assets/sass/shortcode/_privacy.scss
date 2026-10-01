@@ -84,13 +84,13 @@
 
   li {
     position: relative;
-    padding-left: 26px;
+    padding-inline-start: 26px;
 
     img {
       width: 16px;
       height: 16px;
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       top: 5px;
     }
   }
@@ -163,7 +163,7 @@
   padding: 20px 24px;
   border-radius: 10px;
   background-color: var(--gray2-color);
-  border-left: 3px solid var(--accent-color);
+  border-inline-start: 3px solid var(--accent-color);
 
   i {
     color: var(--accent-color);
@@ -173,7 +173,7 @@
 
   &.cs_type_warning {
     background-color: #ffebd5;
-    border-left-color: var(--warning-color);
+    border-inline-start-color: var(--warning-color);
 
     i {
       color: var(--warning-color);

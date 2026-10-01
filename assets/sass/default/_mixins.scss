@@ -1,0 +1,24 @@
+// RTL-only override: .a { @include rtl { ... } } => [dir="rtl"] .a { ... }
+@mixin rtl {
+  [dir="rtl"] & {
+    @content;
+  }
+}
+
+// Mirror the element's own background image in RTL (element must be positioned)
+@mixin rtl-flip-bg($pseudo: before) {
+  @include rtl {
+    isolation: isolate;
+
+    &::#{$pseudo} {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: inherit;
+      border-radius: inherit;
+      scale: -1 1;
+      pointer-events: none;
+    }
+  }
+}

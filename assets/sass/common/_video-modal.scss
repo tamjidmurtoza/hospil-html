@@ -7,20 +7,19 @@
   top: 0;
   width: 100%;
   height: 100%;
-  left: -100%;
+  inset-inline-start: -100%;
   transition-delay: 0.3s;
 }
 
 .cs_video_popup.active {
-  left: 0;
+  inset-inline-start: 0;
   transition-delay: 0s;
-  left: 0;
+  inset-inline-start: 0;
 }
 
 .cs_video_popup-overlay {
   position: absolute;
-  left: 0;
-  right: 0;
+  inset-inline: 0;
   background: #000;
   transition: all 0.4s ease-out;
   opacity: 0;
@@ -34,9 +33,8 @@
 
 .cs_video_popup-content {
   position: absolute;
-  left: 0;
+  inset-inline: 0;
   top: 0;
-  right: 0;
   bottom: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -65,7 +63,7 @@
 .cs_video_popup_container {
   display: inline-block;
   position: relative;
-  text-align: left;
+  text-align: start;
   background: var(--white-color);
   max-width: 1380px;
   width: 100%;
@@ -96,7 +94,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
+  inset-inline-start: 0;
   width: 100%;
   height: 100%;
   border: 0;
@@ -105,7 +103,7 @@
 .cs_video_popup_close {
   position: absolute;
   top: 0;
-  right: 0;
+  inset-inline-end: 0;
   width: 40px;
   height: 40px;
   background: #d90d0d;
@@ -154,9 +152,8 @@
 
 .cs_video_popup-layer {
   position: absolute;
-  left: 0;
+  inset-inline: 0;
   bottom: 0;
-  right: 0;
 }
 
 .cs_video_popup-align {
