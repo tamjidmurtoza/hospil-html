@@ -38,6 +38,13 @@
   | 24. Prescription Upload
   | 25. Pharmacy Hero Slider
   | 26. Cart Drawer (mini cart)
+  | 27. Physio Pain Map
+  | 27b. Hero Background Video
+  | 28. In-View Reveal
+  | 29. Vet Pet Selector Tabs
+  | 30. Physio Footer Live Hours
+  | 31. Marquee Edge Zoom
+  | 32. Physio Exercise Video Switcher
   |
   */
 
@@ -91,6 +98,13 @@
     prescriptionUploadInit();
     pharmacyHeroSliderInit();
     cartDrawerInit();
+    physioPainMapInit();
+    heroVideoInit();
+    inViewInit();
+    vetPetTabsInit();
+    physioFooterHoursInit();
+    marqueeEdgeZoomInit();
+    exerciseSwitchInit();
     // Choices JS for Select
     $(".cs_choice").each(function () {
       const el = this;
@@ -319,7 +333,9 @@
         : 1;
 
       var effect = $swiperEl.data("effect") || "slide";
-      var spaceBetween = parseInt($swiperEl.data("gap")) || 24;
+      // data-gap="none" for edge-to-edge slides (a plain 0 falls back to 24)
+      var spaceBetween =
+        $swiperEl.data("gap") === "none" ? 0 : parseInt($swiperEl.data("gap")) || 24;
       var autoHeight = parseInt($swiperEl.data("auto-height")) === 1;
       var keyboardEnabled = parseInt($swiperEl.data("keyboard")) === 1;
       var mousewheelEnabled = parseInt($swiperEl.data("mousewheel")) === 1;
@@ -1238,35 +1254,63 @@
   }
   /*=====================================================
     23. Countdown Timer
-    data-end="YYYY-MM-DDTHH:MM:SS" (optional). Without it,
-    counts down to the end of the current day (Deal of the Day).
+    Counts down from the values written in the HTML
+    (e.g. <span data-unit="hours">11</span>). Optional
+    data-end="YYYY-MM-DDTHH:MM:SS" counts down to a fixed date
+    instead. If every value is 00, counts down to the end of the
+    current day. When time is up, .cs_ended is added and the
+    .cs_countdown_ended message is shown.
   =======================================================*/
   function countdownInit() {
     $(".cs_countdown").each(function () {
       var $el = $(this);
       var endAttr = $el.attr("data-end");
-      var getEnd = function () {
-        if (endAttr) return new Date(endAttr).getTime();
-        var d = new Date();
-        d.setHours(23, 59, 59, 999);
-        return d.getTime();
+      var units = { days: 86400, hours: 3600, minutes: 60, seconds: 1 };
+      var hasDays = $el.find("[data-unit='days']").length > 0;
+      var duration = 0;
+      $.each(units, function (unit, secs) {
+        var val = parseInt($el.find("[data-unit='" + unit + "']").text(), 10);
+        if (!isNaN(val)) duration += val * secs;
+      });
+      var end;
+      var setEnd = function () {
+        if (endAttr) {
+          end = new Date(endAttr).getTime();
+        } else if (duration > 0) {
+          end = Date.now() + duration * 1000;
+        } else {
+          var d = new Date();
+          d.setHours(23, 59, 59, 999);
+          end = d.getTime();
+        }
       };
       var pad = function (n) {
         return n < 10 ? "0" + n : String(n);
       };
+      var timer;
       var update = function () {
-        var s = Math.floor(Math.max(0, getEnd() - Date.now()) / 1000);
+        var s = Math.floor(Math.max(0, end - Date.now()) / 1000);
+        if (s === 0) {
+          if (!$el.find(".cs_countdown_ended").length) {
+            $el.append(
+              '<div class="cs_countdown_ended">This offer has ended</div>',
+            );
+          }
+          $el.addClass("cs_ended").attr("aria-label", "Offer ended");
+          clearInterval(timer);
+        }
         $el.find("[data-unit='days']").text(pad(Math.floor(s / 86400)));
         $el
           .find("[data-unit='hours']")
-          .text(pad(Math.floor((s % 86400) / 3600)));
+          .text(pad(Math.floor((hasDays ? s % 86400 : s) / 3600)));
         $el
           .find("[data-unit='minutes']")
           .text(pad(Math.floor((s % 3600) / 60)));
         $el.find("[data-unit='seconds']").text(pad(s % 60));
       };
+      setEnd();
+      timer = setInterval(update, 1000);
       update();
-      setInterval(update, 1000);
     });
   }
   /*=====================================================
@@ -1333,8 +1377,6 @@
   }
   /*=====================================================
     25. Pharmacy Hero Slider
-    Crossfade slider with staggered content animation
-    (CSS, on .swiper-slide-active) and progress bullets.
   =======================================================*/
   function pharmacyHeroSliderInit() {
     $(".cs_pharmacy_hero_slider").each(function () {
@@ -1643,6 +1685,250 @@
     // keep other tabs in sync
     $(window).on("storage", function (e) {
       if (e.originalEvent && e.originalEvent.key === storageKey) render();
+    });
+  }
+  /*=====================================================
+    27. Physio Pain Map (home-v7)
+  =======================================================*/
+  function physioPainMapInit() {
+    $("[data-painmap]").each(function () {
+      var $map = $(this);
+      var $figure = $map.find(".cs_painmap_figure");
+      var $views = $map.find(".cs_painmap_view");
+      var $spots = $map.find(".cs_hotspot");
+      var $panels = $map.find(".cs_painmap_panel");
+
+      var showArea = function ($spot) {
+        $spots.removeClass("active").attr("aria-pressed", "false");
+        $spot.addClass("active").attr("aria-pressed", "true");
+        $panels.removeClass("active");
+        $("#" + $spot.data("target")).addClass("active");
+      };
+
+      $spots.each(function () {
+        $(this)
+          .attr("aria-pressed", $(this).hasClass("active") ? "true" : "false")
+          .attr("aria-controls", $(this).data("target"));
+      });
+
+      $spots.on("click", function () {
+        showArea($(this));
+      });
+
+      // Front / back toggle: switch view and open its first area
+      $views.on("click", function () {
+        var view = $(this).data("view");
+        $views.removeClass("active").attr("aria-pressed", "false");
+        $(this).addClass("active").attr("aria-pressed", "true");
+        $figure.attr("data-current-view", view);
+        showArea($spots.filter(".cs_view_" + view).first());
+      });
+    });
+  }
+  /*=====================================================
+    27b. Hero Background Video (pause / play toggle)
+  =======================================================*/
+  function heroVideoInit() {
+    $(".cs_hero_video_toggle").each(function () {
+      var $btn = $(this);
+      var video = $btn.siblings("video")[0];
+      if (!video) return;
+
+      var sync = function () {
+        var paused = video.paused;
+        $btn
+          .attr("aria-pressed", paused ? "true" : "false")
+          .attr(
+            "aria-label",
+            paused ? "Play background video" : "Pause background video",
+          )
+          .find("i")
+          .toggleClass("fa-pause", !paused)
+          .toggleClass("fa-play", paused);
+      };
+
+      // Respect reduced motion: keep the poster frame instead of autoplay
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        video.removeAttribute("autoplay");
+        video.pause();
+      }
+
+      $btn.on("click", function () {
+        if (video.paused) video.play();
+        else video.pause();
+      });
+      $(video).on("play pause", sync);
+      sync();
+    });
+  }
+  /*=====================================================
+    28. In-View Reveal ([data-inview] gets .is-visible)
+  =======================================================*/
+  function inViewInit() {
+    var $items = $("[data-inview]");
+    if (!$items.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      $items.addClass("is-visible");
+      return;
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            $(entry.target).addClass("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+
+    $items.each(function () {
+      observer.observe(this);
+    });
+  }
+  /*=====================================================
+    29. Vet Pet Selector Tabs (home-v8)
+  =======================================================*/
+  function vetPetTabsInit() {
+    $("[data-pet-tabs]").each(function () {
+      var $wrap = $(this);
+      var $tabs = $wrap.find("[role='tab']");
+      var $panels = $wrap.find("[role='tabpanel']");
+
+      var activate = function ($tab, focus) {
+        $tabs
+          .removeClass("active")
+          .attr({ "aria-selected": "false", tabindex: "-1" });
+        $tab
+          .addClass("active")
+          .attr({ "aria-selected": "true", tabindex: "0" });
+        $panels.removeClass("active").attr("hidden", true);
+        $("#" + $tab.attr("aria-controls"))
+          .addClass("active")
+          .removeAttr("hidden");
+        if (focus) $tab.trigger("focus");
+      };
+
+      $tabs.on("click", function () {
+        activate($(this));
+      });
+
+      // Arrow keys move between tabs (reversed in RTL)
+      $tabs.on("keydown", function (e) {
+        var index = $tabs.index(this);
+        var next = isRTL ? -1 : 1;
+        if (e.key === "ArrowRight") index += next;
+        else if (e.key === "ArrowLeft") index -= next;
+        else if (e.key === "Home") index = 0;
+        else if (e.key === "End") index = $tabs.length - 1;
+        else return;
+        e.preventDefault();
+        activate($tabs.eq((index + $tabs.length) % $tabs.length), true);
+      });
+    });
+  }
+  /*=====================================================
+    30. Physio Footer Live Hours (home-v7)
+  =======================================================*/
+  function physioFooterHoursInit() {
+    $("[data-pf-hours]").each(function () {
+      var $card = $(this);
+      var $status = $card.find("[data-pf-status]");
+      var now = new Date();
+      var day = String(now.getDay());
+      var hour = now.getHours() + now.getMinutes() / 60;
+      var isOpen = false;
+
+      $card.find("[data-days]").each(function () {
+        var $row = $(this);
+        if ($row.attr("data-days").split(",").indexOf(day) === -1) return;
+        $row.addClass("cs_today");
+        var open = parseFloat($row.attr("data-open"));
+        var close = parseFloat($row.attr("data-close"));
+        isOpen = hour >= open && hour < close;
+      });
+
+      $status
+        .text(isOpen ? "Open now" : "Closed now")
+        .addClass(isOpen ? "cs_open" : "cs_closed");
+    });
+  }
+  /*=====================================================
+    31. Marquee Edge Zoom ([data-edge-zoom], home-v8)
+    Slides grow in at the start edge and shrink out at the end.
+  =======================================================*/
+  function marqueeEdgeZoomInit() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    $("[data-edge-zoom]").each(function () {
+      var el = this;
+      var zone = parseInt($(el).data("edge-zoom"), 10) || 70;
+      var inScale = 0.3; // entering edge
+      var outScale = parseFloat($(el).data("edge-zoom-out")) || 0.6; // leaving edge
+      var visible = true;
+
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries[0].isIntersecting;
+        }).observe(el);
+      }
+
+      function tick() {
+        if (visible) {
+          var box = el.getBoundingClientRect();
+          var slides = el.querySelectorAll(".swiper-slide");
+          for (var i = 0; i < slides.length; i++) {
+            var r = slides[i].getBoundingClientRect();
+            var center = r.left + r.width / 2;
+            var fromLeft = center - box.left;
+            var fromRight = box.right - center;
+            // Marquee runs right-to-left (reversed in RTL), so slides leave on the left
+            var leaving = isRTL ? fromRight < fromLeft : fromLeft < fromRight;
+            var minScale = leaving ? outScale : inScale;
+            var t = Math.max(
+              0,
+              Math.min(1, Math.min(fromLeft, fromRight) / zone),
+            );
+            t = t * t * (3 - 2 * t); // smoothstep
+            slides[i].style.scale = minScale + (1 - minScale) * t;
+            slides[i].style.opacity = t;
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  /*=====================================================
+    32. Physio Exercise Video Switcher (home-v7)
+    Hovering or focusing an exercise swaps the preview and play link.
+  =======================================================*/
+  function exerciseSwitchInit() {
+    $("[data-exercise-switch]").each(function () {
+      var $box = $(this);
+      var $media = $box.find("[data-exercise-media]");
+      var $play = $box.find(".cs_video_play");
+      var $tabs = $box.find("[data-exercise]");
+
+      $tabs.on("mouseenter focus", function () {
+        var $tab = $(this);
+        var key = $tab.attr("data-exercise");
+        if ($tab.hasClass("active")) return;
+
+        $tabs.removeClass("active");
+        $tab.addClass("active");
+        $media
+          .removeClass("active")
+          .filter('[data-exercise-media="' + key + '"]')
+          .addClass("active");
+        $play.attr({
+          href: $tab.attr("href"),
+          "aria-label": $tab.attr("aria-label"),
+        });
+      });
     });
   }
 })(jQuery); // End of use strict

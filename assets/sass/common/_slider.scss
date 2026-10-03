@@ -379,6 +379,13 @@
       display: block;
     }
 
+    // explicit height (= line-height) so the icon's width is reserved;
+    // a stretched img otherwise paints wider than its box and overlaps the text
+    img {
+      height: 1.2em;
+      width: auto;
+    }
+
     &.cs_shadow_none {
       text-shadow: none;
     }

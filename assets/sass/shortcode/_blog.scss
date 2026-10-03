@@ -75,6 +75,11 @@
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid rgba(75, 85, 99, 0.1);
+
+    @media (max-width: 991px) {
+      padding-top: 0;
+      border-top: 0;
+    }
   }
 
   .cs_post_author {
@@ -123,6 +128,12 @@
     a:hover {
       color: var(--accent-color);
     }
+  }
+}
+
+@media (max-width: 991px) {
+  .cs_blog_section_1 .row:has(.cs_post_style_1) {
+    row-gap: 30px;
   }
 }
 

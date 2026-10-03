@@ -1,0 +1,3570 @@
+/*=================================================
+  34. Physiotherapy Home (home-v7)
+---------------------------------------------------
+  Scoped to body.cs_physio_home. Uses the template
+  colour variables from _variable.scss only.
+===================================================*/
+$cs_pt_ease_out: cubic-bezier(0.22, 1, 0.36, 1);
+// Light tint for text/icons on surfaces that stay dark in both themes
+// (--gray3-color turns dark in dark mode, so it cannot be used there).
+$cs_pt_tint_on_dark: #d2e3ff;
+
+// Section rhythm
+.cs_physio_painmap_section,
+.cs_physio_treatment_section,
+.cs_physio_journey_section,
+.cs_physio_outcome_section,
+.cs_physio_about_section,
+.cs_physio_program_section,
+.cs_physio_team_section,
+.cs_physio_story_section,
+.cs_physio_faq_section {
+  padding: 120px 0;
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+.cs_physio_treatment_section,
+.cs_physio_program_section,
+.cs_physio_story_section {
+  background-color: var(--gray4-color);
+}
+
+// Shared floating card surface
+.cs_physio_card {
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 24px 50px -24px rgba(31, 41, 55, 0.35);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+}
+
+/*-------------------------------------------------
+  Top bar
+---------------------------------------------------*/
+.cs_site_header .cs_physio_topbar {
+  color: rgba(255, 255, 255, 0.82);
+  background-color: var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_top_header_in {
+    height: 44px;
+  }
+
+  .cs_contact_list {
+    gap: 24px;
+  }
+
+  .cs_contact_item+.cs_contact_item {
+    position: relative;
+    padding-inline-start: 24px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      top: 50%;
+      width: 1px;
+      height: 14px;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  i {
+    color: $cs_pt_tint_on_dark;
+  }
+
+  a {
+    color: var(--white-color);
+  }
+
+  .cs_topbar_tag {
+    padding: 2px 10px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+  }
+
+  // keep only the phone number on smaller screens
+  @media (max-width: 991px) {
+    .cs_top_header_right .cs_contact_item {
+      &:not(:last-child) {
+        display: none;
+      }
+
+      &:last-child {
+        padding-inline-start: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Hero (gradient panel)
+---------------------------------------------------*/
+.cs_physio_hero {
+  position: relative;
+  padding: 140px 0 70px;
+  background-color: var(--gray4-color);
+
+  @media (min-width: 1280px) {
+    padding-top: 164px;
+  }
+
+  .container {
+    @media (min-width: 1280px) {
+      max-width: 1644px;
+    }
+
+    @media (max-width: 1279px) {
+      max-width: 100%;
+    }
+  }
+
+  .cs_hero_video_box {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: 680px;
+    padding: 80px 70px 130px;
+    border-radius: 36px;
+    color: rgba(255, 255, 255, 0.78);
+    --pf-hero-ink: var(--primary-color);
+    background-color: var(--pf-hero-ink);
+    background-size: cover;
+    background-position: center;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      border-radius: inherit;
+      background-image:
+        radial-gradient(50% 70% at 0% 100%,
+          color-mix(in srgb, var(--accent-color) 35%, transparent) 0%,
+          transparent 65%),
+        linear-gradient(90deg,
+          color-mix(in srgb, var(--pf-hero-ink) 94%, transparent) 0%,
+          color-mix(in srgb, var(--pf-hero-ink) 80%, transparent) 50%,
+          color-mix(in srgb, var(--pf-hero-ink) 50%, transparent) 100%);
+
+      @include rtl {
+        background-image:
+          radial-gradient(50% 70% at 100% 100%,
+            color-mix(in srgb, var(--accent-color) 35%, transparent) 0%,
+            transparent 65%),
+          linear-gradient(-90deg,
+            color-mix(in srgb, var(--pf-hero-ink) 94%, transparent) 0%,
+            color-mix(in srgb, var(--pf-hero-ink) 80%, transparent) 50%,
+            color-mix(in srgb, var(--pf-hero-ink) 50%, transparent) 100%);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      --pf-hero-ink: var(--dm-deep);
+    }
+  }
+
+  .cs_hero_video_bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  .cs_hero_video_toggle {
+    position: absolute;
+    top: 24px;
+    inset-inline-end: 24px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    color: var(--white-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .cs_hero_in {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .cs_hero_badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    border-radius: 50px;
+    color: var(--white-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+  }
+
+  .cs_badge_dot {
+    width: 10px;
+    height: 10px;
+    flex: none;
+    border-radius: 50%;
+    background-color: var(--danger-color);
+    animation: cs_pt_ping 2s ease-out infinite;
+  }
+
+  .cs_hero_title {
+    font-size: clamp(36px, 4vw, 72px);
+    line-height: 1.04em;
+    letter-spacing: -0.02em;
+
+    span {
+      color: $cs_pt_tint_on_dark;
+      background: linear-gradient(transparent 64%,
+          rgba(239, 68, 68, 0.45) 64%,
+          rgba(239, 68, 68, 0.45) 92%,
+          transparent 92%);
+    }
+  }
+
+  .cs_hero_desc {
+    max-width: 560px;
+
+    @media (max-width: 1399px) {
+      max-width: none;
+    }
+  }
+
+  .cs_hero_btns {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 30px;
+  }
+
+  .cs_physio_link_btn {
+    .cs_link_icon {
+      color: var(--white-color);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:hover .cs_link_icon {
+      rotate: 0deg;
+      scale: 1.1;
+      color: var(--primary-color);
+      border-color: var(--gray3-color);
+      background-color: var(--gray3-color);
+    }
+  }
+
+  .cs_hero_proof {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .fa-star {
+      color: var(--warning-color);
+    }
+  }
+
+  .cs_hero_avatars {
+    display: flex;
+    list-style: none;
+
+    li {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.85);
+
+      +li {
+        margin-inline-start: -14px;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /* ---------- Glass stat cards ---------- */
+  .cs_hero_right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 300px;
+  }
+
+  .cs_hero_glass {
+    padding: 18px 22px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.5);
+  }
+
+  .cs_hero_rom {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cs_rom_ring {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    flex: none;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      rotate: -90deg;
+    }
+
+    circle {
+      fill: none;
+      stroke-width: 10;
+      stroke-linecap: round;
+    }
+
+    .cs_rom_track {
+      stroke: rgba(255, 255, 255, 0.15);
+    }
+
+    .cs_rom_arc {
+      stroke: var(--gray3-color);
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: cs_pt_rom 2.2s 0.6s $cs_pt_ease_out forwards;
+    }
+  }
+
+  .cs_rom_value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .cs_hero_next {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cs_float_icon {
+    width: 46px;
+    height: 46px;
+    flex: none;
+    border-radius: 14px;
+    font-size: 18px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+  }
+
+  .cs_live_dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-inline-end: 8px;
+    vertical-align: middle;
+    border-radius: 50%;
+    background-color: #22c55e;
+    animation: cs_pt_ping 2s ease-out infinite;
+  }
+
+  .cs_pain_scale {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+
+    span {
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--white-color);
+    }
+
+    .cs_pain_before {
+      background-color: var(--danger-color);
+    }
+
+    .cs_pain_after {
+      background-color: var(--accent-color);
+    }
+
+    i {
+      color: rgba(255, 255, 255, 0.6);
+
+      @include rtl {
+        scale: -1 1;
+      }
+    }
+  }
+
+  // booking bar overlaps the bottom edge of the video panel
+  .cs_physio_booking {
+    margin: -64px 40px 0;
+  }
+
+  // short desktop viewports (e.g. 1366x768 laptops): fit panel + booking bar in one screen
+  @media (min-width: 992px) and (max-height: 900px) {
+    padding-bottom: 40px;
+
+    @media (min-width: 1280px) {
+      padding-top: 160px;
+    }
+
+    .cs_hero_video_box {
+      min-height: max(520px, calc(100vh - 210px));
+      padding-top: 40px;
+      padding-bottom: 100px;
+    }
+
+    .cs_hero_badge {
+      margin-bottom: 16px;
+    }
+
+    .cs_hero_title {
+      font-size: clamp(36px, min(4vw, 7.5vh), 72px);
+      margin-bottom: 16px;
+    }
+
+    .cs_hero_desc,
+    .cs_hero_btns {
+      margin-bottom: 24px;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_hero_video_box {
+      padding: 70px 40px 120px;
+    }
+
+    .cs_hero_in {
+      gap: 40px;
+    }
+
+    .cs_hero_right {
+      width: 260px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .cs_hero_video_box {
+      min-height: 0;
+      padding: 84px 30px 110px;
+      border-radius: 28px;
+    }
+
+    .cs_hero_in {
+      grid-template-columns: 1fr;
+    }
+
+    // 2 columns, the first card spans both
+    .cs_hero_right {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+    }
+
+    .cs_hero_glass:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .cs_physio_booking {
+      margin-inline: 16px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding-top: 70px;
+
+    .cs_hero_video_box {
+      padding-top: 50px;
+      border-radius: 10px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .container {
+      padding-inline: 10px;
+    }
+
+    .cs_hero_video_box {
+      padding: 50px 15px 100px;
+      border-radius: 10px;
+    }
+
+    .cs_physio_booking {
+      margin-inline: 8px;
+    }
+
+    .cs_hero_right {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Text link button with circled icon
+.cs_physio_link_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  .cs_link_icon {
+    width: 48px;
+    height: 48px;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    transition: all 0.4s $cs_pt_ease_out;
+  }
+
+  &:hover .cs_link_icon {
+    rotate: 90deg;
+    color: var(--white-color);
+    background-color: var(--accent-color);
+  }
+}
+
+/*-------------------------------------------------
+  Quick booking bar
+---------------------------------------------------*/
+.cs_physio_booking {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  align-items: center;
+  gap: 0;
+  margin-top: 60px;
+  padding: 12px;
+  border-radius: 20px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 30px 60px -30px rgba(31, 41, 55, 0.35);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_booking_field {
+    position: relative;
+    padding: 8px 24px;
+
+    +.cs_booking_field {
+      border-inline-start: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 2px;
+
+      i {
+        color: var(--accent-color);
+      }
+    }
+  }
+
+  .cs_datepicker,
+  .choices__inner {
+    width: 100%;
+    min-height: auto;
+    padding: 0 !important;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    color: var(--secondary-color);
+    background-color: transparent;
+  }
+
+  .choices {
+    margin-bottom: 0;
+  }
+
+  .choices__list--single {
+    padding: 0;
+  }
+
+  .choices__list--dropdown,
+  .choices__list[aria-expanded] {
+    margin-top: 12px;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+    background-color: var(--white-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+
+    .choices__item--selectable.is-highlighted {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+    }
+  }
+
+  .choices[data-type*="select-one"]::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin: 0;
+    border: 2px solid var(--secondary-color);
+    border-left: 0;
+    border-top: 0;
+    position: absolute;
+    top: 50%;
+    inset-inline-start: auto;
+    inset-inline-end: 2px;
+    transform: translateY(-70%) rotate(45deg);
+  }
+
+  .cs_btn_style_1 {
+    height: 100%;
+    min-height: 60px;
+    border-radius: 14px;
+    padding-inline: 30px;
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 0;
+
+    .cs_booking_field:nth-child(3) {
+      border-inline-start: 0;
+    }
+
+    .cs_btn_style_1 {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+
+    .cs_booking_field {
+      padding: 8px 12px;
+
+      +.cs_booking_field {
+        border-inline-start: 0;
+        border-top: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Conditions marquee
+---------------------------------------------------*/
+.cs_physio_marquee_wrap {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding-block: 40px;
+  margin-block: -40px;
+  pointer-events: none;
+
+  .cs_physio_marquee {
+    pointer-events: auto;
+  }
+}
+
+.cs_physio_marquee {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: 22px 0;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  rotate: -1.5deg;
+  margin: -6px -20px 0;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_marquee_track {
+    display: flex;
+    width: max-content;
+    animation: cs_pt_marquee 38s linear infinite;
+  }
+
+  &:hover .cs_marquee_track {
+    animation-play-state: paused;
+  }
+
+  .cs_marquee_list {
+    display: flex;
+    list-style: none;
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: 34px;
+      padding-inline-end: 34px;
+      font-family: var(--primary-font);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2em;
+      text-transform: uppercase;
+      white-space: nowrap;
+
+      &::after {
+        content: "\2731";
+        font-size: 22px;
+        color: $cs_pt_tint_on_dark;
+      }
+
+      &:nth-child(even) {
+        color: var(--primary-color);
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.75);
+        paint-order: stroke fill;
+
+        @media (prefers-color-scheme: dark) {
+          color: var(--dm-deep);
+        }
+
+        &::after {
+          -webkit-text-stroke: 0;
+        }
+      }
+    }
+  }
+
+  @include rtl {
+    rotate: 1.5deg;
+
+    .cs_marquee_track {
+      animation-name: cs_pt_marquee_rtl;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 16px 0;
+
+    .cs_marquee_list li {
+      font-size: 20px;
+      gap: 24px;
+      padding-inline-end: 24px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Pain map
+---------------------------------------------------*/
+.cs_physio_painmap {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 40px;
+  border-radius: 30px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 40px 80px -50px rgba(31, 41, 55, 0.35);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_painmap_figure_wrap {
+    position: relative;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at 50% 40%,
+        rgba(19, 109, 244, 0.14),
+        transparent 60%),
+      var(--gray4-color);
+  }
+
+  .cs_painmap_toggle {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 24px;
+    border-radius: 50px;
+    background-color: var(--white-color);
+    border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+  }
+
+  .cs_painmap_view {
+    padding: 6px 20px;
+    border: 0;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    background-color: transparent;
+    transition: all 0.3s ease;
+
+    &.active {
+      color: var(--white-color);
+      background-color: var(--accent-color);
+    }
+  }
+
+  .cs_painmap_figure {
+    position: relative;
+    width: 100%;
+    max-width: 240px;
+    margin-inline: auto;
+    aspect-ratio: 200 / 440;
+  }
+
+  .cs_body_svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    circle,
+    rect,
+    path {
+      fill: var(--gray7-color);
+    }
+
+    .cs_spine {
+      fill: none;
+      stroke: var(--white-color);
+      stroke-width: 4;
+      stroke-dasharray: 6 6;
+      stroke-linecap: round;
+      transition: opacity 0.4s ease;
+
+      @media (prefers-color-scheme: dark) {
+        stroke: var(--dm-surface);
+      }
+    }
+  }
+
+  [data-current-view="front"] .cs_spine {
+    opacity: 0;
+  }
+
+  .cs_hotspot {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border-radius: 50%;
+    translate: -50% -50%;
+    border: 4px solid var(--white-color);
+    background-color: var(--accent-color);
+    box-shadow: 0 0 0 0 rgba(19, 109, 244, 0.5);
+    animation: cs_pt_hotspot 2.4s ease-out infinite;
+    transition:
+      scale 0.3s ease,
+      background-color 0.3s ease,
+      opacity 0.3s ease;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--dm-surface);
+    }
+
+    span {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      translate: -50% 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4em;
+      white-space: nowrap;
+      color: var(--white-color);
+      background-color: var(--primary-color);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--dm-deep);
+      }
+    }
+
+    &:hover,
+    &:focus-visible,
+    &.active {
+      scale: 1.2;
+
+      span {
+        opacity: 1;
+        translate: -50% 0;
+      }
+    }
+
+    &.active {
+      background-color: var(--danger-color);
+      animation-name: cs_pt_hotspot_active;
+    }
+  }
+
+  [data-current-view="front"] .cs_view_back,
+  [data-current-view="back"] .cs_view_front {
+    opacity: 0;
+    visibility: hidden;
+    scale: 0.4;
+  }
+
+  .cs_painmap_panel {
+    display: none;
+
+    &.active {
+      display: block;
+      animation: cs_pt_fade_up 0.5s $cs_pt_ease_out;
+    }
+  }
+
+  .cs_panel_label {
+    display: inline-block;
+    padding: 4px 14px;
+    margin-bottom: 16px;
+    border-radius: 50px;
+    color: var(--accent-color);
+    background-color: var(--gray4-color);
+  }
+
+  .cs_condition_chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+
+    li {
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      color: var(--primary-color);
+      border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+    }
+  }
+
+  .cs_panel_stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    >div {
+      padding-inline-start: 14px;
+      border-inline-start: 3px solid var(--accent-color);
+    }
+
+    strong,
+    span {
+      display: block;
+    }
+  }
+
+  .cs_btn_style_1 i {
+    @include rtl {
+      scale: -1 1;
+    }
+  }
+
+  @media (max-width: 1399px) {
+    gap: 40px;
+    padding: 24px;
+  }
+
+  @media (max-width: 1199px) {
+    grid-template-columns: 340px 1fr;
+    gap: 30px;
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 575px) {
+    padding: 16px;
+    border-radius: 20px;
+
+    .cs_panel_stats {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Treatments
+---------------------------------------------------*/
+.cs_physio_treatment_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  transition: all 0.4s $cs_pt_ease_out;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-color);
+    scale: 0 1;
+    transform-origin: left center;
+    transition: scale 0.5s $cs_pt_ease_out;
+
+    @include rtl {
+      transform-origin: right center;
+    }
+  }
+
+  .cs_treatment_img {
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--accent-color);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 600 / 440;
+      object-fit: cover;
+      transition: scale 0.8s $cs_pt_ease_out;
+    }
+
+    &:hover,
+    &:focus-visible {
+      &::after {
+        opacity: 0.18;
+      }
+
+      img {
+        scale: 1.08;
+      }
+    }
+  }
+
+  .cs_treatment_body {
+    position: relative;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    flex: 1;
+    padding: 46px 30px 30px;
+  }
+
+  .cs_treatment_icon {
+    position: absolute;
+    top: -32px;
+    inset-inline-start: 30px;
+    width: 64px;
+    height: 64px;
+    font-size: 22px;
+    border-radius: 18px;
+    color: var(--white-color);
+    background-color: var(--accent-color);
+    border: 5px solid var(--white-color);
+    transition: background-color 0.4s ease;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--dm-surface);
+    }
+  }
+
+  .cs_treatment_meta {
+    position: absolute;
+    top: 16px;
+    inset-inline-end: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 12px;
+    border-radius: 50px;
+    background-color: var(--gray4-color);
+  }
+
+  .cs_treatment_title {
+    margin: 0 0 10px;
+
+    a {
+      color: inherit;
+      background-image: linear-gradient(currentColor, currentColor);
+      background-repeat: no-repeat;
+      background-position: left bottom;
+      background-size: 0 2px;
+      transition:
+        color 0.3s ease,
+        background-size 0.4s $cs_pt_ease_out;
+
+      @include rtl {
+        background-position: right bottom;
+      }
+
+      &:hover,
+      &:focus-visible {
+        color: var(--accent-color);
+        background-size: 100% 2px;
+      }
+    }
+  }
+
+  .cs_treatment_desc {
+    margin: 0 0 20px;
+  }
+
+  .cs_treatment_more {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    margin-top: auto;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+
+    i {
+      transition: translate 0.3s ease;
+
+      @include rtl {
+        scale: -1 1;
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--danger-color);
+
+      i {
+        translate: 5px 0;
+
+        @include rtl {
+          translate: -5px 0;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    translate: 0 -6px;
+    box-shadow: 0 30px 60px -30px rgba(31, 41, 55, 0.4);
+
+    &::after {
+      scale: 1 1;
+    }
+
+    .cs_treatment_icon {
+      background-color: var(--danger-color);
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_treatment_body {
+      padding-inline: 15px;
+    }
+
+    .cs_treatment_icon {
+      inset-inline-start: 15px;
+    }
+
+    .cs_treatment_meta {
+      inset-inline-end: 15px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Recovery journey
+---------------------------------------------------*/
+.cs_physio_journey {
+  position: relative;
+
+  .cs_journey_line {
+    position: absolute;
+    top: 36px;
+    inset-inline: 12.5%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: var(--gray4-color);
+  }
+
+  .cs_journey_progress {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg,
+        var(--accent-color),
+        var(--danger-color));
+    transition: width 2.4s $cs_pt_ease_out;
+
+    @include rtl {
+      background: linear-gradient(-90deg,
+          var(--accent-color),
+          var(--danger-color));
+    }
+  }
+
+  .cs_journey_list {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    list-style: none;
+  }
+
+  .cs_journey_step {
+    text-align: center;
+  }
+
+  .cs_journey_dot {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: var(--accent-color);
+    background-color: var(--white-color);
+    border: 4px solid var(--gray4-color);
+    transition: all 0.5s ease;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+  }
+
+  .cs_journey_week {
+    display: inline-block;
+    padding: 2px 12px;
+    margin-bottom: 12px;
+    border-radius: 50px;
+    color: var(--danger-color);
+    background-color: color-mix(in srgb, var(--danger-color) 16%, transparent);
+  }
+
+  &.is-visible {
+    .cs_journey_progress {
+      width: 100%;
+    }
+
+    .cs_journey_dot {
+      color: var(--white-color);
+      border-color: var(--white-color);
+      background-color: var(--accent-color);
+      box-shadow: 0 16px 30px -12px rgba(19, 109, 244, 0.6);
+
+      @media (prefers-color-scheme: dark) {
+        border-color: var(--dm-surface);
+      }
+    }
+
+    @for $i from 1 through 4 {
+      .cs_journey_step:nth-child(#{$i}) .cs_journey_dot {
+        transition-delay: #{($i - 1) * 0.55}s;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .cs_journey_line {
+      display: none;
+    }
+
+    .cs_journey_list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 30px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_journey_list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Outcomes (dark band)
+---------------------------------------------------*/
+.cs_physio_outcome_section {
+  position: relative;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.72);
+  background:
+    radial-gradient(circle at 85% 20%,
+      rgba(19, 109, 244, 0.45),
+      transparent 45%),
+    radial-gradient(circle at 10% 90%,
+      rgba(210, 227, 255, 0.12),
+      transparent 40%),
+    var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_section_subtitle {
+    color: $cs_pt_tint_on_dark;
+  }
+
+  .cs_outcome_counters {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    list-style: none;
+
+    li {
+      padding-inline-start: 20px;
+      border-inline-start: 1px solid rgba(255, 255, 255, 0.2);
+
+      @media (max-width: 1399px) {
+        padding-inline-start: 0;
+        border-inline-start: 0;
+      }
+    }
+
+    strong {
+      display: flex;
+      align-items: baseline;
+      line-height: 1.2em;
+    }
+  }
+
+  .cs_outcome_dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .cs_outcome_card {
+    padding: 28px;
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+
+    >strong {
+      display: block;
+      margin: 18px 0 2px;
+      line-height: 1.2em;
+    }
+  }
+
+  .cs_outcome_card_wide {
+    grid-column: 1 / -1;
+  }
+
+  .cs_outcome_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .cs_outcome_tag {
+    padding: 2px 10px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+  }
+
+  .cs_outcome_icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    font-size: 20px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+  }
+
+  .cs_pain_bar_row {
+    display: grid;
+    grid-template-columns: 90px 1fr 40px;
+    align-items: center;
+    gap: 16px;
+
+    +.cs_pain_bar_row {
+      margin-top: 16px;
+    }
+  }
+
+  .cs_pain_bar {
+    position: relative;
+    height: 12px;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .cs_pain_fill {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 0;
+    border-radius: inherit;
+    transition: width 1.6s $cs_pt_ease_out;
+
+    &.cs_fill_before {
+      background-color: var(--danger-color);
+    }
+
+    &.cs_fill_mid {
+      background-color: var(--warning-color);
+      transition-delay: 0.25s;
+    }
+
+    &.cs_fill_after {
+      background-color: var(--gray3-color);
+      transition-delay: 0.5s;
+    }
+  }
+
+  .is-visible .cs_pain_fill {
+    width: var(--w);
+  }
+
+  @media (max-width: 1199px) {
+    .cs_outcome_card {
+      padding: 16px 15px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_outcome_dashboard {
+      grid-template-columns: 1fr;
+    }
+
+    .cs_pain_bar_row {
+      grid-template-columns: 76px 1fr 32px;
+      gap: 10px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  About
+---------------------------------------------------*/
+.cs_physio_about_section {
+  .cs_about_img_wrap {
+    position: relative;
+    padding-inline-end: 90px;
+    padding-bottom: 80px;
+  }
+
+  .cs_about_img_main {
+    overflow: hidden;
+    border-radius: 30px 180px 30px 30px;
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 560 / 680;
+      max-height: 620px;
+      object-fit: cover;
+    }
+
+    @include rtl {
+      border-radius: 180px 30px 30px 30px;
+    }
+  }
+
+  .cs_about_img_small {
+    position: absolute;
+    bottom: 0;
+    inset-inline-end: 0;
+    width: 46%;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 10px solid var(--web-wash, #fff);
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+  }
+
+  .cs_about_badge {
+    position: absolute;
+    top: 40px;
+    inset-inline-start: -20px;
+    padding: 18px 22px;
+    border-radius: 20px;
+    line-height: 1.2em;
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--danger-color);
+    rotate: -6deg;
+    box-shadow: 0 20px 40px -16px rgba(239, 68, 68, 0.6);
+  }
+
+  .cs_about_content {
+    padding-inline-start: 40px;
+  }
+
+  .cs_about_features {
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+
+      +li {
+        margin-top: 16px;
+      }
+    }
+  }
+
+  .cs_feature_check {
+    width: 28px;
+    height: 28px;
+    flex: none;
+    border-radius: 50%;
+    font-size: 12px;
+    color: var(--accent-color);
+    background-color: var(--gray4-color);
+  }
+
+  .cs_about_btns {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px 34px;
+
+    .cs_btn_style_1 i {
+      @include rtl {
+        scale: -1 1;
+      }
+    }
+  }
+
+  .cs_about_call {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cs_call_icon {
+    width: 52px;
+    height: 52px;
+    color: var(--accent-color);
+    background-color: var(--gray4-color);
+    transition: all 0.3s ease;
+  }
+
+  .cs_about_call:hover .cs_call_icon {
+    color: var(--white-color);
+    background-color: var(--accent-color);
+  }
+
+  @media (max-width: 1199px) {
+    .cs_about_content {
+      padding-inline-start: 0;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_about_img_wrap {
+      padding-inline-end: 40px;
+      padding-bottom: 50px;
+    }
+
+    .cs_about_badge {
+      inset-inline-start: -6px;
+      top: 16px;
+      padding: 12px 16px;
+
+      strong {
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Programs / pricing
+---------------------------------------------------*/
+.cs_physio_price_table_wrap {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--primary-color) 12%, transparent) transparent;
+  border-radius: 28px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 30px 60px -40px rgba(31, 41, 55, 0.35);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+}
+
+.cs_physio_price_table {
+  width: 100%;
+  min-width: 900px;
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  th,
+  td {
+    padding: 18px 28px;
+    min-width: 300px;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  }
+
+  // Feature labels column
+  tbody th,
+  .cs_price_feature_head,
+  tfoot td:first-child {
+    width: 31%;
+    min-width: 240px;
+    text-align: start;
+    background-color: var(--white-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+  }
+
+  tbody th {
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+
+  tbody tr {
+    transition: background-color 0.3s $cs_pt_ease_out;
+
+    &:hover {
+
+      th,
+      td:not(.cs_featured) {
+        background-color: var(--gray4-color);
+      }
+    }
+  }
+
+  // Plan headers
+  thead th {
+    position: relative;
+    padding: 40px 28px 28px;
+    vertical-align: bottom;
+
+    >span {
+      display: block;
+    }
+  }
+
+  .cs_price_feature_head span+span {
+    margin-top: 8px;
+  }
+
+  .cs_program_icon {
+    display: flex;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    border-radius: 16px;
+    font-size: 22px;
+    color: var(--accent-color);
+    background-color: var(--gray4-color);
+  }
+
+  .cs_program_name {
+    margin-bottom: 4px;
+  }
+
+  .cs_program_price {
+    display: flex !important;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 18px;
+
+    strong {
+      font-size: 36px;
+      line-height: 1em;
+    }
+  }
+
+  .cs_program_ribbon {
+    position: absolute;
+    top: 16px;
+    inset-inline-end: 16px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+  }
+
+  .fa-check {
+    color: var(--accent-color);
+  }
+
+  .fa-minus {
+    opacity: 0.35;
+  }
+
+  tfoot td {
+    padding: 28px;
+    border-bottom: 0;
+  }
+
+  .cs_btn_style_1,
+  .cs_btn_style_2 {
+    justify-content: center;
+    width: 100%;
+
+    i {
+      @include rtl {
+        scale: -1 1;
+      }
+    }
+  }
+
+  .cs_btn_style_2.cs_type_1 img {
+    animation: none;
+  }
+
+  // Highlighted plan column
+  .cs_featured {
+    color: rgba(255, 255, 255, 0.72);
+    background-color: var(--primary-color);
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-deep);
+    }
+
+    .cs_program_icon {
+      color: var(--primary-color);
+      background-color: var(--gray3-color);
+    }
+
+    .fa-check {
+      color: $cs_pt_tint_on_dark;
+    }
+
+    .cs_btn_style_1 {
+
+      &::before,
+      &::after {
+        background-color: var(--white-color);
+      }
+
+      &:hover {
+        color: var(--primary-color);
+
+        @media (prefers-color-scheme: dark) {
+          color: var(--dm-deep);
+        }
+
+        i {
+          translate: 4px 0;
+
+          @include rtl {
+            translate: -4px 0;
+          }
+        }
+      }
+    }
+  }
+
+  thead .cs_featured {
+    background:
+      radial-gradient(circle at 100% 0%,
+        rgba(19, 109, 244, 0.55),
+        transparent 70%),
+      var(--primary-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-deep);
+    }
+  }
+
+  tbody .cs_featured {
+    color: var(--white-color);
+  }
+
+  @media (max-width: 575px) {
+
+    th,
+    td {
+      padding: 16px 20px;
+    }
+
+    thead th {
+      padding: 36px 20px 24px;
+    }
+  }
+}
+
+.cs_physio_insurance {
+  display: flex;
+  align-items: center;
+  gap: 20px 32px;
+  margin-top: 60px;
+  padding: 20px 36px;
+  border-radius: 100px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_insurance_heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: none;
+    padding-inline-end: 32px;
+    border-inline-end: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  }
+
+  .cs_insurance_icon {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    font-size: 18px;
+    color: var(--accent-color);
+    background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
+  }
+
+  // logos scroll continuously; the list is duplicated in the HTML for a seamless loop
+  .cs_insurance_slider {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg,
+        transparent,
+        #000 8%,
+        #000 92%,
+        transparent);
+  }
+
+  .cs_insurance_track {
+    display: flex;
+    width: max-content;
+    animation: cs_pt_marquee 28s linear infinite;
+
+    @include rtl {
+      animation-name: cs_pt_marquee_rtl;
+    }
+  }
+
+  &:hover .cs_insurance_track {
+    animation-play-state: paused;
+  }
+
+  .cs_insurance_list {
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    padding-inline-end: 56px;
+    list-style: none;
+
+    img {
+      height: 30px;
+      width: auto;
+      opacity: 0.55;
+      filter: grayscale(1);
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+        filter: none;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 24px;
+    padding: 20px;
+
+    .cs_insurance_heading {
+      padding-inline-end: 0;
+      padding-bottom: 16px;
+      border-inline-end: 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Team
+---------------------------------------------------*/
+.cs_physio_team_card {
+  .cs_team_img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px 24px 24px 90px;
+
+    @include rtl {
+      border-radius: 24px 24px 90px 24px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+          rgba(31, 41, 55, 0.55),
+          transparent 45%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 480 / 580;
+      object-fit: cover;
+      transition: scale 0.8s $cs_pt_ease_out;
+    }
+  }
+
+  .cs_team_exp {
+    position: absolute;
+    z-index: 1;
+    top: 16px;
+    inset-inline-start: 16px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--white-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+  }
+
+  .cs_team_social {
+    position: absolute;
+    z-index: 1;
+    bottom: 16px;
+    inset-inline-end: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: var(--accent-color);
+      background-color: var(--white-color);
+      opacity: 0;
+      translate: 0 16px;
+      transition: all 0.4s $cs_pt_ease_out;
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--dm-surface);
+      }
+
+      &:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+
+      &:hover {
+        color: var(--white-color);
+        background-color: var(--accent-color);
+      }
+    }
+  }
+
+  .cs_team_info {
+    padding: 20px 6px 0;
+
+    a:hover {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 1199px) {
+      padding-inline: 0;
+    }
+  }
+
+  .cs_team_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+
+    li {
+      padding: 2px 12px;
+      border-radius: 50px;
+      font-size: 13px;
+      color: var(--accent-color);
+      background-color: var(--gray4-color);
+    }
+  }
+
+  &:hover {
+    .cs_team_img {
+      &::after {
+        opacity: 1;
+      }
+
+      img {
+        scale: 1.05;
+      }
+    }
+
+    .cs_team_social a {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Exercise library / video
+---------------------------------------------------*/
+.cs_physio_video_section {
+  padding-bottom: 120px;
+
+  @media (max-width: 991px) {
+    padding-bottom: 70px;
+  }
+}
+
+.cs_physio_video_box {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  overflow: hidden;
+  border-radius: 30px;
+  color: rgba(255, 255, 255, 0.72);
+  background-color: var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_video_media {
+    position: relative;
+    min-height: 540px;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  .cs_video_play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 96px;
+    height: 96px;
+    translate: -50% -50%;
+    font-size: 26px;
+    color: var(--white-color);
+    background-color: var(--danger-color);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+    animation: cs_pt_play 2.4s ease-out infinite;
+    transition: scale 0.3s ease;
+
+    &:hover {
+      scale: 0.9;
+    }
+  }
+
+  .cs_video_content {
+    padding: 60px 50px;
+  }
+
+  .cs_section_subtitle {
+    color: $cs_pt_tint_on_dark;
+    letter-spacing: 0.7px;
+  }
+
+  .cs_exercise_list {
+    list-style: none;
+
+    li+li {
+      margin-top: 12px;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px;
+      border-radius: 16px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+
+      &:hover,
+      &.active {
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+
+      &.active {
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    img {
+      width: 56px;
+      height: 56px;
+      flex: none;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    i {
+      margin-inline-start: auto;
+      padding-inline-end: 6px;
+      font-size: 28px;
+      color: $cs_pt_tint_on_dark;
+    }
+  }
+
+  .cs_btn_style_1 {
+
+    &::before,
+    &::after {
+      background-color: var(--accent-color);
+    }
+  }
+
+  .cs_btn_style_1 i {
+    @include rtl {
+      scale: -1 1;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_video_content {
+      padding: 40px 30px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+
+    .cs_video_media {
+      min-height: 320px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    border-radius: 20px;
+
+    .cs_video_content {
+      padding: 30px 20px;
+    }
+
+    .cs_video_play {
+      width: 72px;
+      height: 72px;
+      font-size: 20px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Recovery stories
+---------------------------------------------------*/
+.cs_physio_story_section {
+  .swiper-slide {
+    height: auto;
+  }
+
+  .cs_story_nav {
+    display: flex;
+    gap: 12px;
+
+    button {
+      width: 54px;
+      height: 54px;
+      color: var(--primary-color);
+      background-color: var(--white-color);
+      border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+      transition: all 0.3s ease;
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--dm-surface);
+      }
+
+      &:hover {
+        color: var(--white-color);
+        border-color: var(--accent-color);
+        background-color: var(--accent-color);
+      }
+
+      &.swiper-button-disabled {
+        opacity: 0.4;
+        pointer-events: none;
+      }
+
+      i {
+        @include rtl {
+          scale: -1 1;
+        }
+      }
+    }
+  }
+}
+
+.cs_physio_story_card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 36px;
+  border-radius: 24px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_story_condition {
+    align-self: flex-start;
+    padding: 4px 12px;
+    margin-bottom: 18px;
+    border-radius: 50px;
+    color: var(--danger-color);
+    background-color: color-mix(in srgb, var(--danger-color) 16%, transparent);
+  }
+
+  blockquote {
+    flex: 1;
+    margin: 0 0 24px;
+    font-style: normal;
+    line-height: 1.6em;
+  }
+
+  .cs_story_scores {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    border-radius: 16px;
+    background-color: var(--gray4-color);
+
+    >div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    strong {
+      font-family: var(--primary-font);
+      font-size: 22px;
+      line-height: 1.3em;
+    }
+
+    .cs_score_before {
+      color: var(--danger-color);
+    }
+
+    .cs_score_after {
+      color: var(--accent-color);
+    }
+
+    i {
+      color: var(--secondary2-color);
+
+      @include rtl {
+        scale: -1 1;
+      }
+    }
+  }
+
+  .cs_story_author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    padding: 16px 15px 20px;
+  }
+
+  @media (max-width: 991px) {
+
+    blockquote,
+    .cs_story_scores {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  FAQ
+---------------------------------------------------*/
+.cs_physio_faq_section {
+  .cs_physio_faq_left {
+    position: sticky;
+    top: 140px;
+    padding-inline-end: 40px;
+
+    @media (max-width: 1199px) {
+      padding-inline-end: 0;
+    }
+
+    @media (max-width: 991px) {
+      position: static;
+    }
+  }
+
+  .cs_faq_help_card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 28px;
+    border-radius: 24px;
+    color: rgba(255, 255, 255, 0.72);
+    background-color: var(--primary-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-deep);
+    }
+
+    >img {
+      width: 96px;
+      height: 96px;
+      flex: none;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--gray3-color);
+    }
+
+    @media (max-width: 1199px) {
+      padding: 16px 12px;
+    }
+
+    .cs_btn_style_1 {
+
+      &::before,
+      &::after {
+        background-color: var(--accent-color);
+      }
+
+      &:hover {
+        color: var(--white-color);
+      }
+    }
+
+    @media (max-width: 575px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .cs_physio_accordion .cs_accordian {
+    @media (max-width: 767px) {
+      .cs_accordian_head {
+        padding-block: 16px;
+      }
+
+      &:first-child .cs_accordian_head {
+        padding-top: 4px;
+      }
+
+      .cs_accordian_toggler {
+        top: 12px;
+      }
+
+      &:first-child .cs_accordian_toggler {
+        top: 0;
+      }
+
+      .cs_accordian_body {
+        padding-top: 16px;
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Blog: framed post card with date tile
+---------------------------------------------------*/
+.cs_physio_post {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  background-color: var(--white-color);
+  transition:
+    translate 0.4s $cs_pt_ease_out,
+    box-shadow 0.4s $cs_pt_ease_out,
+    border-color 0.4s;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  @media (max-width: 1199px) {
+    padding: 12px 12px 16px;
+  }
+
+  .cs_physio_post_thumb {
+    position: relative;
+  }
+
+  .cs_physio_post_img {
+    display: block;
+    border-radius: 18px;
+    overflow: hidden;
+    aspect-ratio: 800 / 520;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s $cs_pt_ease_out;
+    }
+  }
+
+  .cs_physio_post_cat,
+  .cs_physio_post_read {
+    position: absolute;
+    top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border-radius: 30px;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+
+  .cs_physio_post_cat {
+    inset-inline-start: 14px;
+    color: #1f2937;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+  }
+
+  .cs_cat_dot {
+    width: 8px;
+    height: 8px;
+    flex: none;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(19, 109, 244, 0.2);
+  }
+
+  .cs_physio_post_read {
+    inset-inline-end: 14px;
+    color: var(--white-color);
+    background-color: rgba(17, 24, 39, 0.45);
+    backdrop-filter: blur(6px);
+
+    i {
+      font-size: 13px;
+    }
+  }
+
+  .cs_physio_post_date {
+    position: absolute;
+    bottom: -28px;
+    inset-inline-end: 22px;
+    width: 64px;
+    padding: 9px 0 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    border: 4px solid var(--white-color);
+    color: var(--white-color);
+    background-color: var(--accent-color);
+    line-height: 1;
+    transition: background-color 0.3s;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--dm-surface);
+    }
+  }
+
+  .cs_date_day {
+    font-size: 24px;
+  }
+
+  .cs_date_month {
+    margin-top: 4px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+  }
+
+  .cs_physio_post_body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 26px 14px 10px;
+
+    @media (max-width: 1199px) {
+      padding-inline: 0;
+    }
+  }
+
+  .cs_physio_post_topic {
+    margin-bottom: 10px;
+    letter-spacing: 0.06em;
+    padding-inline-end: 80px;
+  }
+
+  .cs_physio_post_title {
+    margin-bottom: 12px;
+    line-height: 1.35;
+
+    // Accent colour sweeps through the text from left to right
+    a {
+      color: var(--primary-color);
+      background-image: linear-gradient(to right,
+          var(--accent-color) 50%,
+          var(--primary-color) 50%);
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: background-position 0.6s $cs_pt_ease_out;
+
+      &:hover,
+      &:focus-visible {
+        background-position: 0 0;
+      }
+    }
+  }
+
+  // pushed down so excerpts line up across cards with different title lengths
+  .cs_physio_post_excerpt {
+    margin-top: auto;
+    margin-bottom: 24px;
+    color: var(--secondary-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cs_physio_post_footer {
+    padding-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px dashed color-mix(in srgb, var(--primary-color) 12%, transparent);
+  }
+
+  .cs_physio_post_author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+
+    img {
+      width: 44px;
+      height: 44px;
+      flex: none;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gray3-color);
+    }
+
+    span {
+      display: block;
+      line-height: 1.3;
+    }
+  }
+
+  .cs_author_role {
+    color: var(--secondary-color);
+  }
+
+  .cs_physio_post_btn {
+    width: 46px;
+    height: 46px;
+    flex: none;
+    border-radius: 50%;
+    color: var(--accent-color);
+    border: 1px solid var(--gray3-color);
+    background-color: var(--gray4-color);
+    transition:
+      background-color 0.3s,
+      color 0.3s,
+      border-color 0.3s;
+
+    i {
+      rotate: -45deg;
+      transition: rotate 0.4s $cs_pt_ease_out;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--white-color);
+      border-color: var(--accent-color);
+      background-color: var(--accent-color);
+    }
+  }
+
+  &:hover {
+    translate: 0 -6px;
+    border-color: transparent;
+    box-shadow: 0 24px 50px -24px rgba(19, 109, 244, 0.35);
+
+    .cs_physio_post_img img {
+      transform: scale(1.06);
+    }
+
+    .cs_physio_post_date {
+      background-color: color-mix(in srgb,
+          var(--accent-color) 25%,
+          var(--primary-color));
+
+      @media (prefers-color-scheme: dark) {
+        background-color: color-mix(in srgb,
+            var(--accent-color) 25%,
+            var(--dm-deep));
+      }
+    }
+
+    .cs_physio_post_btn i {
+      rotate: 0deg;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Footer
+---------------------------------------------------*/
+.cs_physio_footer {
+  position: relative;
+  overflow: hidden;
+  padding-top: 100px;
+  color: color-mix(in srgb, var(--white-color) 62%, transparent);
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 0%,
+      rgba(19, 109, 244, 0.28),
+      transparent 70%),
+    var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+
+  a {
+    transition: color 0.3s $cs_pt_ease_out;
+  }
+
+  @media (max-width: 991px) {
+    padding-top: 70px;
+  }
+}
+
+// CTA row
+.cs_pf_cta {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  align-items: center;
+  gap: 40px 60px;
+
+  @media (max-width: 1199px) {
+    grid-template-columns: 1fr 360px;
+    gap: 40px 30px;
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs_pf_eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  background-color: color-mix(in srgb, var(--white-color) 4%, transparent);
+}
+
+.cs_pf_pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: inherit;
+    animation: cs_pf_pulse 1.8s ease-out infinite;
+  }
+}
+
+.cs_pf_cta_title {
+  margin-bottom: 36px;
+  font-size: 64px;
+  line-height: 1.1em;
+  letter-spacing: -0.02em;
+
+  // filled with the footer colour, stroke painted underneath: hides the
+  // overlapping glyph contours a transparent fill shows (double width, half is covered)
+  span {
+    color: var(--primary-color);
+    -webkit-text-stroke: 3px var(--white-color);
+    paint-order: stroke fill;
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--dm-deep);
+    }
+  }
+
+  @media (max-width: 1199px) {
+    font-size: 52px;
+  }
+
+  @media (max-width: 575px) {
+    font-size: 38px;
+
+    br {
+      display: none;
+    }
+  }
+}
+
+.cs_pf_cta_btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+
+  .cs_btn_style_1 {
+    padding: 16px 30px;
+
+    i {
+      @include rtl {
+        scale: -1 1;
+      }
+    }
+  }
+}
+
+.cs_pf_call {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--white-color);
+
+  small {
+    display: block;
+    font-size: 13px;
+    color: color-mix(in srgb, var(--white-color) 62%, transparent);
+  }
+
+  bdi {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  &:hover {
+    color: var(--white-color);
+
+    .cs_pf_call_icon {
+      color: var(--primary-color);
+      background-color: var(--white-color);
+      rotate: -12deg;
+
+      @media (prefers-color-scheme: dark) {
+        color: var(--dm-deep);
+      }
+    }
+  }
+}
+
+.cs_pf_call_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  transition: all 0.4s $cs_pt_ease_out;
+}
+
+// Hours card
+.cs_pf_hours {
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  background-color: color-mix(in srgb, var(--white-color) 4%, transparent);
+  backdrop-filter: blur(6px);
+
+  @media (max-width: 575px) {
+    padding: 24px 20px;
+  }
+}
+
+.cs_pf_hours_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.cs_pf_status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  color: var(--white-color);
+  background-color: rgba(255, 255, 255, 0.1);
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+
+  &.cs_open {
+    color: #4ade80;
+    background-color: rgba(34, 197, 94, 0.14);
+  }
+
+  &.cs_closed {
+    color: #fca5a5;
+    background-color: rgba(239, 68, 68, 0.14);
+  }
+}
+
+.cs_pf_hours_list {
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    font-size: 15px;
+    border-bottom: 1px dashed color-mix(in srgb, var(--white-color) 10%, transparent);
+
+    span:last-child {
+      color: var(--white-color);
+      text-align: end;
+    }
+
+    &.cs_today span:first-child {
+      color: var(--white-color);
+      font-weight: 600;
+
+      &::after {
+        content: "Today";
+        margin-inline-start: 8px;
+        padding: 1px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        background-color: var(--accent-color);
+      }
+    }
+  }
+}
+
+.cs_pf_hours_mail {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  margin-top: 18px;
+  font-weight: 600;
+  color: var(--white-color);
+
+  i {
+    grid-row: span 2;
+    margin-top: 4px;
+    color: var(--accent-color);
+  }
+
+  span {
+    font-size: 13px;
+    font-weight: 400;
+    color: color-mix(in srgb, var(--white-color) 62%, transparent);
+  }
+
+  &:hover {
+    color: var(--accent-color);
+  }
+}
+
+// Animated motion line
+.cs_pf_motion {
+  height: 60px;
+  margin: 80px 0;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  path {
+    fill: none;
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .cs_pf_motion_base {
+    stroke: color-mix(in srgb, var(--white-color) 10%, transparent);
+  }
+
+  .cs_pf_motion_flow {
+    stroke: var(--accent-color);
+    stroke-linecap: round;
+    stroke-dasharray: 12 88;
+    animation: cs_pf_flow 6s linear infinite;
+  }
+
+  @include rtl {
+    scale: -1 1;
+  }
+
+  @media (max-width: 991px) {
+    margin: 50px 0;
+  }
+}
+
+// Link grid
+.cs_pf_grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 20px;
+
+  @media (max-width: 991px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs_pf_logo {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.cs_pf_desc {
+  max-width: 320px;
+  margin-bottom: 26px;
+}
+
+.cs_pf_newsletter {
+  max-width: 340px;
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.cs_pf_newsletter_field {
+  position: relative;
+
+  input {
+    width: 100%;
+    height: 56px;
+    padding-inline: 20px 62px;
+    border-radius: 50px;
+    border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+    outline: 0;
+    color: var(--white-color);
+    background-color: color-mix(in srgb, var(--white-color) 4%, transparent);
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: var(--accent-color);
+    }
+
+    &::placeholder {
+      color: color-mix(in srgb, var(--white-color) 62%, transparent);
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    inset-inline-end: 6px;
+    translate: 0 -50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    color: var(--white-color);
+    background-color: var(--accent-color);
+    transition: background-color 0.3s $cs_pt_ease_out;
+
+    i {
+      transition: rotate 0.3s $cs_pt_ease_out;
+
+      @include rtl {
+        scale: -1 1;
+      }
+    }
+
+    &:hover {
+      background-color: var(--danger-color);
+
+      i {
+        rotate: 45deg;
+
+        @include rtl {
+          rotate: -45deg;
+        }
+      }
+    }
+  }
+}
+
+.cs_pf_col_title {
+  margin-bottom: 22px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+.cs_pf_links {
+  list-style: none;
+
+  li+li {
+    margin-top: 12px;
+  }
+
+  a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+
+    &::before {
+      content: "";
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-color);
+      transition: all 0.35s $cs_pt_ease_out;
+    }
+
+    &:hover {
+      color: var(--white-color);
+
+      &::before {
+        width: 16px;
+        margin-inline-end: 8px;
+      }
+    }
+  }
+}
+
+.cs_pf_clinics {
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: 14px;
+
+    +li {
+      margin-top: 16px;
+    }
+  }
+
+  strong,
+  span {
+    display: block;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  span {
+    font-size: 14px;
+  }
+}
+
+.cs_pf_clinic_no {
+  flex: none;
+  padding-top: 2px;
+  font-size: 13px !important;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.cs_pf_directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  color: var(--white-color);
+
+  i {
+    transition: translate 0.3s $cs_pt_ease_out;
+
+    @include rtl {
+      scale: -1 1;
+    }
+  }
+
+  &:hover {
+    color: var(--accent-color);
+
+    i {
+      translate: 4px 0;
+
+      @include rtl {
+        translate: -4px 0;
+      }
+    }
+  }
+}
+
+// rolling wave mask whose water level bobs up and down.
+$cs_pf_wave_mask: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 400' preserveAspectRatio='none'%3E%3Cpath d='M0 24 Q50 4 100 24 T200 24 V400 H0 Z'/%3E%3C/svg%3E";
+
+.cs_pf_wordmark {
+  position: relative;
+  margin-bottom: -0.24em;
+  font-family: var(--primary-font);
+  font-size: 14.6vw;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  color: transparent;
+  background-image: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.14),
+      rgba(255, 255, 255, 0.01) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    color: var(--accent-color);
+    opacity: 0.45;
+    pointer-events: none;
+    -webkit-mask-image: url($cs_pf_wave_mask);
+    mask-image: url($cs_pf_wave_mask);
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    -webkit-mask-size: 1.4em 200%;
+    mask-size: 1.4em 200%;
+    -webkit-mask-position: 0 -75%;
+    mask-position: 0 -75%;
+    animation: cs_pf_wave 8s linear infinite;
+  }
+
+  @media (min-width: 1600px) {
+    font-size: 228px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      animation: none;
+      -webkit-mask-position: 0 -40%;
+      mask-position: 0 -40%;
+    }
+  }
+}
+
+@keyframes cs_pf_wave {
+  0% {
+    -webkit-mask-position: 0em -75%;
+    mask-position: 0em -75%;
+  }
+
+  12.5% {
+    -webkit-mask-position: 0.7em -64.9%;
+    mask-position: 0.7em -64.9%;
+  }
+
+  25% {
+    -webkit-mask-position: 1.4em -40.5%;
+    mask-position: 1.4em -40.5%;
+  }
+
+  37.5% {
+    -webkit-mask-position: 2.1em -16.1%;
+    mask-position: 2.1em -16.1%;
+  }
+
+  50% {
+    -webkit-mask-position: 2.8em -6%;
+    mask-position: 2.8em -6%;
+  }
+
+  62.5% {
+    -webkit-mask-position: 3.5em -16.1%;
+    mask-position: 3.5em -16.1%;
+  }
+
+  75% {
+    -webkit-mask-position: 4.2em -40.5%;
+    mask-position: 4.2em -40.5%;
+  }
+
+  87.5% {
+    -webkit-mask-position: 4.9em -64.9%;
+    mask-position: 4.9em -64.9%;
+  }
+
+  100% {
+    -webkit-mask-position: 5.6em -75%;
+    mask-position: 5.6em -75%;
+  }
+}
+
+// Bottom bar
+.cs_pf_bottom {
+  position: relative;
+  border-top: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  background-color: var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+}
+
+.cs_pf_bottom_in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 30px;
+  padding: 24px 0;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.cs_pf_copyright a {
+  color: var(--accent-color);
+
+  &:hover {
+    color: var(--white-color);
+  }
+}
+
+.cs_pf_social {
+  display: flex;
+  gap: 10px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 14px;
+    color: var(--white-color);
+    border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+    transition: all 0.3s $cs_pt_ease_out;
+
+    &:hover {
+      translate: 0 -3px;
+      border-color: var(--accent-color);
+      background-color: var(--accent-color);
+    }
+  }
+}
+
+.cs_pf_bottom_nav {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+
+  a:hover {
+    color: var(--white-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cs_pf_pulse::after,
+  .cs_pf_motion .cs_pf_motion_flow {
+    animation: none;
+  }
+}
+
+/*-------------------------------------------------
+  Keyframes
+---------------------------------------------------*/
+@keyframes cs_pt_marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes cs_pt_marquee_rtl {
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes cs_pf_pulse {
+  to {
+    scale: 3;
+    opacity: 0;
+  }
+}
+
+@keyframes cs_pf_flow {
+  from {
+    stroke-dashoffset: 100;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cs_pt_spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes cs_pt_rom {
+  to {
+    stroke-dashoffset: 25;
+  }
+}
+
+@keyframes cs_pt_ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55);
+  }
+
+  100% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes cs_pt_hotspot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(19, 109, 244, 0.5);
+  }
+
+  100% {
+    box-shadow: 0 0 0 16px rgba(19, 109, 244, 0);
+  }
+}
+
+@keyframes cs_pt_hotspot_active {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55);
+  }
+
+  100% {
+    box-shadow: 0 0 0 18px rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes cs_pt_play {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+  }
+
+  100% {
+    box-shadow: 0 0 0 30px rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes cs_pt_fade_up {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cs_physio_post,
+  .cs_physio_post .cs_physio_post_img img {
+    transition: none;
+  }
+
+  .cs_physio_marquee .cs_marquee_track,
+  .cs_physio_insurance .cs_insurance_track {
+    animation: none;
+  }
+
+  .cs_physio_hero .cs_rom_ring .cs_rom_arc {
+    animation: none;
+    stroke-dashoffset: 25;
+  }
+}
+
+/*-------------------------------------------------
+  Dark mode
+---------------------------------------------------*/
+@media (prefers-color-scheme: dark) {
+  .cs_physio_insurance .cs_insurance_list img {
+    filter: brightness(0) invert(1);
+    opacity: 0.45;
+
+    &:hover {
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+  }
+
+  .cs_physio_marquee,
+  .cs_physio_video_box,
+  .cs_physio_faq_section .cs_faq_help_card {
+    border: 1px solid var(--dm-border);
+  }
+}
+
+/*-------------------------------------------------
+  Smaller corner radius below 992px
+---------------------------------------------------*/
+@media (max-width: 991px) {
+
+  .cs_physio_hero .cs_hero_video_box,
+  .cs_physio_hero .cs_hero_glass,
+  .cs_physio_hero .cs_float_icon,
+  .cs_physio_booking,
+  .cs_physio_booking .cs_btn_style_1,
+  .cs_physio_booking .choices__list--dropdown,
+  .cs_physio_booking .choices__list[aria-expanded],
+  .cs_physio_painmap,
+  .cs_physio_painmap .cs_painmap_figure_wrap,
+  .cs_physio_treatment_card,
+  .cs_physio_treatment_card .cs_treatment_icon,
+  .cs_physio_outcome_section .cs_outcome_card,
+  .cs_physio_outcome_section .cs_outcome_icon,
+  .cs_physio_outcome_section .cs_pain_bar,
+  .cs_physio_about_section .cs_about_img_main,
+  [dir="rtl"] .cs_physio_about_section .cs_about_img_main,
+  .cs_physio_about_section .cs_about_badge,
+  .cs_physio_price_table_wrap,
+  .cs_physio_price_table .cs_program_icon,
+  .cs_physio_insurance,
+  .cs_physio_team_card .cs_team_img,
+  [dir="rtl"] .cs_physio_team_card .cs_team_img,
+  .cs_physio_video_box,
+  .cs_physio_video_box .cs_exercise_list a,
+  .cs_physio_video_box .cs_exercise_list img,
+  .cs_physio_story_card,
+  .cs_physio_story_card .cs_story_scores,
+  .cs_physio_faq_section .cs_faq_help_card,
+  .cs_physio_post,
+  .cs_physio_post .cs_physio_post_img,
+  .cs_physio_post .cs_physio_post_date,
+  .cs_pf_hours {
+    border-radius: 10px;
+  }
+}

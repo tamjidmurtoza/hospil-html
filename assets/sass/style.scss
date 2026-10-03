@@ -33,6 +33,9 @@
 30. RTL Support
 31. Pharmacy Home (home-v6)
 32. Cart Drawer (mini cart)
+33. Dark Mode
+34. Physiotherapy Home (home-v7)
+35. Veterinary Home (home-v8)
 --------------------------------------------------------------*/
 
 // Base
@@ -72,6 +75,8 @@
 @import "shortcode/privacy";
 @import "shortcode/pharmacy";
 @import "shortcode/cart_drawer";
+@import "shortcode/physio";
+@import "shortcode/vet";
 
 // RTL (global direction overrides)
 @import "common/rtl";

@@ -34,7 +34,13 @@
 30. RTL Support
 31. Pharmacy Home (home-v6)
 32. Cart Drawer (mini cart)
+33. Dark Mode
+34. Physiotherapy Home (home-v7)
+35. Veterinary Home (home-v8)
 --------------------------------------------------------------*/
+/*==========================================
+  Mixin
+============================================*/
 /*===============================================================
   01. Google Fonts
 =================================================================*/
@@ -765,9 +771,6 @@ label {
 .cs_btn_style_2.cs_type_1 {
   border-color: var(--accent-color);
 }
-.cs_btn_style_2.cs_type_1 img {
-  animation: circularRotation 4s linear infinite;
-}
 .cs_btn_style_2:hover {
   color: var(--danger-color);
   border-color: var(--primary-color);
@@ -1056,6 +1059,15 @@ label {
     opacity: 0;
     border-width: 30px;
     transform: translate(-50%, -50%) scale(1.4);
+  }
+}
+/*=============================================
+ Form Inputs (mobile height)
+===============================================*/
+@media (max-width: 767px) {
+  input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]):not([type=hidden]):not([type=submit]):not([type=button]):not(.cs_quantity_input),
+  select {
+    height: 44px;
   }
 }
 /*================================================================
@@ -2670,6 +2682,12 @@ label {
 .cs_tech_items_list .cs_ticker_item img {
   flex: none;
   display: block;
+}
+.cs_ticker_items_list .cs_ticker_item img,
+.cs_ticker_text .cs_ticker_item img,
+.cs_tech_items_list .cs_ticker_item img {
+  height: 1.2em;
+  width: auto;
 }
 .cs_ticker_items_list .cs_ticker_item.cs_shadow_none,
 .cs_ticker_text .cs_ticker_item.cs_shadow_none,
@@ -6242,6 +6260,12 @@ label {
   justify-content: space-between;
   border-top: 1px solid rgba(75, 85, 99, 0.1);
 }
+@media (max-width: 991px) {
+  .cs_post_style_1 .cs_post_author_read {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
 .cs_post_style_1 .cs_post_author {
   display: flex;
   gap: 10px;
@@ -6278,6 +6302,11 @@ label {
   color: var(--accent-color);
 }
 
+@media (max-width: 991px) {
+  .cs_blog_section_1 .row:has(.cs_post_style_1) {
+    row-gap: 30px;
+  }
+}
 .cs_post_style_2 {
   position: relative;
   width: 100%;
@@ -13700,7 +13729,7 @@ label {
 }
 
 /*=================================================
-  31. Pharmacy Home (home-v6)
+  31. Pharmacy Home
 ===================================================*/
 .cs_white_filter {
   filter: brightness(0) saturate(100%) invert(100%);
@@ -13840,6 +13869,11 @@ label {
   background-size: 18px 18px;
   animation: cs_ph_drift 18s ease-in-out infinite reverse;
 }
+@media (min-width: 1280px) {
+  .cs_pharmacy_hero .container {
+    max-width: 1644px;
+  }
+}
 .cs_pharmacy_hero {
   /* ---------- Slider structure ---------- */
 }
@@ -13871,7 +13905,7 @@ label {
   padding-bottom: 170px;
 }
 .cs_pharmacy_hero .cs_hero_right {
-  width: 42%;
+  width: 36%;
   flex: none;
   position: relative;
   align-self: center;
@@ -13907,7 +13941,7 @@ label {
 .cs_pharmacy_hero .cs_hero_title {
   position: relative;
   isolation: isolate;
-  font-size: clamp(32px, 3.4vw, 50px);
+  font-size: clamp(36px, 4.6vw, 75px);
   line-height: 1.2em;
 }
 .cs_pharmacy_hero .cs_hero_title span {
@@ -13998,7 +14032,6 @@ label {
   border-radius: 300px 300px 30px 30px;
   border: 10px solid var(--white-color);
   clip-path: inset(100% 0 0 0 round 300px 300px 30px 30px);
-  transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.18, 1);
 }
 .cs_pharmacy_hero .cs_hero_img img {
   width: 100%;
@@ -14075,16 +14108,28 @@ label {
   border-radius: 50%;
   background-color: var(--gray4-color);
 }
+.cs_pharmacy_hero .cs_hero_float_card .cs_float_icon img {
+  border-radius: 0;
+}
 .cs_pharmacy_hero {
   /* ---------- Staggered entrance (active slide) ---------- */
 }
 .cs_pharmacy_hero .cs_hero_anim {
   opacity: 0;
   translate: 0 40px;
-  transition: opacity 0.7s ease, translate 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_pharmacy_hero .cs_hero_title.cs_hero_anim {
+  --d: 120;
+}
+.cs_pharmacy_hero .cs_hero_desc.cs_hero_anim {
+  --d: 240;
+}
+.cs_pharmacy_hero .cs_hero_btns.cs_hero_anim {
+  --d: 360;
 }
 .cs_pharmacy_hero .swiper-slide-active .cs_hero_anim {
   opacity: 1;
+  transition: opacity 0.7s ease, translate 1s cubic-bezier(0.22, 1, 0.36, 1);
   translate: 0 0;
   transition-delay: calc(var(--d, 0) * 1ms + 350ms);
 }
@@ -14121,7 +14166,7 @@ label {
   z-index: 4;
   bottom: 34px;
   inset-inline-end: 0;
-  width: 42%;
+  width: 36%;
   display: flex;
   justify-content: center;
   pointer-events: none;
@@ -14211,6 +14256,31 @@ label {
 .cs_pharmacy_hero {
   /* ---------- Responsive ---------- */
 }
+@media (min-width: 992px) and (max-height: 900px) {
+  .cs_pharmacy_hero {
+    padding: 150px 0 120px;
+  }
+}
+@media (min-width: 992px) and (max-height: 900px) and (min-width: 1280px) {
+  .cs_pharmacy_hero {
+    padding-top: 170px;
+  }
+}
+@media (min-width: 992px) and (max-height: 900px) {
+  .cs_pharmacy_hero .cs_hero_left {
+    padding-bottom: 80px;
+  }
+  .cs_pharmacy_hero .cs_hero_badge {
+    margin-bottom: 16px;
+  }
+  .cs_pharmacy_hero .cs_hero_title {
+    font-size: clamp(36px, min(4.6vw, 8vh), 75px);
+    margin-bottom: 16px;
+  }
+  .cs_pharmacy_hero .cs_hero_desc {
+    margin-bottom: 32px;
+  }
+}
 @media (max-width: 1399px) {
   .cs_pharmacy_hero .cs_hero_float_wrap.cs_card_1 {
     inset-inline-start: -20px;
@@ -14231,35 +14301,58 @@ label {
   .cs_pharmacy_hero .cs_hero_slider_wrap {
     display: flex;
     flex-direction: column;
+    container-type: inline-size;
   }
   .cs_pharmacy_hero .cs_hero_in {
     flex-direction: column;
-    gap: 40px;
+    gap: 24px;
   }
   .cs_pharmacy_hero .cs_hero_left {
     padding-bottom: 0;
+    justify-content: flex-start;
   }
   .cs_pharmacy_hero .cs_hero_right {
-    width: min(100%, 520px);
-    margin-inline: auto;
+    order: -1;
+    width: 100%;
+  }
+  .cs_pharmacy_hero .cs_hero_img {
+    border-radius: 0;
+    clip-path: inset(100% 0 0 0);
+  }
+  .cs_pharmacy_hero .cs_hero_img img {
+    aspect-ratio: 16/9;
+    -o-object-position: top;
+       object-position: top;
+  }
+  .cs_pharmacy_hero .swiper-slide-active .cs_hero_img {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.18, 1);
+  }
+  .cs_pharmacy_hero .cs_hero_discount,
+  .cs_pharmacy_hero .cs_hero_float_wrap {
+    display: none;
   }
   .cs_pharmacy_hero .cs_hero_controls_wrap {
-    position: static;
-    order: 2;
+    top: calc((100cqw - 20px) * 9 / 16 - 56px);
+    bottom: auto;
     width: 100%;
-    margin-top: 24px;
   }
   .cs_pharmacy_hero .cs_hero_static {
-    position: static;
-    order: 3;
-    width: 100%;
-    margin-top: 30px;
+    display: none;
   }
   .cs_pharmacy_hero .cs_hero_float_wrap.cs_card_1 {
     inset-inline-start: 0;
   }
   .cs_pharmacy_hero .cs_hero_float_wrap.cs_card_2 {
     inset-inline-end: 0;
+  }
+}
+@media (max-width: 767px) {
+  .cs_pharmacy_hero {
+    padding-top: 70px;
+  }
+  .cs_pharmacy_hero .cs_hero_in {
+    gap: 10px;
   }
 }
 @media (max-width: 575px) {
@@ -14272,6 +14365,9 @@ label {
   }
   .cs_pharmacy_hero .cs_hero_search .cs_btn_style_1 {
     width: 100%;
+  }
+  .cs_pharmacy_hero .cs_hero_title {
+    font-size: 32px;
   }
   .cs_pharmacy_hero .cs_hero_title span {
     white-space: normal;
@@ -14299,6 +14395,19 @@ label {
   }
   .cs_pharmacy_hero .cs_hero_bullet.active .cs_hero_bullet_track {
     width: 36px;
+  }
+}
+@media (max-width: 449px) {
+  .cs_pharmacy_hero .cs_hero_right {
+    display: none;
+  }
+  .cs_pharmacy_hero .cs_hero_controls_wrap {
+    position: static;
+    margin-top: 30px;
+  }
+  .cs_pharmacy_hero .cs_hero_btns > a {
+    width: 100%;
+    justify-content: center;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -14400,6 +14509,20 @@ label {
 .cs_pharmacy_features .cs_feature_item:hover .cs_feature_icon img {
   filter: brightness(0) saturate(100%) invert(100%);
 }
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .cs_pharmacy_features .cs_feature_item {
+    gap: 12px;
+    padding: 20px 16px;
+  }
+  .cs_pharmacy_features .cs_feature_icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+  }
+  .cs_pharmacy_features .cs_feature_icon img {
+    width: 26px;
+  }
+}
 @media (max-width: 1199px) {
   .cs_pharmacy_features .cs_pharmacy_features_in {
     grid-template-columns: repeat(2, 1fr);
@@ -14456,6 +14579,11 @@ label {
   grid-template-columns: repeat(6, 1fr);
   gap: 24px;
 }
+@media (max-width: 1399px) {
+  .cs_pharmacy_category_grid {
+    gap: 16px;
+  }
+}
 @media (max-width: 1199px) {
   .cs_pharmacy_category_grid {
     grid-template-columns: repeat(3, 1fr);
@@ -14464,7 +14592,11 @@ label {
 @media (max-width: 575px) {
   .cs_pharmacy_category_grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+  }
+}
+@media (max-width: 374px) {
+  .cs_pharmacy_category_grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -14534,6 +14666,32 @@ label {
   padding: 8px 22px;
 }
 
+.cs_pharmacy_product_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 1199px) {
+  .cs_pharmacy_product_grid {
+    gap: 16px;
+  }
+}
+@media (max-width: 991px) {
+  .cs_pharmacy_product_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 767px) {
+  .cs_pharmacy_product_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 449px) {
+  .cs_pharmacy_product_grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .cs_pharmacy_product {
   height: 100%;
   display: flex;
@@ -14544,12 +14702,27 @@ label {
   border: 1px solid rgba(134, 148, 167, 0.3);
   transition: all 0.4s ease;
 }
+@media (max-width: 991px) {
+  .cs_pharmacy_product {
+    border-radius: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .cs_pharmacy_product {
+    padding: 12px 12px 16px;
+  }
+}
 .cs_pharmacy_product .cs_product_thumb {
   position: relative;
   overflow: hidden;
   border-radius: 15px;
   margin-bottom: 20px;
   background-color: var(--gray4-color);
+}
+@media (max-width: 991px) {
+  .cs_pharmacy_product .cs_product_thumb {
+    border-radius: 10px;
+  }
 }
 .cs_pharmacy_product .cs_product_thumb > a img {
   width: 100%;
@@ -14645,6 +14818,12 @@ label {
   background-color: transparent;
   transition: all 0.3s ease;
 }
+@media (max-width: 767px) {
+  .cs_pharmacy_product .cs_cart_btn {
+    width: 40px;
+    height: 40px;
+  }
+}
 .cs_pharmacy_product .cs_cart_btn img {
   width: 18px;
   height: 18px;
@@ -14671,8 +14850,38 @@ label {
 /*-------------------------------------------------
   Deal of the Day + Promo Banners
 ---------------------------------------------------*/
+.cs_pharmacy_deal_grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 24px;
+}
+.cs_pharmacy_deal_grid .cs_pharmacy_deal_card {
+  grid-row: span 2;
+}
+@media (max-width: 991px) {
+  .cs_pharmacy_deal_grid {
+    gap: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .cs_pharmacy_deal_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cs_pharmacy_deal_grid .cs_pharmacy_deal_card {
+    grid-row: auto;
+    grid-column: span 2;
+  }
+}
+@media (max-width: 575px) {
+  .cs_pharmacy_deal_grid {
+    grid-template-columns: 1fr;
+  }
+  .cs_pharmacy_deal_grid .cs_pharmacy_deal_card {
+    grid-column: auto;
+  }
+}
+
 .cs_pharmacy_deal_card {
-  height: 100%;
   display: flex;
   align-items: center;
   gap: 40px;
@@ -14731,15 +14940,24 @@ label {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media (max-width: 767px) {
+@media (max-width: 1399px) {
+  .cs_pharmacy_deal_card {
+    padding: 30px;
+  }
+}
+@media (max-width: 1199px) {
   .cs_pharmacy_deal_card {
     flex-direction: column-reverse;
     align-items: stretch;
-    padding: 30px 24px;
     gap: 30px;
   }
   .cs_pharmacy_deal_card .cs_deal_img {
     width: 100%;
+  }
+}
+@media (max-width: 991px) {
+  .cs_pharmacy_deal_card {
+    padding: 15px 15px 24px;
   }
 }
 
@@ -14771,6 +14989,31 @@ label {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+.cs_countdown .cs_countdown_ended {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: var(--white-color);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.cs_countdown .cs_countdown_ended::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--danger-color, #ff4d4f);
+}
+.cs_countdown.cs_ended .cs_countdown_item {
+  display: none;
+}
+.cs_countdown.cs_ended .cs_countdown_ended {
+  display: inline-flex;
+}
 @media (max-width: 575px) {
   .cs_countdown {
     gap: 8px;
@@ -14783,8 +15026,25 @@ label {
   }
 }
 
+@keyframes cs_promo_btn_line {
+  0% {
+    background-size: 100% 1px;
+    background-position: right bottom;
+  }
+  50% {
+    background-size: 0 1px;
+    background-position: right bottom;
+  }
+  51% {
+    background-size: 0 1px;
+    background-position: left bottom;
+  }
+  100% {
+    background-size: 100% 1px;
+    background-position: left bottom;
+  }
+}
 .cs_pharmacy_promo_card {
-  height: calc(50% - 12px);
   min-height: 250px;
   display: flex;
   align-items: center;
@@ -14792,9 +15052,6 @@ label {
   padding: 30px;
   overflow: hidden;
   border-radius: 20px;
-}
-.cs_pharmacy_promo_card + .cs_pharmacy_promo_card {
-  margin-top: 24px;
 }
 .cs_pharmacy_promo_card.cs_color_1 {
   background-color: #E4F7EE;
@@ -14828,18 +15085,33 @@ label {
 .cs_pharmacy_promo_card:hover .cs_promo_img img {
   transform: scale(1.08);
 }
-@media (max-width: 991px) {
-  .cs_pharmacy_promo_card {
-    height: auto;
-  }
+.cs_pharmacy_promo_card .cs_text_btn_style_1 {
+  border-bottom: 0;
+  background: linear-gradient(currentColor, currentColor) no-repeat right bottom/100% 1px;
+  transition: color 0.3s ease, background-size 0.4s ease, letter-spacing 0.3s ease;
 }
-@media (max-width: 420px) {
+.cs_pharmacy_promo_card:hover .cs_text_btn_style_1, .cs_pharmacy_promo_card:focus-visible .cs_text_btn_style_1 {
+  animation: cs_promo_btn_line 0.6s ease;
+  letter-spacing: 0.5px;
+}
+.cs_pharmacy_promo_card.cs_color_1:hover .cs_text_btn_style_1, .cs_pharmacy_promo_card.cs_color_1:focus-visible .cs_text_btn_style_1 {
+  color: #0FA968;
+}
+.cs_pharmacy_promo_card.cs_color_2:hover .cs_text_btn_style_1, .cs_pharmacy_promo_card.cs_color_2:focus-visible .cs_text_btn_style_1 {
+  color: var(--accent-color);
+}
+@media (max-width: 1199px) {
   .cs_pharmacy_promo_card {
     flex-direction: column-reverse;
     align-items: stretch;
   }
   .cs_pharmacy_promo_card .cs_promo_img {
     width: 100%;
+  }
+}
+@media (max-width: 991px) {
+  .cs_pharmacy_promo_card {
+    padding: 15px 15px 24px;
   }
 }
 
@@ -15137,11 +15409,16 @@ label {
   flex: none;
   max-width: 220px;
 }
-.cs_pharmacy_brand_section .cs_brand_box .cs_partners_list_1 {
+.cs_pharmacy_brand_section .cs_brand_box .cs_brand_slider {
   flex: 1;
-  gap: 24px 30px;
+  min-width: 0;
 }
-.cs_pharmacy_brand_section .cs_brand_box .cs_partners_list_1 img {
+.cs_pharmacy_brand_section .cs_brand_box .cs_brand_slider .swiper-slide {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+.cs_pharmacy_brand_section .cs_brand_box .cs_brand_slider img {
   height: 40px;
   width: auto;
 }
@@ -15154,7 +15431,7 @@ label {
   .cs_pharmacy_brand_section .cs_brand_box .cs_brand_title {
     max-width: 100%;
   }
-  .cs_pharmacy_brand_section .cs_brand_box .cs_partners_list_1 {
+  .cs_pharmacy_brand_section .cs_brand_box .cs_brand_slider {
     width: 100%;
   }
 }
@@ -15162,6 +15439,12 @@ label {
 /*-------------------------------------------------
   Shop by Health Concern
 ---------------------------------------------------*/
+@media (max-width: 767px) {
+  .cs_pharmacy_concern_section .cs_gap_y_24 {
+    row-gap: 16px;
+  }
+}
+
 .cs_pharmacy_concern_card {
   height: 100%;
   position: relative;
@@ -15320,20 +15603,33 @@ label {
 .cs_pharmacy_faq_section .cs_faq_help_btns .cs_btn_style_1 {
   padding: 10px 20px;
 }
-.cs_pharmacy_faq_section .cs_faq_help_btns .cs_text_btn_style_1:hover {
-  color: var(--primary-color);
+.cs_pharmacy_faq_section .cs_faq_help_btns .cs_text_btn_style_1 {
+  border-bottom: 0;
+  background: linear-gradient(currentColor, currentColor) no-repeat right bottom/100% 1px;
+  transition: letter-spacing 0.3s ease;
+}
+.cs_pharmacy_faq_section .cs_faq_help_btns .cs_text_btn_style_1:hover, .cs_pharmacy_faq_section .cs_faq_help_btns .cs_text_btn_style_1:focus-visible {
+  animation: cs_promo_btn_line 0.6s ease;
+  letter-spacing: 0.5px;
+}
+@media (max-width: 1199px) {
+  .cs_pharmacy_faq_section .cs_pharmacy_faq_left {
+    padding-inline-end: 0;
+  }
+  .cs_pharmacy_faq_section .cs_faq_help_card {
+    padding: 20px 15px;
+    gap: 12px;
+  }
 }
 @media (max-width: 991px) {
   .cs_pharmacy_faq_section .cs_pharmacy_faq_left {
     position: static;
-    padding-inline-end: 0;
   }
 }
 @media (max-width: 575px) {
   .cs_pharmacy_faq_section .cs_faq_help_card {
     flex-direction: column;
     align-items: flex-start;
-    padding: 24px 20px;
   }
 }
 
@@ -15358,6 +15654,25 @@ label {
 
 .cs_pharmacy_promo_card .cs_promo_img img.cs_img_contain {
   padding: 14px;
+}
+
+@media (max-width: 991px) {
+  .cs_pharmacy_blog_section .cs_btn_style_2 {
+    padding-inline: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .cs_pharmacy_blog_section .cs_btn_style_2 {
+    height: 44px;
+    padding-block: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .cs_pharmacy_footer .cs_newsletter_style_1 .cs_newsletter_inpu {
+    height: 46px;
+    padding-block: 0;
+  }
 }
 
 /*=================================================
@@ -15696,6 +16011,5188 @@ label {
   .cs_cart_drawer_item,
   .cs_cart_badge.cs_bump {
     animation: none;
+  }
+}
+/*=================================================
+  34. Physiotherapy Home (home-v7)
+---------------------------------------------------
+  Scoped to body.cs_physio_home. Uses the template
+  colour variables from _variable.scss only.
+===================================================*/
+.cs_physio_painmap_section,
+.cs_physio_treatment_section,
+.cs_physio_journey_section,
+.cs_physio_outcome_section,
+.cs_physio_about_section,
+.cs_physio_program_section,
+.cs_physio_team_section,
+.cs_physio_story_section,
+.cs_physio_faq_section {
+  padding: 120px 0;
+}
+@media (max-width: 991px) {
+  .cs_physio_painmap_section,
+  .cs_physio_treatment_section,
+  .cs_physio_journey_section,
+  .cs_physio_outcome_section,
+  .cs_physio_about_section,
+  .cs_physio_program_section,
+  .cs_physio_team_section,
+  .cs_physio_story_section,
+  .cs_physio_faq_section {
+    padding: 70px 0;
+  }
+}
+
+.cs_physio_treatment_section,
+.cs_physio_program_section,
+.cs_physio_story_section {
+  background-color: var(--gray4-color);
+}
+
+.cs_physio_card {
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 24px 50px -24px rgba(31, 41, 55, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_card {
+    background-color: var(--dm-surface);
+  }
+}
+
+/*-------------------------------------------------
+  Top bar
+---------------------------------------------------*/
+.cs_site_header .cs_physio_topbar {
+  color: rgba(255, 255, 255, 0.82);
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_site_header .cs_physio_topbar {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_site_header .cs_physio_topbar .cs_top_header_in {
+  height: 44px;
+}
+.cs_site_header .cs_physio_topbar .cs_contact_list {
+  gap: 24px;
+}
+.cs_site_header .cs_physio_topbar .cs_contact_item + .cs_contact_item {
+  position: relative;
+  padding-inline-start: 24px;
+}
+.cs_site_header .cs_physio_topbar .cs_contact_item + .cs_contact_item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  width: 1px;
+  height: 14px;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.cs_site_header .cs_physio_topbar i {
+  color: #d2e3ff;
+}
+.cs_site_header .cs_physio_topbar a {
+  color: var(--white-color);
+}
+.cs_site_header .cs_physio_topbar .cs_topbar_tag {
+  padding: 2px 10px;
+  border-radius: 50px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+}
+@media (max-width: 991px) {
+  .cs_site_header .cs_physio_topbar .cs_top_header_right .cs_contact_item:not(:last-child) {
+    display: none;
+  }
+  .cs_site_header .cs_physio_topbar .cs_top_header_right .cs_contact_item:last-child {
+    padding-inline-start: 0;
+  }
+  .cs_site_header .cs_physio_topbar .cs_top_header_right .cs_contact_item:last-child::before {
+    display: none;
+  }
+}
+
+/*-------------------------------------------------
+  Hero (gradient panel)
+---------------------------------------------------*/
+.cs_physio_hero {
+  position: relative;
+  padding: 140px 0 70px;
+  background-color: var(--gray4-color);
+}
+@media (min-width: 1280px) {
+  .cs_physio_hero {
+    padding-top: 164px;
+  }
+}
+@media (min-width: 1280px) {
+  .cs_physio_hero .container {
+    max-width: 1644px;
+  }
+}
+@media (max-width: 1279px) {
+  .cs_physio_hero .container {
+    max-width: 100%;
+  }
+}
+.cs_physio_hero .cs_hero_video_box {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 680px;
+  padding: 80px 70px 130px;
+  border-radius: 36px;
+  color: rgba(255, 255, 255, 0.78);
+  --pf-hero-ink: var(--primary-color);
+  background-color: var(--pf-hero-ink);
+  background-size: cover;
+  background-position: center;
+}
+.cs_physio_hero .cs_hero_video_box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: radial-gradient(50% 70% at 0% 100%, color-mix(in srgb, var(--accent-color) 35%, transparent) 0%, transparent 65%), linear-gradient(90deg, color-mix(in srgb, var(--pf-hero-ink) 94%, transparent) 0%, color-mix(in srgb, var(--pf-hero-ink) 80%, transparent) 50%, color-mix(in srgb, var(--pf-hero-ink) 50%, transparent) 100%);
+}
+[dir=rtl] .cs_physio_hero .cs_hero_video_box::before {
+  background-image: radial-gradient(50% 70% at 100% 100%, color-mix(in srgb, var(--accent-color) 35%, transparent) 0%, transparent 65%), linear-gradient(-90deg, color-mix(in srgb, var(--pf-hero-ink) 94%, transparent) 0%, color-mix(in srgb, var(--pf-hero-ink) 80%, transparent) 50%, color-mix(in srgb, var(--pf-hero-ink) 50%, transparent) 100%);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_hero .cs_hero_video_box {
+    --pf-hero-ink: var(--dm-deep);
+  }
+}
+.cs_physio_hero .cs_hero_video_bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: inherit;
+}
+.cs_physio_hero .cs_hero_video_toggle {
+  position: absolute;
+  top: 24px;
+  inset-inline-end: 24px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  color: var(--white-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease;
+}
+.cs_physio_hero .cs_hero_video_toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.cs_physio_hero .cs_hero_in {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+}
+.cs_physio_hero .cs_hero_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  color: var(--white-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+.cs_physio_hero .cs_badge_dot {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--danger-color);
+  animation: cs_pt_ping 2s ease-out infinite;
+}
+.cs_physio_hero .cs_hero_title {
+  font-size: clamp(36px, 4vw, 72px);
+  line-height: 1.04em;
+  letter-spacing: -0.02em;
+}
+.cs_physio_hero .cs_hero_title span {
+  color: #d2e3ff;
+  background: linear-gradient(transparent 64%, rgba(239, 68, 68, 0.45) 64%, rgba(239, 68, 68, 0.45) 92%, transparent 92%);
+}
+.cs_physio_hero .cs_hero_desc {
+  max-width: 560px;
+}
+@media (max-width: 1399px) {
+  .cs_physio_hero .cs_hero_desc {
+    max-width: none;
+  }
+}
+.cs_physio_hero .cs_hero_btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 30px;
+}
+.cs_physio_hero .cs_physio_link_btn .cs_link_icon {
+  color: var(--white-color);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.cs_physio_hero .cs_physio_link_btn:hover .cs_link_icon {
+  rotate: 0deg;
+  scale: 1.1;
+  color: var(--primary-color);
+  border-color: var(--gray3-color);
+  background-color: var(--gray3-color);
+}
+.cs_physio_hero .cs_hero_proof {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cs_physio_hero .cs_hero_proof .fa-star {
+  color: var(--warning-color);
+}
+.cs_physio_hero .cs_hero_avatars {
+  display: flex;
+  list-style: none;
+}
+.cs_physio_hero .cs_hero_avatars li {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+}
+.cs_physio_hero .cs_hero_avatars li + li {
+  margin-inline-start: -14px;
+}
+.cs_physio_hero .cs_hero_avatars img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.cs_physio_hero {
+  /* ---------- Glass stat cards ---------- */
+}
+.cs_physio_hero .cs_hero_right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 300px;
+}
+.cs_physio_hero .cs_hero_glass {
+  padding: 18px 22px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.5);
+}
+.cs_physio_hero .cs_hero_rom {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cs_physio_hero .cs_rom_ring {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  flex: none;
+}
+.cs_physio_hero .cs_rom_ring svg {
+  width: 100%;
+  height: 100%;
+  rotate: -90deg;
+}
+.cs_physio_hero .cs_rom_ring circle {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+.cs_physio_hero .cs_rom_ring .cs_rom_track {
+  stroke: rgba(255, 255, 255, 0.15);
+}
+.cs_physio_hero .cs_rom_ring .cs_rom_arc {
+  stroke: var(--gray3-color);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: cs_pt_rom 2.2s 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.cs_physio_hero .cs_rom_value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.cs_physio_hero .cs_hero_next {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cs_physio_hero .cs_float_icon {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 14px;
+  font-size: 18px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+}
+.cs_physio_hero .cs_live_dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-inline-end: 8px;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-color: #22c55e;
+  animation: cs_pt_ping 2s ease-out infinite;
+}
+.cs_physio_hero .cs_pain_scale {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.cs_physio_hero .cs_pain_scale span {
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--white-color);
+}
+.cs_physio_hero .cs_pain_scale .cs_pain_before {
+  background-color: var(--danger-color);
+}
+.cs_physio_hero .cs_pain_scale .cs_pain_after {
+  background-color: var(--accent-color);
+}
+.cs_physio_hero .cs_pain_scale i {
+  color: rgba(255, 255, 255, 0.6);
+}
+[dir=rtl] .cs_physio_hero .cs_pain_scale i {
+  scale: -1 1;
+}
+.cs_physio_hero .cs_physio_booking {
+  margin: -64px 40px 0;
+}
+@media (min-width: 992px) and (max-height: 900px) {
+  .cs_physio_hero {
+    padding-bottom: 40px;
+  }
+}
+@media (min-width: 992px) and (max-height: 900px) and (min-width: 1280px) {
+  .cs_physio_hero {
+    padding-top: 160px;
+  }
+}
+@media (min-width: 992px) and (max-height: 900px) {
+  .cs_physio_hero .cs_hero_video_box {
+    min-height: max(520px, 100vh - 210px);
+    padding-top: 40px;
+    padding-bottom: 100px;
+  }
+  .cs_physio_hero .cs_hero_badge {
+    margin-bottom: 16px;
+  }
+  .cs_physio_hero .cs_hero_title {
+    font-size: clamp(36px, min(4vw, 7.5vh), 72px);
+    margin-bottom: 16px;
+  }
+  .cs_physio_hero .cs_hero_desc,
+  .cs_physio_hero .cs_hero_btns {
+    margin-bottom: 24px;
+  }
+}
+@media (max-width: 1199px) {
+  .cs_physio_hero .cs_hero_video_box {
+    padding: 70px 40px 120px;
+  }
+  .cs_physio_hero .cs_hero_in {
+    gap: 40px;
+  }
+  .cs_physio_hero .cs_hero_right {
+    width: 260px;
+  }
+}
+@media (max-width: 991px) {
+  .cs_physio_hero .cs_hero_video_box {
+    min-height: 0;
+    padding: 84px 30px 110px;
+    border-radius: 28px;
+  }
+  .cs_physio_hero .cs_hero_in {
+    grid-template-columns: 1fr;
+  }
+  .cs_physio_hero .cs_hero_right {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+  .cs_physio_hero .cs_hero_glass:first-child {
+    grid-column: 1/-1;
+  }
+  .cs_physio_hero .cs_physio_booking {
+    margin-inline: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .cs_physio_hero {
+    padding-top: 70px;
+  }
+  .cs_physio_hero .cs_hero_video_box {
+    padding-top: 50px;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_physio_hero .container {
+    padding-inline: 10px;
+  }
+  .cs_physio_hero .cs_hero_video_box {
+    padding: 50px 15px 100px;
+    border-radius: 10px;
+  }
+  .cs_physio_hero .cs_physio_booking {
+    margin-inline: 8px;
+  }
+  .cs_physio_hero .cs_hero_right {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs_physio_link_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.cs_physio_link_btn .cs_link_icon {
+  width: 48px;
+  height: 48px;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_link_btn:hover .cs_link_icon {
+  rotate: 90deg;
+  color: var(--white-color);
+  background-color: var(--accent-color);
+}
+
+/*-------------------------------------------------
+  Quick booking bar
+---------------------------------------------------*/
+.cs_physio_booking {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  align-items: center;
+  gap: 0;
+  margin-top: 60px;
+  padding: 12px;
+  border-radius: 20px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 30px 60px -30px rgba(31, 41, 55, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_booking {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_booking .cs_booking_field {
+  position: relative;
+  padding: 8px 24px;
+}
+.cs_physio_booking .cs_booking_field + .cs_booking_field {
+  border-inline-start: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+.cs_physio_booking .cs_booking_field label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+.cs_physio_booking .cs_booking_field label i {
+  color: var(--accent-color);
+}
+.cs_physio_booking .cs_datepicker,
+.cs_physio_booking .choices__inner {
+  width: 100%;
+  min-height: auto;
+  padding: 0 !important;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  color: var(--secondary-color);
+  background-color: transparent;
+}
+.cs_physio_booking .choices {
+  margin-bottom: 0;
+}
+.cs_physio_booking .choices__list--single {
+  padding: 0;
+}
+.cs_physio_booking .choices__list--dropdown,
+.cs_physio_booking .choices__list[aria-expanded] {
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  background-color: var(--white-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_booking .choices__list--dropdown,
+  .cs_physio_booking .choices__list[aria-expanded] {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_booking .choices__list--dropdown .choices__item--selectable.is-highlighted,
+.cs_physio_booking .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+  color: var(--white-color);
+  background-color: var(--accent-color);
+}
+.cs_physio_booking .choices[data-type*=select-one]::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  border: 2px solid var(--secondary-color);
+  border-left: 0;
+  border-top: 0;
+  position: absolute;
+  top: 50%;
+  inset-inline-start: auto;
+  inset-inline-end: 2px;
+  transform: translateY(-70%) rotate(45deg);
+}
+.cs_physio_booking .cs_btn_style_1 {
+  height: 100%;
+  min-height: 60px;
+  border-radius: 14px;
+  padding-inline: 30px;
+}
+@media (max-width: 991px) {
+  .cs_physio_booking {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 0;
+  }
+  .cs_physio_booking .cs_booking_field:nth-child(3) {
+    border-inline-start: 0;
+  }
+  .cs_physio_booking .cs_btn_style_1 {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 575px) {
+  .cs_physio_booking {
+    grid-template-columns: 1fr;
+  }
+  .cs_physio_booking .cs_booking_field {
+    padding: 8px 12px;
+  }
+  .cs_physio_booking .cs_booking_field + .cs_booking_field {
+    border-inline-start: 0;
+    border-top: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  }
+}
+
+/*-------------------------------------------------
+  Conditions marquee
+---------------------------------------------------*/
+.cs_physio_marquee_wrap {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding-block: 40px;
+  margin-block: -40px;
+  pointer-events: none;
+}
+.cs_physio_marquee_wrap .cs_physio_marquee {
+  pointer-events: auto;
+}
+
+.cs_physio_marquee {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: 22px 0;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  rotate: -1.5deg;
+  margin: -6px -20px 0;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_marquee {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_physio_marquee .cs_marquee_track {
+  display: flex;
+  width: -moz-max-content;
+  width: max-content;
+  animation: cs_pt_marquee 38s linear infinite;
+}
+.cs_physio_marquee:hover .cs_marquee_track {
+  animation-play-state: paused;
+}
+.cs_physio_marquee .cs_marquee_list {
+  display: flex;
+  list-style: none;
+}
+.cs_physio_marquee .cs_marquee_list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 34px;
+  padding-inline-end: 34px;
+  font-family: var(--primary-font);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.cs_physio_marquee .cs_marquee_list li::after {
+  content: "✱";
+  font-size: 22px;
+  color: #d2e3ff;
+}
+.cs_physio_marquee .cs_marquee_list li:nth-child(even) {
+  color: var(--primary-color);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.75);
+  paint-order: stroke fill;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_marquee .cs_marquee_list li:nth-child(even) {
+    color: var(--dm-deep);
+  }
+}
+.cs_physio_marquee .cs_marquee_list li:nth-child(even)::after {
+  -webkit-text-stroke: 0;
+}
+[dir=rtl] .cs_physio_marquee {
+  rotate: 1.5deg;
+}
+[dir=rtl] .cs_physio_marquee .cs_marquee_track {
+  animation-name: cs_pt_marquee_rtl;
+}
+@media (max-width: 767px) {
+  .cs_physio_marquee {
+    padding: 16px 0;
+  }
+  .cs_physio_marquee .cs_marquee_list li {
+    font-size: 20px;
+    gap: 24px;
+    padding-inline-end: 24px;
+  }
+}
+
+/*-------------------------------------------------
+  Pain map
+---------------------------------------------------*/
+.cs_physio_painmap {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 40px;
+  border-radius: 30px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 40px 80px -50px rgba(31, 41, 55, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_painmap {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_painmap .cs_painmap_figure_wrap {
+  position: relative;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 24px;
+  background: radial-gradient(circle at 50% 40%, rgba(19, 109, 244, 0.14), transparent 60%), var(--gray4-color);
+}
+.cs_physio_painmap .cs_painmap_toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 24px;
+  border-radius: 50px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_painmap .cs_painmap_toggle {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_painmap .cs_painmap_view {
+  padding: 6px 20px;
+  border: 0;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+.cs_physio_painmap .cs_painmap_view.active {
+  color: var(--white-color);
+  background-color: var(--accent-color);
+}
+.cs_physio_painmap .cs_painmap_figure {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  margin-inline: auto;
+  aspect-ratio: 200/440;
+}
+.cs_physio_painmap .cs_body_svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.cs_physio_painmap .cs_body_svg circle,
+.cs_physio_painmap .cs_body_svg rect,
+.cs_physio_painmap .cs_body_svg path {
+  fill: var(--gray7-color);
+}
+.cs_physio_painmap .cs_body_svg .cs_spine {
+  fill: none;
+  stroke: var(--white-color);
+  stroke-width: 4;
+  stroke-dasharray: 6 6;
+  stroke-linecap: round;
+  transition: opacity 0.4s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_painmap .cs_body_svg .cs_spine {
+    stroke: var(--dm-surface);
+  }
+}
+.cs_physio_painmap [data-current-view=front] .cs_spine {
+  opacity: 0;
+}
+.cs_physio_painmap .cs_hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  translate: -50% -50%;
+  border: 4px solid var(--white-color);
+  background-color: var(--accent-color);
+  box-shadow: 0 0 0 0 rgba(19, 109, 244, 0.5);
+  animation: cs_pt_hotspot 2.4s ease-out infinite;
+  transition: scale 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_painmap .cs_hotspot {
+    border-color: var(--dm-surface);
+  }
+}
+.cs_physio_painmap .cs_hotspot span {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  translate: -50% 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4em;
+  white-space: nowrap;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_painmap .cs_hotspot span {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_physio_painmap .cs_hotspot:hover, .cs_physio_painmap .cs_hotspot:focus-visible, .cs_physio_painmap .cs_hotspot.active {
+  scale: 1.2;
+}
+.cs_physio_painmap .cs_hotspot:hover span, .cs_physio_painmap .cs_hotspot:focus-visible span, .cs_physio_painmap .cs_hotspot.active span {
+  opacity: 1;
+  translate: -50% 0;
+}
+.cs_physio_painmap .cs_hotspot.active {
+  background-color: var(--danger-color);
+  animation-name: cs_pt_hotspot_active;
+}
+.cs_physio_painmap [data-current-view=front] .cs_view_back,
+.cs_physio_painmap [data-current-view=back] .cs_view_front {
+  opacity: 0;
+  visibility: hidden;
+  scale: 0.4;
+}
+.cs_physio_painmap .cs_painmap_panel {
+  display: none;
+}
+.cs_physio_painmap .cs_painmap_panel.active {
+  display: block;
+  animation: cs_pt_fade_up 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_painmap .cs_panel_label {
+  display: inline-block;
+  padding: 4px 14px;
+  margin-bottom: 16px;
+  border-radius: 50px;
+  color: var(--accent-color);
+  background-color: var(--gray4-color);
+}
+.cs_physio_painmap .cs_condition_chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+.cs_physio_painmap .cs_condition_chips li {
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  color: var(--primary-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+.cs_physio_painmap .cs_panel_stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.cs_physio_painmap .cs_panel_stats > div {
+  padding-inline-start: 14px;
+  border-inline-start: 3px solid var(--accent-color);
+}
+.cs_physio_painmap .cs_panel_stats strong,
+.cs_physio_painmap .cs_panel_stats span {
+  display: block;
+}
+[dir=rtl] .cs_physio_painmap .cs_btn_style_1 i {
+  scale: -1 1;
+}
+@media (max-width: 1399px) {
+  .cs_physio_painmap {
+    gap: 40px;
+    padding: 24px;
+  }
+}
+@media (max-width: 1199px) {
+  .cs_physio_painmap {
+    grid-template-columns: 340px 1fr;
+    gap: 30px;
+  }
+}
+@media (max-width: 991px) {
+  .cs_physio_painmap {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 575px) {
+  .cs_physio_painmap {
+    padding: 16px;
+    border-radius: 20px;
+  }
+  .cs_physio_painmap .cs_panel_stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*-------------------------------------------------
+  Treatments
+---------------------------------------------------*/
+.cs_physio_treatment_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_treatment_card {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_treatment_card::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  scale: 0 1;
+  transform-origin: left center;
+  transition: scale 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir=rtl] .cs_physio_treatment_card::after {
+  transform-origin: right center;
+}
+.cs_physio_treatment_card .cs_treatment_img {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.cs_physio_treatment_card .cs_treatment_img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.cs_physio_treatment_card .cs_treatment_img img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 600/440;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: scale 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_treatment_card .cs_treatment_img:hover::after, .cs_physio_treatment_card .cs_treatment_img:focus-visible::after {
+  opacity: 0.18;
+}
+.cs_physio_treatment_card .cs_treatment_img:hover img, .cs_physio_treatment_card .cs_treatment_img:focus-visible img {
+  scale: 1.08;
+}
+.cs_physio_treatment_card .cs_treatment_body {
+  position: relative;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  flex: 1;
+  padding: 46px 30px 30px;
+}
+.cs_physio_treatment_card .cs_treatment_icon {
+  position: absolute;
+  top: -32px;
+  inset-inline-start: 30px;
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+  border-radius: 18px;
+  color: var(--white-color);
+  background-color: var(--accent-color);
+  border: 5px solid var(--white-color);
+  transition: background-color 0.4s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_treatment_card .cs_treatment_icon {
+    border-color: var(--dm-surface);
+  }
+}
+.cs_physio_treatment_card .cs_treatment_meta {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 12px;
+  border-radius: 50px;
+  background-color: var(--gray4-color);
+}
+.cs_physio_treatment_card .cs_treatment_title {
+  margin: 0 0 10px;
+}
+.cs_physio_treatment_card .cs_treatment_title a {
+  color: inherit;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0 2px;
+  transition: color 0.3s ease, background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir=rtl] .cs_physio_treatment_card .cs_treatment_title a {
+  background-position: right bottom;
+}
+.cs_physio_treatment_card .cs_treatment_title a:hover, .cs_physio_treatment_card .cs_treatment_title a:focus-visible {
+  color: var(--accent-color);
+  background-size: 100% 2px;
+}
+.cs_physio_treatment_card .cs_treatment_desc {
+  margin: 0 0 20px;
+}
+.cs_physio_treatment_card .cs_treatment_more {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  margin-top: auto;
+  color: var(--accent-color);
+  transition: color 0.3s ease;
+}
+.cs_physio_treatment_card .cs_treatment_more i {
+  transition: translate 0.3s ease;
+}
+[dir=rtl] .cs_physio_treatment_card .cs_treatment_more i {
+  scale: -1 1;
+}
+.cs_physio_treatment_card .cs_treatment_more:hover, .cs_physio_treatment_card .cs_treatment_more:focus-visible {
+  color: var(--danger-color);
+}
+.cs_physio_treatment_card .cs_treatment_more:hover i, .cs_physio_treatment_card .cs_treatment_more:focus-visible i {
+  translate: 5px 0;
+}
+[dir=rtl] .cs_physio_treatment_card .cs_treatment_more:hover i, [dir=rtl] .cs_physio_treatment_card .cs_treatment_more:focus-visible i {
+  translate: -5px 0;
+}
+.cs_physio_treatment_card:hover {
+  translate: 0 -6px;
+  box-shadow: 0 30px 60px -30px rgba(31, 41, 55, 0.4);
+}
+.cs_physio_treatment_card:hover::after {
+  scale: 1 1;
+}
+.cs_physio_treatment_card:hover .cs_treatment_icon {
+  background-color: var(--danger-color);
+}
+@media (max-width: 1199px) {
+  .cs_physio_treatment_card .cs_treatment_body {
+    padding-inline: 15px;
+  }
+  .cs_physio_treatment_card .cs_treatment_icon {
+    inset-inline-start: 15px;
+  }
+  .cs_physio_treatment_card .cs_treatment_meta {
+    inset-inline-end: 15px;
+  }
+}
+
+/*-------------------------------------------------
+  Recovery journey
+---------------------------------------------------*/
+.cs_physio_journey {
+  position: relative;
+}
+.cs_physio_journey .cs_journey_line {
+  position: absolute;
+  top: 36px;
+  inset-inline: 12.5%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: var(--gray4-color);
+}
+.cs_physio_journey .cs_journey_progress {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent-color), var(--danger-color));
+  transition: width 2.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir=rtl] .cs_physio_journey .cs_journey_progress {
+  background: linear-gradient(-90deg, var(--accent-color), var(--danger-color));
+}
+.cs_physio_journey .cs_journey_list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  list-style: none;
+}
+.cs_physio_journey .cs_journey_step {
+  text-align: center;
+}
+.cs_physio_journey .cs_journey_dot {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  font-size: 24px;
+  color: var(--accent-color);
+  background-color: var(--white-color);
+  border: 4px solid var(--gray4-color);
+  transition: all 0.5s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_journey .cs_journey_dot {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_journey .cs_journey_week {
+  display: inline-block;
+  padding: 2px 12px;
+  margin-bottom: 12px;
+  border-radius: 50px;
+  color: var(--danger-color);
+  background-color: color-mix(in srgb, var(--danger-color) 16%, transparent);
+}
+.cs_physio_journey.is-visible .cs_journey_progress {
+  width: 100%;
+}
+.cs_physio_journey.is-visible .cs_journey_dot {
+  color: var(--white-color);
+  border-color: var(--white-color);
+  background-color: var(--accent-color);
+  box-shadow: 0 16px 30px -12px rgba(19, 109, 244, 0.6);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_journey.is-visible .cs_journey_dot {
+    border-color: var(--dm-surface);
+  }
+}
+.cs_physio_journey.is-visible .cs_journey_step:nth-child(1) .cs_journey_dot {
+  transition-delay: 0s;
+}
+.cs_physio_journey.is-visible .cs_journey_step:nth-child(2) .cs_journey_dot {
+  transition-delay: 0.55s;
+}
+.cs_physio_journey.is-visible .cs_journey_step:nth-child(3) .cs_journey_dot {
+  transition-delay: 1.1s;
+}
+.cs_physio_journey.is-visible .cs_journey_step:nth-child(4) .cs_journey_dot {
+  transition-delay: 1.65s;
+}
+@media (max-width: 991px) {
+  .cs_physio_journey .cs_journey_line {
+    display: none;
+  }
+  .cs_physio_journey .cs_journey_list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 30px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_physio_journey .cs_journey_list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*-------------------------------------------------
+  Outcomes (dark band)
+---------------------------------------------------*/
+.cs_physio_outcome_section {
+  position: relative;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.72);
+  background: radial-gradient(circle at 85% 20%, rgba(19, 109, 244, 0.45), transparent 45%), radial-gradient(circle at 10% 90%, rgba(210, 227, 255, 0.12), transparent 40%), var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_outcome_section {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_physio_outcome_section .cs_section_subtitle {
+  color: #d2e3ff;
+}
+.cs_physio_outcome_section .cs_outcome_counters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  list-style: none;
+}
+.cs_physio_outcome_section .cs_outcome_counters li {
+  padding-inline-start: 20px;
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.2);
+}
+@media (max-width: 1399px) {
+  .cs_physio_outcome_section .cs_outcome_counters li {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+}
+.cs_physio_outcome_section .cs_outcome_counters strong {
+  display: flex;
+  align-items: baseline;
+  line-height: 1.2em;
+}
+.cs_physio_outcome_section .cs_outcome_dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.cs_physio_outcome_section .cs_outcome_card {
+  padding: 28px;
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+}
+.cs_physio_outcome_section .cs_outcome_card > strong {
+  display: block;
+  margin: 18px 0 2px;
+  line-height: 1.2em;
+}
+.cs_physio_outcome_section .cs_outcome_card_wide {
+  grid-column: 1/-1;
+}
+.cs_physio_outcome_section .cs_outcome_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.cs_physio_outcome_section .cs_outcome_tag {
+  padding: 2px 10px;
+  border-radius: 50px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+}
+.cs_physio_outcome_section .cs_outcome_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  font-size: 20px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+}
+.cs_physio_outcome_section .cs_pain_bar_row {
+  display: grid;
+  grid-template-columns: 90px 1fr 40px;
+  align-items: center;
+  gap: 16px;
+}
+.cs_physio_outcome_section .cs_pain_bar_row + .cs_pain_bar_row {
+  margin-top: 16px;
+}
+.cs_physio_outcome_section .cs_pain_bar {
+  position: relative;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.cs_physio_outcome_section .cs_pain_fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 0;
+  border-radius: inherit;
+  transition: width 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_outcome_section .cs_pain_fill.cs_fill_before {
+  background-color: var(--danger-color);
+}
+.cs_physio_outcome_section .cs_pain_fill.cs_fill_mid {
+  background-color: var(--warning-color);
+  transition-delay: 0.25s;
+}
+.cs_physio_outcome_section .cs_pain_fill.cs_fill_after {
+  background-color: var(--gray3-color);
+  transition-delay: 0.5s;
+}
+.cs_physio_outcome_section .is-visible .cs_pain_fill {
+  width: var(--w);
+}
+@media (max-width: 1199px) {
+  .cs_physio_outcome_section .cs_outcome_card {
+    padding: 16px 15px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_physio_outcome_section .cs_outcome_dashboard {
+    grid-template-columns: 1fr;
+  }
+  .cs_physio_outcome_section .cs_pain_bar_row {
+    grid-template-columns: 76px 1fr 32px;
+    gap: 10px;
+  }
+}
+
+/*-------------------------------------------------
+  About
+---------------------------------------------------*/
+.cs_physio_about_section .cs_about_img_wrap {
+  position: relative;
+  padding-inline-end: 90px;
+  padding-bottom: 80px;
+}
+.cs_physio_about_section .cs_about_img_main {
+  overflow: hidden;
+  border-radius: 30px 180px 30px 30px;
+}
+.cs_physio_about_section .cs_about_img_main img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 560/680;
+  max-height: 620px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+[dir=rtl] .cs_physio_about_section .cs_about_img_main {
+  border-radius: 180px 30px 30px 30px;
+}
+.cs_physio_about_section .cs_about_img_small {
+  position: absolute;
+  bottom: 0;
+  inset-inline-end: 0;
+  width: 46%;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 10px solid var(--web-wash, #fff);
+}
+.cs_physio_about_section .cs_about_img_small img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.cs_physio_about_section .cs_about_badge {
+  position: absolute;
+  top: 40px;
+  inset-inline-start: -20px;
+  padding: 18px 22px;
+  border-radius: 20px;
+  line-height: 1.2em;
+  text-align: center;
+  color: var(--white-color);
+  background-color: var(--danger-color);
+  rotate: -6deg;
+  box-shadow: 0 20px 40px -16px rgba(239, 68, 68, 0.6);
+}
+.cs_physio_about_section .cs_about_content {
+  padding-inline-start: 40px;
+}
+.cs_physio_about_section .cs_about_features {
+  list-style: none;
+}
+.cs_physio_about_section .cs_about_features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.cs_physio_about_section .cs_about_features li + li {
+  margin-top: 16px;
+}
+.cs_physio_about_section .cs_feature_check {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 50%;
+  font-size: 12px;
+  color: var(--accent-color);
+  background-color: var(--gray4-color);
+}
+.cs_physio_about_section .cs_about_btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 34px;
+}
+[dir=rtl] .cs_physio_about_section .cs_about_btns .cs_btn_style_1 i {
+  scale: -1 1;
+}
+.cs_physio_about_section .cs_about_call {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.cs_physio_about_section .cs_call_icon {
+  width: 52px;
+  height: 52px;
+  color: var(--accent-color);
+  background-color: var(--gray4-color);
+  transition: all 0.3s ease;
+}
+.cs_physio_about_section .cs_about_call:hover .cs_call_icon {
+  color: var(--white-color);
+  background-color: var(--accent-color);
+}
+@media (max-width: 1199px) {
+  .cs_physio_about_section .cs_about_content {
+    padding-inline-start: 0;
+  }
+}
+@media (max-width: 575px) {
+  .cs_physio_about_section .cs_about_img_wrap {
+    padding-inline-end: 40px;
+    padding-bottom: 50px;
+  }
+  .cs_physio_about_section .cs_about_badge {
+    inset-inline-start: -6px;
+    top: 16px;
+    padding: 12px 16px;
+  }
+  .cs_physio_about_section .cs_about_badge strong {
+    font-size: 28px;
+  }
+}
+
+/*-------------------------------------------------
+  Programs / pricing
+---------------------------------------------------*/
+.cs_physio_price_table_wrap {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--primary-color) 12%, transparent) transparent;
+  border-radius: 28px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  box-shadow: 0 30px 60px -40px rgba(31, 41, 55, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_price_table_wrap {
+    background-color: var(--dm-surface);
+  }
+}
+
+.cs_physio_price_table {
+  width: 100%;
+  min-width: 900px;
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.cs_physio_price_table th,
+.cs_physio_price_table td {
+  padding: 18px 28px;
+  min-width: 300px;
+  text-align: center;
+  vertical-align: middle;
+  border-top: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+.cs_physio_price_table tbody th,
+.cs_physio_price_table .cs_price_feature_head,
+.cs_physio_price_table tfoot td:first-child {
+  width: 31%;
+  min-width: 240px;
+  text-align: start;
+  background-color: var(--white-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_price_table tbody th,
+  .cs_physio_price_table .cs_price_feature_head,
+  .cs_physio_price_table tfoot td:first-child {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_price_table tbody th {
+  font-weight: 500;
+  color: var(--primary-color);
+}
+.cs_physio_price_table tbody tr {
+  transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_price_table tbody tr:hover th,
+.cs_physio_price_table tbody tr:hover td:not(.cs_featured) {
+  background-color: var(--gray4-color);
+}
+.cs_physio_price_table thead th {
+  position: relative;
+  padding: 40px 28px 28px;
+  vertical-align: bottom;
+}
+.cs_physio_price_table thead th > span {
+  display: block;
+}
+.cs_physio_price_table .cs_price_feature_head span + span {
+  margin-top: 8px;
+}
+.cs_physio_price_table .cs_program_icon {
+  display: flex;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 18px;
+  border-radius: 16px;
+  font-size: 22px;
+  color: var(--accent-color);
+  background-color: var(--gray4-color);
+}
+.cs_physio_price_table .cs_program_name {
+  margin-bottom: 4px;
+}
+.cs_physio_price_table .cs_program_price {
+  display: flex !important;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 18px;
+}
+.cs_physio_price_table .cs_program_price strong {
+  font-size: 36px;
+  line-height: 1em;
+}
+.cs_physio_price_table .cs_program_ribbon {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+}
+.cs_physio_price_table .fa-check {
+  color: var(--accent-color);
+}
+.cs_physio_price_table .fa-minus {
+  opacity: 0.35;
+}
+.cs_physio_price_table tfoot td {
+  padding: 28px;
+  border-bottom: 0;
+}
+.cs_physio_price_table .cs_btn_style_1,
+.cs_physio_price_table .cs_btn_style_2 {
+  justify-content: center;
+  width: 100%;
+}
+[dir=rtl] .cs_physio_price_table .cs_btn_style_1 i,
+[dir=rtl] .cs_physio_price_table .cs_btn_style_2 i {
+  scale: -1 1;
+}
+.cs_physio_price_table .cs_btn_style_2.cs_type_1 img {
+  animation: none;
+}
+.cs_physio_price_table .cs_featured {
+  color: rgba(255, 255, 255, 0.72);
+  background-color: var(--primary-color);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_price_table .cs_featured {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_physio_price_table .cs_featured .cs_program_icon {
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+}
+.cs_physio_price_table .cs_featured .fa-check {
+  color: #d2e3ff;
+}
+.cs_physio_price_table .cs_featured .cs_btn_style_1::before, .cs_physio_price_table .cs_featured .cs_btn_style_1::after {
+  background-color: var(--white-color);
+}
+.cs_physio_price_table .cs_featured .cs_btn_style_1:hover {
+  color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_price_table .cs_featured .cs_btn_style_1:hover {
+    color: var(--dm-deep);
+  }
+}
+.cs_physio_price_table .cs_featured .cs_btn_style_1:hover i {
+  translate: 4px 0;
+}
+[dir=rtl] .cs_physio_price_table .cs_featured .cs_btn_style_1:hover i {
+  translate: -4px 0;
+}
+.cs_physio_price_table thead .cs_featured {
+  background: radial-gradient(circle at 100% 0%, rgba(19, 109, 244, 0.55), transparent 70%), var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_price_table thead .cs_featured {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_physio_price_table tbody .cs_featured {
+  color: var(--white-color);
+}
+@media (max-width: 575px) {
+  .cs_physio_price_table th,
+  .cs_physio_price_table td {
+    padding: 16px 20px;
+  }
+  .cs_physio_price_table thead th {
+    padding: 36px 20px 24px;
+  }
+}
+
+.cs_physio_insurance {
+  display: flex;
+  align-items: center;
+  gap: 20px 32px;
+  margin-top: 60px;
+  padding: 20px 36px;
+  border-radius: 100px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_insurance {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_insurance .cs_insurance_heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: none;
+  padding-inline-end: 32px;
+  border-inline-end: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+.cs_physio_insurance .cs_insurance_icon {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  font-size: 18px;
+  color: var(--accent-color);
+  background-color: color-mix(in srgb, var(--accent-color) 12%, transparent);
+}
+.cs_physio_insurance .cs_insurance_slider {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.cs_physio_insurance .cs_insurance_track {
+  display: flex;
+  width: -moz-max-content;
+  width: max-content;
+  animation: cs_pt_marquee 28s linear infinite;
+}
+[dir=rtl] .cs_physio_insurance .cs_insurance_track {
+  animation-name: cs_pt_marquee_rtl;
+}
+.cs_physio_insurance:hover .cs_insurance_track {
+  animation-play-state: paused;
+}
+.cs_physio_insurance .cs_insurance_list {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding-inline-end: 56px;
+  list-style: none;
+}
+.cs_physio_insurance .cs_insurance_list img {
+  height: 30px;
+  width: auto;
+  opacity: 0.55;
+  filter: grayscale(1);
+  transition: all 0.3s ease;
+}
+.cs_physio_insurance .cs_insurance_list img:hover {
+  opacity: 1;
+  filter: none;
+}
+@media (max-width: 767px) {
+  .cs_physio_insurance {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 24px;
+    padding: 20px;
+  }
+  .cs_physio_insurance .cs_insurance_heading {
+    padding-inline-end: 0;
+    padding-bottom: 16px;
+    border-inline-end: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  }
+}
+
+/*-------------------------------------------------
+  Team
+---------------------------------------------------*/
+.cs_physio_team_card .cs_team_img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px 24px 24px 90px;
+}
+[dir=rtl] .cs_physio_team_card .cs_team_img {
+  border-radius: 24px 24px 90px 24px;
+}
+.cs_physio_team_card .cs_team_img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(31, 41, 55, 0.55), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.cs_physio_team_card .cs_team_img img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 480/580;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: scale 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_team_card .cs_team_exp {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  inset-inline-start: 16px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  color: var(--primary-color);
+  background-color: var(--white-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_team_card .cs_team_exp {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_team_card .cs_team_social {
+  position: absolute;
+  z-index: 1;
+  bottom: 16px;
+  inset-inline-end: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cs_physio_team_card .cs_team_social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--accent-color);
+  background-color: var(--white-color);
+  opacity: 0;
+  translate: 0 16px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_team_card .cs_team_social a {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_team_card .cs_team_social a:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.cs_physio_team_card .cs_team_social a:hover {
+  color: var(--white-color);
+  background-color: var(--accent-color);
+}
+.cs_physio_team_card .cs_team_info {
+  padding: 20px 6px 0;
+}
+.cs_physio_team_card .cs_team_info a:hover {
+  color: var(--accent-color);
+}
+@media (max-width: 1199px) {
+  .cs_physio_team_card .cs_team_info {
+    padding-inline: 0;
+  }
+}
+.cs_physio_team_card .cs_team_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+}
+.cs_physio_team_card .cs_team_tags li {
+  padding: 2px 12px;
+  border-radius: 50px;
+  font-size: 13px;
+  color: var(--accent-color);
+  background-color: var(--gray4-color);
+}
+.cs_physio_team_card:hover .cs_team_img::after {
+  opacity: 1;
+}
+.cs_physio_team_card:hover .cs_team_img img {
+  scale: 1.05;
+}
+.cs_physio_team_card:hover .cs_team_social a {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/*-------------------------------------------------
+  Exercise library / video
+---------------------------------------------------*/
+.cs_physio_video_section {
+  padding-bottom: 120px;
+}
+@media (max-width: 991px) {
+  .cs_physio_video_section {
+    padding-bottom: 70px;
+  }
+}
+
+.cs_physio_video_box {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  overflow: hidden;
+  border-radius: 30px;
+  color: rgba(255, 255, 255, 0.72);
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_video_box {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_physio_video_box .cs_video_media {
+  position: relative;
+  min-height: 540px;
+}
+.cs_physio_video_box .cs_video_media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.cs_physio_video_box .cs_video_media img.active {
+  opacity: 1;
+}
+.cs_physio_video_box .cs_video_play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 96px;
+  height: 96px;
+  translate: -50% -50%;
+  font-size: 26px;
+  color: var(--white-color);
+  background-color: var(--danger-color);
+  box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+  animation: cs_pt_play 2.4s ease-out infinite;
+  transition: scale 0.3s ease;
+}
+.cs_physio_video_box .cs_video_play:hover {
+  scale: 0.9;
+}
+.cs_physio_video_box .cs_video_content {
+  padding: 60px 50px;
+}
+.cs_physio_video_box .cs_section_subtitle {
+  color: #d2e3ff;
+  letter-spacing: 0.7px;
+}
+.cs_physio_video_box .cs_exercise_list {
+  list-style: none;
+}
+.cs_physio_video_box .cs_exercise_list li + li {
+  margin-top: 12px;
+}
+.cs_physio_video_box .cs_exercise_list a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.cs_physio_video_box .cs_exercise_list a:hover, .cs_physio_video_box .cs_exercise_list a.active {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+.cs_physio_video_box .cs_exercise_list a.active {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.cs_physio_video_box .cs_exercise_list img {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: 12px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.cs_physio_video_box .cs_exercise_list i {
+  margin-inline-start: auto;
+  padding-inline-end: 6px;
+  font-size: 28px;
+  color: #d2e3ff;
+}
+.cs_physio_video_box .cs_btn_style_1::before, .cs_physio_video_box .cs_btn_style_1::after {
+  background-color: var(--accent-color);
+}
+[dir=rtl] .cs_physio_video_box .cs_btn_style_1 i {
+  scale: -1 1;
+}
+@media (max-width: 1199px) {
+  .cs_physio_video_box .cs_video_content {
+    padding: 40px 30px;
+  }
+}
+@media (max-width: 991px) {
+  .cs_physio_video_box {
+    grid-template-columns: 1fr;
+  }
+  .cs_physio_video_box .cs_video_media {
+    min-height: 320px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_physio_video_box {
+    border-radius: 20px;
+  }
+  .cs_physio_video_box .cs_video_content {
+    padding: 30px 20px;
+  }
+  .cs_physio_video_box .cs_video_play {
+    width: 72px;
+    height: 72px;
+    font-size: 20px;
+  }
+}
+
+/*-------------------------------------------------
+  Recovery stories
+---------------------------------------------------*/
+.cs_physio_story_section .swiper-slide {
+  height: auto;
+}
+.cs_physio_story_section .cs_story_nav {
+  display: flex;
+  gap: 12px;
+}
+.cs_physio_story_section .cs_story_nav button {
+  width: 54px;
+  height: 54px;
+  color: var(--primary-color);
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  transition: all 0.3s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_story_section .cs_story_nav button {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_story_section .cs_story_nav button:hover {
+  color: var(--white-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+}
+.cs_physio_story_section .cs_story_nav button.swiper-button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+[dir=rtl] .cs_physio_story_section .cs_story_nav button i {
+  scale: -1 1;
+}
+
+.cs_physio_story_card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 36px;
+  border-radius: 24px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_story_card {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_physio_story_card .cs_story_condition {
+  align-self: flex-start;
+  padding: 4px 12px;
+  margin-bottom: 18px;
+  border-radius: 50px;
+  color: var(--danger-color);
+  background-color: color-mix(in srgb, var(--danger-color) 16%, transparent);
+}
+.cs_physio_story_card blockquote {
+  flex: 1;
+  margin: 0 0 24px;
+  font-style: normal;
+  line-height: 1.6em;
+}
+.cs_physio_story_card .cs_story_scores {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  background-color: var(--gray4-color);
+}
+.cs_physio_story_card .cs_story_scores > div {
+  display: flex;
+  flex-direction: column;
+}
+.cs_physio_story_card .cs_story_scores strong {
+  font-family: var(--primary-font);
+  font-size: 22px;
+  line-height: 1.3em;
+}
+.cs_physio_story_card .cs_story_scores .cs_score_before {
+  color: var(--danger-color);
+}
+.cs_physio_story_card .cs_story_scores .cs_score_after {
+  color: var(--accent-color);
+}
+.cs_physio_story_card .cs_story_scores i {
+  color: var(--secondary2-color);
+}
+[dir=rtl] .cs_physio_story_card .cs_story_scores i {
+  scale: -1 1;
+}
+.cs_physio_story_card .cs_story_author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cs_physio_story_card .cs_story_author img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 1199px) {
+  .cs_physio_story_card {
+    padding: 16px 15px 20px;
+  }
+}
+@media (max-width: 991px) {
+  .cs_physio_story_card blockquote,
+  .cs_physio_story_card .cs_story_scores {
+    margin-bottom: 16px;
+  }
+}
+
+/*-------------------------------------------------
+  FAQ
+---------------------------------------------------*/
+.cs_physio_faq_section .cs_physio_faq_left {
+  position: sticky;
+  top: 140px;
+  padding-inline-end: 40px;
+}
+@media (max-width: 1199px) {
+  .cs_physio_faq_section .cs_physio_faq_left {
+    padding-inline-end: 0;
+  }
+}
+@media (max-width: 991px) {
+  .cs_physio_faq_section .cs_physio_faq_left {
+    position: static;
+  }
+}
+.cs_physio_faq_section .cs_faq_help_card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 28px;
+  border-radius: 24px;
+  color: rgba(255, 255, 255, 0.72);
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_faq_section .cs_faq_help_card {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_physio_faq_section .cs_faq_help_card > img {
+  width: 96px;
+  height: 96px;
+  flex: none;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 4px solid var(--gray3-color);
+}
+@media (max-width: 1199px) {
+  .cs_physio_faq_section .cs_faq_help_card {
+    padding: 16px 12px;
+  }
+}
+.cs_physio_faq_section .cs_faq_help_card .cs_btn_style_1::before, .cs_physio_faq_section .cs_faq_help_card .cs_btn_style_1::after {
+  background-color: var(--accent-color);
+}
+.cs_physio_faq_section .cs_faq_help_card .cs_btn_style_1:hover {
+  color: var(--white-color);
+}
+@media (max-width: 575px) {
+  .cs_physio_faq_section .cs_faq_help_card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 767px) {
+  .cs_physio_faq_section .cs_physio_accordion .cs_accordian .cs_accordian_head {
+    padding-block: 16px;
+  }
+  .cs_physio_faq_section .cs_physio_accordion .cs_accordian:first-child .cs_accordian_head {
+    padding-top: 4px;
+  }
+  .cs_physio_faq_section .cs_physio_accordion .cs_accordian .cs_accordian_toggler {
+    top: 12px;
+  }
+  .cs_physio_faq_section .cs_physio_accordion .cs_accordian:first-child .cs_accordian_toggler {
+    top: 0;
+  }
+  .cs_physio_faq_section .cs_physio_accordion .cs_accordian .cs_accordian_body {
+    padding-top: 16px;
+  }
+}
+
+/*-------------------------------------------------
+  Blog: framed post card with date tile
+---------------------------------------------------*/
+.cs_physio_post {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 12%, transparent);
+  background-color: var(--white-color);
+  transition: translate 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_post {
+    background-color: var(--dm-surface);
+  }
+}
+@media (max-width: 1199px) {
+  .cs_physio_post {
+    padding: 12px 12px 16px;
+  }
+}
+.cs_physio_post .cs_physio_post_thumb {
+  position: relative;
+}
+.cs_physio_post .cs_physio_post_img {
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 800/520;
+}
+.cs_physio_post .cs_physio_post_img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_post .cs_physio_post_cat,
+.cs_physio_post .cs_physio_post_read {
+  position: absolute;
+  top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 30px;
+  line-height: 1.5;
+  pointer-events: none;
+}
+.cs_physio_post .cs_physio_post_cat {
+  inset-inline-start: 14px;
+  color: #1f2937;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+}
+.cs_physio_post .cs_cat_dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(19, 109, 244, 0.2);
+}
+.cs_physio_post .cs_physio_post_read {
+  inset-inline-end: 14px;
+  color: var(--white-color);
+  background-color: rgba(17, 24, 39, 0.45);
+  backdrop-filter: blur(6px);
+}
+.cs_physio_post .cs_physio_post_read i {
+  font-size: 13px;
+}
+.cs_physio_post .cs_physio_post_date {
+  position: absolute;
+  bottom: -28px;
+  inset-inline-end: 22px;
+  width: 64px;
+  padding: 9px 0 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16px;
+  border: 4px solid var(--white-color);
+  color: var(--white-color);
+  background-color: var(--accent-color);
+  line-height: 1;
+  transition: background-color 0.3s;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_post .cs_physio_post_date {
+    border-color: var(--dm-surface);
+  }
+}
+.cs_physio_post .cs_date_day {
+  font-size: 24px;
+}
+.cs_physio_post .cs_date_month {
+  margin-top: 4px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+.cs_physio_post .cs_physio_post_body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 14px 10px;
+}
+@media (max-width: 1199px) {
+  .cs_physio_post .cs_physio_post_body {
+    padding-inline: 0;
+  }
+}
+.cs_physio_post .cs_physio_post_topic {
+  margin-bottom: 10px;
+  letter-spacing: 0.06em;
+  padding-inline-end: 80px;
+}
+.cs_physio_post .cs_physio_post_title {
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+.cs_physio_post .cs_physio_post_title a {
+  color: var(--primary-color);
+  background-image: linear-gradient(to right, var(--accent-color) 50%, var(--primary-color) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_post .cs_physio_post_title a:hover, .cs_physio_post .cs_physio_post_title a:focus-visible {
+  background-position: 0 0;
+}
+.cs_physio_post .cs_physio_post_excerpt {
+  margin-top: auto;
+  margin-bottom: 24px;
+  color: var(--secondary-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cs_physio_post .cs_physio_post_footer {
+  padding-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px dashed color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+.cs_physio_post .cs_physio_post_author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.cs_physio_post .cs_physio_post_author img {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid var(--gray3-color);
+}
+.cs_physio_post .cs_physio_post_author span {
+  display: block;
+  line-height: 1.3;
+}
+.cs_physio_post .cs_author_role {
+  color: var(--secondary-color);
+}
+.cs_physio_post .cs_physio_post_btn {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 50%;
+  color: var(--accent-color);
+  border: 1px solid var(--gray3-color);
+  background-color: var(--gray4-color);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.cs_physio_post .cs_physio_post_btn i {
+  rotate: -45deg;
+  transition: rotate 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_physio_post .cs_physio_post_btn:hover, .cs_physio_post .cs_physio_post_btn:focus-visible {
+  color: var(--white-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+}
+.cs_physio_post:hover {
+  translate: 0 -6px;
+  border-color: transparent;
+  box-shadow: 0 24px 50px -24px rgba(19, 109, 244, 0.35);
+}
+.cs_physio_post:hover .cs_physio_post_img img {
+  transform: scale(1.06);
+}
+.cs_physio_post:hover .cs_physio_post_date {
+  background-color: color-mix(in srgb, var(--accent-color) 25%, var(--primary-color));
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_post:hover .cs_physio_post_date {
+    background-color: color-mix(in srgb, var(--accent-color) 25%, var(--dm-deep));
+  }
+}
+.cs_physio_post:hover .cs_physio_post_btn i {
+  rotate: 0deg;
+}
+
+/*-------------------------------------------------
+  Footer
+---------------------------------------------------*/
+.cs_physio_footer {
+  position: relative;
+  overflow: hidden;
+  padding-top: 100px;
+  color: color-mix(in srgb, var(--white-color) 62%, transparent);
+  background: radial-gradient(ellipse 60% 50% at 85% 0%, rgba(19, 109, 244, 0.28), transparent 70%), var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_physio_footer {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_physio_footer a {
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (max-width: 991px) {
+  .cs_physio_footer {
+    padding-top: 70px;
+  }
+}
+
+.cs_pf_cta {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  align-items: center;
+  gap: 40px 60px;
+}
+@media (max-width: 1199px) {
+  .cs_pf_cta {
+    grid-template-columns: 1fr 360px;
+    gap: 40px 30px;
+  }
+}
+@media (max-width: 991px) {
+  .cs_pf_cta {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs_pf_eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  background-color: color-mix(in srgb, var(--white-color) 4%, transparent);
+}
+
+.cs_pf_pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+}
+.cs_pf_pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: inherit;
+  animation: cs_pf_pulse 1.8s ease-out infinite;
+}
+
+.cs_pf_cta_title {
+  margin-bottom: 36px;
+  font-size: 64px;
+  line-height: 1.1em;
+  letter-spacing: -0.02em;
+}
+.cs_pf_cta_title span {
+  color: var(--primary-color);
+  -webkit-text-stroke: 3px var(--white-color);
+  paint-order: stroke fill;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_pf_cta_title span {
+    color: var(--dm-deep);
+  }
+}
+@media (max-width: 1199px) {
+  .cs_pf_cta_title {
+    font-size: 52px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_pf_cta_title {
+    font-size: 38px;
+  }
+  .cs_pf_cta_title br {
+    display: none;
+  }
+}
+
+.cs_pf_cta_btns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+}
+.cs_pf_cta_btns .cs_btn_style_1 {
+  padding: 16px 30px;
+}
+[dir=rtl] .cs_pf_cta_btns .cs_btn_style_1 i {
+  scale: -1 1;
+}
+
+.cs_pf_call {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--white-color);
+}
+.cs_pf_call small {
+  display: block;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--white-color) 62%, transparent);
+}
+.cs_pf_call bdi {
+  font-size: 18px;
+  font-weight: 600;
+}
+.cs_pf_call:hover {
+  color: var(--white-color);
+}
+.cs_pf_call:hover .cs_pf_call_icon {
+  color: var(--primary-color);
+  background-color: var(--white-color);
+  rotate: -12deg;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_pf_call:hover .cs_pf_call_icon {
+    color: var(--dm-deep);
+  }
+}
+
+.cs_pf_call_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cs_pf_hours {
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  background-color: color-mix(in srgb, var(--white-color) 4%, transparent);
+  backdrop-filter: blur(6px);
+}
+@media (max-width: 575px) {
+  .cs_pf_hours {
+    padding: 24px 20px;
+  }
+}
+
+.cs_pf_hours_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.cs_pf_status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  color: var(--white-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.cs_pf_status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+.cs_pf_status.cs_open {
+  color: #4ade80;
+  background-color: rgba(34, 197, 94, 0.14);
+}
+.cs_pf_status.cs_closed {
+  color: #fca5a5;
+  background-color: rgba(239, 68, 68, 0.14);
+}
+
+.cs_pf_hours_list {
+  list-style: none;
+}
+.cs_pf_hours_list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  font-size: 15px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--white-color) 10%, transparent);
+}
+.cs_pf_hours_list li span:last-child {
+  color: var(--white-color);
+  text-align: end;
+}
+.cs_pf_hours_list li.cs_today span:first-child {
+  color: var(--white-color);
+  font-weight: 600;
+}
+.cs_pf_hours_list li.cs_today span:first-child::after {
+  content: "Today";
+  margin-inline-start: 8px;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  background-color: var(--accent-color);
+}
+
+.cs_pf_hours_mail {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  -moz-column-gap: 12px;
+       column-gap: 12px;
+  margin-top: 18px;
+  font-weight: 600;
+  color: var(--white-color);
+}
+.cs_pf_hours_mail i {
+  grid-row: span 2;
+  margin-top: 4px;
+  color: var(--accent-color);
+}
+.cs_pf_hours_mail span {
+  font-size: 13px;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--white-color) 62%, transparent);
+}
+.cs_pf_hours_mail:hover {
+  color: var(--accent-color);
+}
+
+.cs_pf_motion {
+  height: 60px;
+  margin: 80px 0;
+}
+.cs_pf_motion svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.cs_pf_motion path {
+  fill: none;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.cs_pf_motion .cs_pf_motion_base {
+  stroke: color-mix(in srgb, var(--white-color) 10%, transparent);
+}
+.cs_pf_motion .cs_pf_motion_flow {
+  stroke: var(--accent-color);
+  stroke-linecap: round;
+  stroke-dasharray: 12 88;
+  animation: cs_pf_flow 6s linear infinite;
+}
+[dir=rtl] .cs_pf_motion {
+  scale: -1 1;
+}
+@media (max-width: 991px) {
+  .cs_pf_motion {
+    margin: 50px 0;
+  }
+}
+
+.cs_pf_grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 20px;
+}
+@media (max-width: 991px) {
+  .cs_pf_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 575px) {
+  .cs_pf_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs_pf_logo {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.cs_pf_desc {
+  max-width: 320px;
+  margin-bottom: 26px;
+}
+
+.cs_pf_newsletter {
+  max-width: 340px;
+}
+.cs_pf_newsletter label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.cs_pf_newsletter_field {
+  position: relative;
+}
+.cs_pf_newsletter_field input {
+  width: 100%;
+  height: 56px;
+  padding-inline: 20px 62px;
+  border-radius: 50px;
+  border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  outline: 0;
+  color: var(--white-color);
+  background-color: color-mix(in srgb, var(--white-color) 4%, transparent);
+  transition: border-color 0.3s;
+}
+.cs_pf_newsletter_field input:focus {
+  border-color: var(--accent-color);
+}
+.cs_pf_newsletter_field input::-moz-placeholder {
+  color: color-mix(in srgb, var(--white-color) 62%, transparent);
+}
+.cs_pf_newsletter_field input::placeholder {
+  color: color-mix(in srgb, var(--white-color) 62%, transparent);
+}
+.cs_pf_newsletter_field button {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 6px;
+  translate: 0 -50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  color: var(--white-color);
+  background-color: var(--accent-color);
+  transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_pf_newsletter_field button i {
+  transition: rotate 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir=rtl] .cs_pf_newsletter_field button i {
+  scale: -1 1;
+}
+.cs_pf_newsletter_field button:hover {
+  background-color: var(--danger-color);
+}
+.cs_pf_newsletter_field button:hover i {
+  rotate: 45deg;
+}
+[dir=rtl] .cs_pf_newsletter_field button:hover i {
+  rotate: -45deg;
+}
+
+.cs_pf_col_title {
+  margin-bottom: 22px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+.cs_pf_links {
+  list-style: none;
+}
+.cs_pf_links li + li {
+  margin-top: 12px;
+}
+.cs_pf_links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.cs_pf_links a::before {
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_pf_links a:hover {
+  color: var(--white-color);
+}
+.cs_pf_links a:hover::before {
+  width: 16px;
+  margin-inline-end: 8px;
+}
+
+.cs_pf_clinics {
+  list-style: none;
+}
+.cs_pf_clinics li {
+  display: flex;
+  gap: 14px;
+}
+.cs_pf_clinics li + li {
+  margin-top: 16px;
+}
+.cs_pf_clinics strong,
+.cs_pf_clinics span {
+  display: block;
+}
+.cs_pf_clinics strong {
+  font-weight: 600;
+}
+.cs_pf_clinics span {
+  font-size: 14px;
+}
+
+.cs_pf_clinic_no {
+  flex: none;
+  padding-top: 2px;
+  font-size: 13px !important;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.cs_pf_directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  color: var(--white-color);
+}
+.cs_pf_directions i {
+  transition: translate 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir=rtl] .cs_pf_directions i {
+  scale: -1 1;
+}
+.cs_pf_directions:hover {
+  color: var(--accent-color);
+}
+.cs_pf_directions:hover i {
+  translate: 4px 0;
+}
+[dir=rtl] .cs_pf_directions:hover i {
+  translate: -4px 0;
+}
+
+.cs_pf_wordmark {
+  position: relative;
+  margin-bottom: -0.24em;
+  font-family: var(--primary-font);
+  font-size: 14.6vw;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  color: transparent;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.01) 75%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.cs_pf_wordmark::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--accent-color);
+  opacity: 0.45;
+  pointer-events: none;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 400' preserveAspectRatio='none'%3E%3Cpath d='M0 24 Q50 4 100 24 T200 24 V400 H0 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 400' preserveAspectRatio='none'%3E%3Cpath d='M0 24 Q50 4 100 24 T200 24 V400 H0 Z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: 1.4em 200%;
+  mask-size: 1.4em 200%;
+  -webkit-mask-position: 0 -75%;
+  mask-position: 0 -75%;
+  animation: cs_pf_wave 8s linear infinite;
+}
+@media (min-width: 1600px) {
+  .cs_pf_wordmark {
+    font-size: 228px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs_pf_wordmark::after {
+    animation: none;
+    -webkit-mask-position: 0 -40%;
+    mask-position: 0 -40%;
+  }
+}
+
+@keyframes cs_pf_wave {
+  0% {
+    -webkit-mask-position: 0em -75%;
+    mask-position: 0em -75%;
+  }
+  12.5% {
+    -webkit-mask-position: 0.7em -64.9%;
+    mask-position: 0.7em -64.9%;
+  }
+  25% {
+    -webkit-mask-position: 1.4em -40.5%;
+    mask-position: 1.4em -40.5%;
+  }
+  37.5% {
+    -webkit-mask-position: 2.1em -16.1%;
+    mask-position: 2.1em -16.1%;
+  }
+  50% {
+    -webkit-mask-position: 2.8em -6%;
+    mask-position: 2.8em -6%;
+  }
+  62.5% {
+    -webkit-mask-position: 3.5em -16.1%;
+    mask-position: 3.5em -16.1%;
+  }
+  75% {
+    -webkit-mask-position: 4.2em -40.5%;
+    mask-position: 4.2em -40.5%;
+  }
+  87.5% {
+    -webkit-mask-position: 4.9em -64.9%;
+    mask-position: 4.9em -64.9%;
+  }
+  100% {
+    -webkit-mask-position: 5.6em -75%;
+    mask-position: 5.6em -75%;
+  }
+}
+.cs_pf_bottom {
+  position: relative;
+  border-top: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_pf_bottom {
+    background-color: var(--dm-deep);
+  }
+}
+
+.cs_pf_bottom_in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 30px;
+  padding: 24px 0;
+}
+@media (max-width: 767px) {
+  .cs_pf_bottom_in {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.cs_pf_copyright a {
+  color: var(--accent-color);
+}
+.cs_pf_copyright a:hover {
+  color: var(--white-color);
+}
+
+.cs_pf_social {
+  display: flex;
+  gap: 10px;
+}
+.cs_pf_social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--white-color) 10%, transparent);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_pf_social a:hover {
+  translate: 0 -3px;
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+}
+
+.cs_pf_bottom_nav {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+.cs_pf_bottom_nav a:hover {
+  color: var(--white-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs_pf_pulse::after,
+  .cs_pf_motion .cs_pf_motion_flow {
+    animation: none;
+  }
+}
+/*-------------------------------------------------
+  Keyframes
+---------------------------------------------------*/
+@keyframes cs_pt_marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes cs_pt_marquee_rtl {
+  to {
+    transform: translateX(50%);
+  }
+}
+@keyframes cs_pf_pulse {
+  to {
+    scale: 3;
+    opacity: 0;
+  }
+}
+@keyframes cs_pf_flow {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes cs_pt_spin {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes cs_pt_rom {
+  to {
+    stroke-dashoffset: 25;
+  }
+}
+@keyframes cs_pt_ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+}
+@keyframes cs_pt_hotspot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(19, 109, 244, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(19, 109, 244, 0);
+  }
+}
+@keyframes cs_pt_hotspot_active {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(239, 68, 68, 0);
+  }
+}
+@keyframes cs_pt_play {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 30px rgba(239, 68, 68, 0);
+  }
+}
+@keyframes cs_pt_fade_up {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs_physio_post,
+  .cs_physio_post .cs_physio_post_img img {
+    transition: none;
+  }
+  .cs_physio_marquee .cs_marquee_track,
+  .cs_physio_insurance .cs_insurance_track {
+    animation: none;
+  }
+  .cs_physio_hero .cs_rom_ring .cs_rom_arc {
+    animation: none;
+    stroke-dashoffset: 25;
+  }
+}
+/*-------------------------------------------------
+  Dark mode
+---------------------------------------------------*/
+@media (prefers-color-scheme: dark) {
+  .cs_physio_insurance .cs_insurance_list img {
+    filter: brightness(0) invert(1);
+    opacity: 0.45;
+  }
+  .cs_physio_insurance .cs_insurance_list img:hover {
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+  .cs_physio_marquee,
+  .cs_physio_video_box,
+  .cs_physio_faq_section .cs_faq_help_card {
+    border: 1px solid var(--dm-border);
+  }
+}
+/*-------------------------------------------------
+  Smaller corner radius below 992px
+---------------------------------------------------*/
+@media (max-width: 991px) {
+  .cs_physio_hero .cs_hero_video_box,
+  .cs_physio_hero .cs_hero_glass,
+  .cs_physio_hero .cs_float_icon,
+  .cs_physio_booking,
+  .cs_physio_booking .cs_btn_style_1,
+  .cs_physio_booking .choices__list--dropdown,
+  .cs_physio_booking .choices__list[aria-expanded],
+  .cs_physio_painmap,
+  .cs_physio_painmap .cs_painmap_figure_wrap,
+  .cs_physio_treatment_card,
+  .cs_physio_treatment_card .cs_treatment_icon,
+  .cs_physio_outcome_section .cs_outcome_card,
+  .cs_physio_outcome_section .cs_outcome_icon,
+  .cs_physio_outcome_section .cs_pain_bar,
+  .cs_physio_about_section .cs_about_img_main,
+  [dir=rtl] .cs_physio_about_section .cs_about_img_main,
+  .cs_physio_about_section .cs_about_badge,
+  .cs_physio_price_table_wrap,
+  .cs_physio_price_table .cs_program_icon,
+  .cs_physio_insurance,
+  .cs_physio_team_card .cs_team_img,
+  [dir=rtl] .cs_physio_team_card .cs_team_img,
+  .cs_physio_video_box,
+  .cs_physio_video_box .cs_exercise_list a,
+  .cs_physio_video_box .cs_exercise_list img,
+  .cs_physio_story_card,
+  .cs_physio_story_card .cs_story_scores,
+  .cs_physio_faq_section .cs_faq_help_card,
+  .cs_physio_post,
+  .cs_physio_post .cs_physio_post_img,
+  .cs_physio_post .cs_physio_post_date,
+  .cs_pf_hours {
+    border-radius: 10px;
+  }
+}
+/*=================================================
+  35. Veterinary Home
+===================================================*/
+.cs_vet_pet_section,
+.cs_vet_service_section,
+.cs_vet_about_section,
+.cs_vet_plan_section,
+.cs_vet_team_section,
+.cs_vet_story_section,
+.cs_vet_booking_section {
+  padding: 120px 0;
+}
+@media (max-width: 991px) {
+  .cs_vet_pet_section,
+  .cs_vet_service_section,
+  .cs_vet_about_section,
+  .cs_vet_plan_section,
+  .cs_vet_team_section,
+  .cs_vet_story_section,
+  .cs_vet_booking_section {
+    padding: 70px 0;
+  }
+}
+
+.cs_vet_service_section,
+.cs_vet_plan_section {
+  background-color: var(--gray-color);
+}
+
+.cs_vet_story_section {
+  background-color: var(--gray6-color);
+}
+
+.cs_vet_service_section {
+  background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--accent-color) 10%, transparent), transparent 40%), linear-gradient(180deg, color-mix(in srgb, var(--accent-color) 4%, transparent) 0%, color-mix(in srgb, var(--accent-color) 10%, transparent) 100%), var(--white-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_service_section {
+    background-color: var(--dm-surface);
+  }
+}
+
+.cs_vet_home .cs_btn_style_1.cs_accent_bg {
+  border-radius: 50px;
+}
+.cs_vet_home .cs_btn_style_1.cs_accent_bg::before, .cs_vet_home .cs_btn_style_1.cs_accent_bg::after {
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_home .cs_btn_style_1.cs_accent_bg::before, .cs_vet_home .cs_btn_style_1.cs_accent_bg::after {
+    background-color: var(--dm-ink);
+  }
+}
+[dir=rtl] .cs_vet_home .cs_btn_style_1 i.fa-arrow-right,
+[dir=rtl] .cs_vet_home .cs_vet_btn_sun i.fa-arrow-right {
+  scale: -1 1;
+}
+
+.cs_vet_btn_outline,
+.cs_vet_btn_sun {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 26px;
+  border-radius: 50px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.cs_vet_btn_outline {
+  border: 2px solid var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_btn_outline {
+    border-color: var(--dm-deep);
+  }
+}
+.cs_vet_btn_outline:hover {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_btn_outline:hover {
+    background-color: var(--dm-deep);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_btn_outline:hover {
+    border-color: var(--dm-deep);
+  }
+}
+
+.cs_vet_btn_sun {
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+  border: 2px solid var(--gray3-color);
+}
+.cs_vet_btn_sun:hover {
+  color: var(--primary-color);
+  background-color: var(--white-color);
+  border-color: var(--white-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_btn_sun:hover {
+    color: var(--dm-deep);
+  }
+}
+
+.cs_er_pulse {
+  display: inline-block;
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--white-color);
+  animation: cs_vt_pulse 1.6s ease-out infinite;
+}
+
+/*-------------------------------------------------
+  Emergency top bar
+---------------------------------------------------*/
+.cs_site_header .cs_vet_topbar {
+  color: var(--white-color);
+  background-color: var(--danger-color);
+}
+.cs_site_header .cs_vet_topbar .cs_top_header_in {
+  height: 44px;
+}
+.cs_site_header .cs_vet_topbar .cs_contact_list {
+  gap: 24px;
+}
+.cs_site_header .cs_vet_topbar .cs_contact_item {
+  gap: 8px;
+}
+.cs_site_header .cs_vet_topbar .cs_contact_item + .cs_contact_item {
+  position: relative;
+  padding-inline-start: 24px;
+}
+.cs_site_header .cs_vet_topbar .cs_contact_item + .cs_contact_item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  width: 1px;
+  height: 14px;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.cs_site_header .cs_vet_topbar a {
+  color: var(--white-color);
+  font-weight: 600;
+}
+.cs_site_header .cs_vet_topbar .cs_er_details {
+  position: relative;
+}
+.cs_site_header .cs_vet_topbar .cs_er_details summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  list-style: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cs_site_header .cs_vet_topbar .cs_er_details summary::-webkit-details-marker {
+  display: none;
+}
+.cs_site_header .cs_vet_topbar .cs_er_details summary i {
+  font-size: 10px;
+  transition: rotate 0.3s ease;
+}
+.cs_site_header .cs_vet_topbar .cs_er_details[open] summary i {
+  rotate: 180deg;
+}
+.cs_site_header .cs_vet_topbar .cs_er_dropdown {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 12px);
+  inset-inline-start: 0;
+  width: 300px;
+  padding: 20px;
+  border-radius: 16px;
+  color: var(--secondary-color);
+  background-color: var(--white-color);
+  box-shadow: 0 24px 50px -20px rgba(31, 41, 55, 0.45);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_site_header .cs_vet_topbar .cs_er_dropdown {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_site_header .cs_vet_topbar .cs_er_dropdown ul {
+  list-style: none;
+}
+.cs_site_header .cs_vet_topbar .cs_er_dropdown li {
+  position: relative;
+  padding-inline-start: 22px;
+  font-size: 14px;
+  line-height: 1.5em;
+}
+.cs_site_header .cs_vet_topbar .cs_er_dropdown li + li {
+  margin-top: 6px;
+}
+.cs_site_header .cs_vet_topbar .cs_er_dropdown li::before {
+  content: "\f071";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 1px;
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  font-size: 11px;
+  color: var(--danger-color);
+}
+
+.cs_vet_er_fab {
+  position: fixed;
+  z-index: 998;
+  bottom: 40px;
+  inset-inline-start: 20px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 50px;
+  color: var(--white-color);
+  background-color: var(--danger-color);
+  box-shadow: 0 16px 30px -12px rgba(239, 68, 68, 0.7);
+}
+.cs_vet_er_fab:hover {
+  color: var(--white-color);
+}
+@media (max-width: 1279px) {
+  .cs_vet_er_fab {
+    display: inline-flex;
+  }
+}
+
+/*-------------------------------------------------
+  Hero
+---------------------------------------------------*/
+.cs_vet_hero {
+  position: relative;
+  overflow: hidden;
+  padding: 160px 0 150px;
+  background: radial-gradient(circle at 12% 18%, rgba(19, 109, 244, 0.18), transparent 30%), linear-gradient(135deg, var(--gray-color) 0%, var(--gray3-color) 100%);
+}
+@media (min-width: 1280px) {
+  .cs_vet_hero {
+    padding-top: 220px;
+  }
+}
+.cs_vet_hero .container {
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 1280px) {
+  .cs_vet_hero .container {
+    max-width: 1644px;
+  }
+}
+.cs_vet_hero .cs_hero_paw,
+.cs_vet_hero .cs_hero_bone {
+  position: absolute;
+  color: var(--accent-color);
+  opacity: 0.08;
+  pointer-events: none;
+}
+.cs_vet_hero .cs_paw_1 {
+  top: 24%;
+  inset-inline-start: 3%;
+  font-size: 54px;
+  rotate: -20deg;
+}
+.cs_vet_hero .cs_paw_2 {
+  top: 34%;
+  inset-inline-start: 7%;
+  font-size: 40px;
+  rotate: 10deg;
+}
+.cs_vet_hero .cs_paw_3 {
+  bottom: 22%;
+  inset-inline-start: 44%;
+  font-size: 46px;
+  rotate: -30deg;
+}
+.cs_vet_hero .cs_hero_bone {
+  top: 28%;
+  inset-inline-end: 4%;
+  font-size: 60px;
+  rotate: 30deg;
+  color: var(--gray3-color);
+  opacity: 0.6;
+  animation: cs_vt_wiggle 5s ease-in-out infinite;
+}
+.cs_vet_hero .cs_hero_in {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.cs_vet_hero .cs_hero_sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 6px;
+  border-radius: 50px;
+  color: var(--primary-color);
+  background-color: var(--white-color);
+  box-shadow: 0 10px 30px -14px rgba(31, 41, 55, 0.35);
+  rotate: -2deg;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_hero .cs_hero_sticker {
+    background-color: var(--dm-surface);
+  }
+}
+[dir=rtl] .cs_vet_hero .cs_hero_sticker {
+  padding: 6px 6px 6px 18px;
+  rotate: 2deg;
+}
+@media (max-width: 991px) {
+  .cs_vet_hero .cs_hero_sticker, [dir=rtl] .cs_vet_hero .cs_hero_sticker {
+    rotate: 0deg;
+  }
+}
+.cs_vet_hero .cs_sticker_icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 13px;
+  color: var(--white-color);
+  background-color: var(--danger-color);
+}
+.cs_vet_hero .cs_hero_title {
+  font-size: clamp(40px, 4.6vw, 72px);
+  line-height: 1.08em;
+  letter-spacing: -0.02em;
+}
+.cs_vet_hero .cs_hero_title span {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  color: var(--accent-color);
+}
+.cs_vet_hero .cs_hero_title span::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 18% -10% 4%;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  background-color: var(--gray3-color);
+  rotate: -4deg;
+}
+.cs_vet_hero .cs_hero_desc {
+  max-width: 540px;
+}
+.cs_vet_hero .cs_hero_btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+@media (max-width: 767px) {
+  .cs_vet_hero .cs_hero_btns {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 399px) {
+  .cs_vet_hero .cs_hero_btns > a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+.cs_vet_hero .cs_hero_species {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+@media (max-width: 767px) {
+  .cs_vet_hero .cs_hero_species {
+    display: none;
+  }
+}
+.cs_vet_hero .cs_hero_species .cs_species_slider {
+  flex: 1;
+  min-width: 0;
+  max-width: 412px;
+  margin: 0;
+}
+.cs_vet_hero .cs_hero_species .cs_species_slider:hover .swiper-wrapper {
+  cursor: grab;
+}
+.cs_vet_hero .cs_hero_species ul {
+  list-style: none;
+}
+.cs_vet_hero .cs_hero_species li {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px !important;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 17px;
+  color: var(--primary-color);
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  transition: color 0.3s, background-color 0.3s;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_hero .cs_hero_species li {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_vet_hero .cs_hero_species li:hover {
+  color: var(--white-color);
+  background-color: var(--accent-color);
+}
+.cs_vet_hero {
+  /* ---------- Image + decorations ---------- */
+}
+.cs_vet_hero .cs_hero_right {
+  position: relative;
+  max-width: 580px;
+  width: 100%;
+  margin-inline-start: auto;
+}
+.cs_vet_hero .cs_hero_blob {
+  position: absolute;
+  inset: 4% -4% -2% 6%;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  background-color: var(--accent-color);
+  animation: cs_vt_morph 12s ease-in-out infinite;
+}
+.cs_vet_hero .cs_hero_blob::after {
+  content: "";
+  position: absolute;
+  width: 34%;
+  aspect-ratio: 1;
+  bottom: -6%;
+  inset-inline-start: -10%;
+  border-radius: 50%;
+  background-color: var(--gray3-color);
+}
+.cs_vet_hero .cs_hero_img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  border: 10px solid var(--white-color);
+  animation: cs_vt_morph 12s ease-in-out infinite reverse;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_hero .cs_hero_img {
+    border-color: var(--dm-surface);
+  }
+}
+.cs_vet_hero .cs_hero_img img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 640/680;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.cs_vet_hero .cs_hero_badge_round {
+  position: absolute;
+  z-index: 2;
+  top: 2%;
+  inset-inline-start: -4%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background-color: var(--gray3-color);
+  box-shadow: 0 16px 30px -14px rgba(31, 41, 55, 0.45);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_hero .cs_hero_badge_round {
+    background-color: #D2E3FF;
+    box-shadow: 0 16px 30px -14px rgba(0, 0, 0, 0.7);
+  }
+}
+.cs_vet_hero .cs_hero_badge_round svg {
+  width: 100%;
+  height: 100%;
+  animation: cs_vt_spin 18s linear infinite;
+}
+.cs_vet_hero .cs_hero_badge_round text {
+  font-family: var(--primary-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  fill: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_hero .cs_hero_badge_round text {
+    fill: var(--dm-deep);
+  }
+}
+.cs_vet_hero .cs_hero_badge_round span {
+  position: absolute;
+  inset: 32px;
+  border-radius: 50%;
+  font-size: 24px;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_hero .cs_hero_badge_round span {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_vet_hero .cs_hero_card {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px 12px 12px;
+  border-radius: 20px;
+  background-color: var(--white-color);
+  box-shadow: 0 24px 50px -24px rgba(31, 41, 55, 0.45);
+  animation: cs_vt_bob 6s ease-in-out infinite;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_hero .cs_hero_card {
+    background-color: var(--dm-surface);
+  }
+}
+[dir=rtl] .cs_vet_hero .cs_hero_card {
+  padding: 12px 12px 12px 18px;
+}
+.cs_vet_hero .cs_hero_card.cs_card_wait {
+  bottom: 16%;
+  inset-inline-start: -10%;
+}
+.cs_vet_hero .cs_hero_card.cs_card_pet {
+  top: 38%;
+  inset-inline-end: -8%;
+  animation-delay: -3s;
+}
+.cs_vet_hero .cs_hero_card.cs_card_pet img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.cs_vet_hero .cs_hero_card.cs_card_pet .fa-circle-check {
+  color: var(--accent-color);
+}
+.cs_vet_hero .cs_card_icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  font-size: 18px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+}
+.cs_vet_hero .cs_hero_wave {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 80px;
+}
+.cs_vet_hero .cs_hero_wave path {
+  fill: var(--web-wash, #fff);
+}
+@media (max-width: 1399px) {
+  .cs_vet_hero .cs_hero_card.cs_card_wait {
+    inset-inline-start: -4%;
+  }
+  .cs_vet_hero .cs_hero_card.cs_card_pet {
+    inset-inline-end: -2%;
+  }
+}
+@media (max-width: 991px) {
+  .cs_vet_hero {
+    padding: 140px 0 120px;
+  }
+  .cs_vet_hero .cs_hero_in {
+    grid-template-columns: 1fr;
+  }
+  .cs_vet_hero .cs_hero_right {
+    margin-inline: auto;
+    max-width: 500px;
+  }
+}
+@media (max-width: 767px) {
+  .cs_vet_hero {
+    padding: 100px 0 120px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_vet_hero .cs_hero_badge_round {
+    width: 96px;
+    height: 96px;
+    inset-inline-start: 0;
+  }
+  .cs_vet_hero .cs_hero_badge_round span {
+    inset: 24px;
+    font-size: 18px;
+  }
+  .cs_vet_hero .cs_hero_card.cs_card_wait {
+    inset-inline-start: 0;
+    bottom: 4%;
+  }
+  .cs_vet_hero .cs_hero_card.cs_card_pet {
+    inset-inline-end: 0;
+    top: 44%;
+  }
+}
+
+/*-------------------------------------------------
+  Quick actions
+---------------------------------------------------*/
+.cs_vet_actions {
+  position: relative;
+  z-index: 2;
+  margin-top: -70px;
+}
+.cs_vet_actions .cs_vet_actions_in {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 991px) {
+  .cs_vet_actions {
+    margin-top: -50px;
+  }
+  .cs_vet_actions .cs_vet_actions_in {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.cs_vet_action_card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 26px 28px;
+  border-radius: 28px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  box-shadow: 0 30px 60px -36px rgba(31, 41, 55, 0.45);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_action_card {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_vet_action_card .cs_action_icon {
+  width: 60px;
+  height: 60px;
+  flex: none;
+  border-radius: 20px;
+  font-size: 22px;
+  color: var(--primary-color);
+  transition: rotate 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cs_vet_action_card.cs_color_1 .cs_action_icon {
+  background-color: var(--gray3-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_action_card.cs_color_1 .cs_action_icon {
+    background-color: color-mix(in srgb, var(--accent-color) 22%, var(--dm-surface));
+  }
+}
+.cs_vet_action_card.cs_color_2 .cs_action_icon {
+  background-color: var(--gray4-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_action_card.cs_color_2 .cs_action_icon {
+    background-color: color-mix(in srgb, var(--danger-color) 22%, var(--dm-surface));
+  }
+}
+.cs_vet_action_card.cs_color_3 .cs_action_icon {
+  background-color: var(--gray-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_action_card.cs_color_3 .cs_action_icon {
+    background-color: color-mix(in srgb, var(--warning-color) 22%, var(--dm-surface));
+  }
+}
+.cs_vet_action_card .cs_action_arrow {
+  margin-inline-start: auto;
+  color: var(--accent-color);
+  transition: translate 0.3s ease;
+}
+[dir=rtl] .cs_vet_action_card .cs_action_arrow {
+  scale: -1 1;
+}
+.cs_vet_action_card:hover {
+  translate: 0 -6px;
+}
+.cs_vet_action_card:hover .cs_action_icon {
+  rotate: -10deg;
+}
+.cs_vet_action_card:hover .cs_action_arrow {
+  translate: 4px 0;
+}
+[dir=rtl] .cs_vet_action_card:hover .cs_action_arrow {
+  translate: -4px 0;
+}
+
+/*-------------------------------------------------
+  Pet selector tabs
+---------------------------------------------------*/
+.cs_vet_pet_tabs .cs_pet_tablist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.cs_vet_pet_tabs .cs_pet_tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 22px 6px 6px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  transition: all 0.3s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_pet_tabs .cs_pet_tab {
+    background-color: var(--dm-surface);
+  }
+}
+[dir=rtl] .cs_vet_pet_tabs .cs_pet_tab {
+  padding: 6px 6px 6px 22px;
+}
+.cs_vet_pet_tabs .cs_pet_tab:hover {
+  border-color: var(--accent-color);
+}
+.cs_vet_pet_tabs .cs_pet_tab.active {
+  color: var(--white-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+}
+.cs_vet_pet_tabs .cs_pet_tab.active .cs_pet_tab_icon {
+  color: #1F2937;
+  background-color: #D2E3FF;
+  rotate: -10deg;
+}
+.cs_vet_pet_tabs .cs_pet_tab_icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 17px;
+  color: var(--accent-color);
+  background-color: var(--gray3-color);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cs_vet_pet_tabs .cs_pet_panel {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 70px;
+  align-items: center;
+}
+.cs_vet_pet_tabs .cs_pet_panel[hidden] {
+  display: none;
+}
+.cs_vet_pet_tabs .cs_pet_panel.active .cs_pet_panel_img {
+  animation: cs_vt_pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cs_vet_pet_tabs .cs_pet_panel.active .cs_pet_panel_content {
+  animation: cs_vt_fade_up 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_vet_pet_tabs .cs_pet_panel_img {
+  position: relative;
+  padding: 24px;
+}
+.cs_vet_pet_tabs .cs_pet_panel_img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  background-color: var(--gray3-color);
+  rotate: -6deg;
+}
+.cs_vet_pet_tabs .cs_pet_panel_img img {
+  position: relative;
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+}
+.cs_vet_pet_tabs .cs_pet_services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  list-style: none;
+}
+.cs_vet_pet_tabs .cs_pet_services li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.cs_vet_pet_tabs .cs_pet_services i {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 11px;
+  color: var(--white-color);
+  background-color: var(--accent-color);
+  translate: 0 3px;
+}
+.cs_vet_pet_tabs .cs_vaccine_chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+.cs_vet_pet_tabs .cs_vaccine_chips li {
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: var(--gray4-color);
+}
+@media (max-width: 991px) {
+  .cs_vet_pet_tabs .cs_pet_panel {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .cs_vet_pet_tabs .cs_pet_panel_img {
+    max-width: 440px;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 575px) {
+  .cs_vet_pet_tabs .cs_pet_tablist {
+    margin-bottom: 32px;
+  }
+  .cs_vet_pet_tabs .cs_pet_tab {
+    padding-inline-end: 16px;
+    font-size: 14px;
+  }
+  [dir=rtl] .cs_vet_pet_tabs .cs_pet_tab {
+    padding-inline: 16px 6px;
+  }
+  .cs_vet_pet_tabs .cs_pet_tab_icon {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+  .cs_vet_pet_tabs .cs_pet_services {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*-------------------------------------------------
+  Services bento grid
+---------------------------------------------------*/
+.cs_vet_bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(230px, auto);
+  grid-auto-flow: dense;
+  gap: 24px;
+}
+.cs_vet_bento .cs_bento_item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: 30px;
+  border-radius: 32px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_vet_bento .cs_bento_item:hover {
+  translate: 0 -6px;
+  box-shadow: 0 30px 60px -36px rgba(31, 41, 55, 0.5);
+}
+.cs_vet_bento .cs_bento_item:hover .cs_bento_icon {
+  rotate: -12deg;
+  scale: 1.08;
+}
+.cs_vet_bento .cs_bento_item:hover > img {
+  scale: 1.06;
+}
+.cs_vet_bento .cs_bento_item > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: scale 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cs_vet_bento .cs_bento_item.cs_color_1 {
+  background-color: var(--gray3-color);
+}
+.cs_vet_bento .cs_bento_item.cs_color_2 {
+  background-color: color-mix(in srgb, var(--danger-color) 12%, var(--gray6-color));
+}
+.cs_vet_bento .cs_bento_item.cs_color_3 {
+  background-color: var(--gray5-color);
+}
+.cs_vet_bento .cs_bento_item.cs_color_4 {
+  background-color: var(--gray-color);
+}
+.cs_vet_bento .cs_bento_item.cs_color_5 {
+  background-color: color-mix(in srgb, var(--warning-color) 18%, var(--gray6-color));
+}
+.cs_vet_bento .cs_bento_item.cs_color_6 {
+  background-color: color-mix(in srgb, var(--primary-color) 8%, var(--gray6-color));
+}
+.cs_vet_bento .cs_bento_feature {
+  grid-column: span 2;
+  grid-row: span 2;
+  min-height: 480px;
+}
+.cs_vet_bento .cs_bento_image {
+  grid-column: span 2;
+}
+.cs_vet_bento .cs_bento_feature,
+.cs_vet_bento .cs_bento_image {
+  isolation: isolate;
+}
+.cs_vet_bento .cs_bento_feature::after,
+.cs_vet_bento .cs_bento_image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(17, 24, 39, 0.92) 0%, rgba(17, 24, 39, 0.6) 40%, rgba(17, 24, 39, 0.15) 75%, rgba(17, 24, 39, 0.05) 100%);
+  pointer-events: none;
+}
+.cs_vet_bento .cs_bento_overlay {
+  position: relative;
+  z-index: 2;
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+.cs_vet_bento .cs_bento_feature .cs_bento_overlay {
+  max-width: 460px;
+}
+.cs_vet_bento .cs_bento_tag {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 14px;
+  border-radius: 50px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+}
+.cs_vet_bento .cs_bento_icon {
+  width: 62px;
+  height: 62px;
+  margin-bottom: auto;
+  border-radius: 20px;
+  font-size: 24px;
+  color: var(--accent-color);
+  background-color: var(--white-color);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_bento .cs_bento_icon {
+    background-color: var(--dm-surface);
+  }
+}
+@media (max-width: 1199px) {
+  .cs_vet_bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cs_vet_bento .cs_bento_feature {
+    min-height: 420px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_vet_bento {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(200px, auto);
+  }
+  .cs_vet_bento .cs_bento_feature,
+  .cs_vet_bento .cs_bento_image {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .cs_vet_bento .cs_bento_feature {
+    min-height: 380px;
+  }
+  .cs_vet_bento .cs_bento_item {
+    padding: 24px;
+    border-radius: 24px;
+  }
+}
+
+/*-------------------------------------------------
+  Emergency band
+---------------------------------------------------*/
+.cs_vet_emergency_section {
+  position: relative;
+  padding: 150px 0;
+  color: rgba(255, 255, 255, 0.8);
+  background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--accent-color) 45%, transparent), transparent 40%), var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_emergency_section {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_vet_emergency_section .cs_wave_top,
+.cs_vet_emergency_section .cs_wave_bottom {
+  position: absolute;
+  inset-inline: 0;
+  width: 100%;
+  height: 60px;
+}
+.cs_vet_emergency_section .cs_wave_top {
+  top: -1px;
+}
+.cs_vet_emergency_section .cs_wave_top path {
+  fill: color-mix(in srgb, var(--accent-color) 10%, var(--white-color));
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_emergency_section .cs_wave_top path {
+    fill: color-mix(in srgb, var(--accent-color) 10%, var(--dm-surface));
+  }
+}
+.cs_vet_emergency_section .cs_wave_bottom {
+  bottom: -1px;
+}
+.cs_vet_emergency_section .cs_wave_bottom path {
+  fill: var(--web-wash, #fff);
+}
+.cs_vet_emergency_section .cs_er_label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  margin-bottom: 24px;
+  border-radius: 50px;
+  color: var(--white-color);
+  background-color: var(--danger-color);
+}
+.cs_vet_emergency_section .cs_er_actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px 36px;
+}
+.cs_vet_emergency_section .cs_er_phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.cs_vet_emergency_section .cs_er_phone_icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-size: 24px;
+  color: var(--white-color);
+  background-color: var(--danger-color);
+  animation: cs_vt_ring 2s ease-out infinite;
+}
+.cs_vet_emergency_section .cs_er_media {
+  position: relative;
+  max-width: 440px;
+  margin-inline: auto;
+}
+.cs_vet_emergency_section .cs_er_media img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 10px solid rgba(255, 255, 255, 0.08);
+}
+.cs_vet_emergency_section .cs_er_stat {
+  position: absolute;
+  bottom: 8%;
+  inset-inline-start: -6%;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 24px;
+  border-radius: 24px;
+  line-height: 1.3em;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+  rotate: -6deg;
+}
+@media (max-width: 991px) {
+  .cs_vet_emergency_section {
+    padding: 110px 0;
+  }
+}
+@media (max-width: 575px) {
+  .cs_vet_emergency_section .cs_er_stat {
+    inset-inline-start: 0;
+  }
+  .cs_vet_emergency_section .cs_er_phone strong {
+    font-size: 24px;
+  }
+}
+
+/*-------------------------------------------------
+  About
+---------------------------------------------------*/
+.cs_vet_about_section .cs_about_collage {
+  position: relative;
+  padding: 30px 90px 70px 20px;
+}
+[dir=rtl] .cs_vet_about_section .cs_about_collage {
+  padding: 30px 20px 70px 90px;
+}
+.cs_vet_about_section .cs_about_blob {
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  background-color: var(--gray3-color);
+  animation: cs_vt_morph 14s ease-in-out infinite;
+}
+.cs_vet_about_section .cs_about_img_main {
+  position: relative;
+  overflow: hidden;
+  border-radius: 200px 200px 32px 32px;
+}
+.cs_vet_about_section .cs_about_img_main img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 560/640;
+  max-height: 600px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.cs_vet_about_section .cs_about_img_small {
+  position: absolute;
+  bottom: 0;
+  inset-inline-end: 0;
+  width: 44%;
+  overflow: hidden;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  border: 8px solid var(--web-wash, #fff);
+}
+.cs_vet_about_section .cs_about_img_small img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.cs_vet_about_section .cs_about_note {
+  position: absolute;
+  top: 14%;
+  inset-inline-end: 0;
+  max-width: 200px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+  rotate: 5deg;
+  box-shadow: 0 20px 40px -20px rgba(31, 41, 55, 0.5);
+}
+.cs_vet_about_section .cs_about_note i {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 20px;
+}
+.cs_vet_about_section .cs_about_note p {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.cs_vet_about_section .cs_about_content {
+  padding-inline-start: 30px;
+}
+.cs_vet_about_section .cs_about_points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.cs_vet_about_section .cs_about_point {
+  display: flex;
+  gap: 14px;
+}
+.cs_vet_about_section .cs_point_icon {
+  width: 50px;
+  height: 50px;
+  flex: none;
+  border-radius: 16px;
+  font-size: 18px;
+  color: var(--accent-color);
+  background-color: var(--gray3-color);
+}
+.cs_vet_about_section .cs_vet_counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 30px;
+  list-style: none;
+  border-top: 2px dashed color-mix(in srgb, var(--primary-color) 10%, transparent);
+}
+.cs_vet_about_section .cs_vet_counters li {
+  flex: 1;
+  min-width: 120px;
+}
+.cs_vet_about_section .cs_vet_counters strong {
+  display: flex;
+  align-items: baseline;
+  line-height: 1.2em;
+  color: var(--accent-color);
+}
+@media (max-width: 1199px) {
+  .cs_vet_about_section .cs_about_content {
+    padding-inline-start: 0;
+  }
+}
+@media (max-width: 575px) {
+  .cs_vet_about_section .cs_about_collage {
+    padding: 20px 40px 50px 0;
+  }
+  [dir=rtl] .cs_vet_about_section .cs_about_collage {
+    padding: 20px 0 50px 40px;
+  }
+  .cs_vet_about_section .cs_about_points {
+    grid-template-columns: 1fr;
+  }
+  .cs_vet_about_section .cs_about_note {
+    max-width: 160px;
+    padding: 12px 14px;
+  }
+}
+
+/*-------------------------------------------------
+  Vaccine roadmap + plans
+---------------------------------------------------*/
+.cs_vet_roadmap {
+  padding: 36px 40px;
+  border-radius: 32px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_roadmap {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_vet_roadmap .cs_roadmap_head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 20px;
+  margin-bottom: 36px;
+}
+.cs_vet_roadmap .cs_roadmap_head i {
+  color: var(--accent-color);
+  margin-inline-end: 6px;
+}
+.cs_vet_roadmap .cs_roadmap_track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  list-style: none;
+}
+.cs_vet_roadmap .cs_roadmap_track::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  inset-inline: 0;
+  height: 3px;
+  background-image: linear-gradient(90deg, var(--accent-color) 50%, transparent 50%);
+  background-size: 14px 3px;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir=rtl] .cs_vet_roadmap .cs_roadmap_track::before {
+  clip-path: inset(0 0 0 100%);
+}
+.cs_vet_roadmap .cs_roadmap_track li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cs_vet_roadmap .cs_roadmap_dot {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  border: 5px solid var(--white-color);
+  background-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-color);
+  scale: 0;
+  transition: scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_roadmap .cs_roadmap_dot {
+    border-color: var(--dm-surface);
+  }
+}
+.cs_vet_roadmap.is-visible .cs_roadmap_track::before {
+  clip-path: inset(0 0 0 0);
+}
+.cs_vet_roadmap.is-visible .cs_roadmap_dot {
+  scale: 1;
+}
+.cs_vet_roadmap.is-visible li:nth-child(1) .cs_roadmap_dot {
+  transition-delay: 0s;
+}
+.cs_vet_roadmap.is-visible li:nth-child(2) .cs_roadmap_dot {
+  transition-delay: 0.35s;
+}
+.cs_vet_roadmap.is-visible li:nth-child(3) .cs_roadmap_dot {
+  transition-delay: 0.7s;
+}
+.cs_vet_roadmap.is-visible li:nth-child(4) .cs_roadmap_dot {
+  transition-delay: 1.05s;
+}
+.cs_vet_roadmap.is-visible li:nth-child(5) .cs_roadmap_dot {
+  transition-delay: 1.4s;
+}
+@media (max-width: 991px) {
+  .cs_vet_roadmap {
+    padding: 30px 24px;
+  }
+  .cs_vet_roadmap .cs_roadmap_track {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-inline-start: 4px;
+  }
+  .cs_vet_roadmap .cs_roadmap_track::before {
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 15px;
+    width: 3px;
+    height: auto;
+    background-image: linear-gradient(180deg, var(--accent-color) 50%, transparent 50%);
+    background-size: 3px 14px;
+    clip-path: none;
+  }
+  .cs_vet_roadmap .cs_roadmap_track li {
+    padding-inline-start: 42px;
+  }
+  .cs_vet_roadmap .cs_roadmap_dot {
+    position: absolute;
+    top: 2px;
+    inset-inline-start: 0;
+    margin: 0;
+  }
+}
+
+.cs_vet_plan_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 40px 36px;
+  overflow: hidden;
+  border-radius: 32px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  transition: translate 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_plan_card {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_vet_plan_card:hover {
+  translate: 0 -6px;
+}
+.cs_vet_plan_card .cs_plan_pet {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 22px;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  font-size: 24px;
+  color: var(--primary-color);
+}
+.cs_vet_plan_card.cs_color_1 .cs_plan_pet {
+  background-color: var(--gray4-color);
+}
+.cs_vet_plan_card.cs_color_2 .cs_plan_pet {
+  background-color: var(--gray5-color);
+}
+.cs_vet_plan_card .cs_plan_price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.cs_vet_plan_card .cs_plan_price strong {
+  line-height: 1em;
+}
+.cs_vet_plan_card .cs_plan_perks {
+  flex: 1;
+  margin-bottom: 30px;
+  list-style: none;
+}
+.cs_vet_plan_card .cs_plan_perks li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.cs_vet_plan_card .cs_plan_perks li + li {
+  margin-top: 12px;
+}
+.cs_vet_plan_card .cs_plan_perks i {
+  font-size: 13px;
+  color: var(--accent-color);
+}
+.cs_vet_plan_card .cs_vet_btn_outline,
+.cs_vet_plan_card .cs_vet_btn_sun {
+  width: 100%;
+}
+.cs_vet_plan_card.cs_featured {
+  color: rgba(255, 255, 255, 0.78);
+  border-color: var(--accent-color);
+  background: radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.2), transparent 45%), var(--accent-color);
+}
+.cs_vet_plan_card.cs_featured .cs_plan_pet {
+  background-color: var(--gray3-color);
+}
+.cs_vet_plan_card.cs_featured .cs_plan_perks i {
+  color: var(--gray3-color);
+}
+@media (min-width: 992px) {
+  .cs_vet_plan_card.cs_featured {
+    translate: 0 -16px;
+  }
+  .cs_vet_plan_card.cs_featured:hover {
+    translate: 0 -22px;
+  }
+}
+.cs_vet_plan_card .cs_plan_ribbon {
+  position: absolute;
+  top: 30px;
+  inset-inline-end: 30px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+  rotate: 4deg;
+}
+@media (max-width: 1199px) {
+  .cs_vet_plan_card {
+    padding-inline: 15px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_vet_plan_card {
+    padding-block: 30px;
+  }
+}
+
+/*-------------------------------------------------
+  Team (vets with their pets)
+---------------------------------------------------*/
+@media (max-width: 450px) {
+  .cs_vet_team_row > .col-6 {
+    width: 100%;
+  }
+}
+.cs_vet_team_card {
+  position: relative;
+  text-align: center;
+}
+.cs_vet_team_card .cs_team_img {
+  position: relative;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.cs_vet_team_card .cs_team_img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  transition: rotate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cs_vet_team_card .cs_team_img img {
+  position: relative;
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.cs_vet_team_card.cs_color_1 .cs_team_img::before {
+  background-color: var(--gray3-color);
+}
+.cs_vet_team_card.cs_color_2 .cs_team_img::before {
+  background-color: var(--gray4-color);
+}
+.cs_vet_team_card.cs_color_3 .cs_team_img::before {
+  background-color: var(--gray-color);
+}
+.cs_vet_team_card.cs_color_4 .cs_team_img::before {
+  background-color: var(--gray4-color);
+}
+.cs_vet_team_card .cs_team_pet {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+  rotate: 6deg;
+  box-shadow: 0 12px 24px -12px rgba(31, 41, 55, 0.5);
+  transition: rotate 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cs_vet_team_card a:hover {
+  color: var(--accent-color);
+}
+.cs_vet_team_card:hover .cs_team_img::before {
+  rotate: 25deg;
+}
+.cs_vet_team_card:hover .cs_team_pet {
+  rotate: -6deg;
+}
+
+/*-------------------------------------------------
+  Happy tails (polaroids)
+---------------------------------------------------*/
+.cs_vet_story_section .swiper {
+  padding: 20px 6px 30px;
+  margin: -20px -6px -30px;
+}
+.cs_vet_story_section .swiper-slide {
+  height: auto;
+}
+.cs_vet_story_section .swiper-slide:nth-child(odd) .cs_vet_polaroid {
+  rotate: -1.5deg;
+}
+.cs_vet_story_section .swiper-slide:nth-child(even) .cs_vet_polaroid {
+  rotate: 1.5deg;
+}
+.cs_vet_story_section .cs_story_nav {
+  display: flex;
+  gap: 12px;
+}
+.cs_vet_story_section .cs_story_nav button {
+  width: 54px;
+  height: 54px;
+  color: var(--primary-color);
+}
+@media (max-width: 767px) {
+  .cs_vet_story_section .cs_story_nav button {
+    width: 44px;
+    height: 44px;
+  }
+}
+.cs_vet_story_section .cs_story_nav button {
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  transition: all 0.3s ease;
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_story_section .cs_story_nav button {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_vet_story_section .cs_story_nav button:hover {
+  color: var(--white-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+}
+[dir=rtl] .cs_vet_story_section .cs_story_nav button i {
+  scale: -1 1;
+}
+
+.cs_vet_polaroid {
+  height: 100%;
+  padding: 14px 14px 26px;
+  border-radius: 8px;
+  background-color: var(--white-color);
+  box-shadow: 0 20px 40px -24px rgba(31, 41, 55, 0.4);
+  transition: rotate 0.4s cubic-bezier(0.22, 1, 0.36, 1), translate 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_polaroid {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_vet_polaroid:hover {
+  rotate: 0deg !important;
+  translate: 0 -6px;
+}
+.cs_vet_polaroid .cs_polaroid_img {
+  position: relative;
+  margin-bottom: 20px;
+}
+.cs_vet_polaroid .cs_polaroid_img img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 420/400;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+}
+.cs_vet_polaroid .cs_polaroid_badge {
+  position: absolute;
+  bottom: -14px;
+  inset-inline-end: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 50px;
+  color: var(--white-color);
+  background-color: var(--accent-color);
+}
+.cs_vet_polaroid h3,
+.cs_vet_polaroid p {
+  padding-inline: 8px;
+}
+.cs_vet_polaroid .cs_polaroid_condition {
+  color: var(--accent-color);
+}
+
+/*-------------------------------------------------
+  Booking
+---------------------------------------------------*/
+.cs_vet_booking_box {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  overflow: hidden;
+  border-radius: 36px;
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_booking_box {
+    background-color: var(--dm-deep);
+  }
+}
+.cs_vet_booking_box .cs_booking_info {
+  position: relative;
+  padding: 60px 50px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.cs_vet_booking_box .cs_booking_info::after {
+  content: "\f1b0";
+  position: absolute;
+  bottom: -30px;
+  inset-inline-end: -10px;
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  font-size: 180px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.05);
+  rotate: -20deg;
+}
+.cs_vet_booking_box .cs_booking_info .cs_section_subtitle {
+  color: #D2E3FF;
+  letter-spacing: 0.7px;
+}
+.cs_vet_booking_box .cs_booking_hours {
+  list-style: none;
+}
+.cs_vet_booking_box .cs_booking_hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+}
+.cs_vet_booking_box .cs_booking_hours .cs_er_row strong {
+  color: #D2E3FF;
+}
+.cs_vet_booking_box .cs_booking_address {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.cs_vet_booking_box .cs_booking_address i {
+  color: var(--gray3-color);
+}
+.cs_vet_booking_box .cs_vet_booking_form {
+  margin: 12px;
+  padding: 48px 40px;
+  border-radius: 28px;
+  background-color: var(--white-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_booking_box .cs_vet_booking_form {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_vet_booking_box .cs_vet_booking_form label {
+  display: block;
+  margin-bottom: 8px;
+}
+.cs_vet_booking_box .cs_vet_booking_form .cs_form_field,
+.cs_vet_booking_box .cs_vet_booking_form .choices__inner {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 13px 18px;
+  border-radius: 14px;
+  font-size: 15px;
+  color: var(--primary-color);
+  outline: 0;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  background-color: var(--gray-color);
+  transition: border-color 0.3s ease;
+}
+.cs_vet_booking_box .cs_vet_booking_form .cs_form_field:focus,
+.cs_vet_booking_box .cs_vet_booking_form .choices__inner:focus {
+  border-color: var(--accent-color);
+}
+.cs_vet_booking_box .cs_vet_booking_form textarea.cs_form_field {
+  resize: none;
+}
+.cs_vet_booking_box .cs_vet_booking_form .choices {
+  margin-bottom: 0;
+}
+.cs_vet_booking_box .cs_vet_booking_form .choices__list--single {
+  padding: 0;
+}
+.cs_vet_booking_box .cs_vet_booking_form .choices__list--dropdown,
+.cs_vet_booking_box .cs_vet_booking_form .choices__list[aria-expanded] {
+  margin-top: 8px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  background-color: var(--white-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_booking_box .cs_vet_booking_form .choices__list--dropdown,
+  .cs_vet_booking_box .cs_vet_booking_form .choices__list[aria-expanded] {
+    background-color: var(--dm-surface);
+  }
+}
+.cs_vet_booking_box .cs_vet_booking_form .choices__list--dropdown .choices__item--selectable.is-highlighted,
+.cs_vet_booking_box .cs_vet_booking_form .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+  color: var(--white-color);
+  background-color: var(--accent-color);
+}
+.cs_vet_booking_box .cs_vet_booking_form .choices[data-type*=select-one]::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  border: 2px solid var(--secondary-color);
+  border-left: 0;
+  border-top: 0;
+  position: absolute;
+  top: 50%;
+  inset-inline-start: auto;
+  inset-inline-end: 20px;
+  transform: translateY(-70%) rotate(45deg);
+}
+.cs_vet_booking_box .cs_vet_booking_form .cs_btn_style_1 {
+  height: 52px;
+  padding-block: 0;
+}
+@media (max-width: 767px) {
+  .cs_vet_booking_box .cs_vet_booking_form .cs_btn_style_1 {
+    height: 46px;
+  }
+}
+.cs_vet_booking_box .cs_vet_booking_form .cs_btn_style_1::before, .cs_vet_booking_box .cs_vet_booking_form .cs_btn_style_1::after {
+  display: none;
+}
+.cs_vet_booking_box .cs_vet_booking_form .cs_btn_style_1:hover {
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_booking_box .cs_vet_booking_form .cs_btn_style_1:hover {
+    background-color: var(--dm-deep);
+  }
+}
+@media (max-width: 991px) {
+  .cs_vet_booking_box {
+    grid-template-columns: 1fr;
+  }
+  .cs_vet_booking_box .cs_booking_info {
+    padding: 40px 30px 20px;
+  }
+}
+@media (max-width: 575px) {
+  .cs_vet_booking_box {
+    border-radius: 24px;
+  }
+  .cs_vet_booking_box .cs_booking_info {
+    padding: 30px 20px 10px;
+  }
+  .cs_vet_booking_box .cs_vet_booking_form {
+    margin: 8px;
+    padding: 28px 15px;
+    border-radius: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .cs_vet_booking_box .cs_vet_booking_form {
+    padding-inline: 15px;
+  }
+}
+
+/*-------------------------------------------------
+  Instagram gallery strip
+---------------------------------------------------*/
+.cs_vet_gallery_section .cs_gallery_head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.cs_vet_gallery_section .cs_gallery_head h2 span {
+  color: var(--accent-color);
+}
+
+.cs_vet_gallery {
+  list-style: none;
+}
+.cs_vet_gallery .swiper-wrapper {
+  cursor: grab;
+}
+.cs_vet_gallery a {
+  position: relative;
+  display: block;
+  width: 16.6666666667vw;
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .cs_vet_gallery a {
+    width: 33.3333333333vw;
+  }
+}
+@media (max-width: 575px) {
+  .cs_vet_gallery a {
+    width: 50vw;
+  }
+}
+.cs_vet_gallery a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(19, 109, 244, 0.75);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.cs_vet_gallery a i {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  font-size: 32px;
+  color: var(--white-color);
+  opacity: 0;
+  scale: 0.5;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cs_vet_gallery a:hover::after {
+  opacity: 1;
+}
+.cs_vet_gallery a:hover i {
+  opacity: 1;
+  scale: 1;
+}
+.cs_vet_gallery a:hover img {
+  scale: 1.08;
+}
+.cs_vet_gallery img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: scale 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*-------------------------------------------------
+  Blog cards: author + date, plain text link
+---------------------------------------------------*/
+.cs_post_style_1.cs_vet_post .cs_post_author .cs_author_icon {
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+}
+.cs_post_style_1.cs_vet_post .cs_author_info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.4;
+}
+.cs_post_style_1.cs_vet_post .cs_posted_date {
+  color: var(--secondary-color);
+}
+.cs_post_style_1.cs_vet_post .cs_vet_post_btn {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.cs_post_style_1.cs_vet_post .cs_vet_post_btn i {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+[dir=rtl] .cs_post_style_1.cs_vet_post .cs_vet_post_btn i {
+  scale: -1 1;
+}
+.cs_post_style_1.cs_vet_post .cs_vet_post_btn:hover {
+  color: var(--primary-color);
+}
+.cs_post_style_1.cs_vet_post .cs_vet_post_btn:hover i {
+  transform: translateX(4px);
+}
+[dir=rtl] .cs_post_style_1.cs_vet_post .cs_vet_post_btn:hover i {
+  transform: translateX(-4px);
+}
+
+/*-------------------------------------------------
+  Footer tint
+---------------------------------------------------*/
+.cs_vet_footer.cs_primary_bg {
+  background-color: var(--primary-color);
+}
+@media (prefers-color-scheme: dark) {
+  .cs_vet_footer.cs_primary_bg {
+    background-color: var(--dm-deep);
+  }
+}
+
+/*-------------------------------------------------
+  Keyframes
+---------------------------------------------------*/
+@keyframes cs_vt_morph {
+  0%, 100% {
+    border-radius: 58% 42% 55% 45%/50% 55% 45% 50%;
+  }
+  50% {
+    border-radius: 45% 55% 42% 58%/56% 44% 56% 44%;
+  }
+}
+@keyframes cs_vt_spin {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes cs_vt_bob {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+@keyframes cs_vt_wiggle {
+  0%, 100% {
+    rotate: 30deg;
+  }
+  50% {
+    rotate: 10deg;
+  }
+}
+@keyframes cs_vt_pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+}
+@keyframes cs_vt_ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 22px rgba(239, 68, 68, 0);
+  }
+}
+@keyframes cs_vt_pop {
+  from {
+    opacity: 0;
+    scale: 0.9;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes cs_vt_fade_up {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs_vet_hero .cs_hero_blob,
+  .cs_vet_hero .cs_hero_img,
+  .cs_vet_hero .cs_hero_card,
+  .cs_vet_hero .cs_hero_bone,
+  .cs_vet_hero .cs_hero_badge_round svg,
+  .cs_vet_about_section .cs_about_blob {
+    animation: none;
+  }
+}
+/*-------------------------------------------------
+  Dark mode
+---------------------------------------------------*/
+@media (prefers-color-scheme: dark) {
+  .cs_vet_hero .cs_hero_sticker,
+  .cs_vet_hero .cs_hero_species li,
+  .cs_vet_btn_outline {
+    color: var(--primary-color);
+  }
+  .cs_vet_btn_outline {
+    border-color: var(--primary-color);
+  }
+  .cs_vet_btn_outline:hover {
+    color: var(--dm-deep);
+    background-color: var(--primary-color);
+  }
+  .cs_vet_hero .cs_card_icon,
+  .cs_vet_action_card .cs_action_icon,
+  .cs_vet_plan_card .cs_plan_pet,
+  .cs_vet_pet_tabs .cs_vaccine_chips li {
+    color: var(--primary-color);
+  }
+  .cs_vet_plan_card.cs_featured .cs_plan_pet,
+  .cs_vet_pet_tabs .cs_pet_tab.active .cs_pet_tab_icon {
+    color: #1F2937;
+  }
+  .cs_vet_plan_card.cs_color_1 .cs_plan_pet {
+    background-color: color-mix(in srgb, var(--accent-color) 22%, transparent);
+  }
+  .cs_vet_plan_card.cs_featured .cs_plan_pet {
+    background-color: #D2E3FF;
+  }
+  .cs_vet_plan_card.cs_featured .cs_plan_perks i {
+    color: #D2E3FF;
+  }
+  .cs_vet_emergency_section,
+  .cs_vet_booking_box {
+    border-block: 1px solid var(--dm-border);
+  }
+}
+/*-------------------------------------------------
+  Button height (mobile)
+---------------------------------------------------*/
+@media (max-width: 767px) {
+  .cs_vet_home .cs_btn_style_1:not(.cs_newsletter_form *),
+  .cs_vet_home .cs_btn_style_2,
+  .cs_vet_home .cs_vet_btn_outline,
+  .cs_vet_home .cs_vet_btn_sun {
+    height: 46px;
+    padding-block: 0;
   }
 }
 /*===============================================================
@@ -16371,6 +21868,7 @@ label {
   .cs_pharmacy_concern_card:hover {
     background-color: var(--dm-surface);
   }
+  .cs_pharmacy_features .cs_feature_icon,
   .cs_pharmacy_product .cs_wishlist_btn,
   .cs_pharmacy_rx_section .cs_rx_step_number,
   .cs_pharmacy_rx_section .cs_rx_upload .cs_rx_upload_icon,

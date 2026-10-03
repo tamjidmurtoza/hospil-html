@@ -461,10 +461,6 @@
 
   &.cs_type_1 {
     border-color: var(--accent-color);
-
-    img {
-      animation: circularRotation 4s linear infinite;
-    }
   }
 
   &:hover {
@@ -799,5 +795,14 @@
     opacity: 0;
     border-width: 30px;
     transform: translate(-50%, -50%) scale(1.4);
+  }
+}
+/*=============================================
+ Form Inputs (mobile height)
+===============================================*/
+@media (max-width: 767px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not(.cs_quantity_input),
+  select {
+    height: 44px;
   }
 }

@@ -79,8 +79,18 @@
     });
   });
 
-  // Placeholder purchase links: replace href="#" with your marketplace URL.
+  // Purchase links: send buyers straight to ThemeForest checkout
+  var THEMEFOREST_ITEM_ID = "63954517";
   document.querySelectorAll("[data-purchase]").forEach(function (a) {
+    if (THEMEFOREST_ITEM_ID) {
+      var license = a.getAttribute("data-license") || "regular";
+      a.href =
+        "https://themeforest.net/cart/configure_before_adding/" +
+        THEMEFOREST_ITEM_ID +
+        "?license=" +
+        license +
+        "&size=source&support=bundle_6month";
+    }
     if (a.getAttribute("href") === "#")
       a.addEventListener("click", function (e) {
         e.preventDefault();

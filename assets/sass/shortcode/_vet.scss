@@ -1,0 +1,2330 @@
+/*=================================================
+  35. Veterinary Home
+===================================================*/
+$cs_vt_ease_out: cubic-bezier(0.22, 1, 0.36, 1);
+$cs_vt_bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+$cs_vt_blob: 58% 42% 55% 45% / 50% 55% 45% 50%;
+// gray4, gray2 and gray6 blend into the service section wash, so those slots use tinted mixes
+$cs_vt_bento: var(--gray3-color), color-mix(in srgb, var(--danger-color) 12%, var(--gray6-color)), var(--gray5-color), var(--gray-color), color-mix(in srgb, var(--warning-color) 18%, var(--gray6-color)), color-mix(in srgb, var(--primary-color) 8%, var(--gray6-color));
+
+// Section rhythm
+.cs_vet_pet_section,
+.cs_vet_service_section,
+.cs_vet_about_section,
+.cs_vet_plan_section,
+.cs_vet_team_section,
+.cs_vet_story_section,
+.cs_vet_booking_section {
+  padding: 120px 0;
+
+  @media (max-width: 991px) {
+    padding: 70px 0;
+  }
+}
+
+.cs_vet_service_section,
+.cs_vet_plan_section {
+  background-color: var(--gray-color);
+}
+
+.cs_vet_story_section {
+  background-color: var(--gray6-color);
+}
+
+.cs_vet_service_section {
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--accent-color) 10%, transparent), transparent 40%),
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--accent-color) 4%, transparent) 0%,
+      color-mix(in srgb, var(--accent-color) 10%, transparent) 100%),
+    var(--white-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+}
+
+// Buttons used only in this demo
+.cs_vet_home {
+
+  .cs_btn_style_1.cs_accent_bg {
+    border-radius: 50px;
+
+    &::before,
+    &::after {
+      background-color: var(--primary-color);
+
+      // slate like the template's other dark-mode button hovers;
+      // --dm-deep is darker than the page and made the pill vanish
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--dm-ink);
+      }
+    }
+  }
+
+  .cs_btn_style_1 i.fa-arrow-right,
+  .cs_vet_btn_sun i.fa-arrow-right {
+    @include rtl {
+      scale: -1 1;
+    }
+  }
+}
+
+.cs_vet_btn_outline,
+.cs_vet_btn_sun {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 26px;
+  border-radius: 50px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.cs_vet_btn_outline {
+  border: 2px solid var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--dm-deep);
+  }
+
+  &:hover {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-deep);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--dm-deep);
+    }
+  }
+}
+
+.cs_vet_btn_sun {
+  color: var(--primary-color);
+  background-color: var(--gray3-color);
+  border: 2px solid var(--gray3-color);
+
+  &:hover {
+    color: var(--primary-color);
+    background-color: var(--white-color);
+    border-color: var(--white-color);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--dm-deep);
+    }
+  }
+}
+
+.cs_er_pulse {
+  display: inline-block;
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--white-color);
+  animation: cs_vt_pulse 1.6s ease-out infinite;
+}
+
+/*-------------------------------------------------
+  Emergency top bar
+---------------------------------------------------*/
+.cs_site_header .cs_vet_topbar {
+  color: var(--white-color);
+  background-color: var(--danger-color);
+
+  .cs_top_header_in {
+    height: 44px;
+  }
+
+  .cs_contact_list {
+    gap: 24px;
+  }
+
+  .cs_contact_item {
+    gap: 8px;
+  }
+
+  .cs_contact_item+.cs_contact_item {
+    position: relative;
+    padding-inline-start: 24px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      top: 50%;
+      width: 1px;
+      height: 14px;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  a {
+    color: var(--white-color);
+    font-weight: 600;
+  }
+
+  .cs_er_details {
+    position: relative;
+
+    summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      list-style: none;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      i {
+        font-size: 10px;
+        transition: rotate 0.3s ease;
+      }
+    }
+
+    &[open] summary i {
+      rotate: 180deg;
+    }
+  }
+
+  .cs_er_dropdown {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + 12px);
+    inset-inline-start: 0;
+    width: 300px;
+    padding: 20px;
+    border-radius: 16px;
+    color: var(--secondary-color);
+    background-color: var(--white-color);
+    box-shadow: 0 24px 50px -20px rgba(31, 41, 55, 0.45);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      padding-inline-start: 22px;
+      font-size: 14px;
+      line-height: 1.5em;
+
+      +li {
+        margin-top: 6px;
+      }
+
+      &::before {
+        content: "\f071";
+        position: absolute;
+        inset-inline-start: 0;
+        top: 1px;
+        font-family: "Font Awesome 7 Free";
+        font-weight: 900;
+        font-size: 11px;
+        color: var(--danger-color);
+      }
+    }
+  }
+}
+
+// Floating emergency call for small screens (top bar hidden < 1280px)
+.cs_vet_er_fab {
+  position: fixed;
+  z-index: 998;
+  bottom: 40px;
+  inset-inline-start: 20px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 50px;
+  color: var(--white-color);
+  background-color: var(--danger-color);
+  box-shadow: 0 16px 30px -12px rgba(239, 68, 68, 0.7);
+
+  &:hover {
+    color: var(--white-color);
+  }
+
+  @media (max-width: 1279px) {
+    display: inline-flex;
+  }
+}
+
+/*-------------------------------------------------
+  Hero
+---------------------------------------------------*/
+.cs_vet_hero {
+  position: relative;
+  overflow: hidden;
+  padding: 160px 0 150px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(19, 109, 244, 0.18), transparent 30%),
+    linear-gradient(135deg, var(--gray-color) 0%, var(--gray3-color) 100%);
+
+  @media (min-width: 1280px) {
+    padding-top: 220px;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: 1280px) {
+      max-width: 1644px;
+    }
+  }
+
+  .cs_hero_paw,
+  .cs_hero_bone {
+    position: absolute;
+    color: var(--accent-color);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .cs_paw_1 {
+    top: 24%;
+    inset-inline-start: 3%;
+    font-size: 54px;
+    rotate: -20deg;
+  }
+
+  .cs_paw_2 {
+    top: 34%;
+    inset-inline-start: 7%;
+    font-size: 40px;
+    rotate: 10deg;
+  }
+
+  .cs_paw_3 {
+    bottom: 22%;
+    inset-inline-start: 44%;
+    font-size: 46px;
+    rotate: -30deg;
+  }
+
+  .cs_hero_bone {
+    top: 28%;
+    inset-inline-end: 4%;
+    font-size: 60px;
+    rotate: 30deg;
+    color: var(--gray3-color);
+    opacity: 0.6;
+    animation: cs_vt_wiggle 5s ease-in-out infinite;
+  }
+
+  .cs_hero_in {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .cs_hero_sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 18px 6px 6px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--white-color);
+    box-shadow: 0 10px 30px -14px rgba(31, 41, 55, 0.35);
+    rotate: -2deg;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+
+    @include rtl {
+      padding: 6px 6px 6px 18px;
+      rotate: 2deg;
+    }
+
+    @media (max-width: 991px) {
+
+      &,
+      [dir='rtl'] & {
+        rotate: 0deg;
+      }
+    }
+  }
+
+  .cs_sticker_icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 13px;
+    color: var(--white-color);
+    background-color: var(--danger-color);
+  }
+
+  .cs_hero_title {
+    font-size: clamp(40px, 4.6vw, 72px);
+    line-height: 1.08em;
+    letter-spacing: -0.02em;
+
+    span {
+      position: relative;
+      z-index: 0;
+      display: inline-block;
+      color: var(--accent-color);
+
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 18% -10% 4%;
+        border-radius: $cs_vt_blob;
+        background-color: var(--gray3-color);
+        rotate: -4deg;
+      }
+    }
+  }
+
+  .cs_hero_desc {
+    max-width: 540px;
+  }
+
+  .cs_hero_btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    @media (max-width: 767px) {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 399px) {
+      > a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  .cs_hero_species {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    .cs_species_slider {
+      flex: 1;
+      min-width: 0;
+      max-width: 412px;
+      margin: 0;
+
+      &:hover .swiper-wrapper {
+        cursor: grab;
+      }
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 44px !important;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 17px;
+      color: var(--primary-color);
+      background-color: var(--white-color);
+      border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+      transition: color 0.3s, background-color 0.3s;
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--dm-surface);
+      }
+
+      &:hover {
+        color: var(--white-color);
+        background-color: var(--accent-color);
+      }
+    }
+  }
+
+  /* ---------- Image + decorations ---------- */
+  .cs_hero_right {
+    position: relative;
+    max-width: 580px;
+    width: 100%;
+    margin-inline-start: auto;
+  }
+
+  .cs_hero_blob {
+    position: absolute;
+    inset: 4% -4% -2% 6%;
+    border-radius: $cs_vt_blob;
+    background-color: var(--accent-color);
+    animation: cs_vt_morph 12s ease-in-out infinite;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 34%;
+      aspect-ratio: 1;
+      bottom: -6%;
+      inset-inline-start: -10%;
+      border-radius: 50%;
+      background-color: var(--gray3-color);
+    }
+  }
+
+  .cs_hero_img {
+    position: relative;
+    overflow: hidden;
+    border-radius: $cs_vt_blob;
+    border: 10px solid var(--white-color);
+    animation: cs_vt_morph 12s ease-in-out infinite reverse;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--dm-surface);
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 640 / 680;
+      object-fit: cover;
+    }
+  }
+
+  .cs_hero_badge_round {
+    position: absolute;
+    z-index: 2;
+    top: 2%;
+    inset-inline-start: -4%;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: var(--gray3-color);
+    box-shadow: 0 16px 30px -14px rgba(31, 41, 55, 0.45);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: #D2E3FF;
+      box-shadow: 0 16px 30px -14px rgba(0, 0, 0, 0.7);
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      animation: cs_vt_spin 18s linear infinite;
+    }
+
+    text {
+      font-family: var(--primary-font);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      fill: var(--primary-color);
+
+      @media (prefers-color-scheme: dark) {
+        fill: var(--dm-deep);
+      }
+    }
+
+    span {
+      position: absolute;
+      inset: 32px;
+      border-radius: 50%;
+      font-size: 24px;
+      color: var(--white-color);
+      background-color: var(--primary-color);
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--dm-deep);
+      }
+    }
+  }
+
+  .cs_hero_card {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px 12px 12px;
+    border-radius: 20px;
+    background-color: var(--white-color);
+    box-shadow: 0 24px 50px -24px rgba(31, 41, 55, 0.45);
+    animation: cs_vt_bob 6s ease-in-out infinite;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+
+    @include rtl {
+      padding: 12px 12px 12px 18px;
+    }
+
+    &.cs_card_wait {
+      bottom: 16%;
+      inset-inline-start: -10%;
+    }
+
+    &.cs_card_pet {
+      top: 38%;
+      inset-inline-end: -8%;
+      animation-delay: -3s;
+
+      img {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .fa-circle-check {
+        color: var(--accent-color);
+      }
+    }
+  }
+
+  .cs_card_icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    font-size: 18px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+  }
+
+  .cs_hero_wave {
+    position: absolute;
+    inset-inline: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 80px;
+
+    path {
+      fill: var(--web-wash, #fff);
+    }
+  }
+
+  @media (max-width: 1399px) {
+    .cs_hero_card.cs_card_wait {
+      inset-inline-start: -4%;
+    }
+
+    .cs_hero_card.cs_card_pet {
+      inset-inline-end: -2%;
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 140px 0 120px;
+
+    .cs_hero_in {
+      grid-template-columns: 1fr;
+    }
+
+    .cs_hero_right {
+      margin-inline: auto;
+      max-width: 500px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 100px 0 120px;
+  }
+
+  @media (max-width: 575px) {
+    .cs_hero_badge_round {
+      width: 96px;
+      height: 96px;
+      inset-inline-start: 0;
+
+      span {
+        inset: 24px;
+        font-size: 18px;
+      }
+    }
+
+    .cs_hero_card {
+      &.cs_card_wait {
+        inset-inline-start: 0;
+        bottom: 4%;
+      }
+
+      &.cs_card_pet {
+        inset-inline-end: 0;
+        top: 44%;
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Quick actions
+---------------------------------------------------*/
+.cs_vet_actions {
+  position: relative;
+  z-index: 2;
+  margin-top: -70px;
+
+  .cs_vet_actions_in {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 991px) {
+    margin-top: -50px;
+
+    .cs_vet_actions_in {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+}
+
+.cs_vet_action_card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 26px 28px;
+  border-radius: 28px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  box-shadow: 0 30px 60px -36px rgba(31, 41, 55, 0.45);
+  transition: all 0.4s $cs_vt_ease_out;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_action_icon {
+    width: 60px;
+    height: 60px;
+    flex: none;
+    border-radius: 20px;
+    font-size: 22px;
+    color: var(--primary-color);
+    transition: rotate 0.4s $cs_vt_bounce;
+  }
+
+  // gray tokens flip in dark mode (gray4 matches the card, gray goes near-black), so use tinted mixes there
+  &.cs_color_1 .cs_action_icon {
+    background-color: var(--gray3-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: color-mix(in srgb, var(--accent-color) 22%, var(--dm-surface));
+    }
+  }
+
+  &.cs_color_2 .cs_action_icon {
+    background-color: var(--gray4-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: color-mix(in srgb, var(--danger-color) 22%, var(--dm-surface));
+    }
+  }
+
+  &.cs_color_3 .cs_action_icon {
+    background-color: var(--gray-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: color-mix(in srgb, var(--warning-color) 22%, var(--dm-surface));
+    }
+  }
+
+  .cs_action_arrow {
+    margin-inline-start: auto;
+    color: var(--accent-color);
+    transition: translate 0.3s ease;
+
+    @include rtl {
+      scale: -1 1;
+    }
+  }
+
+  &:hover {
+    translate: 0 -6px;
+
+    .cs_action_icon {
+      rotate: -10deg;
+    }
+
+    .cs_action_arrow {
+      translate: 4px 0;
+
+      @include rtl {
+        translate: -4px 0;
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Pet selector tabs
+---------------------------------------------------*/
+.cs_vet_pet_tabs {
+  .cs_pet_tablist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .cs_pet_tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 22px 6px 6px;
+    border-radius: 50px;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: var(--white-color);
+    border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+    transition: all 0.3s ease;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+
+    @include rtl {
+      padding: 6px 6px 6px 22px;
+    }
+
+    &:hover {
+      border-color: var(--accent-color);
+    }
+
+    &.active {
+      color: var(--white-color);
+      border-color: var(--accent-color);
+      background-color: var(--accent-color);
+
+      // fixed light-theme values: the theme variables both go dark in dark mode
+      .cs_pet_tab_icon {
+        color: #1F2937;
+        background-color: #D2E3FF;
+        rotate: -10deg;
+      }
+    }
+  }
+
+  .cs_pet_tab_icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 17px;
+    color: var(--accent-color);
+    background-color: var(--gray3-color);
+    transition: all 0.4s $cs_vt_bounce;
+  }
+
+  .cs_pet_panel {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 70px;
+    align-items: center;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &.active {
+      .cs_pet_panel_img {
+        animation: cs_vt_pop 0.7s $cs_vt_bounce;
+      }
+
+      .cs_pet_panel_content {
+        animation: cs_vt_fade_up 0.6s $cs_vt_ease_out;
+      }
+    }
+  }
+
+  .cs_pet_panel_img {
+    position: relative;
+    padding: 24px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: $cs_vt_blob;
+      background-color: var(--gray3-color);
+      rotate: -6deg;
+    }
+
+    img {
+      position: relative;
+      width: 100%;
+      display: block;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: $cs_vt_blob;
+    }
+  }
+
+  .cs_pet_services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    i {
+      width: 22px;
+      height: 22px;
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 11px;
+      color: var(--white-color);
+      background-color: var(--accent-color);
+      translate: 0 3px;
+    }
+  }
+
+  .cs_vaccine_chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+
+    li {
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-color);
+      background-color: var(--gray4-color);
+    }
+  }
+
+  @media (max-width: 991px) {
+    .cs_pet_panel {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .cs_pet_panel_img {
+      max-width: 440px;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_pet_tablist {
+      margin-bottom: 32px;
+    }
+
+    .cs_pet_tab {
+      padding-inline-end: 16px;
+      font-size: 14px;
+
+      @include rtl {
+        padding-inline: 16px 6px;
+      }
+    }
+
+    .cs_pet_tab_icon {
+      width: 34px;
+      height: 34px;
+      font-size: 14px;
+    }
+
+    .cs_pet_services {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Services bento grid
+---------------------------------------------------*/
+.cs_vet_bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(230px, auto);
+  grid-auto-flow: dense;
+  gap: 24px;
+
+  .cs_bento_item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 30px;
+    border-radius: 32px;
+    transition: all 0.4s $cs_vt_ease_out;
+
+    &:hover {
+      translate: 0 -6px;
+      box-shadow: 0 30px 60px -36px rgba(31, 41, 55, 0.5);
+
+      .cs_bento_icon {
+        rotate: -12deg;
+        scale: 1.08;
+      }
+
+      >img {
+        scale: 1.06;
+      }
+    }
+
+    >img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: scale 0.8s $cs_vt_ease_out;
+    }
+
+    @for $i from 1 through 6 {
+      &.cs_color_#{$i} {
+        background-color: nth($cs_vt_bento, $i);
+      }
+    }
+  }
+
+  .cs_bento_feature {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 480px;
+  }
+
+  .cs_bento_image {
+    grid-column: span 2;
+  }
+
+  .cs_bento_feature,
+  .cs_bento_image {
+    isolation: isolate;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to top, rgba(17, 24, 39, 0.92) 0%, rgba(17, 24, 39, 0.6) 40%, rgba(17, 24, 39, 0.15) 75%, rgba(17, 24, 39, 0.05) 100%);
+      pointer-events: none;
+    }
+  }
+
+  .cs_bento_overlay {
+    position: relative;
+    z-index: 2;
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .cs_bento_feature .cs_bento_overlay {
+    max-width: 460px;
+  }
+
+  .cs_bento_tag {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+  }
+
+  .cs_bento_icon {
+    width: 62px;
+    height: 62px;
+    margin-bottom: auto;
+    border-radius: 20px;
+    font-size: 24px;
+    color: var(--accent-color);
+    background-color: var(--white-color);
+    transition: all 0.4s $cs_vt_bounce;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+  }
+
+  @media (max-width: 1199px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    .cs_bento_feature {
+      min-height: 420px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(200px, auto);
+
+    .cs_bento_feature,
+    .cs_bento_image {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .cs_bento_feature {
+      min-height: 380px;
+    }
+
+    .cs_bento_item {
+      padding: 24px;
+      border-radius: 24px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Emergency band
+---------------------------------------------------*/
+.cs_vet_emergency_section {
+  position: relative;
+  padding: 150px 0;
+  color: rgba(255, 255, 255, 0.8);
+  background:
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--accent-color) 45%, transparent), transparent 40%),
+    var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_wave_top,
+  .cs_wave_bottom {
+    position: absolute;
+    inset-inline: 0;
+    width: 100%;
+    height: 60px;
+  }
+
+  .cs_wave_top {
+    top: -1px;
+
+    path {
+      // match the bottom of the services gradient above
+      fill: color-mix(in srgb, var(--accent-color) 10%, var(--white-color));
+
+      @media (prefers-color-scheme: dark) {
+        fill: color-mix(in srgb, var(--accent-color) 10%, var(--dm-surface));
+      }
+    }
+  }
+
+  .cs_wave_bottom {
+    bottom: -1px;
+
+    path {
+      fill: var(--web-wash, #fff);
+    }
+  }
+
+  .cs_er_label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+    border-radius: 50px;
+    color: var(--white-color);
+    background-color: var(--danger-color);
+  }
+
+  .cs_er_actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px 36px;
+  }
+
+  .cs_er_phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cs_er_phone_icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: var(--white-color);
+    background-color: var(--danger-color);
+    animation: cs_vt_ring 2s ease-out infinite;
+  }
+
+  .cs_er_media {
+    position: relative;
+    max-width: 440px;
+    margin-inline: auto;
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 10px solid rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  .cs_er_stat {
+    position: absolute;
+    bottom: 8%;
+    inset-inline-start: -6%;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 24px;
+    border-radius: 24px;
+    line-height: 1.3em;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+    rotate: -6deg;
+  }
+
+  @media (max-width: 991px) {
+    padding: 110px 0;
+  }
+
+  @media (max-width: 575px) {
+    .cs_er_stat {
+      inset-inline-start: 0;
+    }
+
+    .cs_er_phone strong {
+      font-size: 24px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  About
+---------------------------------------------------*/
+.cs_vet_about_section {
+  .cs_about_collage {
+    position: relative;
+    padding: 30px 90px 70px 20px;
+
+    @include rtl {
+      padding: 30px 20px 70px 90px;
+    }
+  }
+
+  .cs_about_blob {
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 70%;
+    aspect-ratio: 1;
+    border-radius: $cs_vt_blob;
+    background-color: var(--gray3-color);
+    animation: cs_vt_morph 14s ease-in-out infinite;
+  }
+
+  .cs_about_img_main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 200px 200px 32px 32px;
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 560 / 640;
+      max-height: 600px;
+      object-fit: cover;
+    }
+  }
+
+  .cs_about_img_small {
+    position: absolute;
+    bottom: 0;
+    inset-inline-end: 0;
+    width: 44%;
+    overflow: hidden;
+    border-radius: $cs_vt_blob;
+    border: 8px solid var(--web-wash, #fff);
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+  }
+
+  .cs_about_note {
+    position: absolute;
+    top: 14%;
+    inset-inline-end: 0;
+    max-width: 200px;
+    padding: 18px 20px;
+    border-radius: 20px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+    rotate: 5deg;
+    box-shadow: 0 20px 40px -20px rgba(31, 41, 55, 0.5);
+
+    i {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 20px;
+    }
+
+    p {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+  }
+
+  .cs_about_content {
+    padding-inline-start: 30px;
+  }
+
+  .cs_about_points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .cs_about_point {
+    display: flex;
+    gap: 14px;
+  }
+
+  .cs_point_icon {
+    width: 50px;
+    height: 50px;
+    flex: none;
+    border-radius: 16px;
+    font-size: 18px;
+    color: var(--accent-color);
+    background-color: var(--gray3-color);
+  }
+
+  .cs_vet_counters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 30px;
+    list-style: none;
+    border-top: 2px dashed color-mix(in srgb, var(--primary-color) 10%, transparent);
+
+    li {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    strong {
+      display: flex;
+      align-items: baseline;
+      line-height: 1.2em;
+      color: var(--accent-color);
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .cs_about_content {
+      padding-inline-start: 0;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cs_about_collage {
+      padding: 20px 40px 50px 0;
+
+      @include rtl {
+        padding: 20px 0 50px 40px;
+      }
+    }
+
+    .cs_about_points {
+      grid-template-columns: 1fr;
+    }
+
+    .cs_about_note {
+      max-width: 160px;
+      padding: 12px 14px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Vaccine roadmap + plans
+---------------------------------------------------*/
+.cs_vet_roadmap {
+  padding: 36px 40px;
+  border-radius: 32px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  .cs_roadmap_head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 20px;
+    margin-bottom: 36px;
+
+    i {
+      color: var(--accent-color);
+      margin-inline-end: 6px;
+    }
+  }
+
+  .cs_roadmap_track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    list-style: none;
+
+    // dashed path behind the dots, drawn in when visible
+    &::before {
+      content: "";
+      position: absolute;
+      top: 11px;
+      inset-inline: 0;
+      height: 3px;
+      background-image: linear-gradient(90deg, var(--accent-color) 50%, transparent 50%);
+      background-size: 14px 3px;
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 2s $cs_vt_ease_out;
+
+      @include rtl {
+        clip-path: inset(0 0 0 100%);
+      }
+    }
+
+    li {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
+  .cs_roadmap_dot {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 14px;
+    border-radius: 50%;
+    border: 5px solid var(--white-color);
+    background-color: var(--accent-color);
+    box-shadow: 0 0 0 2px var(--accent-color);
+    scale: 0;
+    transition: scale 0.5s $cs_vt_bounce;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--dm-surface);
+    }
+  }
+
+  &.is-visible {
+    .cs_roadmap_track::before {
+      clip-path: inset(0 0 0 0);
+    }
+
+    .cs_roadmap_dot {
+      scale: 1;
+    }
+
+    @for $i from 1 through 5 {
+      li:nth-child(#{$i}) .cs_roadmap_dot {
+        transition-delay: #{($i - 1) * 0.35}s;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    padding: 30px 24px;
+
+    .cs_roadmap_track {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding-inline-start: 4px;
+
+      &::before {
+        top: 0;
+        bottom: 0;
+        inset-inline-start: 15px;
+        width: 3px;
+        height: auto;
+        background-image: linear-gradient(180deg, var(--accent-color) 50%, transparent 50%);
+        background-size: 3px 14px;
+        clip-path: none;
+      }
+
+      li {
+        padding-inline-start: 42px;
+      }
+    }
+
+    .cs_roadmap_dot {
+      position: absolute;
+      top: 2px;
+      inset-inline-start: 0;
+      margin: 0;
+    }
+  }
+}
+
+.cs_vet_plan_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 40px 36px;
+  overflow: hidden;
+  border-radius: 32px;
+  background-color: var(--white-color);
+  border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+  transition: translate 0.4s $cs_vt_ease_out;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  &:hover {
+    translate: 0 -6px;
+  }
+
+  .cs_plan_pet {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 22px;
+    border-radius: $cs_vt_blob;
+    font-size: 24px;
+    color: var(--primary-color);
+  }
+
+  &.cs_color_1 .cs_plan_pet {
+    background-color: var(--gray4-color);
+  }
+
+  &.cs_color_2 .cs_plan_pet {
+    background-color: var(--gray5-color);
+  }
+
+  .cs_plan_price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 24px;
+
+    strong {
+      line-height: 1em;
+    }
+  }
+
+  .cs_plan_perks {
+    flex: 1;
+    margin-bottom: 30px;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+
+      +li {
+        margin-top: 12px;
+      }
+    }
+
+    i {
+      font-size: 13px;
+      color: var(--accent-color);
+    }
+  }
+
+  .cs_vet_btn_outline,
+  .cs_vet_btn_sun {
+    width: 100%;
+  }
+
+  &.cs_featured {
+    color: rgba(255, 255, 255, 0.78);
+    border-color: var(--accent-color);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.2), transparent 45%),
+      var(--accent-color);
+
+    .cs_plan_pet {
+      background-color: var(--gray3-color);
+    }
+
+    .cs_plan_perks i {
+      color: var(--gray3-color);
+    }
+
+    @media (min-width: 992px) {
+      translate: 0 -16px;
+
+      &:hover {
+        translate: 0 -22px;
+      }
+    }
+  }
+
+  .cs_plan_ribbon {
+    position: absolute;
+    top: 30px;
+    inset-inline-end: 30px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+    rotate: 4deg;
+  }
+
+  @media (max-width: 1199px) {
+    padding-inline: 15px;
+  }
+
+  @media (max-width: 575px) {
+    padding-block: 30px;
+  }
+}
+
+/*-------------------------------------------------
+  Team (vets with their pets)
+---------------------------------------------------*/
+// two cards per row down to 451px, then stack
+@media (max-width: 450px) {
+  .cs_vet_team_row>.col-6 {
+    width: 100%;
+  }
+}
+
+.cs_vet_team_card {
+  position: relative;
+  text-align: center;
+
+  .cs_team_img {
+    position: relative;
+    padding: 16px;
+    margin-bottom: 20px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: $cs_vt_blob;
+      transition: rotate 0.6s $cs_vt_bounce;
+    }
+
+    img {
+      position: relative;
+      width: 100%;
+      display: block;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  &.cs_color_1 .cs_team_img::before {
+    background-color: var(--gray3-color);
+  }
+
+  &.cs_color_2 .cs_team_img::before {
+    background-color: var(--gray4-color);
+  }
+
+  &.cs_color_3 .cs_team_img::before {
+    background-color: var(--gray-color);
+  }
+
+  &.cs_color_4 .cs_team_img::before {
+    background-color: var(--gray4-color);
+  }
+
+  .cs_team_pet {
+    position: absolute;
+    top: 12px;
+    inset-inline-end: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    color: var(--primary-color);
+    background-color: var(--gray3-color);
+    rotate: 6deg;
+    box-shadow: 0 12px 24px -12px rgba(31, 41, 55, 0.5);
+    transition: rotate 0.4s $cs_vt_bounce;
+  }
+
+  a:hover {
+    color: var(--accent-color);
+  }
+
+  &:hover {
+    .cs_team_img::before {
+      rotate: 25deg;
+    }
+
+    .cs_team_pet {
+      rotate: -6deg;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Happy tails (polaroids)
+---------------------------------------------------*/
+.cs_vet_story_section {
+  .swiper {
+    padding: 20px 6px 30px;
+    margin: -20px -6px -30px;
+  }
+
+  .swiper-slide {
+    height: auto;
+
+    &:nth-child(odd) .cs_vet_polaroid {
+      rotate: -1.5deg;
+    }
+
+    &:nth-child(even) .cs_vet_polaroid {
+      rotate: 1.5deg;
+    }
+  }
+
+  .cs_story_nav {
+    display: flex;
+    gap: 12px;
+
+    button {
+      width: 54px;
+      height: 54px;
+      color: var(--primary-color);
+
+      @media (max-width: 767px) {
+        width: 44px;
+        height: 44px;
+      }
+
+      background-color: var(--white-color);
+      border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+      transition: all 0.3s ease;
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--dm-surface);
+      }
+
+      &:hover {
+        color: var(--white-color);
+        border-color: var(--accent-color);
+        background-color: var(--accent-color);
+      }
+
+      i {
+        @include rtl {
+          scale: -1 1;
+        }
+      }
+    }
+  }
+}
+
+.cs_vet_polaroid {
+  height: 100%;
+  padding: 14px 14px 26px;
+  border-radius: 8px;
+  background-color: var(--white-color);
+  box-shadow: 0 20px 40px -24px rgba(31, 41, 55, 0.4);
+  transition: rotate 0.4s $cs_vt_ease_out, translate 0.4s $cs_vt_ease_out;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-surface);
+  }
+
+  &:hover {
+    rotate: 0deg !important;
+    translate: 0 -6px;
+  }
+
+  .cs_polaroid_img {
+    position: relative;
+    margin-bottom: 20px;
+
+    img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 420 / 400;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+  }
+
+  .cs_polaroid_badge {
+    position: absolute;
+    bottom: -14px;
+    inset-inline-end: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 50px;
+    color: var(--white-color);
+    background-color: var(--accent-color);
+  }
+
+  h3,
+  p {
+    padding-inline: 8px;
+  }
+
+  .cs_polaroid_condition {
+    color: var(--accent-color);
+  }
+}
+
+/*-------------------------------------------------
+  Booking
+---------------------------------------------------*/
+.cs_vet_booking_box {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  overflow: hidden;
+  border-radius: 36px;
+  background-color: var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+
+  .cs_booking_info {
+    position: relative;
+    padding: 60px 50px;
+    color: rgba(255, 255, 255, 0.75);
+
+    &::after {
+      content: "\f1b0";
+      position: absolute;
+      bottom: -30px;
+      inset-inline-end: -10px;
+      font-family: "Font Awesome 7 Free";
+      font-weight: 900;
+      font-size: 180px;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.05);
+      rotate: -20deg;
+    }
+
+    .cs_section_subtitle {
+      color: #D2E3FF;
+      letter-spacing: 0.7px;
+    }
+  }
+
+  .cs_booking_hours {
+    list-style: none;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+
+    .cs_er_row strong {
+      color: #D2E3FF;
+    }
+  }
+
+  .cs_booking_address {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+
+    i {
+      color: var(--gray3-color);
+    }
+  }
+
+  .cs_vet_booking_form {
+    margin: 12px;
+    padding: 48px 40px;
+    border-radius: 28px;
+    background-color: var(--white-color);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--dm-surface);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .cs_form_field,
+    .choices__inner {
+      display: block;
+      width: 100%;
+      min-height: 52px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-size: 15px;
+      color: var(--primary-color);
+      outline: 0;
+      border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+      background-color: var(--gray-color);
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: var(--accent-color);
+      }
+    }
+
+    textarea.cs_form_field {
+      resize: none;
+    }
+
+    .choices {
+      margin-bottom: 0;
+    }
+
+    .choices__list--single {
+      padding: 0;
+    }
+
+    .choices__list--dropdown,
+    .choices__list[aria-expanded] {
+      margin-top: 8px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, var(--primary-color) 10%, transparent);
+      background-color: var(--white-color);
+
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--dm-surface);
+      }
+
+      .choices__item--selectable.is-highlighted {
+        color: var(--white-color);
+        background-color: var(--accent-color);
+      }
+    }
+
+    .choices[data-type*="select-one"]::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      margin: 0;
+      border: 2px solid var(--secondary-color);
+      border-left: 0;
+      border-top: 0;
+      position: absolute;
+      top: 50%;
+      inset-inline-start: auto;
+      inset-inline-end: 20px;
+      transform: translateY(-70%) rotate(45deg);
+    }
+
+    .cs_btn_style_1 {
+      height: 52px;
+      padding-block: 0;
+
+      @media (max-width: 767px) {
+        height: 46px;
+      }
+
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      &:hover {
+        background-color: var(--primary-color);
+
+        @media (prefers-color-scheme: dark) {
+          background-color: var(--dm-deep);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+
+    .cs_booking_info {
+      padding: 40px 30px 20px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    border-radius: 24px;
+
+    .cs_booking_info {
+      padding: 30px 20px 10px;
+    }
+
+    .cs_vet_booking_form {
+      margin: 8px;
+      padding: 28px 15px;
+      border-radius: 20px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .cs_vet_booking_form {
+      padding-inline: 15px;
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Instagram gallery strip
+---------------------------------------------------*/
+.cs_vet_gallery_section {
+  .cs_gallery_head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 30px;
+
+    h2 span {
+      color: var(--accent-color);
+    }
+  }
+}
+
+// marquee slider: slides are width:auto, so the tile size lives on the link
+.cs_vet_gallery {
+  list-style: none;
+
+  .swiper-wrapper {
+    cursor: grab;
+  }
+
+  a {
+    position: relative;
+    display: block;
+    width: calc(100vw / 6);
+    overflow: hidden;
+
+    @media (max-width: 991px) {
+      width: calc(100vw / 3);
+    }
+
+    @media (max-width: 575px) {
+      width: calc(100vw / 2);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(19, 109, 244, 0.75);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    i {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      font-size: 32px;
+      color: var(--white-color);
+      opacity: 0;
+      scale: 0.5;
+      transition: all 0.4s $cs_vt_bounce;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+
+      i {
+        opacity: 1;
+        scale: 1;
+      }
+
+      img {
+        scale: 1.08;
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: scale 0.6s $cs_vt_ease_out;
+  }
+}
+
+/*-------------------------------------------------
+  Blog cards: author + date, plain text link
+---------------------------------------------------*/
+.cs_post_style_1.cs_vet_post {
+
+  .cs_post_author .cs_author_icon {
+    width: 44px;
+    height: 44px;
+    padding: 11px;
+  }
+
+  .cs_author_info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.4;
+  }
+
+  .cs_posted_date {
+    color: var(--secondary-color);
+  }
+
+  .cs_vet_post_btn {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      font-size: 14px;
+      transition: transform 0.3s ease;
+
+      @include rtl {
+        scale: -1 1;
+      }
+    }
+
+    &:hover {
+      color: var(--primary-color);
+
+      i {
+        transform: translateX(4px);
+      }
+
+      @include rtl {
+        i {
+          transform: translateX(-4px);
+        }
+      }
+    }
+  }
+}
+
+/*-------------------------------------------------
+  Footer tint
+---------------------------------------------------*/
+.cs_vet_footer.cs_primary_bg {
+  background-color: var(--primary-color);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--dm-deep);
+  }
+}
+
+/*-------------------------------------------------
+  Keyframes
+---------------------------------------------------*/
+@keyframes cs_vt_morph {
+
+  0%,
+  100% {
+    border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
+  }
+
+  50% {
+    border-radius: 45% 55% 42% 58% / 56% 44% 56% 44%;
+  }
+}
+
+@keyframes cs_vt_spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes cs_vt_bob {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+@keyframes cs_vt_wiggle {
+
+  0%,
+  100% {
+    rotate: 30deg;
+  }
+
+  50% {
+    rotate: 10deg;
+  }
+}
+
+@keyframes cs_vt_pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+
+  100% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes cs_vt_ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+  }
+
+  100% {
+    box-shadow: 0 0 0 22px rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes cs_vt_pop {
+  from {
+    opacity: 0;
+    scale: 0.9;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes cs_vt_fade_up {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cs_vet_hero .cs_hero_blob,
+  .cs_vet_hero .cs_hero_img,
+  .cs_vet_hero .cs_hero_card,
+  .cs_vet_hero .cs_hero_bone,
+  .cs_vet_hero .cs_hero_badge_round svg,
+  .cs_vet_about_section .cs_about_blob {
+    animation: none;
+  }
+}
+
+/*-------------------------------------------------
+  Dark mode
+---------------------------------------------------*/
+@media (prefers-color-scheme: dark) {
+
+  .cs_vet_hero .cs_hero_sticker,
+  .cs_vet_hero .cs_hero_species li,
+  .cs_vet_btn_outline {
+    color: var(--primary-color);
+  }
+
+  .cs_vet_btn_outline {
+    border-color: var(--primary-color);
+
+    &:hover {
+      color: var(--dm-deep);
+      background-color: var(--primary-color);
+    }
+  }
+
+  .cs_vet_hero .cs_card_icon,
+  .cs_vet_action_card .cs_action_icon,
+  .cs_vet_plan_card .cs_plan_pet,
+  .cs_vet_pet_tabs .cs_vaccine_chips li {
+    color: var(--primary-color);
+  }
+
+  .cs_vet_plan_card.cs_featured .cs_plan_pet,
+  .cs_vet_pet_tabs .cs_pet_tab.active .cs_pet_tab_icon {
+    color: #1F2937;
+  }
+
+  // --gray4-color matches the card surface in dark mode; give the blob a visible blue tint
+  .cs_vet_plan_card.cs_color_1 .cs_plan_pet {
+    background-color: color-mix(in srgb, var(--accent-color) 22%, transparent);
+  }
+
+  // featured card is always blue: keep its blob and ticks light (--gray3-color goes dark here)
+  .cs_vet_plan_card.cs_featured .cs_plan_pet {
+    background-color: #D2E3FF;
+  }
+
+  .cs_vet_plan_card.cs_featured .cs_plan_perks i {
+    color: #D2E3FF;
+  }
+
+  .cs_vet_emergency_section,
+  .cs_vet_booking_box {
+    border-block: 1px solid var(--dm-border);
+  }
+}
+
+/*-------------------------------------------------
+  Button height (mobile)
+---------------------------------------------------*/
+@media (max-width: 767px) {
+  .cs_vet_home {
+
+    .cs_btn_style_1:not(.cs_newsletter_form *),
+    .cs_btn_style_2,
+    .cs_vet_btn_outline,
+    .cs_vet_btn_sun {
+      height: 46px;
+      padding-block: 0;
+    }
+  }
+}
